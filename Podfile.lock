@@ -1,0 +1,24 @@
+PODS:
+  - MagicalRecord (2.2)
+  - NSEnumeratorLinq (0.2.2)
+  - ReactiveCocoa (2.1.7):
+    - ReactiveCocoa/Core
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/Core (2.1.7):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.1.7)
+  - Typhoon (1.6.3)
+
+DEPENDENCIES:
+  - MagicalRecord (~> 2.2)
+  - NSEnumeratorLinq (~> 0.2.2)
+  - ReactiveCocoa (~> 2.1.7)
+  - Typhoon (~> 1.6.3)
+
+SPEC CHECKSUMS:
+  MagicalRecord: b1fc46c99a9749fe7fe7e6f43a89b62ef5201933
+  NSEnumeratorLinq: 5669fd69cb6db31c17d9f13e23b73f7cdb2a38ce
+  ReactiveCocoa: 1117f7968c8667d2ca00b5aa47156fabcb56af75
+  Typhoon: 0b8db7ac4980af3b70b12824fd45749eb2896032
+
+COCOAPODS: 0.26.2
