@@ -23,10 +23,10 @@
 		FF8EE8A118567A320036BE27 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FF8EE89F18567A320036BE27 /* InfoPlist.strings */; };
 		FF8EE8A318567A320036BE27 /* AuditrTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8EE8A218567A320036BE27 /* AuditrTests.m */; };
 		FF8EE8B018567AF70036BE27 /* auditr.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EE8AF18567AF70036BE27 /* auditr.storyboard */; };
-		FF8EE8B4185686C00036BE27 /* DBTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8EE8B3185686C00036BE27 /* DBTabBarViewController.m */; };
 		FF8EE8B8185687AB0036BE27 /* DBGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8EE8B7185687AB0036BE27 /* DBGroupsViewController.m */; };
 		FFBBA8AA185694B200C8BCBE /* DBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBBA8A9185694B200C8BCBE /* DBAppDelegate.m */; };
 		FFBBA8B41856960100C8BCBE /* DBCoreDataBaseRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBBA8B31856960100C8BCBE /* DBCoreDataBaseRepository.m */; };
+		FFBBA8B81856996F00C8BCBE /* DBAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBBA8B71856996F00C8BCBE /* DBAssembly.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,8 +59,6 @@
 		FF8EE8A018567A320036BE27 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FF8EE8A218567A320036BE27 /* AuditrTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuditrTests.m; sourceTree = "<group>"; };
 		FF8EE8AF18567AF70036BE27 /* auditr.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = auditr.storyboard; sourceTree = "<group>"; };
-		FF8EE8B2185686C00036BE27 /* DBTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBTabBarViewController.h; sourceTree = "<group>"; };
-		FF8EE8B3185686C00036BE27 /* DBTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBTabBarViewController.m; sourceTree = "<group>"; };
 		FF8EE8B6185687AB0036BE27 /* DBGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBGroupsViewController.h; sourceTree = "<group>"; };
 		FF8EE8B7185687AB0036BE27 /* DBGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBGroupsViewController.m; sourceTree = "<group>"; };
 		FFBBA8A8185694B200C8BCBE /* DBAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAppDelegate.h; sourceTree = "<group>"; };
@@ -68,6 +66,8 @@
 		FFBBA8AF1856951C00C8BCBE /* DBRepository.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBRepository.h; sourceTree = "<group>"; };
 		FFBBA8B21856960100C8BCBE /* DBCoreDataBaseRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCoreDataBaseRepository.h; sourceTree = "<group>"; };
 		FFBBA8B31856960100C8BCBE /* DBCoreDataBaseRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCoreDataBaseRepository.m; sourceTree = "<group>"; };
+		FFBBA8B61856996F00C8BCBE /* DBAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAssembly.h; sourceTree = "<group>"; };
+		FFBBA8B71856996F00C8BCBE /* DBAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAssembly.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +133,7 @@
 		FF8EE87F18567A320036BE27 /* Auditr */ = {
 			isa = PBXGroup;
 			children = (
+				FFBBA8B51856995B00C8BCBE /* Assembly */,
 				FFBBA8A7185694A300C8BCBE /* AppDelegate */,
 				FFBBA8AE1856950200C8BCBE /* DataAccess */,
 				FF8EE8AE18567AF70036BE27 /* ViewControllers */,
@@ -177,19 +178,9 @@
 			isa = PBXGroup;
 			children = (
 				FF8EE8B5185687980036BE27 /* GroupsViewController */,
-				FF8EE8B1185686980036BE27 /* TabBarViewController */,
 				FF8EE8AF18567AF70036BE27 /* auditr.storyboard */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		FF8EE8B1185686980036BE27 /* TabBarViewController */ = {
-			isa = PBXGroup;
-			children = (
-				FF8EE8B2185686C00036BE27 /* DBTabBarViewController.h */,
-				FF8EE8B3185686C00036BE27 /* DBTabBarViewController.m */,
-			);
-			path = TabBarViewController;
 			sourceTree = "<group>";
 		};
 		FF8EE8B5185687980036BE27 /* GroupsViewController */ = {
@@ -241,6 +232,15 @@
 				FFBBA8B31856960100C8BCBE /* DBCoreDataBaseRepository.m */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		FFBBA8B51856995B00C8BCBE /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				FFBBA8B61856996F00C8BCBE /* DBAssembly.h */,
+				FFBBA8B71856996F00C8BCBE /* DBAssembly.m */,
+			);
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -376,8 +376,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFBBA8AA185694B200C8BCBE /* DBAppDelegate.m in Sources */,
-				FF8EE8B4185686C00036BE27 /* DBTabBarViewController.m in Sources */,
 				FF8EE88618567A320036BE27 /* main.m in Sources */,
+				FFBBA8B81856996F00C8BCBE /* DBAssembly.m in Sources */,
 				FFBBA8B41856960100C8BCBE /* DBCoreDataBaseRepository.m in Sources */,
 				FF8EE8B8185687AB0036BE27 /* DBGroupsViewController.m in Sources */,
 				FF8EE88D18567A320036BE27 /* Auditr.xcdatamodeld in Sources */,
