@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Base View Controller-->
         <scene sceneID="Bwm-7f-JKD">
             <objects>
-                <viewController id="obf-Wt-WhB" sceneMemberID="viewController">
+                <viewController id="obf-Wt-WhB" customClass="DBBaseViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Oqa-v7-mRS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

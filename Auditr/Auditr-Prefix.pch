@@ -14,4 +14,10 @@
 	#import <UIKit/UIKit.h>
 	#import <Foundation/Foundation.h>
 	#import <CoreData/CoreData.h>
+	#import <Typhoon/Typhoon.h>
+	#import "DBAssembly.h"
+	#import	<MagicalRecord/MagicalRecord.h>
+	#import	<MagicalRecord/NSManagedObjectContext+MagicalSaves.h>
+	#import	<MagicalRecord/NSManagedObject+MagicalRecord.h>
+	#import	<MagicalRecord/NSManagedObject+MagicalFinders.h>
 #endif
