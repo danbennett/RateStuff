@@ -20,4 +20,7 @@
 	#import	<MagicalRecord/NSManagedObjectContext+MagicalSaves.h>
 	#import	<MagicalRecord/NSManagedObject+MagicalRecord.h>
 	#import	<MagicalRecord/NSManagedObject+MagicalFinders.h>
+	#import <libextobjc/EXTScope.h>
+	#import <AHEasing/easing.h>
+	#import <UIView+EasingFunctions/UIView+EasingFunctions.h>
 #endif

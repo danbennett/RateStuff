@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Daniel Bennett. All rights reserved.
 //
 
+#import "DBBaseViewController.h"
 #import "DBGroupsViewController.h"
 
 @interface DBGroupsViewController ()
@@ -22,6 +23,11 @@
 	
 	[self.navigationController.navigationBar setTranslucent: YES];
 	[self.navigationController.navigationBar setTintColor: [UIColor blueColor]];
+}
+
+- (IBAction) burgerButtonTapped: (UIBarButtonItem *)sender
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName: DBBurgerButtonPressedNotification object: nil];
 }
 
 - (void)didReceiveMemoryWarning

@@ -13,6 +13,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="tVv-F6-77J">
+                                <rect key="frame" x="0.0" y="0.0" width="250" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                             <containerView contentMode="scaleToFill" id="0u2-wA-YiG">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,6 +29,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="containerView" destination="0u2-wA-YiG" id="Ji5-yy-bfd"/>
+                        <outlet property="groupTableView" destination="tVv-F6-77J" id="YXr-R1-2VH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CGx-a1-VnV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -61,11 +70,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="NkR-6Z-zQJ">
-                        <barButtonItem key="leftBarButtonItem" image="burderIcon" style="plain" id="eXM-cX-TDQ"/>
+                        <barButtonItem key="leftBarButtonItem" image="burderIcon" style="plain" id="eXM-cX-TDQ">
+                            <connections>
+                                <action selector="burgerButtonTapped:" destination="fFy-t2-Fho" id="1lB-Qm-uwN"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="10u-qK-5xk"/>
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="10u-qK-5xk" id="0y6-bq-8Cl"/>
+                        <outlet property="burgerButton" destination="eXM-cX-TDQ" id="pY8-FB-mMj"/>
                         <segue destination="EpY-kL-kd8" kind="modal" identifier="newGroup" modalTransitionStyle="coverVertical" id="jIz-UP-Jpw"/>
                     </connections>
                 </viewController>

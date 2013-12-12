@@ -1,4 +1,90 @@
 PODS:
+  - AHEasing (1.1)
+  - libextobjc (0.3):
+    - libextobjc/EXTADT
+    - libextobjc/EXTAnnotation
+    - libextobjc/EXTAspect
+    - libextobjc/EXTBlockMethod
+    - libextobjc/EXTBlockTarget
+    - libextobjc/EXTConcreteProtocol
+    - libextobjc/EXTDispatchObject
+    - libextobjc/EXTFinalMethod
+    - libextobjc/EXTKeyPathCoding
+    - libextobjc/EXTMaybe
+    - libextobjc/EXTMixin
+    - libextobjc/EXTMultimethod
+    - libextobjc/EXTMultiObject
+    - libextobjc/EXTNil
+    - libextobjc/EXTPassthrough
+    - libextobjc/EXTPrivateMethod
+    - libextobjc/EXTProtocolCategory
+    - libextobjc/EXTSafeCategory
+    - libextobjc/EXTScope
+    - libextobjc/EXTSelectorChecking
+    - libextobjc/EXTSwizzle
+    - libextobjc/EXTSynthesize
+    - libextobjc/EXTTuple
+    - libextobjc/EXTVarargs
+    - libextobjc/NSInvocation+EXT
+    - libextobjc/NSMethodSignature+EXT
+    - libextobjc/RuntimeExtensions
+    - libextobjc/UmbrellaHeader
+  - libextobjc/EXTADT (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTAnnotation (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTAspect (0.3):
+    - libextobjc/RuntimeExtensions
+    - libffi
+  - libextobjc/EXTBlockMethod (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTBlockTarget (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTConcreteProtocol (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTDispatchObject (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTFinalMethod (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTKeyPathCoding (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTMaybe (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTMixin (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTMultimethod (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTMultiObject (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTNil (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTPassthrough (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTPrivateMethod (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTProtocolCategory (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSafeCategory (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTScope (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSelectorChecking (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSwizzle (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSynthesize (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTTuple (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTVarargs (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/NSInvocation+EXT (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/NSMethodSignature+EXT (0.3):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/RuntimeExtensions (0.3)
+  - libextobjc/UmbrellaHeader (0.3)
+  - libffi (3.0.13)
   - MagicalRecord (2.2)
   - NSEnumeratorLinq (0.2.2)
   - ReactiveCocoa (2.1.7):
@@ -8,17 +94,29 @@ PODS:
     - ReactiveCocoa/no-arc
   - ReactiveCocoa/no-arc (2.1.7)
   - Typhoon (1.6.3)
+  - UIView+EasingFunctions (0.0.2):
+    - UIView+EasingFunctions/Bare
+    - UIView+EasingFunctions/WithAHEasing
+  - UIView+EasingFunctions/Bare (0.0.2)
+  - UIView+EasingFunctions/WithAHEasing (0.0.2):
+    - AHEasing
 
 DEPENDENCIES:
+  - libextobjc (~> 0.3)
   - MagicalRecord (~> 2.2)
   - NSEnumeratorLinq (~> 0.2.2)
   - ReactiveCocoa (~> 2.1.7)
   - Typhoon (~> 1.6.3)
+  - UIView+EasingFunctions (~> 0.0.2)
 
 SPEC CHECKSUMS:
+  AHEasing: bab258795266ebce8a965e1fda3613b7ed80f0b7
+  libextobjc: 820a79dbbbc498611e04fffd07d2d52a5588e7ac
+  libffi: 64ef39353e747bb2b25e1026afd96a157bf9231c
   MagicalRecord: b1fc46c99a9749fe7fe7e6f43a89b62ef5201933
   NSEnumeratorLinq: 5669fd69cb6db31c17d9f13e23b73f7cdb2a38ce
   ReactiveCocoa: 1117f7968c8667d2ca00b5aa47156fabcb56af75
   Typhoon: 0b8db7ac4980af3b70b12824fd45749eb2896032
+  UIView+EasingFunctions: c6170b1cfa0d611fd5fa274d86d32bf1913f8a73
 
 COCOAPODS: 0.26.2

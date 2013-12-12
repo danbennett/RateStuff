@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface DBGroupsViewController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *burgerButton;
 
 @end
