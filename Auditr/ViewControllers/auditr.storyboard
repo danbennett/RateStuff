@@ -30,8 +30,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="containerView" destination="0u2-wA-YiG" id="Ji5-yy-bfd"/>
-                        <outlet property="groupTableView" destination="tVv-F6-77J" id="YXr-R1-2VH"/>
+                        <outlet property="containerView" destination="0u2-wA-YiG" id="IHh-p1-QFs"/>
+                        <outlet property="groupTableView" destination="tVv-F6-77J" id="QLz-ct-6tA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CGx-a1-VnV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -54,10 +54,10 @@
             </objects>
             <point key="canvasLocation" x="-35" y="191"/>
         </scene>
-        <!--Groups View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="EN3-S2-P84">
             <objects>
-                <viewController id="fFy-t2-Fho" customClass="DBGroupsViewController" sceneMemberID="viewController">
+                <viewController id="fFy-t2-Fho" customClass="DBHomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ghS-Ov-3dp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask"/>

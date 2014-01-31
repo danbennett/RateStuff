@@ -7,19 +7,19 @@
 //
 
 #import "DBBaseViewController.h"
-#import "DBGroupsViewController.h"
+#import "DBHomeViewController.h"
 
-@interface DBGroupsViewController ()
+@interface DBHomeViewController ()
 
 @end
 
-@implementation DBGroupsViewController
+@implementation DBHomeViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	
-	self.title = @"Groups";
+	self.title = @"Home";
 	
 	[self.navigationController.navigationBar setTranslucent: YES];
 	[self.navigationController.navigationBar setTintColor: [UIColor blueColor]];

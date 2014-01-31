@@ -14,6 +14,8 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 
 @interface DBBaseViewController ()
 
+@property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (weak, nonatomic) IBOutlet UITableView *groupTableView;
 @property (nonatomic, weak) DBBaseViewModel *viewModel;
 
 @end

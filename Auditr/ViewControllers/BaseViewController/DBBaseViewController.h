@@ -12,7 +12,4 @@ extern NSString *const DBBurgerButtonPressedNotification;
 
 @interface DBBaseViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITableView *groupTableView;
-@property (weak, nonatomic) IBOutlet UIView *containerView;
-
 @end
