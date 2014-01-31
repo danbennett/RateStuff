@@ -8,6 +8,7 @@
 
 #import "DBBaseViewController.h"
 #import "DBBaseViewModel.h"
+#import "UIView+Animations.h"
 
 NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotification";
 
@@ -68,10 +69,7 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 {
 	[self.containerView removeGestureRecognizer: gesture];
 	
-	[self animateView: self.containerView
-		   toPosition: CGPointZero
-		 withDuration: 0.4f
-			 withEase: CircularEaseOut];
+	[self.containerView animateToPosition: CGPointZero withDuration: 0.4f withEase: CircularEaseOut];
 }
 
 - (void) startDragging: (UISwipeGestureRecognizer *) gesture
@@ -137,7 +135,7 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 	NSTimeInterval duration = fabs( xPoints / speed );
 	duration = duration > 0.4f ? 0.4f : duration;
 	
-	[self animateView: self.containerView toPosition: positionToAnimateTo withDuration: duration withEase: ease];
+	[self.containerView animateToPosition: positionToAnimateTo withDuration: duration withEase: ease];
 	
 	if (positionToAnimateTo.x > 0)
 	{
@@ -170,26 +168,9 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 - (void) burgerButtonPressedNotifcationHandler: (NSNotification *) notification
 {
 	CGPoint position = CGPointMake(CGRectGetWidth(self.groupTableView.frame), 0.0);
-	[self animateView: self.containerView
-		   toPosition: position
-		 withDuration: 0.4f
-			 withEase: CircularEaseOut];
+	[self.containerView animateToPosition: position withDuration: 0.4f withEase: CircularEaseOut];
 	
 	[self addTapGesture];
-}
-
-- (void) animateView: (UIView *) view toPosition: (CGPoint) position withDuration: (NSTimeInterval) duration withEase: (ViewEasingFunctionPointerType) ease
-{
-	[UIView animateWithDuration: duration animations:^{
-		
-		[view setEasingFunction: ease forKeyPath:@"frame"];
-		
-		view.frame = ({
-			CGRect frame = view.frame;
-			frame.origin = position;
-			frame;
-		});
-	}];
 }
 
 - (void) dealloc
@@ -204,7 +185,7 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 												  object: nil];
 }
 
-- (void)didReceiveMemoryWarning
+- (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

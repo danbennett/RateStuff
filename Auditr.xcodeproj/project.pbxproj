@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		56FAB8E02F294CD5B4B756D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57E10E887FAB429BA7FD4567 /* libPods.a */; };
+		FF3D7435189C40E800294D6F /* UIView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D7434189C40E800294D6F /* UIView+Animations.m */; };
 		FF429B431859118B00048B17 /* Auditr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF429B411859118B00048B17 /* Auditr.xcdatamodeld */; };
 		FF8EE87818567A320036BE27 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8EE87718567A320036BE27 /* Foundation.framework */; };
 		FF8EE87A18567A320036BE27 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8EE87918567A320036BE27 /* CoreGraphics.framework */; };
@@ -52,6 +53,8 @@
 /* Begin PBXFileReference section */
 		57E10E887FAB429BA7FD4567 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD209048DBD47D98CAFD2F1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		FF3D7433189C40E800294D6F /* UIView+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animations.h"; sourceTree = "<group>"; };
+		FF3D7434189C40E800294D6F /* UIView+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animations.m"; sourceTree = "<group>"; };
 		FF429B421859118B00048B17 /* Auditr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Auditr.xcdatamodel; sourceTree = "<group>"; };
 		FF8EE87418567A320036BE27 /* Auditr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Auditr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8EE87718567A320036BE27 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -128,6 +131,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FF3D7432189C40DE00294D6F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FF3D7433189C40E800294D6F /* UIView+Animations.h */,
+				FF3D7434189C40E800294D6F /* UIView+Animations.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		FF8EE86B18567A320036BE27 = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +179,7 @@
 				FFBBA8B51856995B00C8BCBE /* Assembly */,
 				FFBBA8A7185694A300C8BCBE /* AppDelegate */,
 				FFBBA8AE1856950200C8BCBE /* DataAccess */,
+				FF3D7432189C40DE00294D6F /* Extensions */,
 				FFC3876318591B3300A09D01 /* ViewModels */,
 				FF8EE8AE18567AF70036BE27 /* ViewControllers */,
 				FFBBA8B01856956200C8BCBE /* Services */,
@@ -475,6 +488,7 @@
 				FFC3875C1859188100A09D01 /* _Area.m in Sources */,
 				FF8EE88618567A320036BE27 /* main.m in Sources */,
 				FF429B431859118B00048B17 /* Auditr.xcdatamodeld in Sources */,
+				FF3D7435189C40E800294D6F /* UIView+Animations.m in Sources */,
 				FFBBA8B81856996F00C8BCBE /* DBAssembly.m in Sources */,
 				FFC3876918591D0400A09D01 /* DBGroupService.m in Sources */,
 				FFC3876218591A7E00A09D01 /* DBBaseViewController.m in Sources */,
