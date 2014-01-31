@@ -12,5 +12,6 @@
 @interface DBAssembly : TyphoonAssembly
 
 - (id) baseViewModel;
+- (id) homeViewModel;
 
 @end

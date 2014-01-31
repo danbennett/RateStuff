@@ -8,8 +8,11 @@
 
 #import "DBBaseViewController.h"
 #import "DBHomeViewController.h"
+#import "DBHomeViewModel.h"
 
 @interface DBHomeViewController ()
+
+@property (nonatomic, strong) DBHomeViewModel *viewModel;
 
 @end
 
@@ -19,7 +22,8 @@
 {
     [super viewDidLoad];
 	
-	self.title = @"Home";
+	DBAssembly *factory = (DBAssembly *)[TyphoonAssembly defaultAssembly];
+	self.viewModel = (DBHomeViewModel *)[factory homeViewModel];
 	
 	[self.navigationController.navigationBar setTranslucent: YES];
 	[self.navigationController.navigationBar setTintColor: [UIColor blueColor]];

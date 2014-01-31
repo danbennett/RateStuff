@@ -7,9 +7,13 @@
 //
 
 #import "DBAssembly.h"
+// ViewModels.
 #import "DBBaseViewModel.h"
-#import "DBGroupCoreDataRepository.h"
+#import "DBHomeViewModel.h"
+// Services.
 #import "DBGroupService.h"
+// Repos.
+#import "DBGroupCoreDataRepository.h"
 
 @implementation DBAssembly
 
@@ -21,6 +25,15 @@
 		
 		initializer.selector = @selector(initWithGroupService:);
 		[initializer injectWithDefinition: [self groupService]];
+		
+	}];
+}
+
+- (id) homeViewModel
+{
+	return [TyphoonDefinition withClass: [DBHomeViewModel class] initialization:^(TyphoonInitializer *initializer) {
+		
+		initializer.selector = @selector(init);
 		
 	}];
 }

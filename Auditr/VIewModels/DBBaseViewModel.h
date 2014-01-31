@@ -14,7 +14,7 @@
 	
 }
 
-@property (nonatomic, strong) RACSignal *groups;
+@property (nonatomic, strong, readonly) RACSignal *groups;
 @property (nonatomic, strong) NSString *filterString;
 
 - (id) initWithGroupService: (id<DBGroupService>) groupService;

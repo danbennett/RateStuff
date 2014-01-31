@@ -12,6 +12,7 @@
 
 @interface DBBaseViewModel()
 
+@property (nonatomic, strong, readwrite) RACSignal *groups;
 @property (nonatomic, assign) id<DBGroupService> groupService;
 @property (nonatomic, strong) NSArray *allGroups;
 
