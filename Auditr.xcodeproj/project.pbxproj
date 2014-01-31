@@ -167,7 +167,7 @@
 				FFBBA8B51856995B00C8BCBE /* Assembly */,
 				FFBBA8A7185694A300C8BCBE /* AppDelegate */,
 				FFBBA8AE1856950200C8BCBE /* DataAccess */,
-				FFC3876318591B3300A09D01 /* VIewModels */,
+				FFC3876318591B3300A09D01 /* ViewModels */,
 				FF8EE8AE18567AF70036BE27 /* ViewControllers */,
 				FFBBA8B01856956200C8BCBE /* Services */,
 				FFBBA8AC185694D800C8BCBE /* Model */,
@@ -310,12 +310,13 @@
 			path = BaseViewController;
 			sourceTree = "<group>";
 		};
-		FFC3876318591B3300A09D01 /* VIewModels */ = {
+		FFC3876318591B3300A09D01 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				FFC3876418591B4400A09D01 /* DBBaseViewModel.h */,
 				FFC3876518591B4400A09D01 /* DBBaseViewModel.m */,
 			);
+			name = ViewModels;
 			path = VIewModels;
 			sourceTree = "<group>";
 		};

@@ -10,6 +10,7 @@
         <attribute name="groupName" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="softDeleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <relationship name="areas" toMany="YES" deletionRule="Nullify" destinationEntity="Area" inverseName="group" inverseEntity="Area" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="group" inverseEntity="Item" syncable="YES"/>
     </entity>
@@ -21,8 +22,8 @@
         <relationship name="group" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="items" inverseEntity="Group" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Group" positionX="-65" positionY="-126" width="128" height="118"/>
-        <element name="Item" positionX="135" positionY="-27" width="128" height="118"/>
         <element name="Area" positionX="135" positionY="-153" width="128" height="103"/>
+        <element name="Group" positionX="-65" positionY="-126" width="128" height="133"/>
+        <element name="Item" positionX="135" positionY="-27" width="128" height="118"/>
     </elements>
 </model>

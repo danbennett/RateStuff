@@ -10,6 +10,12 @@
 #import "DBGroupService.h"
 
 @interface DBBaseViewModel : NSObject
+{
+	
+}
+
+@property (nonatomic, strong) RACSignal *groups;
+@property (nonatomic, strong) NSString *filterString;
 
 - (id) initWithGroupService: (id<DBGroupService>) groupService;
 

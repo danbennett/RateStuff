@@ -23,4 +23,6 @@
 	#import <libextobjc/EXTScope.h>
 	#import <AHEasing/easing.h>
 	#import <UIView+EasingFunctions/UIView+EasingFunctions.h>
+	#import <ReactiveCocoa/ReactiveCocoa.h>
+	#import <NSEnumeratorLinq/NSEnumerator+Linq.h>
 #endif

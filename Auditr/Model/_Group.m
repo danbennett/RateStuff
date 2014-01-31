@@ -7,6 +7,7 @@ const struct GroupAttributes GroupAttributes = {
 	.groupName = @"groupName",
 	.id = @"id",
 	.image = @"image",
+	.softDeleted = @"softDeleted",
 };
 
 const struct GroupRelationships GroupRelationships = {
@@ -43,6 +44,11 @@ const struct GroupFetchedProperties GroupFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"softDeletedValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"softDeleted"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -66,6 +72,32 @@ const struct GroupFetchedProperties GroupFetchedProperties = {
 
 @dynamic image;
 
+
+
+
+
+
+@dynamic softDeleted;
+
+
+
+- (BOOL)softDeletedValue {
+	NSNumber *result = [self softDeleted];
+	return [result boolValue];
+}
+
+- (void)setSoftDeletedValue:(BOOL)value_ {
+	[self setSoftDeleted:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveSoftDeletedValue {
+	NSNumber *result = [self primitiveSoftDeleted];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveSoftDeletedValue:(BOOL)value_ {
+	[self setPrimitiveSoftDeleted:[NSNumber numberWithBool:value_]];
+}
 
 
 

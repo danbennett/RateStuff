@@ -70,17 +70,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="NkR-6Z-zQJ">
-                        <barButtonItem key="leftBarButtonItem" image="burgerIcon" style="plain" id="eXM-cX-TDQ">
+                        <barButtonItem key="rightBarButtonItem" image="burgerIcon" id="10u-qK-5xk">
                             <connections>
-                                <action selector="burgerButtonTapped:" destination="fFy-t2-Fho" id="1lB-Qm-uwN"/>
+                                <action selector="burgerButtonTapped:" destination="fFy-t2-Fho" id="fLh-72-k65"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="10u-qK-5xk"/>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="addButton" destination="10u-qK-5xk" id="0y6-bq-8Cl"/>
-                        <outlet property="burgerButton" destination="eXM-cX-TDQ" id="pY8-FB-mMj"/>
+                        <outlet property="burgerButton" destination="10u-qK-5xk" id="ac0-se-r5D"/>
                         <segue destination="EpY-kL-kd8" kind="modal" identifier="newGroup" modalTransitionStyle="coverVertical" id="jIz-UP-Jpw"/>
                     </connections>
                 </viewController>

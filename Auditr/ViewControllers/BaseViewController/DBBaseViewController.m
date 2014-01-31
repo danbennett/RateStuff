@@ -38,7 +38,15 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 												 name: DBBurgerButtonPressedNotification
 											   object: nil];
 	
+	[self applyBindings];
 	[self addSwipeGesutre];
+}
+
+- (void) applyBindings
+{
+	[self.viewModel.groups subscribeNext:^(NSArray *groups) {
+		
+	}];
 }
 
 - (void) addSwipeGesutre
@@ -157,11 +165,6 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 		positionToAnimateTo = CGPointMake(CGRectGetWidth(self.groupTableView.frame), 0.0);
 	}
 	return positionToAnimateTo;
-}
-
-- (BOOL) gestureRecognizer: (UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return YES;
 }
 
 - (void) burgerButtonPressedNotifcationHandler: (NSNotification *) notification

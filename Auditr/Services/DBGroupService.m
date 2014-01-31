@@ -27,4 +27,14 @@
     return self;
 }
 
+- (NSArray *) getAll
+{
+	return [self.groupRepository getAll];
+}
+
+- (NSArray *) getAllActive
+{
+	return [self.groupRepository getAllByAttribute: @"softDeleted" value: @FALSE];
+}
+
 @end

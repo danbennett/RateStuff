@@ -8,10 +8,12 @@
 
 #import "DBBaseViewModel.h"
 #import "DBGroupService.h"
+#import "Group.h"
 
 @interface DBBaseViewModel()
 
 @property (nonatomic, assign) id<DBGroupService> groupService;
+@property (nonatomic, strong) NSArray *allGroups;
 
 @end
 
@@ -23,8 +25,35 @@
 	if(self)
 	{
 		self.groupService = groupService;
+
+		[self populateGroups];
+		[self filterGroups];
 	}
 	return self;
+}
+
+- (void) filterGroups
+{
+	@weakify(self);
+	
+	self.groups = [RACObserve(self, filterString) map:^NSArray *(NSString *filterString) {
+		
+		@strongify(self);
+		NSArray *filteredGroups =
+		[[[self.allGroups objectEnumerator] where:^BOOL(Group *group) {
+			
+			return ([group.groupName rangeOfString: filterString].location != NSNotFound);
+			
+		}] allObjects];
+		
+		return filteredGroups;
+		
+	}];
+}
+
+- (void) populateGroups
+{
+	self.allGroups = [self.groupService getAllActive];
 }
 
 @end

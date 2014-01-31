@@ -8,6 +8,7 @@ extern const struct GroupAttributes {
 	__unsafe_unretained NSString *groupName;
 	__unsafe_unretained NSString *id;
 	__unsafe_unretained NSString *image;
+	__unsafe_unretained NSString *softDeleted;
 } GroupAttributes;
 
 extern const struct GroupRelationships {
@@ -20,6 +21,7 @@ extern const struct GroupFetchedProperties {
 
 @class Area;
 @class Item;
+
 
 
 
@@ -63,6 +65,20 @@ extern const struct GroupFetchedProperties {
 
 
 //- (BOOL)validateImage:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* softDeleted;
+
+
+
+@property BOOL softDeletedValue;
+- (BOOL)softDeletedValue;
+- (void)setSoftDeletedValue:(BOOL)value_;
+
+//- (BOOL)validateSoftDeleted:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -116,6 +132,15 @@ extern const struct GroupFetchedProperties {
 
 - (NSData*)primitiveImage;
 - (void)setPrimitiveImage:(NSData*)value;
+
+
+
+
+- (NSNumber*)primitiveSoftDeleted;
+- (void)setPrimitiveSoftDeleted:(NSNumber*)value;
+
+- (BOOL)primitiveSoftDeletedValue;
+- (void)setPrimitiveSoftDeletedValue:(BOOL)value_;
 
 
 

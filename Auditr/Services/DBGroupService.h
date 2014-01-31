@@ -13,11 +13,15 @@
 
 @required
 - (id) initWithGroupRepository: (id<DBGroupRepository>) groupRepository;
+- (NSArray *) getAll;
+- (NSArray *) getAllActive;
 
 @end
 
 @interface DBGroupService : NSObject
 
 - (id) initWithGroupRepository: (id<DBGroupRepository>) groupRepository;
+- (NSArray *) getAll;
+- (NSArray *) getAllActive;
 
 @end
