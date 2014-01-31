@@ -1,5 +1,5 @@
 //
-//  DBHomeViewModel.h
+//  DBCoreDataManager.h
 //  Auditr
 //
 //  Created by Daniel Bennett on 31/01/2014.
@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DBHomeViewModel : NSObject
+@interface DBCoreDataManager : NSObject
 
-@property (nonatomic, strong) NSString *title;
++ (id) sharedInstance;
+- (void) setupStack;
 
 @end

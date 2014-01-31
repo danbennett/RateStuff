@@ -10,6 +10,7 @@
 		56FAB8E02F294CD5B4B756D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57E10E887FAB429BA7FD4567 /* libPods.a */; };
 		FF3D7435189C40E800294D6F /* UIView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D7434189C40E800294D6F /* UIView+Animations.m */; };
 		FF3D7438189C470F00294D6F /* DBHomeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D7437189C470F00294D6F /* DBHomeViewModel.m */; };
+		FF3D743C189C55BA00294D6F /* DBCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D743B189C55BA00294D6F /* DBCoreDataManager.m */; };
 		FF429B431859118B00048B17 /* Auditr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF429B411859118B00048B17 /* Auditr.xcdatamodeld */; };
 		FF8EE87818567A320036BE27 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8EE87718567A320036BE27 /* Foundation.framework */; };
 		FF8EE87A18567A320036BE27 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8EE87918567A320036BE27 /* CoreGraphics.framework */; };
@@ -58,6 +59,8 @@
 		FF3D7434189C40E800294D6F /* UIView+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animations.m"; sourceTree = "<group>"; };
 		FF3D7436189C470F00294D6F /* DBHomeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBHomeViewModel.h; path = Auditr/ViewModels/DBHomeViewModel.h; sourceTree = SOURCE_ROOT; };
 		FF3D7437189C470F00294D6F /* DBHomeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBHomeViewModel.m; path = Auditr/ViewModels/DBHomeViewModel.m; sourceTree = SOURCE_ROOT; };
+		FF3D743A189C55BA00294D6F /* DBCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCoreDataManager.h; sourceTree = "<group>"; };
+		FF3D743B189C55BA00294D6F /* DBCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCoreDataManager.m; sourceTree = "<group>"; };
 		FF429B421859118B00048B17 /* Auditr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Auditr.xcdatamodel; sourceTree = "<group>"; };
 		FF8EE87418567A320036BE27 /* Auditr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Auditr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8EE87718567A320036BE27 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -143,6 +146,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		FF3D7439189C55AC00294D6F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				FF3D743A189C55BA00294D6F /* DBCoreDataManager.h */,
+				FF3D743B189C55BA00294D6F /* DBCoreDataManager.m */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		FF8EE86B18567A320036BE27 = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +199,7 @@
 				FF8EE8AE18567AF70036BE27 /* ViewControllers */,
 				FFBBA8B01856956200C8BCBE /* Services */,
 				FFBBA8AC185694D800C8BCBE /* Model */,
+				FF3D7439189C55AC00294D6F /* Managers */,
 				FF8EE88018567A320036BE27 /* Supporting Files */,
 				FF8EE88E18567A320036BE27 /* Images.xcassets */,
 			);
@@ -488,6 +501,7 @@
 				FFC387541859184400A09D01 /* Item.m in Sources */,
 				FFC387531859184400A09D01 /* Group.m in Sources */,
 				FF3D7438189C470F00294D6F /* DBHomeViewModel.m in Sources */,
+				FF3D743C189C55BA00294D6F /* DBCoreDataManager.m in Sources */,
 				FFC3876618591B4400A09D01 /* DBBaseViewModel.m in Sources */,
 				FFC387521859184400A09D01 /* Area.m in Sources */,
 				FFBBA8AA185694B200C8BCBE /* DBAppDelegate.m in Sources */,

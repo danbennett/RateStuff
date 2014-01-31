@@ -23,7 +23,9 @@
 
 - (NSArray *) getAllByAttribute: (NSString *) attribute value: (id) value
 {
-	return [Group MR_findAllWithPredicate: [NSPredicate predicateWithFormat: @"%@ EQUALS %@", attribute, value]];
+	NSString *predicateString = [NSString stringWithFormat: @"%@ == %%@", attribute];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat: predicateString, value];
+	return [Group MR_findAllWithPredicate: predicate];
 }
 
 @end

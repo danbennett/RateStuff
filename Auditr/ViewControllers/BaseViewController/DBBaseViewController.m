@@ -22,20 +22,13 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 
 @implementation DBBaseViewController
 
-- (id) initWithCoder:(NSCoder *)aDecoder
-{
-	self = [super initWithCoder: aDecoder];
-	if(self)
-	{
-		DBAssembly *factory = (DBAssembly *)[TyphoonAssembly defaultAssembly];
-		self.viewModel = (DBBaseViewModel *)[factory baseViewModel];
-	}
-	return self;
-}
-
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+
+	DBAssembly *factory = (DBAssembly *)[TyphoonAssembly defaultAssembly];
+	self.viewModel = (DBBaseViewModel *)[factory baseViewModel];
+	
 	[[NSNotificationCenter defaultCenter] addObserver: self
 											 selector: @selector(burgerButtonPressedNotifcationHandler:)
 												 name: DBBurgerButtonPressedNotification

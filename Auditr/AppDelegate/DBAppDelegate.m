@@ -7,12 +7,29 @@
 //
 
 #import "DBAppDelegate.h"
+#import "DBCoreDataManager.h"
 
 @implementation DBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	[self setupTyphoon];
+	
+	[self setupCoreData];
+	
     return YES;
+}
+
+- (void) setupTyphoon
+{
+	TyphoonComponentFactory *factory = [TyphoonBlockComponentFactory factoryWithAssembly: [DBAssembly assembly]];
+	[factory makeDefault];
+}
+
+#pragma mark - Core Data setup.
+- (void) setupCoreData
+{
+	[[DBCoreDataManager sharedInstance] setupStack];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

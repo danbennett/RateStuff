@@ -9,6 +9,7 @@
 #import "DBBaseViewController.h"
 #import "DBHomeViewController.h"
 #import "DBHomeViewModel.h"
+#import  <Typhoon/Typhoon.h>
 
 @interface DBHomeViewController ()
 
@@ -25,8 +26,19 @@
 	DBAssembly *factory = (DBAssembly *)[TyphoonAssembly defaultAssembly];
 	self.viewModel = (DBHomeViewModel *)[factory homeViewModel];
 	
+	[self styleNavBar];
+	[self applyBindings];
+}
+
+- (void) styleNavBar
+{
 	[self.navigationController.navigationBar setTranslucent: YES];
 	[self.navigationController.navigationBar setTintColor: [UIColor blueColor]];
+}
+
+- (void) applyBindings
+{
+	RAC(self, title) = RACObserve(self.viewModel, title);
 }
 
 - (IBAction) burgerButtonTapped: (UIBarButtonItem *)sender
