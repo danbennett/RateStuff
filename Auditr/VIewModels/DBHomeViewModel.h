@@ -10,6 +10,6 @@
 
 @interface DBHomeViewModel : NSObject
 
-@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong, readonly) NSString *title;
 
 @end

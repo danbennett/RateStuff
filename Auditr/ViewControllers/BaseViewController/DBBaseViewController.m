@@ -25,7 +25,7 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-
+	
 	DBAssembly *factory = (DBAssembly *)[TyphoonAssembly defaultAssembly];
 	self.viewModel = (DBBaseViewModel *)[factory baseViewModel];
 	
@@ -57,6 +57,7 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 {
 	UITapGestureRecognizer *tapGestureRecoginzer =
 	[[UITapGestureRecognizer alloc] initWithTarget: self  action: @selector(openBurgerMenuTapped:)];
+	tapGestureRecoginzer.cancelsTouchesInView = NO;
 	[self.containerView addGestureRecognizer: tapGestureRecoginzer];
 }
 
@@ -87,13 +88,9 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 		
 		CGRect currentFrame = gesture.view.frame;
 		double newX = gesture.view.frame.origin.x + translation.x;
-		if(newX < 0)
+		if(newX < -self.groupTableView.frame.size.width)
 		{
-			newX = 0;
-		}
-		else if (newX > self.groupTableView.frame.size.width)
-		{
-			newX = self.groupTableView.frame.size.width;
+			newX = -self.groupTableView.frame.size.width;
 		}
 		currentFrame.origin.x = newX;
 		gesture.view.frame = currentFrame;
@@ -132,7 +129,7 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 	
 	[self.containerView animateToPosition: positionToAnimateTo withDuration: duration withEase: ease];
 	
-	if (positionToAnimateTo.x > 0)
+	if (positionToAnimateTo.x < 0)
 	{
 		[self addTapGesture];
 	}
@@ -141,9 +138,9 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 - (CGPoint) positionWithVelocity: (CGFloat) velocity
 {
 	CGPoint positionToAnimateTo = CGPointZero;
-	if(velocity > 0)
+	if(velocity < 0)
 	{
-		positionToAnimateTo = CGPointMake(CGRectGetWidth(self.groupTableView.frame), 0.0);
+		positionToAnimateTo = CGPointMake(-CGRectGetWidth(self.groupTableView.frame), 0.0);
 	}
 	return positionToAnimateTo;
 }
@@ -153,16 +150,16 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 	CGPoint positionToAnimateTo = CGPointZero;
 	CGSize slideWindowWidth = self.groupTableView.frame.size;
 	
-	if(position.x > slideWindowWidth.width * 0.5)
+	if(position.x < -(slideWindowWidth.width * 0.5))
 	{
-		positionToAnimateTo = CGPointMake(CGRectGetWidth(self.groupTableView.frame), 0.0);
+		positionToAnimateTo = CGPointMake(-CGRectGetWidth(self.groupTableView.frame), 0.0);
 	}
 	return positionToAnimateTo;
 }
 
 - (void) burgerButtonPressedNotifcationHandler: (NSNotification *) notification
 {
-	CGPoint position = CGPointMake(CGRectGetWidth(self.groupTableView.frame), 0.0);
+	CGPoint position = CGPointMake(-CGRectGetWidth(self.groupTableView.frame), 0.0);
 	[self.containerView animateToPosition: position withDuration: 0.4f withEase: CircularEaseOut];
 	
 	[self addTapGesture];
