@@ -9,6 +9,7 @@
 #import "DBEditGroupViewController.h"
 #import "DBGroupViewModel.h"
 #import "DBImagePickerViewController.h"
+#import "UIImage+Effects.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface DBEditGroupViewController ()
@@ -18,6 +19,7 @@
 @property (nonatomic, strong) IBOutlet UIButton *addImageButton;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UITableView *groupTableView;
+@property (nonatomic, strong) IBOutlet UIImageView *profileImageView;
 @property (nonatomic, strong) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) IBOutlet UIView *imageViewHolder;
 @property (nonatomic, strong) IBOutlet UINavigationBar *navigationBar;
@@ -66,14 +68,33 @@
 	
 	RAC(self.groupNameTextField, text) = [RACObserve(self.viewModel, groupName) distinctUntilChanged];
 	RAC(self.descriptionTextField, text) = [RACObserve(self.viewModel, description) distinctUntilChanged];
-	RAC(self.imageView, image) = RACObserve(self.viewModel, image);
 	
-	RAC(self.addImageButton, hidden) = [RACObserve(self.imageView, image) map:^NSNumber *(UIImage *image) {
+	@weakify(self);
+	[RACObserve(self.viewModel, image) subscribeNext:^(UIImage *image) {
+		
+		dispatch_queue_t blurQueue = dispatch_queue_create("uk.co.bennett.dan.blurQueu", NULL);
+		__block UIImage *blurredImage = nil;
+		__block UIImage *vignetteImage = nil;
+		dispatch_async(blurQueue, ^{
+			
+			blurredImage = [image imageWithBlur];
+			vignetteImage = [image imageWithVignette];
+			
+			dispatch_async(dispatch_get_main_queue(), ^{
+				@strongify(self);
+				[self.imageView setImage: blurredImage];
+//				[self.profileImageView setImage: vignetteImage];
+			});
+		});
+		
+	}];
+	
+	RAC(self.addImageButton, hidden) = [RACObserve(self.profileImageView, image) map:^NSNumber *(UIImage *image) {
 		BOOL isNull = image == nil;
 		return @(!isNull);
 	}];
 	
-	RAC(self.editImageButton, hidden) = [RACObserve(self.imageView, image) map:^NSNumber *(UIImage *image) {
+	RAC(self.editImageButton, hidden) = [RACObserve(self.profileImageView, image) map:^NSNumber *(UIImage *image) {
 		BOOL isNull = image == nil;
 		return @(isNull);
 	}];
@@ -162,9 +183,10 @@
 
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+	[self dismissViewControllerAnimated: YES completion: nil];
+	
 	UIImage *image = [info valueForKey: UIImagePickerControllerOriginalImage];
 	self.viewModel.image = image;
-	[self dismissViewControllerAnimated: YES completion: nil];
 }
 
 #pragma mark - Navigation controller delegate.
