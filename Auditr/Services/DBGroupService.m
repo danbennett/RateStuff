@@ -8,6 +8,7 @@
 
 #import "DBGroupService.h"
 #import "DBGroupRepository.h"
+#import "Group.h"
 
 @interface DBGroupService()
 
@@ -25,6 +26,12 @@
         self.groupRepository = groupRepository;
     }
     return self;
+}
+
+- (Group *) createBlankGroup
+{
+	Group *group = [Group MR_createEntity];
+	return group;
 }
 
 - (NSArray *) getAll

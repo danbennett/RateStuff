@@ -9,8 +9,13 @@
 /* Begin PBXBuildFile section */
 		56FAB8E02F294CD5B4B756D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57E10E887FAB429BA7FD4567 /* libPods.a */; };
 		FF3D7435189C40E800294D6F /* UIView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D7434189C40E800294D6F /* UIView+Animations.m */; };
-		FF3D7438189C470F00294D6F /* DBHomeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D7437189C470F00294D6F /* DBHomeViewModel.m */; };
 		FF3D743C189C55BA00294D6F /* DBCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D743B189C55BA00294D6F /* DBCoreDataManager.m */; };
+		FF3DC114189D1685001974E0 /* DBEditGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC113189D1685001974E0 /* DBEditGroupViewController.m */; };
+		FF3DC11D189D2B9A001974E0 /* DBBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC118189D2B9A001974E0 /* DBBaseViewModel.m */; };
+		FF3DC11E189D2B9A001974E0 /* DBHomeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC11C189D2B9A001974E0 /* DBHomeViewModel.m */; };
+		FF3DC125189D2ED6001974E0 /* DBGroupViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC124189D2ED6001974E0 /* DBGroupViewModel.m */; };
+		FF3DC129189D31CD001974E0 /* DBAreaViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC128189D31CD001974E0 /* DBAreaViewModel.m */; };
+		FF3DC131189D4B2A001974E0 /* DBItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC130189D4B2A001974E0 /* DBItemViewModel.m */; };
 		FF429B431859118B00048B17 /* Auditr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF429B411859118B00048B17 /* Auditr.xcdatamodeld */; };
 		FF43770D189C886600A019E3 /* _Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = FF43770A189C886600A019E3 /* _Profile.m */; };
 		FF43770E189C886600A019E3 /* _Rating.m in Sources */ = {isa = PBXBuildFile; fileRef = FF43770C189C886600A019E3 /* _Rating.m */; };
@@ -41,7 +46,6 @@
 		FFC3875D1859188100A09D01 /* _Group.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC387591859188100A09D01 /* _Group.m */; };
 		FFC3875E1859188100A09D01 /* _Item.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC3875B1859188100A09D01 /* _Item.m */; };
 		FFC3876218591A7E00A09D01 /* DBBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC3876118591A7E00A09D01 /* DBBaseViewController.m */; };
-		FFC3876618591B4400A09D01 /* DBBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC3876518591B4400A09D01 /* DBBaseViewModel.m */; };
 		FFC3876918591D0400A09D01 /* DBGroupService.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC3876818591D0400A09D01 /* DBGroupService.m */; };
 		FFC3876C18591D2800A09D01 /* DBGroupCoreDataRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC3876B18591D2800A09D01 /* DBGroupCoreDataRepository.m */; };
 /* End PBXBuildFile section */
@@ -61,10 +65,20 @@
 		EFD209048DBD47D98CAFD2F1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		FF3D7433189C40E800294D6F /* UIView+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animations.h"; sourceTree = "<group>"; };
 		FF3D7434189C40E800294D6F /* UIView+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animations.m"; sourceTree = "<group>"; };
-		FF3D7436189C470F00294D6F /* DBHomeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBHomeViewModel.h; path = Auditr/ViewModels/DBHomeViewModel.h; sourceTree = SOURCE_ROOT; };
-		FF3D7437189C470F00294D6F /* DBHomeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBHomeViewModel.m; path = Auditr/ViewModels/DBHomeViewModel.m; sourceTree = SOURCE_ROOT; };
 		FF3D743A189C55BA00294D6F /* DBCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCoreDataManager.h; sourceTree = "<group>"; };
 		FF3D743B189C55BA00294D6F /* DBCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCoreDataManager.m; sourceTree = "<group>"; };
+		FF3DC112189D1685001974E0 /* DBEditGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBEditGroupViewController.h; sourceTree = "<group>"; };
+		FF3DC113189D1685001974E0 /* DBEditGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBEditGroupViewController.m; sourceTree = "<group>"; };
+		FF3DC117189D2B9A001974E0 /* DBBaseViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBBaseViewModel.h; sourceTree = "<group>"; };
+		FF3DC118189D2B9A001974E0 /* DBBaseViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBBaseViewModel.m; sourceTree = "<group>"; };
+		FF3DC11B189D2B9A001974E0 /* DBHomeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHomeViewModel.h; sourceTree = "<group>"; };
+		FF3DC11C189D2B9A001974E0 /* DBHomeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHomeViewModel.m; sourceTree = "<group>"; };
+		FF3DC123189D2ED6001974E0 /* DBGroupViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBGroupViewModel.h; sourceTree = "<group>"; };
+		FF3DC124189D2ED6001974E0 /* DBGroupViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBGroupViewModel.m; sourceTree = "<group>"; };
+		FF3DC127189D31CD001974E0 /* DBAreaViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAreaViewModel.h; sourceTree = "<group>"; };
+		FF3DC128189D31CD001974E0 /* DBAreaViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAreaViewModel.m; sourceTree = "<group>"; };
+		FF3DC12F189D4B2A001974E0 /* DBItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBItemViewModel.h; sourceTree = "<group>"; };
+		FF3DC130189D4B2A001974E0 /* DBItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBItemViewModel.m; sourceTree = "<group>"; };
 		FF429B421859118B00048B17 /* Auditr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Auditr.xcdatamodel; sourceTree = "<group>"; };
 		FF437709189C886600A019E3 /* _Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Profile.h; sourceTree = "<group>"; };
 		FF43770A189C886600A019E3 /* _Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Profile.m; sourceTree = "<group>"; };
@@ -113,8 +127,6 @@
 		FFC3875B1859188100A09D01 /* _Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Item.m; sourceTree = "<group>"; };
 		FFC3876018591A7E00A09D01 /* DBBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBBaseViewController.h; sourceTree = "<group>"; };
 		FFC3876118591A7E00A09D01 /* DBBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBBaseViewController.m; sourceTree = "<group>"; };
-		FFC3876418591B4400A09D01 /* DBBaseViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBBaseViewModel.h; sourceTree = "<group>"; };
-		FFC3876518591B4400A09D01 /* DBBaseViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBBaseViewModel.m; sourceTree = "<group>"; };
 		FFC3876718591D0400A09D01 /* DBGroupService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBGroupService.h; sourceTree = "<group>"; };
 		FFC3876818591D0400A09D01 /* DBGroupService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBGroupService.m; sourceTree = "<group>"; };
 		FFC3876A18591D2800A09D01 /* DBGroupCoreDataRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBGroupCoreDataRepository.h; sourceTree = "<group>"; };
@@ -167,6 +179,72 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		FF3DC111189D1674001974E0 /* EditGroupViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FF3DC112189D1685001974E0 /* DBEditGroupViewController.h */,
+				FF3DC113189D1685001974E0 /* DBEditGroupViewController.m */,
+			);
+			path = EditGroupViewController;
+			sourceTree = "<group>";
+		};
+		FF3DC115189D2B9A001974E0 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FF3DC126189D31C2001974E0 /* AreaViewModel */,
+				FF3DC116189D2B9A001974E0 /* BaseViewModel */,
+				FF3DC122189D2EC4001974E0 /* GroupViewModel */,
+				FF3DC11A189D2B9A001974E0 /* HomeViewModel */,
+				FF3DC12E189D4B2A001974E0 /* ItemViewModel */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		FF3DC116189D2B9A001974E0 /* BaseViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FF3DC117189D2B9A001974E0 /* DBBaseViewModel.h */,
+				FF3DC118189D2B9A001974E0 /* DBBaseViewModel.m */,
+			);
+			path = BaseViewModel;
+			sourceTree = "<group>";
+		};
+		FF3DC11A189D2B9A001974E0 /* HomeViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FF3DC11B189D2B9A001974E0 /* DBHomeViewModel.h */,
+				FF3DC11C189D2B9A001974E0 /* DBHomeViewModel.m */,
+			);
+			path = HomeViewModel;
+			sourceTree = "<group>";
+		};
+		FF3DC122189D2EC4001974E0 /* GroupViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FF3DC123189D2ED6001974E0 /* DBGroupViewModel.h */,
+				FF3DC124189D2ED6001974E0 /* DBGroupViewModel.m */,
+			);
+			path = GroupViewModel;
+			sourceTree = "<group>";
+		};
+		FF3DC126189D31C2001974E0 /* AreaViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FF3DC127189D31CD001974E0 /* DBAreaViewModel.h */,
+				FF3DC128189D31CD001974E0 /* DBAreaViewModel.m */,
+			);
+			path = AreaViewModel;
+			sourceTree = "<group>";
+		};
+		FF3DC12E189D4B2A001974E0 /* ItemViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FF3DC12F189D4B2A001974E0 /* DBItemViewModel.h */,
+				FF3DC130189D4B2A001974E0 /* DBItemViewModel.m */,
+			);
+			path = ItemViewModel;
+			sourceTree = "<group>";
+		};
 		FF8EE86B18567A320036BE27 = {
 			isa = PBXGroup;
 			children = (
@@ -207,7 +285,7 @@
 				FFBBA8A7185694A300C8BCBE /* AppDelegate */,
 				FFBBA8AE1856950200C8BCBE /* DataAccess */,
 				FF3D7432189C40DE00294D6F /* Extensions */,
-				FFC3876318591B3300A09D01 /* ViewModels */,
+				FF3DC115189D2B9A001974E0 /* ViewModels */,
 				FF8EE8AE18567AF70036BE27 /* ViewControllers */,
 				FFBBA8B01856956200C8BCBE /* Services */,
 				FFBBA8AC185694D800C8BCBE /* Model */,
@@ -251,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				FFC3875F18591A6C00A09D01 /* BaseViewController */,
+				FF3DC111189D1674001974E0 /* EditGroupViewController */,
 				FF8EE8B5185687980036BE27 /* GroupsViewController */,
 				FF8EE8AF18567AF70036BE27 /* auditr.storyboard */,
 			);
@@ -357,18 +436,6 @@
 				FFC3876118591A7E00A09D01 /* DBBaseViewController.m */,
 			);
 			path = BaseViewController;
-			sourceTree = "<group>";
-		};
-		FFC3876318591B3300A09D01 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				FFC3876418591B4400A09D01 /* DBBaseViewModel.h */,
-				FFC3876518591B4400A09D01 /* DBBaseViewModel.m */,
-				FF3D7436189C470F00294D6F /* DBHomeViewModel.h */,
-				FF3D7437189C470F00294D6F /* DBHomeViewModel.m */,
-			);
-			name = ViewModels;
-			path = VIewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -521,10 +588,11 @@
 				FF43770E189C886600A019E3 /* _Rating.m in Sources */,
 				FFC387541859184400A09D01 /* Item.m in Sources */,
 				FFC387531859184400A09D01 /* Group.m in Sources */,
-				FF3D7438189C470F00294D6F /* DBHomeViewModel.m in Sources */,
 				FF3D743C189C55BA00294D6F /* DBCoreDataManager.m in Sources */,
+				FF3DC114189D1685001974E0 /* DBEditGroupViewController.m in Sources */,
+				FF3DC125189D2ED6001974E0 /* DBGroupViewModel.m in Sources */,
+				FF3DC11D189D2B9A001974E0 /* DBBaseViewModel.m in Sources */,
 				FF437714189C887000A019E3 /* Rating.m in Sources */,
-				FFC3876618591B4400A09D01 /* DBBaseViewModel.m in Sources */,
 				FFC387521859184400A09D01 /* Area.m in Sources */,
 				FFBBA8AA185694B200C8BCBE /* DBAppDelegate.m in Sources */,
 				FFC3875C1859188100A09D01 /* _Area.m in Sources */,
@@ -532,10 +600,13 @@
 				FF437713189C887000A019E3 /* Profile.m in Sources */,
 				FF429B431859118B00048B17 /* Auditr.xcdatamodeld in Sources */,
 				FF3D7435189C40E800294D6F /* UIView+Animations.m in Sources */,
+				FF3DC11E189D2B9A001974E0 /* DBHomeViewModel.m in Sources */,
 				FFBBA8B81856996F00C8BCBE /* DBAssembly.m in Sources */,
 				FFC3876918591D0400A09D01 /* DBGroupService.m in Sources */,
+				FF3DC129189D31CD001974E0 /* DBAreaViewModel.m in Sources */,
 				FFC3876218591A7E00A09D01 /* DBBaseViewController.m in Sources */,
 				FFC3876C18591D2800A09D01 /* DBGroupCoreDataRepository.m in Sources */,
+				FF3DC131189D4B2A001974E0 /* DBItemViewModel.m in Sources */,
 				FFBBA8B41856960100C8BCBE /* DBCoreDataBaseRepository.m in Sources */,
 				FF43770D189C886600A019E3 /* _Profile.m in Sources */,
 				FF8EE8B8185687AB0036BE27 /* DBHomeViewController.m in Sources */,

@@ -4,6 +4,7 @@
 #import "_Group.h"
 
 const struct GroupAttributes GroupAttributes = {
+	.groupDescription = @"groupDescription",
 	.groupName = @"groupName",
 	.id = @"id",
 	.image = @"image",
@@ -53,6 +54,13 @@ const struct GroupFetchedProperties GroupFetchedProperties = {
 
 	return keyPaths;
 }
+
+
+
+
+@dynamic groupDescription;
+
+
 
 
 

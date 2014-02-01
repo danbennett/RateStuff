@@ -17,6 +17,8 @@
 	
 	[self setupCoreData];
 	
+	[self styleNavBar];
+	
     return YES;
 }
 
@@ -30,6 +32,14 @@
 - (void) setupCoreData
 {
 	[[DBCoreDataManager sharedInstance] setupStack];
+}
+
+- (void) styleNavBar
+{
+	UIImage *backgroundImage = [[UIImage imageNamed:@"topBarBackground"] resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile];
+	[[UINavigationBar appearance] setBackgroundImage: backgroundImage forBarMetrics: UIBarMetricsDefault];
+	UIImage *shadowImage = [[UIImage imageNamed:@"topBarShadow"] resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile];
+	[[UINavigationBar appearance] setShadowImage: shadowImage];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

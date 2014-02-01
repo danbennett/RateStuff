@@ -5,6 +5,7 @@
 
 
 extern const struct GroupAttributes {
+	__unsafe_unretained NSString *groupDescription;
 	__unsafe_unretained NSString *groupName;
 	__unsafe_unretained NSString *id;
 	__unsafe_unretained NSString *image;
@@ -29,6 +30,7 @@ extern const struct GroupFetchedProperties {
 
 
 
+
 @interface GroupID : NSManagedObjectID {}
 @end
 
@@ -37,6 +39,16 @@ extern const struct GroupFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (GroupID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSString* groupDescription;
+
+
+
+//- (BOOL)validateGroupDescription:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -125,6 +137,12 @@ extern const struct GroupFetchedProperties {
 @end
 
 @interface _Group (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSString*)primitiveGroupDescription;
+- (void)setPrimitiveGroupDescription:(NSString*)value;
+
+
 
 
 - (NSString*)primitiveGroupName;

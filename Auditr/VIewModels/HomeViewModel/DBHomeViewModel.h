@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+@class DBGroupViewModel;
 
 @interface DBHomeViewModel : NSObject
 
 @property (nonatomic, strong, readonly) NSString *title;
+- (DBGroupViewModel *) newGroupViewModel;
 
 @end

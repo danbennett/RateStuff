@@ -8,6 +8,7 @@
         <relationship name="ratings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Rating" inverseName="area" inverseEntity="Rating" syncable="YES"/>
     </entity>
     <entity name="Group" representedClassName="Group" syncable="YES">
+        <attribute name="groupDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="groupName" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
@@ -38,9 +39,9 @@
     </entity>
     <elements>
         <element name="Area" positionX="124" positionY="-189" width="128" height="118"/>
-        <element name="Group" positionX="-65" positionY="-153" width="128" height="148"/>
+        <element name="Group" positionX="-65" positionY="-153" width="128" height="163"/>
         <element name="Item" positionX="115" positionY="-9" width="128" height="148"/>
-        <element name="Profile" positionX="-56" positionY="-360" width="128" height="88"/>
+        <element name="Profile" positionX="-270" positionY="-297" width="128" height="88"/>
         <element name="Rating" positionX="331" positionY="-81" width="128" height="103"/>
     </elements>
 </model>

@@ -33,7 +33,8 @@
 {
 	return [TyphoonDefinition withClass: [DBHomeViewModel class] initialization:^(TyphoonInitializer *initializer) {
 		
-		initializer.selector = @selector(init);
+		initializer.selector = @selector(initWithGroupService:);
+		[initializer injectWithDefinition: [self groupService]];
 		
 	}];
 }

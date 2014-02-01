@@ -172,11 +172,11 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 	
 }
 
-//Clicking Buttons
-//– searchBarBookmarkButtonClicked:
-//– searchBarCancelButtonClicked:
-//– searchBarSearchButtonClicked:
-//– searchBarResultsListButtonClicked:
+# pragma mark - group management.
+- (IBAction) addNewGroup: (UIButton *) sender
+{
+	
+}
 
 - (void) dealloc
 {

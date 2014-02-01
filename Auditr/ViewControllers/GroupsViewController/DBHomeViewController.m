@@ -10,6 +10,7 @@
 #import "DBHomeViewController.h"
 #import "DBHomeViewModel.h"
 #import  <Typhoon/Typhoon.h>
+#import "DBEditGroupViewController.h"
 
 @interface DBHomeViewController ()
 
@@ -26,16 +27,7 @@
 	DBAssembly *factory = (DBAssembly *)[TyphoonAssembly defaultAssembly];
 	self.viewModel = (DBHomeViewModel *)[factory homeViewModel];
 	
-	[self styleNavBar];
 	[self applyBindings];
-}
-
-- (void) styleNavBar
-{
-	UINavigationBar *navBar = self.navigationController.navigationBar;
-	
-	[self.navigationController.navigationBar setTranslucent: NO];
-	[self.navigationController.navigationBar setTintColor: [UIColor blueColor]];
 }
 
 - (void) applyBindings
@@ -46,6 +38,17 @@
 - (IBAction) burgerButtonTapped: (UIBarButtonItem *)sender
 {
 	[[NSNotificationCenter defaultCenter] postNotificationName: DBBurgerButtonPressedNotification object: nil];
+}
+
+- (IBAction) addNewGroupTapped: (UIButton *) sender
+{
+	[self performSegueWithIdentifier: @"editGroupViewController" sender: self];
+}
+
+- (void) prepareForSegue: (UIStoryboardSegue *)segue sender: (id) sender
+{
+	DBEditGroupViewController *viewController = segue.destinationViewController;
+	viewController.viewModel = [self.viewModel newGroupViewModel];
 }
 
 - (void)didReceiveMemoryWarning
