@@ -50,10 +50,16 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 
 - (void) addSwipeGesutre
 {
-	UISwipeGestureRecognizer *swipeGestureRecoginzer =
-	[[UISwipeGestureRecognizer alloc] initWithTarget: self action: @selector(startDragging:)];
-	swipeGestureRecoginzer.direction = (UISwipeGestureRecognizerDirectionLeft|UISwipeGestureRecognizerDirectionRight);
-	[self.containerView addGestureRecognizer: swipeGestureRecoginzer];
+	UIPanGestureRecognizer *panGesture =
+	[[UIPanGestureRecognizer alloc] initWithTarget: self action: @selector(isDragging:)];
+	panGesture.delegate = self;
+	[self.containerView addGestureRecognizer: panGesture];
+}
+
+- (BOOL) gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer
+{
+	CGPoint translation = [gestureRecognizer translationInView: self.view];
+    return fabs(translation.x) > fabs(translation.y);
 }
 
 - (void) addTapGesture
@@ -71,18 +77,6 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 	[self.containerView animateToPosition: CGPointZero withDuration: 0.4f withEase: CircularEaseOut];
 }
 
-- (void) startDragging: (UISwipeGestureRecognizer *) gesture
-{
-	UIPanGestureRecognizer *panGesture;
-	if(gesture.state == UIGestureRecognizerStateBegan ||
-	   gesture.state == UIGestureRecognizerStateRecognized)
-	{
-		panGesture =
-		[[UIPanGestureRecognizer alloc] initWithTarget: self action: @selector(isDragging:)];
-		[self.containerView addGestureRecognizer: panGesture];
-	}
-}
-
 - (void) isDragging: (UIPanGestureRecognizer *) gesture
 {
 	if(gesture.state == UIGestureRecognizerStateChanged)
@@ -95,6 +89,10 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 		{
 			newX = -self.groupTableView.frame.size.width;
 		}
+		else if(newX > 0)
+		{
+			newX = 0;
+		}
 		currentFrame.origin.x = newX;
 		gesture.view.frame = currentFrame;
 		
@@ -106,7 +104,6 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 	   gesture.state == UIGestureRecognizerStateFailed)
 	   {
 		   [self droppedWithVelocity: [gesture velocityInView: self.view].x];
-		   [self.containerView removeGestureRecognizer: gesture];
 	   }
 }
 
