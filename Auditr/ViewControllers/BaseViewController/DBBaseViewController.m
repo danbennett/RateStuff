@@ -14,6 +14,7 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 
 @interface DBBaseViewController ()
 
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UITableView *groupTableView;
 @property (nonatomic, weak) DBBaseViewModel *viewModel;
@@ -44,6 +45,8 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 		
 	}];
 }
+
+# pragma mark - burger menu.
 
 - (void) addSwipeGesutre
 {
@@ -164,6 +167,19 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 	
 	[self addTapGesture];
 }
+
+#pragma mark - search bar.
+
+- (void) searchBar: (UISearchBar *)searchBar textDidChange: (NSString *) text
+{
+	
+}
+
+//Clicking Buttons
+//– searchBarBookmarkButtonClicked:
+//– searchBarCancelButtonClicked:
+//– searchBarSearchButtonClicked:
+//– searchBarResultsListButtonClicked:
 
 - (void) dealloc
 {

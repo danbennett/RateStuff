@@ -13,6 +13,7 @@ const struct GroupAttributes GroupAttributes = {
 const struct GroupRelationships GroupRelationships = {
 	.areas = @"areas",
 	.items = @"items",
+	.profile = @"profile",
 };
 
 const struct GroupFetchedProperties GroupFetchedProperties = {
@@ -127,6 +128,10 @@ const struct GroupFetchedProperties GroupFetchedProperties = {
 	[self didAccessValueForKey:@"items"];
 	return result;
 }
+	
+
+@dynamic profile;
+
 	
 
 

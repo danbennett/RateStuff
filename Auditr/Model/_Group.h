@@ -14,6 +14,7 @@ extern const struct GroupAttributes {
 extern const struct GroupRelationships {
 	__unsafe_unretained NSString *areas;
 	__unsafe_unretained NSString *items;
+	__unsafe_unretained NSString *profile;
 } GroupRelationships;
 
 extern const struct GroupFetchedProperties {
@@ -21,6 +22,7 @@ extern const struct GroupFetchedProperties {
 
 @class Area;
 @class Item;
+@class Profile;
 
 
 
@@ -98,6 +100,13 @@ extern const struct GroupFetchedProperties {
 
 
 
+@property (nonatomic, strong) Profile *profile;
+
+//- (BOOL)validateProfile:(id*)value_ error:(NSError**)error_;
+
+
+
+
 
 @end
 
@@ -153,6 +162,11 @@ extern const struct GroupFetchedProperties {
 
 - (NSMutableSet*)primitiveItems;
 - (void)setPrimitiveItems:(NSMutableSet*)value;
+
+
+
+- (Profile*)primitiveProfile;
+- (void)setPrimitiveProfile:(Profile*)value;
 
 
 @end

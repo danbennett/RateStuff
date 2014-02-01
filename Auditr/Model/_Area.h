@@ -7,18 +7,20 @@
 extern const struct AreaAttributes {
 	__unsafe_unretained NSString *areaName;
 	__unsafe_unretained NSString *id;
-	__unsafe_unretained NSString *score;
 } AreaAttributes;
 
 extern const struct AreaRelationships {
 	__unsafe_unretained NSString *group;
+	__unsafe_unretained NSString *items;
+	__unsafe_unretained NSString *ratings;
 } AreaRelationships;
 
 extern const struct AreaFetchedProperties {
 } AreaFetchedProperties;
 
 @class Group;
-
+@class Item;
+@class Rating;
 
 
 
@@ -56,23 +58,23 @@ extern const struct AreaFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* score;
-
-
-
-@property int32_t scoreValue;
-- (int32_t)scoreValue;
-- (void)setScoreValue:(int32_t)value_;
-
-//- (BOOL)validateScore:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
 @property (nonatomic, strong) Group *group;
 
 //- (BOOL)validateGroup:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, strong) NSSet *items;
+
+- (NSMutableSet*)itemsSet;
+
+
+
+
+@property (nonatomic, strong) NSSet *ratings;
+
+- (NSMutableSet*)ratingsSet;
 
 
 
@@ -81,6 +83,16 @@ extern const struct AreaFetchedProperties {
 @end
 
 @interface _Area (CoreDataGeneratedAccessors)
+
+- (void)addItems:(NSSet*)value_;
+- (void)removeItems:(NSSet*)value_;
+- (void)addItemsObject:(Item*)value_;
+- (void)removeItemsObject:(Item*)value_;
+
+- (void)addRatings:(NSSet*)value_;
+- (void)removeRatings:(NSSet*)value_;
+- (void)addRatingsObject:(Rating*)value_;
+- (void)removeRatingsObject:(Rating*)value_;
 
 @end
 
@@ -99,18 +111,19 @@ extern const struct AreaFetchedProperties {
 
 
 
-- (NSNumber*)primitiveScore;
-- (void)setPrimitiveScore:(NSNumber*)value;
-
-- (int32_t)primitiveScoreValue;
-- (void)setPrimitiveScoreValue:(int32_t)value_;
-
-
-
-
 
 - (Group*)primitiveGroup;
 - (void)setPrimitiveGroup:(Group*)value;
+
+
+
+- (NSMutableSet*)primitiveItems;
+- (void)setPrimitiveItems:(NSMutableSet*)value;
+
+
+
+- (NSMutableSet*)primitiveRatings;
+- (void)setPrimitiveRatings:(NSMutableSet*)value;
 
 
 @end

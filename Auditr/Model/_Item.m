@@ -11,7 +11,9 @@ const struct ItemAttributes ItemAttributes = {
 };
 
 const struct ItemRelationships ItemRelationships = {
+	.areas = @"areas",
 	.group = @"group",
+	.ratings = @"ratings",
 };
 
 const struct ItemFetchedProperties ItemFetchedProperties = {
@@ -78,8 +80,34 @@ const struct ItemFetchedProperties ItemFetchedProperties = {
 
 
 
+@dynamic areas;
+
+	
+- (NSMutableSet*)areasSet {
+	[self willAccessValueForKey:@"areas"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"areas"];
+  
+	[self didAccessValueForKey:@"areas"];
+	return result;
+}
+	
+
 @dynamic group;
 
+	
+
+@dynamic ratings;
+
+	
+- (NSMutableSet*)ratingsSet {
+	[self willAccessValueForKey:@"ratings"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"ratings"];
+  
+	[self didAccessValueForKey:@"ratings"];
+	return result;
+}
 	
 
 

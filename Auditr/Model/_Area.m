@@ -6,11 +6,12 @@
 const struct AreaAttributes AreaAttributes = {
 	.areaName = @"areaName",
 	.id = @"id",
-	.score = @"score",
 };
 
 const struct AreaRelationships AreaRelationships = {
 	.group = @"group",
+	.items = @"items",
+	.ratings = @"ratings",
 };
 
 const struct AreaFetchedProperties AreaFetchedProperties = {
@@ -42,11 +43,6 @@ const struct AreaFetchedProperties AreaFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
-	if ([key isEqualToString:@"scoreValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"score"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
 
 	return keyPaths;
 }
@@ -68,34 +64,34 @@ const struct AreaFetchedProperties AreaFetchedProperties = {
 
 
 
-@dynamic score;
-
-
-
-- (int32_t)scoreValue {
-	NSNumber *result = [self score];
-	return [result intValue];
-}
-
-- (void)setScoreValue:(int32_t)value_ {
-	[self setScore:[NSNumber numberWithInt:value_]];
-}
-
-- (int32_t)primitiveScoreValue {
-	NSNumber *result = [self primitiveScore];
-	return [result intValue];
-}
-
-- (void)setPrimitiveScoreValue:(int32_t)value_ {
-	[self setPrimitiveScore:[NSNumber numberWithInt:value_]];
-}
-
-
-
-
-
 @dynamic group;
 
+	
+
+@dynamic items;
+
+	
+- (NSMutableSet*)itemsSet {
+	[self willAccessValueForKey:@"items"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"items"];
+  
+	[self didAccessValueForKey:@"items"];
+	return result;
+}
+	
+
+@dynamic ratings;
+
+	
+- (NSMutableSet*)ratingsSet {
+	[self willAccessValueForKey:@"ratings"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"ratings"];
+  
+	[self didAccessValueForKey:@"ratings"];
+	return result;
+}
 	
 
 

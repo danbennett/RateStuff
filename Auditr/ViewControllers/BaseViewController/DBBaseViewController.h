@@ -10,6 +10,6 @@
 
 extern NSString *const DBBurgerButtonPressedNotification;
 
-@interface DBBaseViewController : UIViewController
+@interface DBBaseViewController : UIViewController <UISearchBarDelegate>
 
 @end

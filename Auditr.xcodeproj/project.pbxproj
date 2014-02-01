@@ -12,6 +12,10 @@
 		FF3D7438189C470F00294D6F /* DBHomeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D7437189C470F00294D6F /* DBHomeViewModel.m */; };
 		FF3D743C189C55BA00294D6F /* DBCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D743B189C55BA00294D6F /* DBCoreDataManager.m */; };
 		FF429B431859118B00048B17 /* Auditr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF429B411859118B00048B17 /* Auditr.xcdatamodeld */; };
+		FF43770D189C886600A019E3 /* _Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = FF43770A189C886600A019E3 /* _Profile.m */; };
+		FF43770E189C886600A019E3 /* _Rating.m in Sources */ = {isa = PBXBuildFile; fileRef = FF43770C189C886600A019E3 /* _Rating.m */; };
+		FF437713189C887000A019E3 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = FF437710189C887000A019E3 /* Profile.m */; };
+		FF437714189C887000A019E3 /* Rating.m in Sources */ = {isa = PBXBuildFile; fileRef = FF437712189C887000A019E3 /* Rating.m */; };
 		FF8EE87818567A320036BE27 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8EE87718567A320036BE27 /* Foundation.framework */; };
 		FF8EE87A18567A320036BE27 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8EE87918567A320036BE27 /* CoreGraphics.framework */; };
 		FF8EE87C18567A320036BE27 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8EE87B18567A320036BE27 /* UIKit.framework */; };
@@ -62,6 +66,14 @@
 		FF3D743A189C55BA00294D6F /* DBCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCoreDataManager.h; sourceTree = "<group>"; };
 		FF3D743B189C55BA00294D6F /* DBCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCoreDataManager.m; sourceTree = "<group>"; };
 		FF429B421859118B00048B17 /* Auditr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Auditr.xcdatamodel; sourceTree = "<group>"; };
+		FF437709189C886600A019E3 /* _Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Profile.h; sourceTree = "<group>"; };
+		FF43770A189C886600A019E3 /* _Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Profile.m; sourceTree = "<group>"; };
+		FF43770B189C886600A019E3 /* _Rating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Rating.h; sourceTree = "<group>"; };
+		FF43770C189C886600A019E3 /* _Rating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Rating.m; sourceTree = "<group>"; };
+		FF43770F189C887000A019E3 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
+		FF437710189C887000A019E3 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
+		FF437711189C887000A019E3 /* Rating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rating.h; sourceTree = "<group>"; };
+		FF437712189C887000A019E3 /* Rating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rating.m; sourceTree = "<group>"; };
 		FF8EE87418567A320036BE27 /* Auditr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Auditr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8EE87718567A320036BE27 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FF8EE87918567A320036BE27 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -273,6 +285,10 @@
 				FFC3874F1859184400A09D01 /* Group.m */,
 				FFC387501859184400A09D01 /* Item.h */,
 				FFC387511859184400A09D01 /* Item.m */,
+				FF43770F189C887000A019E3 /* Profile.h */,
+				FF437710189C887000A019E3 /* Profile.m */,
+				FF437711189C887000A019E3 /* Rating.h */,
+				FF437712189C887000A019E3 /* Rating.m */,
 				FF429B411859118B00048B17 /* Auditr.xcdatamodeld */,
 			);
 			path = Model;
@@ -320,6 +336,10 @@
 		FFC387551859187800A09D01 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				FF437709189C886600A019E3 /* _Profile.h */,
+				FF43770A189C886600A019E3 /* _Profile.m */,
+				FF43770B189C886600A019E3 /* _Rating.h */,
+				FF43770C189C886600A019E3 /* _Rating.m */,
 				FFC387561859188100A09D01 /* _Area.h */,
 				FFC387571859188100A09D01 /* _Area.m */,
 				FFC387581859188100A09D01 /* _Group.h */,
@@ -498,15 +518,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFC3875E1859188100A09D01 /* _Item.m in Sources */,
+				FF43770E189C886600A019E3 /* _Rating.m in Sources */,
 				FFC387541859184400A09D01 /* Item.m in Sources */,
 				FFC387531859184400A09D01 /* Group.m in Sources */,
 				FF3D7438189C470F00294D6F /* DBHomeViewModel.m in Sources */,
 				FF3D743C189C55BA00294D6F /* DBCoreDataManager.m in Sources */,
+				FF437714189C887000A019E3 /* Rating.m in Sources */,
 				FFC3876618591B4400A09D01 /* DBBaseViewModel.m in Sources */,
 				FFC387521859184400A09D01 /* Area.m in Sources */,
 				FFBBA8AA185694B200C8BCBE /* DBAppDelegate.m in Sources */,
 				FFC3875C1859188100A09D01 /* _Area.m in Sources */,
 				FF8EE88618567A320036BE27 /* main.m in Sources */,
+				FF437713189C887000A019E3 /* Profile.m in Sources */,
 				FF429B431859118B00048B17 /* Auditr.xcdatamodeld in Sources */,
 				FF3D7435189C40E800294D6F /* UIView+Animations.m in Sources */,
 				FFBBA8B81856996F00C8BCBE /* DBAssembly.m in Sources */,
@@ -514,6 +537,7 @@
 				FFC3876218591A7E00A09D01 /* DBBaseViewController.m in Sources */,
 				FFC3876C18591D2800A09D01 /* DBGroupCoreDataRepository.m in Sources */,
 				FFBBA8B41856960100C8BCBE /* DBCoreDataBaseRepository.m in Sources */,
+				FF43770D189C886600A019E3 /* _Profile.m in Sources */,
 				FF8EE8B8185687AB0036BE27 /* DBHomeViewController.m in Sources */,
 				FFC3875D1859188100A09D01 /* _Group.m in Sources */,
 			);

@@ -32,7 +32,9 @@
 
 - (void) styleNavBar
 {
-	[self.navigationController.navigationBar setTranslucent: YES];
+	UINavigationBar *navBar = self.navigationController.navigationBar;
+	
+	[self.navigationController.navigationBar setTranslucent: NO];
 	[self.navigationController.navigationBar setTintColor: [UIColor blueColor]];
 }
 
