@@ -18,14 +18,18 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.21529707880000001" green="0.2253315048" blue="0.25543478260000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" id="mmg-1Y-D6t">
-                                    <rect key="frame" x="0.0" y="0.0" width="250" height="44"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="Caw-tT-335">
+                                    <rect key="frame" x="0.0" y="0.0" width="250" height="48"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="obf-Wt-WhB" id="AE2-hA-WkI"/>
-                                    </connections>
-                                </searchBar>
+                                    <subviews>
+                                        <searchBar contentMode="redraw" searchBarStyle="prominent" id="dzK-g1-djz">
+                                            <rect key="frame" x="0.0" y="0.0" width="250" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </searchBar>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                </view>
                             </tableView>
                             <containerView contentMode="scaleToFill" id="0u2-wA-YiG">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -38,10 +42,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="containerView" destination="0u2-wA-YiG" id="IHh-p1-QFs"/>
                         <outlet property="groupTableView" destination="tVv-F6-77J" id="324-A8-EPG"/>
-                        <outlet property="searchBar" destination="mmg-1Y-D6t" id="Rbl-4n-Pho"/>
                         <outlet property="searchDisplayController" destination="QFp-ml-Lb1" id="flO-j1-OGt"/>
                     </connections>
                 </viewController>
@@ -93,6 +98,19 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VUc-7c-dNK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="405" y="191"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="qbe-LX-DDR">
+            <objects>
+                <viewController id="8B0-uM-eG6" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zw6-MR-d83">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EIh-CN-bsp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>
