@@ -8,14 +8,18 @@
 
 #import "DBEditGroupViewController.h"
 #import "DBGroupViewModel.h"
+#import "DBImagePickerViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface DBEditGroupViewController ()
 
 @property (nonatomic, strong) UIResponder *selectedResponder;
+@property (nonatomic, strong) IBOutlet UIButton *editImageButton;
+@property (nonatomic, strong) IBOutlet UIButton *addImageButton;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UITableView *groupTableView;
 @property (nonatomic, strong) IBOutlet UIImageView *imageView;
+@property (nonatomic, strong) IBOutlet UIView *imageViewHolder;
 @property (nonatomic, strong) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, strong) IBOutlet UITextField *groupNameTextField;
 @property (nonatomic, strong) IBOutlet UITextField *descriptionTextField;
@@ -47,8 +51,9 @@
 
 - (void) styleImageBackground
 {
-	UIImage *backgroundImage = [[UIImage imageNamed:@"imageBackground"] resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile];
-	[self.imageView setImage: backgroundImage];
+//	UIImage *backgroundImage = [[UIImage imageNamed:@"imageBackground"] resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile];
+	[self.imageViewHolder setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"imageBackground"]]];
+//	[self.imageViewHolder setImage: backgroundImage];
 }
 
 #pragma mark - Bindings.
@@ -58,9 +63,23 @@
 	RAC(self.saveButton, enabled) = self.viewModel.valid;
 	RAC(self.viewModel, groupName) = self.groupNameTextField.rac_textSignal;
 	RAC(self.viewModel, description) = self.descriptionTextField.rac_textSignal;
+	
+	RAC(self.groupNameTextField, text) = [RACObserve(self.viewModel, groupName) distinctUntilChanged];
+	RAC(self.descriptionTextField, text) = [RACObserve(self.viewModel, description) distinctUntilChanged];
+	RAC(self.imageView, image) = RACObserve(self.viewModel, image);
+	
+	RAC(self.addImageButton, hidden) = [RACObserve(self.imageView, image) map:^NSNumber *(UIImage *image) {
+		BOOL isNull = image == nil;
+		return @(!isNull);
+	}];
+	
+	RAC(self.editImageButton, hidden) = [RACObserve(self.imageView, image) map:^NSNumber *(UIImage *image) {
+		BOOL isNull = image == nil;
+		return @(isNull);
+	}];
 }
 
-#pragma mark - Bar positioning.
+#pragma mark - Bar positioning delegate.
 
 - (UIBarPosition) positionForBar:(id<UIBarPositioning>) bar
 {
@@ -116,19 +135,39 @@
 	[actionSheet showInView: self.view];
 }
 
-# pragma mark - Action sheet.
+# pragma mark - Action sheet delegate.
 
 - (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	if(buttonIndex == 0)
 	{
-		
+		[self showImagePickerWithSourceType: UIImagePickerControllerSourceTypeCamera];
 	}
 	else if(buttonIndex == 1)
 	{
-		
+		[self showImagePickerWithSourceType: UIImagePickerControllerSourceTypePhotoLibrary];
 	}
 }
+
+- (void) showImagePickerWithSourceType: (UIImagePickerControllerSourceType) sourceType
+{
+	DBImagePickerViewController *imagePicker = [[DBImagePickerViewController alloc] init];
+	imagePicker.modalPresentationStyle = UIModalPresentationCurrentContext;
+	imagePicker.sourceType = sourceType;
+	imagePicker.delegate = self;
+	[self presentViewController: imagePicker animated: YES completion: nil];
+}
+
+#pragma mark - Image picker delegate.
+
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+	UIImage *image = [info valueForKey: UIImagePickerControllerOriginalImage];
+	self.viewModel.image = image;
+	[self dismissViewControllerAnimated: YES completion: nil];
+}
+
+#pragma mark - Navigation controller delegate.
 
 - (void)didReceiveMemoryWarning
 {

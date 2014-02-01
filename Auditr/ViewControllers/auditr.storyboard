@@ -168,7 +168,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" id="ye6-CB-4Pa">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Uas-bE-WJX">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="98"/>
@@ -184,6 +184,18 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="addPhotoTapped:" destination="haV-i5-nDN" eventType="touchUpInside" id="riP-6x-rf7"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZTk-df-qUB">
+                                                <rect key="frame" x="20" y="71" width="280" height="22"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <state key="normal" title="Edit">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="addPhotoTapped:" destination="haV-i5-nDN" eventType="touchUpInside" id="1bc-s7-7Dy"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -268,11 +280,14 @@
                     </view>
                     <toolbarItems/>
                     <connections>
+                        <outlet property="addImageButton" destination="mvq-3C-VrU" id="TNa-tD-Wpm"/>
                         <outlet property="cancelButton" destination="OXT-pl-kR8" id="ZyR-aA-So9"/>
                         <outlet property="descriptionTextField" destination="hXb-Gx-L6r" id="8e9-gB-d25"/>
+                        <outlet property="editImageButton" destination="ZTk-df-qUB" id="TYq-oQ-Oxf"/>
                         <outlet property="groupNameTextField" destination="GQ5-cY-G6k" id="Fkh-hx-2Jx"/>
                         <outlet property="groupTableView" destination="Yof-ho-I1H" id="pgm-Sx-cLh"/>
                         <outlet property="imageView" destination="Uas-bE-WJX" id="knO-zZ-ubc"/>
+                        <outlet property="imageViewHolder" destination="ye6-CB-4Pa" id="6b0-cY-qvC"/>
                         <outlet property="navigationBar" destination="EiW-qZ-Hu6" id="G9S-gE-xcr"/>
                         <outlet property="saveButton" destination="eS7-15-iSf" id="of4-h3-7dj"/>
                         <outlet property="scrollView" destination="xWg-Di-NQ7" id="qPS-uV-QOa"/>

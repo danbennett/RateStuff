@@ -16,6 +16,7 @@
 		FF3DC125189D2ED6001974E0 /* DBGroupViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC124189D2ED6001974E0 /* DBGroupViewModel.m */; };
 		FF3DC129189D31CD001974E0 /* DBAreaViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC128189D31CD001974E0 /* DBAreaViewModel.m */; };
 		FF3DC131189D4B2A001974E0 /* DBItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC130189D4B2A001974E0 /* DBItemViewModel.m */; };
+		FF3DC135189D9195001974E0 /* DBImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC134189D9195001974E0 /* DBImagePickerViewController.m */; };
 		FF429B431859118B00048B17 /* Auditr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF429B411859118B00048B17 /* Auditr.xcdatamodeld */; };
 		FF43770D189C886600A019E3 /* _Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = FF43770A189C886600A019E3 /* _Profile.m */; };
 		FF43770E189C886600A019E3 /* _Rating.m in Sources */ = {isa = PBXBuildFile; fileRef = FF43770C189C886600A019E3 /* _Rating.m */; };
@@ -79,6 +80,8 @@
 		FF3DC128189D31CD001974E0 /* DBAreaViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAreaViewModel.m; sourceTree = "<group>"; };
 		FF3DC12F189D4B2A001974E0 /* DBItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBItemViewModel.h; sourceTree = "<group>"; };
 		FF3DC130189D4B2A001974E0 /* DBItemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBItemViewModel.m; sourceTree = "<group>"; };
+		FF3DC133189D9195001974E0 /* DBImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBImagePickerViewController.h; sourceTree = "<group>"; };
+		FF3DC134189D9195001974E0 /* DBImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBImagePickerViewController.m; sourceTree = "<group>"; };
 		FF429B421859118B00048B17 /* Auditr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Auditr.xcdatamodel; sourceTree = "<group>"; };
 		FF437709189C886600A019E3 /* _Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Profile.h; sourceTree = "<group>"; };
 		FF43770A189C886600A019E3 /* _Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Profile.m; sourceTree = "<group>"; };
@@ -245,6 +248,15 @@
 			path = ItemViewModel;
 			sourceTree = "<group>";
 		};
+		FF3DC132189D917B001974E0 /* ImagePickerController */ = {
+			isa = PBXGroup;
+			children = (
+				FF3DC133189D9195001974E0 /* DBImagePickerViewController.h */,
+				FF3DC134189D9195001974E0 /* DBImagePickerViewController.m */,
+			);
+			path = ImagePickerController;
+			sourceTree = "<group>";
+		};
 		FF8EE86B18567A320036BE27 = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +343,7 @@
 				FFC3875F18591A6C00A09D01 /* BaseViewController */,
 				FF3DC111189D1674001974E0 /* EditGroupViewController */,
 				FF8EE8B5185687980036BE27 /* GroupsViewController */,
+				FF3DC132189D917B001974E0 /* ImagePickerController */,
 				FF8EE8AF18567AF70036BE27 /* auditr.storyboard */,
 			);
 			path = ViewControllers;
@@ -590,6 +603,7 @@
 				FFC387531859184400A09D01 /* Group.m in Sources */,
 				FF3D743C189C55BA00294D6F /* DBCoreDataManager.m in Sources */,
 				FF3DC114189D1685001974E0 /* DBEditGroupViewController.m in Sources */,
+				FF3DC135189D9195001974E0 /* DBImagePickerViewController.m in Sources */,
 				FF3DC125189D2ED6001974E0 /* DBGroupViewModel.m in Sources */,
 				FF3DC11D189D2B9A001974E0 /* DBBaseViewModel.m in Sources */,
 				FF437714189C887000A019E3 /* Rating.m in Sources */,

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class DBGroupViewModel;
 
-@interface DBEditGroupViewController : UIViewController <UIBarPositioningDelegate, UITextFieldDelegate, UIActionSheetDelegate>
+@interface DBEditGroupViewController : UIViewController <UIBarPositioningDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) DBGroupViewModel *viewModel;
 
