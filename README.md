@@ -1,5 +1,5 @@
 auditr
 ======
 
-An example app implementing a service layer, MVVM and dependency injection using Reactive Cocoa and Typhoon.
+An example app implementing repository pattern, service layer, MVVM and dependency injection using Reactive Cocoa and Typhoon.
 

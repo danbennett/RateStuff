@@ -74,7 +74,7 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 {
 	[self.containerView removeGestureRecognizer: gesture];
 	
-	[self.containerView animateToPosition: CGPointZero withDuration: 0.4f withEase: CircularEaseOut];
+	[self.containerView animateToPosition: CGPointZero withDuration: 0.2f withEase: UIViewAnimationOptionCurveEaseOut];
 }
 
 - (void) isDragging: (UIPanGestureRecognizer *) gesture
@@ -116,7 +116,6 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 - (void) putViewAtPositionWith: (CGPoint) position swipeSpeed: (CGFloat) speed
 {
 	CGPoint positionToAnimateTo = [self positionWithPosition: position];
-	ViewEasingFunctionPointerType ease = CircularEaseOut;
 	
 	if(fabs(speed) > 300)
 	{
@@ -125,9 +124,9 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 	
 	CGFloat xPoints = CGRectGetWidth(self.groupTableView.frame);
 	NSTimeInterval duration = fabs( xPoints / speed );
-	duration = duration > 0.4f ? 0.4f : duration;
+	duration = duration > 0.32f ? 0.32f : duration;
 	
-	[self.containerView animateToPosition: positionToAnimateTo withDuration: duration withEase: ease];
+	[self.containerView animateToPosition: positionToAnimateTo withDuration: duration withEase: UIViewAnimationOptionCurveEaseOut];
 	
 	if (positionToAnimateTo.x < 0)
 	{
@@ -160,7 +159,7 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 - (void) burgerButtonPressedNotifcationHandler: (NSNotification *) notification
 {
 	CGPoint position = CGPointMake(-CGRectGetWidth(self.groupTableView.frame), 0.0);
-	[self.containerView animateToPosition: position withDuration: 0.4f withEase: CircularEaseOut];
+	[self.containerView animateToPosition: position withDuration: 0.2f withEase: UIViewAnimationOptionCurveEaseOut];
 	
 	[self addTapGesture];
 }

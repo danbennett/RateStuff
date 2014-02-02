@@ -9,6 +9,7 @@
 #import "DBBaseViewModel.h"
 #import "DBGroupService.h"
 #import "Group.h"
+#import <ReactiveCocoa/RACEXTScope.h>
 
 @interface DBBaseViewModel()
 

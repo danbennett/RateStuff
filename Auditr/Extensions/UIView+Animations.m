@@ -7,23 +7,22 @@
 //
 
 #import "UIView+Animations.h"
+#import <ReactiveCocoa/RACEXTScope.h>
 
 @implementation UIView (Animations)
 
-- (void) animateToPosition: (CGPoint) position withDuration: (NSTimeInterval) duration withEase: (ViewEasingFunctionPointerType) ease
+- (void) animateToPosition: (CGPoint) position withDuration: (NSTimeInterval) duration withEase: (UIViewAnimationOptions) ease
 {
 	@weakify(self);
-	[UIView animateWithDuration: duration animations:^{
+	[UIView animateWithDuration: duration delay:0.0 options: ease animations:^{
 	
 		@strongify(self);
-		[self setEasingFunction: ease forKeyPath:@"frame"];
-		
 		self.frame = ({
 			CGRect frame = self.frame;
 			frame.origin = position;
 			frame;
 		});
-	}];
+	} completion: NULL];
 }
 
 - (void) animateToOpacity: (CGFloat) alpha withDuration: (NSTimeInterval) duration

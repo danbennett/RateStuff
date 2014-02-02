@@ -12,6 +12,7 @@
 #import "UIImage+Effects.h"
 #import "UIView+Animations.h"
 #import <GPUImage/GPUImage.h>
+#import <ReactiveCocoa/RACEXTScope.h>
 #import <QuartzCore/QuartzCore.h>
 
 @interface DBEditGroupViewController ()
