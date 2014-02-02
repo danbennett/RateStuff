@@ -11,5 +11,6 @@
 @interface UIView (Animations)
 
 - (void) animateToPosition: (CGPoint) position withDuration: (NSTimeInterval) duration withEase: (ViewEasingFunctionPointerType) ease;
+- (void) animateToOpacity: (CGFloat) alpha withDuration: (NSTimeInterval) duration;
 
 @end

@@ -12,8 +12,10 @@
 
 - (void) animateToPosition: (CGPoint) position withDuration: (NSTimeInterval) duration withEase: (ViewEasingFunctionPointerType) ease
 {
+	@weakify(self);
 	[UIView animateWithDuration: duration animations:^{
-		
+	
+		@strongify(self);
 		[self setEasingFunction: ease forKeyPath:@"frame"];
 		
 		self.frame = ({
@@ -21,6 +23,17 @@
 			frame.origin = position;
 			frame;
 		});
+	}];
+}
+
+- (void) animateToOpacity: (CGFloat) alpha withDuration: (NSTimeInterval) duration
+{
+	@weakify(self);
+	[UIView animateWithDuration: duration animations:^{
+	
+		@strongify(self);
+		self.alpha = alpha;
+		
 	}];
 }
 

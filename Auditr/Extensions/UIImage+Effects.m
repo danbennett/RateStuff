@@ -24,4 +24,12 @@
 	return [vigneeteFilter imageByFilteringImage: self];
 }
 
+- (UIImage *) imageWithPolkaDotOfSize: (float) size
+{
+	GPUImagePolkaDotFilter *polkaDotFilter = [[GPUImagePolkaDotFilter alloc] init];
+	polkaDotFilter.fractionalWidthOfAPixel = size;
+	polkaDotFilter.dotScaling = 0.9f;
+	return [polkaDotFilter imageByFilteringImage: self];
+}
+
 @end

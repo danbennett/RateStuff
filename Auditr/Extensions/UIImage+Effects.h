@@ -12,5 +12,6 @@
 
 - (UIImage *) imageWithBlur;
 - (UIImage *) imageWithVignette;
+- (UIImage *) imageWithPolkaDotOfSize: (float) size;
 
 @end

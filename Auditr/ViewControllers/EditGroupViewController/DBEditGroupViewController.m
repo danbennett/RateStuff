@@ -10,10 +10,14 @@
 #import "DBGroupViewModel.h"
 #import "DBImagePickerViewController.h"
 #import "UIImage+Effects.h"
+#import "UIView+Animations.h"
+#import <GPUImage/GPUImage.h>
 #import <QuartzCore/QuartzCore.h>
 
 @interface DBEditGroupViewController ()
 
+@property (nonatomic, strong) UIImage *backgroundImageUp;
+@property (nonatomic, strong) UIImage *backgroundImageOver;
 @property (nonatomic, strong) UIResponder *selectedResponder;
 @property (nonatomic, strong) IBOutlet UIButton *editImageButton;
 @property (nonatomic, strong) IBOutlet UIButton *addImageButton;
@@ -36,10 +40,29 @@
 {
     [super viewDidLoad];
 	
-	[self addGesture];
+	[self addGestures];
 	[self styleGroupTableView];
 	[self styleImageBackground];
 	[self applyBindings];
+}
+
+# pragma mark - Image filter.
+
+- (void) createBackgroundImagesWithImage: (UIImage *) image
+{
+	GPUImagePolkaDotFilter *imageFilter = [[GPUImagePolkaDotFilter alloc] init];
+	imageFilter.fractionalWidthOfAPixel = 0.02f;
+	imageFilter.dotScaling = 0.9f;
+	
+	GPUImagePicture *stillImageSource = [[GPUImagePicture alloc] initWithImage: image];
+	[stillImageSource addTarget: imageFilter];
+	[stillImageSource processImage];
+	
+	self.backgroundImageUp = [imageFilter imageFromCurrentlyProcessedOutputWithOrientation: image.imageOrientation];
+
+	imageFilter.fractionalWidthOfAPixel = 0.01f;
+	[stillImageSource processImage];
+	self.backgroundImageOver = [imageFilter imageFromCurrentlyProcessedOutputWithOrientation: image.imageOrientation];
 }
 
 # pragma mark - Style.
@@ -53,9 +76,7 @@
 
 - (void) styleImageBackground
 {
-//	UIImage *backgroundImage = [[UIImage imageNamed:@"imageBackground"] resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile];
 	[self.imageViewHolder setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"imageBackground"]]];
-//	[self.imageViewHolder setImage: backgroundImage];
 }
 
 #pragma mark - Bindings.
@@ -72,20 +93,25 @@
 	@weakify(self);
 	[RACObserve(self.viewModel, image) subscribeNext:^(UIImage *image) {
 		
-		dispatch_queue_t blurQueue = dispatch_queue_create("uk.co.bennett.dan.blurQueu", NULL);
-		__block UIImage *blurredImage = nil;
-		__block UIImage *vignetteImage = nil;
-		dispatch_async(blurQueue, ^{
-			
-			blurredImage = [image imageWithBlur];
-			vignetteImage = [image imageWithVignette];
-			
-			dispatch_async(dispatch_get_main_queue(), ^{
+		if (image != nil)
+		{
+			dispatch_queue_t blurQueue = dispatch_queue_create("uk.co.bennett.dan.blurQueu", NULL);
+			dispatch_async(blurQueue, ^{
+
 				@strongify(self);
-				[self.imageView setImage: blurredImage];
-//				[self.profileImageView setImage: vignetteImage];
+				[self createBackgroundImagesWithImage: image];
+				
+				dispatch_async(dispatch_get_main_queue(), ^{
+					@strongify(self);
+					[self.profileImageView setImage: image];
+					self.profileImageView.alpha = 0.0f;
+					[self.profileImageView animateToOpacity: 1.0f withDuration: 0.32f];
+					[self.imageView setImage: self.backgroundImageUp];
+					self.imageView.alpha = 0.0f;
+					[self.imageView animateToOpacity: 0.4f withDuration: 0.42f];
+				});
 			});
-		});
+		}
 		
 	}];
 	
@@ -127,11 +153,40 @@
 
 #pragma mark - Actions.
 
-- (void) addGesture
+- (void) addGestures
 {
-	UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(resignFirstResponder)];
-	gesture.cancelsTouchesInView = NO;
-	[self.scrollView addGestureRecognizer: gesture];
+	UITapGestureRecognizer *responderGesture = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(resignFirstResponder)];
+	responderGesture.cancelsTouchesInView = NO;
+	[self.scrollView addGestureRecognizer: responderGesture];
+	
+	UILongPressGestureRecognizer *imageDownGesutre = [[UILongPressGestureRecognizer alloc] initWithTarget: self action: @selector(photoDown:)];
+	imageDownGesutre.cancelsTouchesInView = NO;
+	imageDownGesutre.minimumPressDuration = .0001;
+	[self.imageViewHolder addGestureRecognizer: imageDownGesutre];
+}
+
+- (void) photoDown: (UILongPressGestureRecognizer *) gesture
+{
+	if (gesture.state == UIGestureRecognizerStateBegan)
+	{
+		[self.imageView setImage: self.backgroundImageOver];
+	}
+	if (gesture.state == UIGestureRecognizerStateChanged)
+	{
+		CGPoint location = [gesture locationInView: self.imageViewHolder];
+		BOOL isInView = [self.imageViewHolder pointInside: location withEvent: nil];
+		gesture.enabled = isInView;
+	}
+	if (gesture.state == UIGestureRecognizerStateEnded)
+	{
+		[self.imageView setImage: self.backgroundImageUp];
+		[self addPhoto];
+	}
+	if (gesture.state == UIGestureRecognizerStateCancelled)
+	{
+		[self.imageView setImage: self.backgroundImageUp];
+		gesture.enabled = TRUE;
+	}
 }
 
 - (BOOL) resignFirstResponder
@@ -145,7 +200,7 @@
 	[self dismissViewControllerAnimated: YES completion: nil];
 }
 
-- (IBAction) addPhotoTapped: (UIButton *) sender
+- (void) addPhoto
 {
 	UIActionSheet *actionSheet =
 	[[UIActionSheet alloc] initWithTitle: nil
