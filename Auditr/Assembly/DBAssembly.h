@@ -13,5 +13,6 @@
 
 - (id) baseViewModel;
 - (id) homeViewModel;
+- (id) groupViewModel;
 
 @end

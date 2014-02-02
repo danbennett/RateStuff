@@ -10,10 +10,13 @@
 // ViewModels.
 #import "DBBaseViewModel.h"
 #import "DBHomeViewModel.h"
+#import "DBGroupViewModel.h"
 // Services.
 #import "DBGroupService.h"
+#import "DBAreaService.h"
 // Repos.
 #import "DBGroupCoreDataRepository.h"
+#import "DBAreaCoreDataRepository.h"
 
 @implementation DBAssembly
 
@@ -39,6 +42,17 @@
 	}];
 }
 
+- (id) groupViewModel
+{
+	return [TyphoonDefinition withClass: [DBGroupViewModel class] initialization:^(TyphoonInitializer *initializer) {
+		
+		initializer.selector = @selector(initWithGroupService:areaService:);
+		[initializer injectWithDefinition: [self groupService]];
+		[initializer injectWithDefinition: [self areaService]];
+		
+	}];
+}
+
 #pragma mark - services
 
 - (id) groupService
@@ -55,11 +69,34 @@
 	}];
 }
 
+- (id) areaService
+{
+	return [TyphoonDefinition withClass: [DBAreaService class] initialization:^(TyphoonInitializer *initializer) {
+		
+		initializer.selector = @selector(initWithAreaRepository:);
+		[initializer injectWithDefinition: [self areaRepository]];
+		
+	} properties:^(TyphoonDefinition *definition) {
+		
+		[definition setScope: TyphoonScopeSingleton];
+		
+	}];
+}
+
 #pragma mark - repos
 
 - (id) groupRepository
 {
 	return [TyphoonDefinition withClass: [DBGroupCoreDataRepository class] properties:^(TyphoonDefinition *definition) {
+		
+		[definition setScope: TyphoonScopeSingleton];
+		
+	}];
+}
+
+- (id) areaRepository
+{
+	return [TyphoonDefinition withClass: [DBAreaCoreDataRepository class] properties:^(TyphoonDefinition *definition) {
 		
 		[definition setScope: TyphoonScopeSingleton];
 		

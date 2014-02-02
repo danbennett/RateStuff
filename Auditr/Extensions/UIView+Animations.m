@@ -25,6 +25,23 @@
 	} completion: NULL];
 }
 
+- (void) animateFrameWithBounce: (CGRect) frame withDuration: (NSTimeInterval) duration withEase: (UIViewAnimationOptions) ease withCompletion: (void (^)(BOOL finished))completion
+{
+	@weakify(self);
+
+	[UIView animateWithDuration: duration
+						  delay: 0.0f
+		 usingSpringWithDamping: 0.8f
+		  initialSpringVelocity: 0.2f
+						options: ease
+					 animations:^{
+
+		@strongify(self);
+		self.frame = frame;
+		
+	} completion: completion];
+}
+
 - (void) animateToOpacity: (CGFloat) alpha withDuration: (NSTimeInterval) duration
 {
 	@weakify(self);

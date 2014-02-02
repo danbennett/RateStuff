@@ -12,5 +12,9 @@
 
 - (void) animateToPosition: (CGPoint) position withDuration: (NSTimeInterval) duration withEase: (UIViewAnimationOptions) ease;
 - (void) animateToOpacity: (CGFloat) alpha withDuration: (NSTimeInterval) duration;
+- (void) animateFrameWithBounce: (CGRect) frame
+				   withDuration: (NSTimeInterval) duration
+					   withEase: (UIViewAnimationOptions) ease
+				 withCompletion: (void (^)(BOOL finished))completion;
 
 @end

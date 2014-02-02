@@ -20,11 +20,12 @@
 @property (nonatomic, strong) UIImage *backgroundImageUp;
 @property (nonatomic, strong) UIImage *backgroundImageOver;
 @property (nonatomic, strong) UIResponder *selectedResponder;
+@property (nonatomic, strong) IBOutlet UITableView *areaTableView;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) IBOutlet UIButton *editImageButton;
 @property (nonatomic, strong) IBOutlet UIButton *addImageButton;
+@property (nonatomic, strong) IBOutlet UIView *contentHolder;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, strong) IBOutlet UITableView *groupTableView;
 @property (nonatomic, strong) IBOutlet UIImageView *profileImageView;
 @property (nonatomic, strong) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) IBOutlet UIView *imageViewHolder;
@@ -38,15 +39,27 @@
 
 @implementation DBEditGroupViewController
 
+static NSString *const DBDefaultAreaName = @"Insert area name...";
+static NSString *const DBAreaTableViewId = @"DBAreaCell";
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	
+	[self setupScrollView];
 	[self addGestures];
-	[self styleGroupTableView];
+	[self styleAreaTableView];
 	[self styleImageView];
 	[self styleImageBackground];
 	[self applyBindings];
+}
+
+#pragma mark - Scroll view.
+
+- (void) setupScrollView
+{
+	self.scrollView.contentSize = self.contentHolder.frame.size;
+	[self.scrollView setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"imageBackground"]]];
 }
 
 # pragma mark - Image filter.
@@ -70,11 +83,12 @@
 
 # pragma mark - Style.
 
-- (void) styleGroupTableView
+- (void) styleAreaTableView
 {
-	self.groupTableView.layer.borderColor = [[UIColor colorWithRed: 124.0f/255.0f green: 124.0f/255.0f blue: 124.0f/255.0f alpha: 0.4f] CGColor];
-	self.groupTableView.layer.cornerRadius = 5;
-	self.groupTableView.layer.borderWidth = 0.5f;
+	[self.areaTableView setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"addAreaBackground"]]];
+//	self.groupCollectionView.layer.borderColor = [[UIColor colorWithRed: 124.0f/255.0f green: 124.0f/255.0f blue: 124.0f/255.0f alpha: 0.4f] CGColor];
+//	self.groupCollectionView.layer.cornerRadius = 5;
+//	self.groupCollectionView.layer.borderWidth = 0.5f;
 }
 
 - (void) styleImageView
@@ -88,7 +102,7 @@
 
 - (void) styleImageBackground
 {
-	[self.imageViewHolder setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"imageBackground"]]];
+//	[self.imageViewHolder setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"imageBackground"]]];
 }
 
 #pragma mark - Bindings.
@@ -167,6 +181,21 @@
 }
 
 #pragma mark - Actions.
+
+- (IBAction) addNewAreaTapped: (UIButton *) sender
+{
+	DBAreaViewModel *viewModel = [self.viewModel addAreaWithName: DBDefaultAreaName];
+
+	@weakify(self);
+	[self showEditAreaViewWithCompletion:^(BOOL finished) {
+		@strongify(self);
+		[self.areaTableView beginUpdates];
+		NSIndexPath *path = [NSIndexPath indexPathForItem: [self.viewModel.areas indexOfObject: viewModel] inSection:0];
+		[self.areaTableView insertRowsAtIndexPaths: @[path] withRowAnimation: UITableViewRowAnimationRight];
+		[self.areaTableView endUpdates];
+		
+	}];
+}
 
 - (void) addGestures
 {
@@ -259,12 +288,42 @@
 	self.viewModel.image = image;
 }
 
-#pragma mark - Navigation controller delegate.
+#pragma mark - Show area edit.
 
-- (void)didReceiveMemoryWarning
+- (void) showEditAreaViewWithCompletion: (void (^)(BOOL finished))completion
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	@weakify(self);
+	CGRect frame = self.areaTableView.frame;
+	frame.size.height = frame.size.height + frame.origin.y;
+	frame.origin.y = 0;
+	[self.areaTableView animateFrameWithBounce: frame
+								  withDuration: 0.6f
+									  withEase: UIViewAnimationOptionCurveEaseOut
+								withCompletion: completion];
 }
+
+#pragma mark - Tableview data source.
+
+- (NSInteger) numberOfSectionsInTableView: (UITableView *)tableView
+{
+	return 1;
+}
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	return self.viewModel.areas.count;
+}
+
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: DBAreaTableViewId];
+	
+	return cell;
+}
+
+#pragma mark - Tableview delegate.
+
+
+#pragma mark - getters & setters.
 
 @end

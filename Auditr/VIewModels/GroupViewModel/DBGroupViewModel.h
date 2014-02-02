@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 @class Group;
+@class DBAreaViewModel;
+@protocol DBGroupService;
+@protocol DBAreaService;
 
 @interface DBGroupViewModel : NSObject
 
@@ -17,7 +20,10 @@
 @property (nonatomic, strong) NSArray *areas;
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, strong) RACSignal *valid;
+@property (nonatomic, strong) Group *group;
 
-- (id) initWithGroup: (Group *) group;
+- (id) initWithGroupService: (id<DBGroupService>) groupService
+				areaService: (id<DBAreaService>) areaService;
+- (DBAreaViewModel *) addAreaWithName: (NSString *) areaName;
 
 @end

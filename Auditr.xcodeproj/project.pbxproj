@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		56FAB8E02F294CD5B4B756D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57E10E887FAB429BA7FD4567 /* libPods.a */; };
+		FF2454FE189EBD0400690DC1 /* EditAreaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF2454FD189EBD0400690DC1 /* EditAreaView.xib */; };
+		FF245509189EEB9900690DC1 /* DBAreaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF245508189EEB9900690DC1 /* DBAreaTableViewCell.m */; };
+		FF24550D189EF3B800690DC1 /* DBAreaService.m in Sources */ = {isa = PBXBuildFile; fileRef = FF24550C189EF3B800690DC1 /* DBAreaService.m */; };
+		FF245511189EF43500690DC1 /* DBAreaCoreDataRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = FF245510189EF43500690DC1 /* DBAreaCoreDataRepository.m */; };
 		FF3D7435189C40E800294D6F /* UIView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D7434189C40E800294D6F /* UIView+Animations.m */; };
 		FF3D743C189C55BA00294D6F /* DBCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D743B189C55BA00294D6F /* DBCoreDataManager.m */; };
 		FF3DC114189D1685001974E0 /* DBEditGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC113189D1685001974E0 /* DBEditGroupViewController.m */; };
@@ -65,6 +69,14 @@
 /* Begin PBXFileReference section */
 		57E10E887FAB429BA7FD4567 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD209048DBD47D98CAFD2F1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		FF2454FD189EBD0400690DC1 /* EditAreaView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditAreaView.xib; sourceTree = "<group>"; };
+		FF245507189EEB9900690DC1 /* DBAreaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAreaTableViewCell.h; sourceTree = "<group>"; };
+		FF245508189EEB9900690DC1 /* DBAreaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAreaTableViewCell.m; sourceTree = "<group>"; };
+		FF24550B189EF3B800690DC1 /* DBAreaService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAreaService.h; sourceTree = "<group>"; };
+		FF24550C189EF3B800690DC1 /* DBAreaService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAreaService.m; sourceTree = "<group>"; };
+		FF24550E189EF3FD00690DC1 /* DBAreaRepository.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBAreaRepository.h; sourceTree = "<group>"; };
+		FF24550F189EF43500690DC1 /* DBAreaCoreDataRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAreaCoreDataRepository.h; sourceTree = "<group>"; };
+		FF245510189EF43500690DC1 /* DBAreaCoreDataRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAreaCoreDataRepository.m; sourceTree = "<group>"; };
 		FF3D7433189C40E800294D6F /* UIView+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animations.h"; sourceTree = "<group>"; };
 		FF3D7434189C40E800294D6F /* UIView+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animations.m"; sourceTree = "<group>"; };
 		FF3D743A189C55BA00294D6F /* DBCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCoreDataManager.h; sourceTree = "<group>"; };
@@ -167,6 +179,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FF2454FC189EBCDE00690DC1 /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				FF2454FD189EBD0400690DC1 /* EditAreaView.xib */,
+			);
+			path = Nibs;
+			sourceTree = "<group>";
+		};
+		FF245506189EEB8800690DC1 /* AreaTableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				FF245507189EEB9900690DC1 /* DBAreaTableViewCell.h */,
+				FF245508189EEB9900690DC1 /* DBAreaTableViewCell.m */,
+			);
+			path = AreaTableViewCells;
+			sourceTree = "<group>";
+		};
 		FF3D7432189C40DE00294D6F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +219,7 @@
 		FF3DC111189D1674001974E0 /* EditGroupViewController */ = {
 			isa = PBXGroup;
 			children = (
+				FF245506189EEB8800690DC1 /* AreaTableViewCells */,
 				FF3DC112189D1685001974E0 /* DBEditGroupViewController.h */,
 				FF3DC113189D1685001974E0 /* DBEditGroupViewController.m */,
 			);
@@ -350,6 +380,7 @@
 				FF8EE8B5185687980036BE27 /* GroupsViewController */,
 				FF3DC132189D917B001974E0 /* ImagePickerController */,
 				FF8EE8AF18567AF70036BE27 /* auditr.storyboard */,
+				FF2454FC189EBCDE00690DC1 /* Nibs */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -397,6 +428,7 @@
 				FFBBA8B11856957E00C8BCBE /* CoreData */,
 				FFBBA8AF1856951C00C8BCBE /* DBRepository.h */,
 				FFC3876D18591EAC00A09D01 /* DBGroupRepository.h */,
+				FF24550E189EF3FD00690DC1 /* DBAreaRepository.h */,
 			);
 			path = DataAccess;
 			sourceTree = "<group>";
@@ -406,6 +438,8 @@
 			children = (
 				FFC3876718591D0400A09D01 /* DBGroupService.h */,
 				FFC3876818591D0400A09D01 /* DBGroupService.m */,
+				FF24550B189EF3B800690DC1 /* DBAreaService.h */,
+				FF24550C189EF3B800690DC1 /* DBAreaService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -417,6 +451,8 @@
 				FFBBA8B31856960100C8BCBE /* DBCoreDataBaseRepository.m */,
 				FFC3876A18591D2800A09D01 /* DBGroupCoreDataRepository.h */,
 				FFC3876B18591D2800A09D01 /* DBGroupCoreDataRepository.m */,
+				FF24550F189EF43500690DC1 /* DBAreaCoreDataRepository.h */,
+				FF245510189EF43500690DC1 /* DBAreaCoreDataRepository.m */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -538,6 +574,7 @@
 				FF8EE8B018567AF70036BE27 /* auditr.storyboard in Resources */,
 				FF8EE88418567A320036BE27 /* InfoPlist.strings in Resources */,
 				FF8EE88F18567A320036BE27 /* Images.xcassets in Resources */,
+				FF2454FE189EBD0400690DC1 /* EditAreaView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,6 +639,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF24550D189EF3B800690DC1 /* DBAreaService.m in Sources */,
 				FFC3875E1859188100A09D01 /* _Item.m in Sources */,
 				FF43770E189C886600A019E3 /* _Rating.m in Sources */,
 				FFC387541859184400A09D01 /* Item.m in Sources */,
@@ -616,6 +654,7 @@
 				FF3DC138189DA310001974E0 /* UIImage+Effects.m in Sources */,
 				FFBBA8AA185694B200C8BCBE /* DBAppDelegate.m in Sources */,
 				FFC3875C1859188100A09D01 /* _Area.m in Sources */,
+				FF245509189EEB9900690DC1 /* DBAreaTableViewCell.m in Sources */,
 				FF8EE88618567A320036BE27 /* main.m in Sources */,
 				FF437713189C887000A019E3 /* Profile.m in Sources */,
 				FF429B431859118B00048B17 /* Auditr.xcdatamodeld in Sources */,
@@ -623,6 +662,7 @@
 				FF3DC11E189D2B9A001974E0 /* DBHomeViewModel.m in Sources */,
 				FFBBA8B81856996F00C8BCBE /* DBAssembly.m in Sources */,
 				FFC3876918591D0400A09D01 /* DBGroupService.m in Sources */,
+				FF245511189EF43500690DC1 /* DBAreaCoreDataRepository.m in Sources */,
 				FF3DC129189D31CD001974E0 /* DBAreaViewModel.m in Sources */,
 				FFC3876218591A7E00A09D01 /* DBBaseViewController.m in Sources */,
 				FFC3876C18591D2800A09D01 /* DBGroupCoreDataRepository.m in Sources */,

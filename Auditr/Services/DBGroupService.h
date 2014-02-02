@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 @class Group;
+@class Area;
 @protocol DBGroupRepository;
 
 @protocol DBGroupService <NSObject>
 
 @required
 - (id) initWithGroupRepository: (id<DBGroupRepository>) groupRepository;
+- (void) addArea: (Area *) area toGroup: (Group *) group;
 - (Group *) createBlankGroup;
 - (NSArray *) getAll;
 - (NSArray *) getAllActive;
@@ -23,6 +25,7 @@
 @interface DBGroupService : NSObject
 
 - (id) initWithGroupRepository: (id<DBGroupRepository>) groupRepository;
+- (void) addArea: (Area *) area toGroup: (Group *) group;
 - (Group *) createBlankGroup;
 - (NSArray *) getAll;
 - (NSArray *) getAllActive;
