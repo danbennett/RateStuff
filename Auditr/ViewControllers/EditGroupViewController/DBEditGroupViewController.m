@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UIImage *backgroundImageUp;
 @property (nonatomic, strong) UIImage *backgroundImageOver;
 @property (nonatomic, strong) UIResponder *selectedResponder;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) IBOutlet UIButton *editImageButton;
 @property (nonatomic, strong) IBOutlet UIButton *addImageButton;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
@@ -42,6 +43,7 @@
 	
 	[self addGestures];
 	[self styleGroupTableView];
+	[self styleImageView];
 	[self styleImageBackground];
 	[self applyBindings];
 }
@@ -74,6 +76,15 @@
 	self.groupTableView.layer.borderWidth = 0.5f;
 }
 
+- (void) styleImageView
+{
+	self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width * 0.5;
+	self.profileImageView.clipsToBounds = YES;
+	self.profileImageView.layer.borderColor = [[UIColor colorWithRed: 124.0f/255.0f green: 124.0f/255.0f blue: 124.0f/255.0f alpha: 0.4f] CGColor];
+	self.profileImageView.layer.borderWidth = 2.0f;
+	[self.profileImageView setHidden: YES];
+}
+
 - (void) styleImageBackground
 {
 	[self.imageViewHolder setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"imageBackground"]]];
@@ -95,7 +106,8 @@
 		
 		if (image != nil)
 		{
-			dispatch_queue_t blurQueue = dispatch_queue_create("uk.co.bennett.dan.blurQueu", NULL);
+			[self.spinner startAnimating];
+			dispatch_queue_t blurQueue = dispatch_queue_create("uk.co.bennett.dan.imageFilterQueue", NULL);
 			dispatch_async(blurQueue, ^{
 
 				@strongify(self);
@@ -103,9 +115,11 @@
 				
 				dispatch_async(dispatch_get_main_queue(), ^{
 					@strongify(self);
+					[self.spinner stopAnimating];
 					[self.profileImageView setImage: image];
 					self.profileImageView.alpha = 0.0f;
 					[self.profileImageView animateToOpacity: 1.0f withDuration: 0.32f];
+					[self.profileImageView setHidden: NO];
 					[self.imageView setImage: self.backgroundImageUp];
 					self.imageView.alpha = 0.0f;
 					[self.imageView animateToOpacity: 0.4f withDuration: 0.42f];
