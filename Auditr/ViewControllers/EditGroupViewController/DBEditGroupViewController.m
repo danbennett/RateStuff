@@ -72,6 +72,7 @@ static const float areaTableViewY = 147.0f;
 		frame.size.height = CGRectGetMaxY(areaTableFrame);
 		frame;
 	});
+	
 	self.scrollView.contentSize = self.contentHolder.frame.size;
 }
 
@@ -111,14 +112,32 @@ static const float areaTableViewY = 147.0f;
 - (CGSize) sizeForAreaTableView
 {
 	CGSize size = self.areaTableView.contentSize;
+
+	CGRect frame = [self.areaTableView.superview convertRect: self.areaTableView.frame toView: self.contentHolder];
+	frame.size.height = size.height;
 	
-	CGPoint point = [self.areaTableView.superview convertPoint: self.areaTableView.frame.origin toView: self.contentHolder];
-	point.y = point.y + size.height;
-	if(CGRectContainsPoint(self.contentHolder.frame, point))
+	if (CGRectGetMaxY(frame) > CGRectGetMaxY(self.scrollView.bounds))
 	{
-		size.height = size.height + (CGRectGetHeight(self.contentHolder.frame) - point.y);
+		return size;
 	}
+	
+	size.height = size.height + (CGRectGetMaxY(self.scrollView.bounds) - CGRectGetMaxY(frame));
 	return size;
+}
+
+- (void) reloadAreaTableViewSize
+{
+	self.areaTableView.frame = ({
+		CGRect frame = self.areaTableView.frame;
+		frame.size.height = [self sizeForAreaTableView].height;
+		frame;
+	});
+	
+//	if (self.selectedIndexPath != nil)
+//	{
+//		UITableViewCell *cell = [self.areaTableView cellForRowAtIndexPath: self.selectedIndexPath];
+//		[self scrollToCell: cell animated: NO];
+//	}
 }
 
 - (void) styleImageView
@@ -209,6 +228,7 @@ static const float areaTableViewY = 147.0f;
 
 - (IBAction) addNewAreaTapped: (UIButton *) sender
 {
+	[self.scrollView setContentOffset:CGPointZero animated: YES];
 	[self removePhotoGestures];
 	[self addCloseEditAreaGesture];
 	
@@ -216,6 +236,7 @@ static const float areaTableViewY = 147.0f;
 
 	@weakify(self);
 	[self showEditAreaViewWithCompletion:^(BOOL finished) {
+		
 		@strongify(self);
 		[self.areaTableView beginUpdates];
 		NSIndexPath *path = [NSIndexPath indexPathForItem: [self.viewModel.areas indexOfObject: viewModel] inSection:0];
@@ -223,7 +244,9 @@ static const float areaTableViewY = 147.0f;
 		[self.areaTableView insertRowsAtIndexPaths: @[path] withRowAnimation: UITableViewRowAnimationRight];
 		[self.areaTableView endUpdates];
 		
-		[self reloadScrollViewSize];
+		[self performSelector: @selector(reloadAreaTableViewSize) withObject: nil afterDelay: 1.0f];
+		[self performSelector: @selector(reloadScrollViewSize) withObject: nil afterDelay: 1.0f];
+		
 	}];
 }
 
@@ -298,21 +321,6 @@ static const float areaTableViewY = 147.0f;
 		[self resignFirstResponder];
 		[self removePhotoGestures];
 		[self addEditPhotoGesture];
-		
-		@weakify(self);
-		[self hideEditAreaWithCompletion:^(BOOL finished) {
-		
-			@strongify(self);
-			
-			self.areaTableView.frame = ({
-				CGRect frame = self.areaTableView.frame;
-				frame.size.height = [self sizeForAreaTableView].height;
-				frame;
-			});
-			[self reloadScrollViewSize];
-			
-			
-		}];
 	}
 }
 
@@ -321,6 +329,16 @@ static const float areaTableViewY = 147.0f;
 	[self.selectedResponder resignFirstResponder];
 	DBAreaTableViewCell *cell = (DBAreaTableViewCell *)[self.areaTableView cellForRowAtIndexPath: self.selectedIndexPath];
 	cell.isInFocus = NO;
+	@weakify(self);
+	[self hideEditAreaWithCompletion:^(BOOL finished) {
+		
+		@strongify(self);
+		
+		[self reloadAreaTableViewSize];
+		[self reloadScrollViewSize];
+		self.selectedIndexPath = nil;
+		
+	}];
 	return [super resignFirstResponder];
 }
 
@@ -397,6 +415,30 @@ static const float areaTableViewY = 147.0f;
 
 }
 
+#pragma mark - Area table view scroll to cell.
+
+- (void) scrollToCell: (NSIndexPath *) indexPath
+{
+	[self scrollTableViewCellIndex: indexPath WithAnimation: YES];
+}
+
+- (void) snapToCell: (NSIndexPath *) indexPath
+{
+	[self scrollTableViewCellIndex: indexPath WithAnimation: NO];
+}
+
+- (void) scrollTableViewCellIndex: (NSIndexPath *) indexPath WithAnimation: (BOOL) animated
+{
+	UITableViewCell *cell = [self.areaTableView cellForRowAtIndexPath: indexPath];
+	
+	CGPoint origin = cell.frame.origin;
+	CGPoint point = [cell.superview convertPoint: origin toView: self.areaTableView];
+	CGPoint offset = CGPointZero;
+	offset.y = (point.y - 44.0f);
+	
+	[self.areaTableView setContentOffset: offset animated: animated];
+}
+
 #pragma mark - Tableview data source.
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView *)tableView
@@ -422,6 +464,36 @@ static const float areaTableViewY = 147.0f;
 
 #pragma mark - Tableview delegate.
 
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	self.selectedIndexPath = indexPath;
+	DBAreaTableViewCell *cell = (DBAreaTableViewCell *)[self.areaTableView cellForRowAtIndexPath: self.selectedIndexPath];
+	cell.isInFocus = YES;
+	
+	[self.scrollView setContentOffset:CGPointZero animated: YES];
+	[self scrollToCell: indexPath];
+	[self removePhotoGestures];
+	[self addCloseEditAreaGesture];
+	
+	@weakify(self);
+	[self showEditAreaViewWithCompletion:^(BOOL finished) {
+	
+		@strongify(self);
+		[self performSelector: @selector(reloadAreaTableViewSize) withObject: nil afterDelay: 1.0f];
+		[self performSelector: @selector(reloadScrollViewSize) withObject: nil afterDelay: 1.0f];
+		[self performSelector: @selector(snapToCell:) withObject: indexPath afterDelay: 1.0f];
+
+	}];
+}
+
+- (NSIndexPath *) tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if(self.selectedIndexPath)
+	{
+		return NO;
+	}
+	return indexPath;
+}
 
 #pragma mark - getters & setters.
 

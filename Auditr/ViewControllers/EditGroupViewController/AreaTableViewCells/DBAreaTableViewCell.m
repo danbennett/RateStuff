@@ -54,7 +54,8 @@
 
 - (void) applyAreaBindings
 {
-	
+//	RAC(self.viewModel, areaName) = self.areaNameTextField.rac_textSignal;
+//	RAC(self.areaNameLabel, text) = RACObserve(self.viewModel, areaName);
 }
 
 @end
