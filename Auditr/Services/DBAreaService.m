@@ -29,12 +29,16 @@
     return self;
 }
 
-- (Area *) createAreaWithName: (NSString *) areaName
+- (Area *) createArea
 {
 	Area *area = [self.areaRepository createEntity];
 	area.id = [NSString uuid];
-	[area setValue: areaName forKey: @"areaName"];
 	return area;
+}
+
+- (void) deleteArea: (Area *) area
+{
+	[self.areaRepository deleteEntity: area];
 }
 
 @end

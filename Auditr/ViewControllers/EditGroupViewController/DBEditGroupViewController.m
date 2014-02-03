@@ -41,7 +41,6 @@
 
 @implementation DBEditGroupViewController
 
-static NSString *const DBDefaultAreaName = @"New ratable area";
 static NSString *const DBAreaTableViewId = @"DBAreaCell";
 static const float areaTableViewY = 147.0f;
 
@@ -100,11 +99,7 @@ static const float areaTableViewY = 147.0f;
 - (void) styleAreaTableView
 {
 	[self.areaTableView setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"addAreaBackground"]]];
-	self.areaTableView.frame = ({
-		CGRect frame = self.areaTableView.frame;
-		frame.size.height = [self sizeForAreaTableView].height;
-		frame;
-	});
+	[self reloadAreaTableViewSize];
 }
 
 #pragma mark - Area tableview size.
@@ -132,12 +127,6 @@ static const float areaTableViewY = 147.0f;
 		frame.size.height = [self sizeForAreaTableView].height;
 		frame;
 	});
-	
-//	if (self.selectedIndexPath != nil)
-//	{
-//		UITableViewCell *cell = [self.areaTableView cellForRowAtIndexPath: self.selectedIndexPath];
-//		[self scrollToCell: cell animated: NO];
-//	}
 }
 
 - (void) styleImageView
@@ -232,7 +221,7 @@ static const float areaTableViewY = 147.0f;
 	[self removePhotoGestures];
 	[self addCloseEditAreaGesture];
 	
-	DBAreaViewModel *viewModel = [self.viewModel addAreaWithName: DBDefaultAreaName];
+	DBAreaViewModel *viewModel = [self.viewModel addArea];
 
 	@weakify(self);
 	[self showEditAreaViewWithCompletion:^(BOOL finished) {
@@ -244,8 +233,8 @@ static const float areaTableViewY = 147.0f;
 		[self.areaTableView insertRowsAtIndexPaths: @[path] withRowAnimation: UITableViewRowAnimationRight];
 		[self.areaTableView endUpdates];
 		
-		[self performSelector: @selector(reloadAreaTableViewSize) withObject: nil afterDelay: 1.0f];
-		[self performSelector: @selector(reloadScrollViewSize) withObject: nil afterDelay: 1.0f];
+		[self performSelector: @selector(reloadAreaTableViewSize) withObject: nil afterDelay: 0.4f];
+		[self performSelector: @selector(reloadScrollViewSize) withObject: nil afterDelay: 0.4f];
 		
 	}];
 }
@@ -479,9 +468,9 @@ static const float areaTableViewY = 147.0f;
 	[self showEditAreaViewWithCompletion:^(BOOL finished) {
 	
 		@strongify(self);
-		[self performSelector: @selector(reloadAreaTableViewSize) withObject: nil afterDelay: 1.0f];
-		[self performSelector: @selector(reloadScrollViewSize) withObject: nil afterDelay: 1.0f];
-		[self performSelector: @selector(snapToCell:) withObject: indexPath afterDelay: 1.0f];
+		[self performSelector: @selector(reloadAreaTableViewSize) withObject: nil afterDelay: 0.4f];
+		[self performSelector: @selector(reloadScrollViewSize) withObject: nil afterDelay: 0.4f];
+		[self performSelector: @selector(snapToCell:) withObject: indexPath afterDelay: 0.4f];
 
 	}];
 }
@@ -493,6 +482,37 @@ static const float areaTableViewY = 147.0f;
 		return NO;
 	}
 	return indexPath;
+}
+
+- (BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if(self.selectedIndexPath)
+	{
+		return NO;
+	}
+	return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return UITableViewCellEditingStyleDelete;
+}
+
+- (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if (editingStyle == UITableViewCellEditingStyleDelete)
+	{
+		DBAreaViewModel	*viewModel = [self.viewModel.areas objectAtIndex: indexPath.row];
+		[self.viewModel deleteArea: viewModel];
+		[self.areaTableView beginUpdates];
+		[self.areaTableView deleteRowsAtIndexPaths: @[indexPath] withRowAnimation: UITableViewRowAnimationLeft];
+		[self.areaTableView endUpdates];
+	}
+}
+
+- (NSString *) tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return @"Remove";
 }
 
 #pragma mark - getters & setters.

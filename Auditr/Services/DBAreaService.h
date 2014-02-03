@@ -11,13 +11,15 @@
 @protocol DBAreaRepository;
 
 @protocol DBAreaService <NSObject>
-- (Area *) createAreaWithName: (NSString *) areaName;
+- (Area *) createArea;
+- (void) deleteArea: (Area *) area;
 
 @end
 
 @interface DBAreaService : NSObject
 
 - (id) initWithAreaRepository: (id<DBAreaRepository>) areaRepository;
-- (Area *) createAreaWithName: (NSString *) areaName;
+- (Area *) createArea;
+- (void) deleteArea: (Area *) area;
 
 @end

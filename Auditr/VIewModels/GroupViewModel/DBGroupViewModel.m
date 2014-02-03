@@ -94,10 +94,10 @@
 	}] allObjects];
 }
 
-- (DBAreaViewModel *) addAreaWithName: (NSString *) areaName
+- (DBAreaViewModel *) addArea
 {
 	// Create area.
-	Area *area = [self.areaService createAreaWithName: areaName];
+	Area *area = [self.areaService createArea];
 	[self.groupService addArea: area toGroup: self.group];
 	
 	// Create area viewmodel.
@@ -110,6 +110,18 @@
 	self.areas = [areas copy];
 	
 	return viewModel;
+}
+
+- (void) deleteArea: (DBAreaViewModel *) viewModel
+{
+	// Remove from areas array.
+	NSMutableArray *areas = [self.areas mutableCopy];
+	[areas removeObject: viewModel];
+	self.areas = [areas copy];
+	
+	// Delete area.
+	Area *area = viewModel.area;
+	[self.areaService deleteArea: area];
 }
 
 - (DBAreaViewModel *) generateAreaViewModel

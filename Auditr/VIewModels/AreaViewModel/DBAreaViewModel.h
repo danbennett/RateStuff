@@ -13,7 +13,7 @@
 @interface DBAreaViewModel : NSObject
 
 @property (nonatomic, weak) Area *area;
-@property (nonatomic, strong, readonly) NSString *areaName;
+@property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong, readonly) RACSignal *valid;
 
 - (id) initWithAreaService: (id<DBAreaService>) areaService;

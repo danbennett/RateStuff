@@ -24,6 +24,7 @@
 
 - (id) initWithGroupService: (id<DBGroupService>) groupService
 				areaService: (id<DBAreaService>) areaService;
-- (DBAreaViewModel *) addAreaWithName: (NSString *) areaName;
+- (DBAreaViewModel *) addArea;
+- (void) deleteArea: (DBAreaViewModel *) viewModel;
 
 @end

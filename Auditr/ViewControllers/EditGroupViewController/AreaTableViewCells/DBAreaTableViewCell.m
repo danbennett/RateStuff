@@ -12,16 +12,20 @@
 
 @interface DBAreaTableViewCell()
 
+@property (nonatomic, strong) NSMutableArray *disposables;
 @property (nonatomic, strong) IBOutlet UITextField *areaNameTextField;
 @property (nonatomic, strong) IBOutlet UILabel *areaNameLabel;
 
 @end
+
+static NSString *const DBDefaultAreaName = @"New ratable area";
 
 @implementation DBAreaTableViewCell
 
 - (void) awakeFromNib
 {
 	[super awakeFromNib];
+	self.disposables = [NSMutableArray array];
 	[self applyBindings];
 }
 
@@ -31,7 +35,8 @@
 	[[RACObserve(self, viewModel) distinctUntilChanged] subscribeNext:^(DBAreaViewModel *viewModel) {
 	
 		@strongify(self);
-		[self.areaNameLabel setText: viewModel.areaName];
+		[self.areaNameLabel setText: viewModel.name];
+		[self.areaNameTextField setText: viewModel.name];
 		
 		[self applyAreaBindings];
 		
@@ -42,7 +47,8 @@
 		if ([isSelected boolValue])
 		{
 			[self.areaNameTextField setHidden: NO];
-			[self.areaNameTextField becomeFirstResponder];
+			[self.areaNameTextField performSelector: @selector(becomeFirstResponder) withObject: nil afterDelay: 0.2f];
+//			[self.areaNameTextField becomeFirstResponder];
 		}
 		else
 		{
@@ -54,8 +60,26 @@
 
 - (void) applyAreaBindings
 {
-//	RAC(self.viewModel, areaName) = self.areaNameTextField.rac_textSignal;
-//	RAC(self.areaNameLabel, text) = RACObserve(self.viewModel, areaName);
+	@weakify(self);
+	RACDisposable *disposable = [[self.areaNameTextField.rac_textSignal distinctUntilChanged] subscribeNext:^(NSString *newName) {
+	
+		@strongify(self);
+		self.viewModel.name = newName;
+		self.areaNameLabel.text = newName;
+		if (newName.length == 0)
+		{
+			self.viewModel.name = DBDefaultAreaName;
+			self.areaNameLabel.text = DBDefaultAreaName;
+		}
+	}];
+	
+	[self.disposables addObject: disposable];
+}
+
+- (void) prepareForReuse
+{
+	[super prepareForReuse];
+	[self.disposables makeObjectsPerformSelector: @selector(dispose)];
 }
 
 @end

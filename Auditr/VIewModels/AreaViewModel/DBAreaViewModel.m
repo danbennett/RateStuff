@@ -14,7 +14,6 @@
 
 @property (nonatomic, strong, readwrite) RACSignal *valid;
 @property (nonatomic, assign) id<DBAreaService> areaService;
-@property (nonatomic, strong, readwrite) NSString *areaName;
 
 @end
 
@@ -37,7 +36,7 @@
 {
 	[[RACObserve(self, area) distinctUntilChanged] subscribeNext:^(Area *area) {
 		
-		self.areaName = area.areaName;
+		self.name = area.areaName;
 		[self createItemViewModels];
 		[self createRatingViewModels];
 		
@@ -59,7 +58,7 @@
 - (void) createAreaBindings
 {
 	self.valid = [RACSignal combineLatest:
-				  @[RACObserve(self, areaName)] reduce:^NSNumber *(NSString *name) {
+				  @[RACObserve(self, name)] reduce:^NSNumber *(NSString *name) {
 						BOOL nameValid = name.length > 0;
 						return @(nameValid);
 					}];
@@ -67,7 +66,7 @@
 
 - (void) applyBindings
 {
-	RAC(self.area, areaName) = RACObserve(self, areaName);
+	RAC(self.area, areaName) = RACObserve(self, name);
 }
 
 @end
