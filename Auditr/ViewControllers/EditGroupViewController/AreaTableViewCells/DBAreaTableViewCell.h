@@ -11,6 +11,7 @@
 
 @interface DBAreaTableViewCell : UITableViewCell
 
+@property (nonatomic, assign) BOOL isInFocus;
 @property (nonatomic, weak) DBAreaViewModel *viewModel;
 
 @end

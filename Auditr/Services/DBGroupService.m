@@ -9,6 +9,7 @@
 #import "DBGroupService.h"
 #import "DBGroupRepository.h"
 #import "Group.h"
+#import "NSString+Extensions.h"
 
 @interface DBGroupService()
 
@@ -31,6 +32,7 @@
 - (Group *) createBlankGroup
 {
 	Group *group = [self.groupRepository createEntity];
+	group.id = [NSString uuid];
 	return group;
 }
 

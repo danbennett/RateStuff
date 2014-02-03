@@ -9,6 +9,7 @@
 #import "DBEditGroupViewController.h"
 #import "DBGroupViewModel.h"
 #import "DBImagePickerViewController.h"
+#import "DBAreaTableViewCell.h"
 #import "UIImage+Effects.h"
 #import "UIView+Animations.h"
 #import <GPUImage/GPUImage.h>
@@ -17,6 +18,7 @@
 
 @interface DBEditGroupViewController ()
 
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) UIImage *backgroundImageUp;
 @property (nonatomic, strong) UIImage *backgroundImageOver;
 @property (nonatomic, strong) UIResponder *selectedResponder;
@@ -39,8 +41,9 @@
 
 @implementation DBEditGroupViewController
 
-static NSString *const DBDefaultAreaName = @"Insert area name...";
+static NSString *const DBDefaultAreaName = @"New ratable area";
 static NSString *const DBAreaTableViewId = @"DBAreaCell";
+static const float areaTableViewY = 147.0f;
 
 - (void)viewDidLoad
 {
@@ -50,7 +53,6 @@ static NSString *const DBAreaTableViewId = @"DBAreaCell";
 	[self addGestures];
 	[self styleAreaTableView];
 	[self styleImageView];
-	[self styleImageBackground];
 	[self applyBindings];
 }
 
@@ -58,8 +60,19 @@ static NSString *const DBAreaTableViewId = @"DBAreaCell";
 
 - (void) setupScrollView
 {
-	self.scrollView.contentSize = self.contentHolder.frame.size;
+	[self reloadScrollViewSize];
 	[self.scrollView setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"imageBackground"]]];
+}
+
+- (void) reloadScrollViewSize
+{
+	self.contentHolder.frame = ({
+		CGRect frame = self.contentHolder.frame;
+		CGRect areaTableFrame = [self.areaTableView.superview convertRect: self.areaTableView.frame toView: self.contentHolder];
+		frame.size.height = CGRectGetMaxY(areaTableFrame);
+		frame;
+	});
+	self.scrollView.contentSize = self.contentHolder.frame.size;
 }
 
 # pragma mark - Image filter.
@@ -86,9 +99,26 @@ static NSString *const DBAreaTableViewId = @"DBAreaCell";
 - (void) styleAreaTableView
 {
 	[self.areaTableView setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"addAreaBackground"]]];
-//	self.groupCollectionView.layer.borderColor = [[UIColor colorWithRed: 124.0f/255.0f green: 124.0f/255.0f blue: 124.0f/255.0f alpha: 0.4f] CGColor];
-//	self.groupCollectionView.layer.cornerRadius = 5;
-//	self.groupCollectionView.layer.borderWidth = 0.5f;
+	self.areaTableView.frame = ({
+		CGRect frame = self.areaTableView.frame;
+		frame.size.height = [self sizeForAreaTableView].height;
+		frame;
+	});
+}
+
+#pragma mark - Area tableview size.
+
+- (CGSize) sizeForAreaTableView
+{
+	CGSize size = self.areaTableView.contentSize;
+	
+	CGPoint point = [self.areaTableView.superview convertPoint: self.areaTableView.frame.origin toView: self.contentHolder];
+	point.y = point.y + size.height;
+	if(CGRectContainsPoint(self.contentHolder.frame, point))
+	{
+		size.height = size.height + (CGRectGetHeight(self.contentHolder.frame) - point.y);
+	}
+	return size;
 }
 
 - (void) styleImageView
@@ -98,11 +128,6 @@ static NSString *const DBAreaTableViewId = @"DBAreaCell";
 	self.profileImageView.layer.borderColor = [[UIColor colorWithRed: 124.0f/255.0f green: 124.0f/255.0f blue: 124.0f/255.0f alpha: 0.4f] CGColor];
 	self.profileImageView.layer.borderWidth = 2.0f;
 	[self.profileImageView setHidden: YES];
-}
-
-- (void) styleImageBackground
-{
-//	[self.imageViewHolder setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"imageBackground"]]];
 }
 
 #pragma mark - Bindings.
@@ -184,6 +209,9 @@ static NSString *const DBAreaTableViewId = @"DBAreaCell";
 
 - (IBAction) addNewAreaTapped: (UIButton *) sender
 {
+	[self removePhotoGestures];
+	[self addCloseEditAreaGesture];
+	
 	DBAreaViewModel *viewModel = [self.viewModel addAreaWithName: DBDefaultAreaName];
 
 	@weakify(self);
@@ -191,28 +219,58 @@ static NSString *const DBAreaTableViewId = @"DBAreaCell";
 		@strongify(self);
 		[self.areaTableView beginUpdates];
 		NSIndexPath *path = [NSIndexPath indexPathForItem: [self.viewModel.areas indexOfObject: viewModel] inSection:0];
+		self.selectedIndexPath = path;
 		[self.areaTableView insertRowsAtIndexPaths: @[path] withRowAnimation: UITableViewRowAnimationRight];
 		[self.areaTableView endUpdates];
 		
+		[self reloadScrollViewSize];
 	}];
 }
 
+#pragma mark - Gestures.
+
 - (void) addGestures
+{
+	[self addEditPhotoGesture];
+	[self addResignFirstResponderGesture];
+}
+
+- (void) addResignFirstResponderGesture
 {
 	UITapGestureRecognizer *responderGesture = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(resignFirstResponder)];
 	responderGesture.cancelsTouchesInView = NO;
 	[self.scrollView addGestureRecognizer: responderGesture];
-	
-	UILongPressGestureRecognizer *imageDownGesutre = [[UILongPressGestureRecognizer alloc] initWithTarget: self action: @selector(photoDown:)];
+}
+
+- (void) addEditPhotoGesture
+{
+	UILongPressGestureRecognizer *imageDownGesutre = [[UILongPressGestureRecognizer alloc] initWithTarget: self action: @selector(editPhotoTapped:)];
 	imageDownGesutre.cancelsTouchesInView = NO;
 	imageDownGesutre.minimumPressDuration = .0001;
 	[self.imageViewHolder addGestureRecognizer: imageDownGesutre];
 }
 
-- (void) photoDown: (UILongPressGestureRecognizer *) gesture
+- (void) addCloseEditAreaGesture
+{
+	UILongPressGestureRecognizer *imageDownGesutre = [[UILongPressGestureRecognizer alloc] initWithTarget: self action: @selector(closeEditAreaTapped:)];
+	imageDownGesutre.cancelsTouchesInView = NO;
+	imageDownGesutre.minimumPressDuration = .0001;
+	[self.imageViewHolder addGestureRecognizer: imageDownGesutre];
+}
+
+- (void) removePhotoGestures
+{
+	for (UIGestureRecognizer *gestureRecoginzer in self.imageViewHolder.gestureRecognizers)
+	{
+		[self.imageViewHolder removeGestureRecognizer: gestureRecoginzer];
+	}
+}
+
+- (void) editPhotoTapped: (UILongPressGestureRecognizer *) gesture
 {
 	if (gesture.state == UIGestureRecognizerStateBegan)
 	{
+		[self resignFirstResponder];
 		[self.imageView setImage: self.backgroundImageOver];
 	}
 	if (gesture.state == UIGestureRecognizerStateChanged)
@@ -233,9 +291,36 @@ static NSString *const DBAreaTableViewId = @"DBAreaCell";
 	}
 }
 
+- (void) closeEditAreaTapped: (UILongPressGestureRecognizer *) gesture
+{
+	if (gesture.state == UIGestureRecognizerStateEnded || gesture.state == UIGestureRecognizerStateCancelled)
+	{
+		[self resignFirstResponder];
+		[self removePhotoGestures];
+		[self addEditPhotoGesture];
+		
+		@weakify(self);
+		[self hideEditAreaWithCompletion:^(BOOL finished) {
+		
+			@strongify(self);
+			
+			self.areaTableView.frame = ({
+				CGRect frame = self.areaTableView.frame;
+				frame.size.height = [self sizeForAreaTableView].height;
+				frame;
+			});
+			[self reloadScrollViewSize];
+			
+			
+		}];
+	}
+}
+
 - (BOOL) resignFirstResponder
 {
 	[self.selectedResponder resignFirstResponder];
+	DBAreaTableViewCell *cell = (DBAreaTableViewCell *)[self.areaTableView cellForRowAtIndexPath: self.selectedIndexPath];
+	cell.isInFocus = NO;
 	return [super resignFirstResponder];
 }
 
@@ -288,11 +373,10 @@ static NSString *const DBAreaTableViewId = @"DBAreaCell";
 	self.viewModel.image = image;
 }
 
-#pragma mark - Show area edit.
+#pragma mark - Show/hide edit area.
 
 - (void) showEditAreaViewWithCompletion: (void (^)(BOOL finished))completion
 {
-	@weakify(self);
 	CGRect frame = self.areaTableView.frame;
 	frame.size.height = frame.size.height + frame.origin.y;
 	frame.origin.y = 0;
@@ -300,6 +384,17 @@ static NSString *const DBAreaTableViewId = @"DBAreaCell";
 								  withDuration: 0.6f
 									  withEase: UIViewAnimationOptionCurveEaseOut
 								withCompletion: completion];
+}
+
+- (void) hideEditAreaWithCompletion: (void (^)(BOOL finished))completion
+{
+	CGRect frame = self.areaTableView.frame;
+	frame.origin.y = areaTableViewY;
+	[self.areaTableView animateFrameWithBounce: frame
+								  withDuration: 0.6f
+									  withEase: UIViewAnimationOptionCurveEaseOut
+								withCompletion: completion];
+
 }
 
 #pragma mark - Tableview data source.
@@ -316,8 +411,12 @@ static NSString *const DBAreaTableViewId = @"DBAreaCell";
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: DBAreaTableViewId];
-	
+	DBAreaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: DBAreaTableViewId];
+	cell.viewModel = [self.viewModel.areas objectAtIndex: indexPath.row];
+	if ([self.selectedIndexPath isEqual: indexPath])
+	{
+		cell.isInFocus = YES;
+	}
 	return cell;
 }
 

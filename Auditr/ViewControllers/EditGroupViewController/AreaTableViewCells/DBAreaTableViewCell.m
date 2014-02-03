@@ -7,29 +7,54 @@
 //
 
 #import "DBAreaTableViewCell.h"
+#import "DBAreaViewModel.h"
+#import <ReactiveCocoa/RACEXTScope.h>
 
 @interface DBAreaTableViewCell()
 
+@property (nonatomic, strong) IBOutlet UITextField *areaNameTextField;
 @property (nonatomic, strong) IBOutlet UILabel *areaNameLabel;
 
 @end
 
 @implementation DBAreaTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (void) awakeFromNib
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+	[super awakeFromNib];
+	[self applyBindings];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+- (void) applyBindings
 {
-    [super setSelected:selected animated:animated];
+	@weakify(self);
+	[[RACObserve(self, viewModel) distinctUntilChanged] subscribeNext:^(DBAreaViewModel *viewModel) {
+	
+		@strongify(self);
+		[self.areaNameLabel setText: viewModel.areaName];
+		
+		[self applyAreaBindings];
+		
+	}];
+	
+	[RACObserve(self, isInFocus) subscribeNext:^(NSNumber *isSelected) {
+		@strongify(self);
+		if ([isSelected boolValue])
+		{
+			[self.areaNameTextField setHidden: NO];
+			[self.areaNameTextField becomeFirstResponder];
+		}
+		else
+		{
+			[self.areaNameTextField setHidden: YES];
+			[self.areaNameTextField resignFirstResponder];
+		}
+	}];
+}
 
-    // Configure the view for the selected state
+- (void) applyAreaBindings
+{
+	
 }
 
 @end

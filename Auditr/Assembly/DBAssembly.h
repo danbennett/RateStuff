@@ -14,5 +14,6 @@
 - (id) baseViewModel;
 - (id) homeViewModel;
 - (id) groupViewModel;
+- (id) areaViewModel;
 
 @end

@@ -19,8 +19,8 @@
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) NSArray *areas;
 @property (nonatomic, strong) NSArray *items;
-@property (nonatomic, strong) RACSignal *valid;
-@property (nonatomic, strong) Group *group;
+@property (nonatomic, strong, readonly) RACSignal *valid;
+@property (nonatomic, weak) Group *group;
 
 - (id) initWithGroupService: (id<DBGroupService>) groupService
 				areaService: (id<DBAreaService>) areaService;

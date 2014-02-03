@@ -11,6 +11,7 @@
 #import "DBBaseViewModel.h"
 #import "DBHomeViewModel.h"
 #import "DBGroupViewModel.h"
+#import "DBAreaViewModel.h"
 // Services.
 #import "DBGroupService.h"
 #import "DBAreaService.h"
@@ -48,6 +49,16 @@
 		
 		initializer.selector = @selector(initWithGroupService:areaService:);
 		[initializer injectWithDefinition: [self groupService]];
+		[initializer injectWithDefinition: [self areaService]];
+		
+	}];
+}
+
+- (id) areaViewModel
+{
+	return [TyphoonDefinition withClass: [DBAreaViewModel class] initialization:^(TyphoonInitializer *initializer) {
+		
+		initializer.selector = @selector(initWithAreaService:);
 		[initializer injectWithDefinition: [self areaService]];
 		
 	}];

@@ -7,6 +7,7 @@
 //
 
 #import "DBAreaCoreDataRepository.h"
+#import "NSString+Extensions.h"
 #import "Area.h"
 
 @implementation DBAreaCoreDataRepository

@@ -12,6 +12,7 @@
 		FF245509189EEB9900690DC1 /* DBAreaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF245508189EEB9900690DC1 /* DBAreaTableViewCell.m */; };
 		FF24550D189EF3B800690DC1 /* DBAreaService.m in Sources */ = {isa = PBXBuildFile; fileRef = FF24550C189EF3B800690DC1 /* DBAreaService.m */; };
 		FF245511189EF43500690DC1 /* DBAreaCoreDataRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = FF245510189EF43500690DC1 /* DBAreaCoreDataRepository.m */; };
+		FF245514189F01A300690DC1 /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FF245513189F01A300690DC1 /* NSString+Extensions.m */; };
 		FF3D7435189C40E800294D6F /* UIView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D7434189C40E800294D6F /* UIView+Animations.m */; };
 		FF3D743C189C55BA00294D6F /* DBCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D743B189C55BA00294D6F /* DBCoreDataManager.m */; };
 		FF3DC114189D1685001974E0 /* DBEditGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC113189D1685001974E0 /* DBEditGroupViewController.m */; };
@@ -77,6 +78,8 @@
 		FF24550E189EF3FD00690DC1 /* DBAreaRepository.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBAreaRepository.h; sourceTree = "<group>"; };
 		FF24550F189EF43500690DC1 /* DBAreaCoreDataRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAreaCoreDataRepository.h; sourceTree = "<group>"; };
 		FF245510189EF43500690DC1 /* DBAreaCoreDataRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAreaCoreDataRepository.m; sourceTree = "<group>"; };
+		FF245512189F01A300690DC1 /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
+		FF245513189F01A300690DC1 /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; };
 		FF3D7433189C40E800294D6F /* UIView+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animations.h"; sourceTree = "<group>"; };
 		FF3D7434189C40E800294D6F /* UIView+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animations.m"; sourceTree = "<group>"; };
 		FF3D743A189C55BA00294D6F /* DBCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCoreDataManager.h; sourceTree = "<group>"; };
@@ -203,6 +206,8 @@
 				FF3D7434189C40E800294D6F /* UIView+Animations.m */,
 				FF3DC136189DA310001974E0 /* UIImage+Effects.h */,
 				FF3DC137189DA310001974E0 /* UIImage+Effects.m */,
+				FF245512189F01A300690DC1 /* NSString+Extensions.h */,
+				FF245513189F01A300690DC1 /* NSString+Extensions.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -651,6 +656,7 @@
 				FF3DC11D189D2B9A001974E0 /* DBBaseViewModel.m in Sources */,
 				FF437714189C887000A019E3 /* Rating.m in Sources */,
 				FFC387521859184400A09D01 /* Area.m in Sources */,
+				FF245514189F01A300690DC1 /* NSString+Extensions.m in Sources */,
 				FF3DC138189DA310001974E0 /* UIImage+Effects.m in Sources */,
 				FFBBA8AA185694B200C8BCBE /* DBAppDelegate.m in Sources */,
 				FFC3875C1859188100A09D01 /* _Area.m in Sources */,

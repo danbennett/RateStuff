@@ -17,6 +17,7 @@
 
 @interface DBGroupViewModel()
 
+@property (nonatomic, strong, readwrite) RACSignal *valid;
 @property (nonatomic, assign) id<DBGroupService> groupService;
 @property (nonatomic, assign) id<DBAreaService> areaService;
 
@@ -57,8 +58,7 @@
 - (void) createGroupBindings
 {
 	self.valid = [RACSignal combineLatest:
-				  @[RACObserve(self, groupName),
-					RACObserve(self, description)] reduce:^NSNumber *(NSString *name, NSString *description) {
+				  @[RACObserve(self, groupName)] reduce:^NSNumber *(NSString *name) {
 						BOOL nameValid = name.length > 0;
 						return @(nameValid);
 					}];
@@ -77,7 +77,9 @@
 	NSArray *areas = [self.group.areas allObjects];
 	self.areas = [[[areas objectEnumerator] select:^DBAreaViewModel *(Area *area) {
 		
-		return [[DBAreaViewModel alloc] initWithArea: area];
+		DBAreaViewModel *viewModel = [self generateAreaViewModel];
+		viewModel.area = area;
+		return viewModel;
 		
 	}] allObjects];
 }
@@ -99,14 +101,21 @@
 	[self.groupService addArea: area toGroup: self.group];
 	
 	// Create area viewmodel.
-	DBAreaViewModel *viewModel = [[DBAreaViewModel alloc] initWithArea: area];
+	DBAreaViewModel *viewModel = [self generateAreaViewModel];
+	viewModel.area = area;
 	
 	// Add to areas array.
 	NSMutableArray *areas = [self.areas mutableCopy];
-	[areas addObject: viewModel];
+	[areas insertObject: viewModel atIndex: 0];
 	self.areas = [areas copy];
 	
 	return viewModel;
+}
+
+- (DBAreaViewModel *) generateAreaViewModel
+{
+	DBAssembly *assembly = (DBAssembly *) [TyphoonAssembly defaultAssembly];
+	return (DBAreaViewModel *) [assembly areaViewModel];
 }
 
 @end

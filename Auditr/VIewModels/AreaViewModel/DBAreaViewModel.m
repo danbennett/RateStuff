@@ -7,24 +7,67 @@
 //
 
 #import "DBAreaViewModel.h"
+#import "DBAreaService.h"
 #import "Area.h"
 
 @interface DBAreaViewModel()
 
-@property (nonatomic, strong) Area *area;
+@property (nonatomic, strong, readwrite) RACSignal *valid;
+@property (nonatomic, assign) id<DBAreaService> areaService;
+@property (nonatomic, strong, readwrite) NSString *areaName;
 
 @end
 
 @implementation DBAreaViewModel
 
-- (id) initWithArea: (Area *) area
+- (id) initWithAreaService: (id<DBAreaService>) areaService
 {
     self = [super init];
     if (self)
 	{
-		self.area = area;
+		self.areaService = areaService;
+		[self createBindings];
     }
     return self;
+}
+
+#pragma mark - Bindings.
+
+- (void) createBindings
+{
+	[[RACObserve(self, area) distinctUntilChanged] subscribeNext:^(Area *area) {
+		
+		self.areaName = area.areaName;
+		[self createItemViewModels];
+		[self createRatingViewModels];
+		
+		[self createAreaBindings];
+		[self applyBindings];
+	}];
+}
+
+- (void) createItemViewModels
+{
+	
+}
+
+- (void) createRatingViewModels
+{
+	
+}
+
+- (void) createAreaBindings
+{
+	self.valid = [RACSignal combineLatest:
+				  @[RACObserve(self, areaName)] reduce:^NSNumber *(NSString *name) {
+						BOOL nameValid = name.length > 0;
+						return @(nameValid);
+					}];
+}
+
+- (void) applyBindings
+{
+	RAC(self.area, areaName) = RACObserve(self, areaName);
 }
 
 @end

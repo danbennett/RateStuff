@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 @class Area;
+@protocol DBAreaService;
 
 @interface DBAreaViewModel : NSObject
 
-- (id) initWithArea: (Area *) area;
+@property (nonatomic, weak) Area *area;
+@property (nonatomic, strong, readonly) NSString *areaName;
+@property (nonatomic, strong, readonly) RACSignal *valid;
+
+- (id) initWithAreaService: (id<DBAreaService>) areaService;
 
 @end

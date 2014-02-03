@@ -167,11 +167,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="vOF-0L-mP7">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="531"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" id="ZI9-ym-A5A">
-                                                <rect key="frame" x="0.0" y="98" width="320" height="460"/>
+                                                <rect key="frame" x="0.0" y="98" width="320" height="406"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" minimumFontSize="17" id="hXb-Gx-L6r">
@@ -192,13 +192,13 @@
                                                             <outlet property="delegate" destination="haV-i5-nDN" id="YZd-0q-Vfo"/>
                                                         </connections>
                                                     </textField>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="nb2-Ry-fGs">
-                                                        <rect key="frame" x="0.0" y="147" width="320" height="258"/>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="nb2-Ry-fGs">
+                                                        <rect key="frame" x="0.0" y="148" width="320" height="258"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <view key="tableHeaderView" contentMode="scaleToFill" id="iev-e0-INc">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                             <subviews>
                                                                 <view alpha="0.29999999999999999" contentMode="scaleToFill" id="66E-ha-OdX">
                                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="5"/>
@@ -217,9 +217,9 @@
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </view>
-                                                        <view key="tableFooterView" contentMode="scaleToFill" id="id0-Eb-biH" customClass="DBAddAreaFooterView">
+                                                        <view key="tableFooterView" contentMode="scaleToFill" id="id0-Eb-biH">
                                                             <rect key="frame" x="0.0" y="110" width="320" height="44"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                             <subviews>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add area..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jSo-F0-lmo">
                                                                     <rect key="frame" x="60" y="7" width="240" height="37"/>
@@ -249,26 +249,33 @@
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </view>
                                                         <prototypes>
-                                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DBAreaCell" id="fGq-pD-c7N" customClass="DBAreaTableViewCell">
+                                                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DBAreaCell" id="fGq-pD-c7N" customClass="DBAreaTableViewCell">
                                                                 <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fGq-pD-c7N" id="Bzi-V4-ZUJ">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rZa-YD-rvR">
+                                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rZa-YD-rvR">
                                                                             <rect key="frame" x="20" y="11" width="280" height="21"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             <nil key="highlightedColor"/>
-                                                                            <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                             <size key="shadowOffset" width="0.0" height="1"/>
                                                                         </label>
+                                                                        <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Area" minimumFontSize="17" id="fwa-oS-3zK">
+                                                                            <rect key="frame" x="20" y="7" width="280" height="30"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                            <textInputTraits key="textInputTraits"/>
+                                                                        </textField>
                                                                     </subviews>
                                                                 </tableViewCellContentView>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <connections>
                                                                     <outlet property="areaNameLabel" destination="rZa-YD-rvR" id="XLY-ck-JVG"/>
+                                                                    <outlet property="areaNameTextField" destination="fwa-oS-3zK" id="rgE-1H-j4r"/>
                                                                 </connections>
                                                             </tableViewCell>
                                                         </prototypes>

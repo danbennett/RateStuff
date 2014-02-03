@@ -9,6 +9,7 @@
 #import "DBAreaService.h"
 #import "DBAreaRepository.h"
 #import "Area.h"
+#import "NSString+Extensions.h"
 
 @interface DBAreaService()
 
@@ -31,6 +32,7 @@
 - (Area *) createAreaWithName: (NSString *) areaName
 {
 	Area *area = [self.areaRepository createEntity];
+	area.id = [NSString uuid];
 	[area setValue: areaName forKey: @"areaName"];
 	return area;
 }
