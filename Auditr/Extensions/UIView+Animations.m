@@ -11,7 +11,7 @@
 
 @implementation UIView (Animations)
 
-- (void) animateToPosition: (CGPoint) position withDuration: (NSTimeInterval) duration withEase: (UIViewAnimationOptions) ease
+- (void) animateToPosition: (CGPoint) position withDuration: (NSTimeInterval) duration withEase: (UIViewAnimationOptions) ease withCompletion: (void (^)(BOOL finished))completion
 {
 	@weakify(self);
 	[UIView animateWithDuration: duration delay:0.0 options: ease animations:^{
@@ -22,7 +22,7 @@
 			frame.origin = position;
 			frame;
 		});
-	} completion: NULL];
+	} completion: completion];
 }
 
 - (void) animateFrameWithBounce: (CGRect) frame withDuration: (NSTimeInterval) duration withEase: (UIViewAnimationOptions) ease withCompletion: (void (^)(BOOL finished))completion

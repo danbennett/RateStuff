@@ -22,6 +22,7 @@
 - (NSArray *) getAll;
 - (NSArray *) getAllActive;
 - (void) saveGroup: (Group *) group toPush: (BOOL) toPush withCompletion: (void (^)(BOOL success, NSError *error)) completion;
+- (void) deleteGroup: (Group *) group;
 
 @end
 
@@ -34,5 +35,6 @@
 - (NSArray *) getAll;
 - (NSArray *) getAllActive;
 - (void) saveGroup: (Group *) group toPush: (BOOL) toPush withCompletion: (void (^)(BOOL success, NSError *error)) completion;
+- (void) deleteGroup: (Group *) group;
 
 @end

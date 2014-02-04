@@ -15,7 +15,7 @@
 @interface DBGroupViewModel : NSObject
 
 @property (nonatomic, strong) NSString *groupName;
-@property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSString *groupDescription;
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong, readonly) NSArray *areas;
 @property (nonatomic, strong, readonly) NSArray *items;

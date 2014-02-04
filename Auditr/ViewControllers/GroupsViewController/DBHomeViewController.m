@@ -42,19 +42,7 @@
 
 - (IBAction) addNewGroupTapped: (UIButton *) sender
 {
-	[self performSegueWithIdentifier: @"editGroupViewController" sender: self];
-}
-
-- (void) prepareForSegue: (UIStoryboardSegue *)segue sender: (id) sender
-{
-	DBEditGroupViewController *viewController = segue.destinationViewController;
-	viewController.viewModel = [self.viewModel newGroupViewModel];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[[NSNotificationCenter defaultCenter] postNotificationName: DBNewGroupPressedNotification object: nil];
 }
 
 @end

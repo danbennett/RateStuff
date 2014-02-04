@@ -48,7 +48,6 @@ static NSString *const DBDefaultAreaName = @"New ratable area";
 		{
 			[self.areaNameTextField setHidden: NO];
 			[self.areaNameTextField performSelector: @selector(becomeFirstResponder) withObject: nil afterDelay: 0.2f];
-//			[self.areaNameTextField becomeFirstResponder];
 		}
 		else
 		{

@@ -9,11 +9,13 @@
 #import "DBBaseViewModel.h"
 #import "DBGroupService.h"
 #import "Group.h"
+#import "DBGroupViewModel.h"
+#import <Typhoon/Typhoon.h>
 #import <ReactiveCocoa/RACEXTScope.h>
 
 @interface DBBaseViewModel()
 
-@property (nonatomic, strong, readwrite) RACSignal *groups;
+@property (nonatomic, strong, readwrite) NSArray *groups;
 @property (nonatomic, assign) id<DBGroupService> groupService;
 @property (nonatomic, strong) NSArray *allGroups;
 
@@ -38,19 +40,48 @@
 {
 	@weakify(self);
 	
-	self.groups = [RACObserve(self, filterString) map:^NSArray *(NSString *filterString) {
+	[RACObserve(self, filterString) subscribeNext:^(NSString *filterString) {
 		
 		@strongify(self);
-		NSArray *filteredGroups =
-		[[[self.allGroups objectEnumerator] where:^BOOL(Group *group) {
+		self.groups =
+		[[[[self.allGroups objectEnumerator] where:^BOOL(Group *group) {
 			
-			return ([group.groupName rangeOfString: filterString].location != NSNotFound);
+			BOOL containsString = YES;
+			if (filterString != nil)
+			{
+				containsString = ([group.groupName rangeOfString: filterString].location != NSNotFound);
+			}
+			return containsString;
+			
+		}] select:^DBGroupViewModel *(Group *group) {
+			
+			DBGroupViewModel *viewModel = [self generateGroupViewModel];
+			viewModel.group = group;
+			return viewModel;
 			
 		}] allObjects];
 		
-		return filteredGroups;
-		
 	}];
+}
+
+- (void) deleteGroupViewModel: (DBGroupViewModel *) viewModel
+{
+	[self.groupService deleteGroup: viewModel.group];
+}
+
+- (DBGroupViewModel *) newGroupViewModel
+{
+	Group *group = [self.groupService createBlankGroup];
+	DBGroupViewModel *viewModel = [self generateGroupViewModel];
+	viewModel.group = group;
+	return viewModel;
+}
+
+- (DBGroupViewModel *) generateGroupViewModel
+{
+	DBAssembly *assembly = (DBAssembly *)[TyphoonAssembly defaultAssembly];
+	DBGroupViewModel *viewModel = (DBGroupViewModel *)[assembly groupViewModel];
+	return viewModel;
 }
 
 - (void) populateGroups

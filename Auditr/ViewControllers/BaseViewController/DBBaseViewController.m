@@ -8,40 +8,60 @@
 
 #import "DBBaseViewController.h"
 #import "DBBaseViewModel.h"
+#import "DBGroupTableViewCell.h"
 #import "UIView+Animations.h"
+#import "DBEditGroupViewController.h"
+#import <ReactiveCocoa/RACEXTScope.h>
 
 NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotification";
+NSString *const DBNewGroupPressedNotification = @"newGroupPressedNotifcation";
 
 @interface DBBaseViewController ()
 
+@property (nonatomic, strong) UITapGestureRecognizer *closeBurgerGesture;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (weak, nonatomic) IBOutlet UIView *containerView;
-@property (weak, nonatomic) IBOutlet UITableView *groupTableView;
-@property (nonatomic, weak) DBBaseViewModel *viewModel;
+@property (strong, nonatomic) IBOutlet UIView *statusBarBackground;
+@property (strong, nonatomic) IBOutlet UIView *containerView;
+@property (strong, nonatomic) IBOutlet UITableView *groupTableView;
+@property (nonatomic, strong) DBBaseViewModel *viewModel;
 
 @end
+
+static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 
 @implementation DBBaseViewController
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+	[self setNeedsStatusBarAppearanceUpdate];
 	
 	DBAssembly *factory = (DBAssembly *)[TyphoonAssembly defaultAssembly];
 	self.viewModel = (DBBaseViewModel *)[factory baseViewModel];
 	
-	[[NSNotificationCenter defaultCenter] addObserver: self
-											 selector: @selector(burgerButtonPressedNotifcationHandler:)
-												 name: DBBurgerButtonPressedNotification
-											   object: nil];
+	[self addObservers];
 	
 	[self applyBindings];
 	[self addSwipeGesutre];
 }
 
+- (void) addObservers
+{
+	[[NSNotificationCenter defaultCenter] addObserver: self
+											 selector: @selector(burgerButtonPressedNotifcationHandler:)
+												 name: DBBurgerButtonPressedNotification
+											   object: nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver: self
+											 selector: @selector(newGroupPressedNotificationHandler:)
+												 name: DBNewGroupPressedNotification
+											   object: nil];
+
+}
+
 - (void) applyBindings
 {
-	[self.viewModel.groups subscribeNext:^(NSArray *groups) {
+	[RACObserve(self.viewModel, groups) subscribeNext:^(NSArray *groups) {
 		
 	}];
 }
@@ -64,17 +84,27 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 
 - (void) addTapGesture
 {
-	UITapGestureRecognizer *tapGestureRecoginzer =
+	self.closeBurgerGesture =
 	[[UITapGestureRecognizer alloc] initWithTarget: self  action: @selector(openBurgerMenuTapped:)];
-	tapGestureRecoginzer.cancelsTouchesInView = NO;
-	[self.containerView addGestureRecognizer: tapGestureRecoginzer];
+	self.closeBurgerGesture.cancelsTouchesInView = NO;
+	[self.containerView addGestureRecognizer: self.closeBurgerGesture];
 }
 
 - (void) openBurgerMenuTapped: (UITapGestureRecognizer *) gesture
 {
-	[self.containerView removeGestureRecognizer: gesture];
+	[self.containerView removeGestureRecognizer: self.closeBurgerGesture];
 	
-	[self.containerView animateToPosition: CGPointZero withDuration: 0.2f withEase: UIViewAnimationOptionCurveEaseOut];
+	[self.containerView animateToPosition: CGPointZero withDuration: 0.2f withEase: UIViewAnimationOptionCurveEaseOut withCompletion: NULL];
+	[self.statusBarBackground animateToOpacity: 0.0f withDuration: 0.2f];
+}
+
+- (void) burgerButtonPressedNotifcationHandler: (NSNotification *) notification
+{
+	CGPoint position = CGPointMake(-CGRectGetWidth(self.groupTableView.frame), 0.0);
+	[self.containerView animateToPosition: position withDuration: 0.2f withEase: UIViewAnimationOptionCurveEaseOut withCompletion: NULL];
+	[self.statusBarBackground animateToOpacity: 1.0f withDuration: 0.2f];
+	
+	[self addTapGesture];
 }
 
 - (void) isDragging: (UIPanGestureRecognizer *) gesture
@@ -97,6 +127,7 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 		gesture.view.frame = currentFrame;
 		
 		[gesture setTranslation: CGPointMake(0, 0) inView: self.view];
+		[self updateStatusBarColour];
 	}
 	
 	if(gesture.state == UIGestureRecognizerStateCancelled ||
@@ -126,9 +157,13 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 	NSTimeInterval duration = fabs( xPoints / speed );
 	duration = duration > 0.32f ? 0.32f : duration;
 	
-	[self.containerView animateToPosition: positionToAnimateTo withDuration: duration withEase: UIViewAnimationOptionCurveEaseOut];
+	[self.containerView animateToPosition: positionToAnimateTo withDuration: duration withEase: UIViewAnimationOptionCurveEaseOut withCompletion: NULL];
 	
-	if (positionToAnimateTo.x < 0)
+	BOOL isOpen = positionToAnimateTo.x < 0;
+	float opacity = (isOpen) ? 1.0f : 0.0f;
+	[self.statusBarBackground animateToOpacity: opacity withDuration: duration];
+	
+	if (isOpen)
 	{
 		[self addTapGesture];
 	}
@@ -156,12 +191,15 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 	return positionToAnimateTo;
 }
 
-- (void) burgerButtonPressedNotifcationHandler: (NSNotification *) notification
+#pragma mark - Status bar.
+
+- (void) updateStatusBarColour
 {
-	CGPoint position = CGPointMake(-CGRectGetWidth(self.groupTableView.frame), 0.0);
-	[self.containerView animateToPosition: position withDuration: 0.2f withEase: UIViewAnimationOptionCurveEaseOut];
+	float currentX = self.containerView.frame.origin.x;
+	float targetX = -self.groupTableView.frame.size.width;
+	float percentage = fabs(currentX / targetX);
 	
-	[self addTapGesture];
+	[self.statusBarBackground setAlpha: percentage];
 }
 
 #pragma mark - search bar.
@@ -172,10 +210,61 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 }
 
 # pragma mark - group management.
+
 - (IBAction) addNewGroup: (UIButton *) sender
+{
+	[self.containerView removeGestureRecognizer: self.closeBurgerGesture];
+	
+	@weakify(self);
+	[self.containerView animateToPosition: CGPointZero withDuration: 0.2f withEase: UIViewAnimationOptionCurveEaseOut withCompletion:^(BOOL finished) {
+		@strongify(self);
+		[self performSegueWithIdentifier: @"editGroupViewController" sender: self];
+	}];
+	[self.statusBarBackground animateToOpacity: 0.0f withDuration: 0.2f];
+}
+
+- (void) prepareForSegue: (UIStoryboardSegue *)segue sender: (id) sender
+{
+	if ([segue.identifier isEqualToString: @"editGroupViewController"])
+	{
+		DBEditGroupViewController *viewController = segue.destinationViewController;
+		viewController.delegate = self;
+		viewController.viewModel = [self.viewModel newGroupViewModel];
+	}
+}
+
+- (void) newGroupPressedNotificationHandler: (NSNotification *) notification
+{
+	[self addNewGroup: nil];
+}
+
+#pragma mark - Edit group delegate.
+
+- (void) editGroupViewControllerDidSave:(DBEditGroupViewController *)viewController
 {
 	
 }
+
+- (void) editGroupViewControllerDidCancel:(DBEditGroupViewController *)viewController
+{
+	[self.viewModel deleteGroupViewModel: viewController.viewModel];
+}
+
+#pragma mark - Table view data source.
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	return self.viewModel.groups.count;
+}
+
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	DBGroupTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: DBGroupTableViewCellId];
+	cell.viewModel = [self.viewModel.groups objectAtIndex: indexPath.row];
+	return cell;
+}
+
+#pragma mark - Table view delegate.
 
 - (void) dealloc
 {
@@ -187,12 +276,15 @@ NSString *const DBBurgerButtonPressedNotification = @"burgerButtonPressedNotific
 	[[NSNotificationCenter defaultCenter] removeObserver: self
 													name: DBBurgerButtonPressedNotification
 												  object: nil];
+	
+	[[NSNotificationCenter defaultCenter] removeObserver: self
+													name: DBNewGroupPressedNotification
+												  object: nil];
 }
 
-- (void) didReceiveMemoryWarning
+- (UIStatusBarStyle) preferredStatusBarStyle
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return UIStatusBarStyleLightContent;
 }
 
 @end

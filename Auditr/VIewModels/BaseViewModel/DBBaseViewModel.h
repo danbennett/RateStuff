@@ -8,15 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "DBGroupService.h"
+@class DBGroupViewModel;
 
 @interface DBBaseViewModel : NSObject
 {
 	
 }
 
-@property (nonatomic, strong, readonly) RACSignal *groups;
+@property (nonatomic, strong, readonly) NSArray *groups;
 @property (nonatomic, strong) NSString *filterString;
 
 - (id) initWithGroupService: (id<DBGroupService>) groupService;
+- (DBGroupViewModel *) newGroupViewModel;
+- (void) deleteGroupViewModel: (DBGroupViewModel *) viewModel;
 
 @end

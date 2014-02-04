@@ -40,6 +40,11 @@
 	return group;
 }
 
+- (void) deleteGroup: (Group *) group
+{
+	[self.groupRepository deleteEntity: group];
+}
+
 - (void) addArea: (Area *) area toGroup: (Group *) group
 {
 	[self.groupRepository insertObject: area atKey: @"areas" onEntity: group];

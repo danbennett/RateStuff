@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DBEditGroupViewController.h"
 
 extern NSString *const DBBurgerButtonPressedNotification;
+extern NSString *const DBNewGroupPressedNotification;
 
-@interface DBBaseViewController : UIViewController <UISearchBarDelegate, UIGestureRecognizerDelegate>
+@interface DBBaseViewController : UIViewController <UISearchBarDelegate, UIGestureRecognizerDelegate, UITableViewDataSource, UITableViewDelegate, DBEditGroupViewControllerDelegate>
+
 
 @end

@@ -13,6 +13,7 @@
 		FF24550D189EF3B800690DC1 /* DBAreaService.m in Sources */ = {isa = PBXBuildFile; fileRef = FF24550C189EF3B800690DC1 /* DBAreaService.m */; };
 		FF245511189EF43500690DC1 /* DBAreaCoreDataRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = FF245510189EF43500690DC1 /* DBAreaCoreDataRepository.m */; };
 		FF245514189F01A300690DC1 /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FF245513189F01A300690DC1 /* NSString+Extensions.m */; };
+		FF26ACFC18A1806200A1BBE3 /* DBGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF26ACFB18A1806200A1BBE3 /* DBGroupTableViewCell.m */; };
 		FF3D7435189C40E800294D6F /* UIView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D7434189C40E800294D6F /* UIView+Animations.m */; };
 		FF3D743C189C55BA00294D6F /* DBCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D743B189C55BA00294D6F /* DBCoreDataManager.m */; };
 		FF3DC114189D1685001974E0 /* DBEditGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC113189D1685001974E0 /* DBEditGroupViewController.m */; };
@@ -80,6 +81,8 @@
 		FF245510189EF43500690DC1 /* DBAreaCoreDataRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAreaCoreDataRepository.m; sourceTree = "<group>"; };
 		FF245512189F01A300690DC1 /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
 		FF245513189F01A300690DC1 /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; };
+		FF26ACFA18A1806200A1BBE3 /* DBGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBGroupTableViewCell.h; sourceTree = "<group>"; };
+		FF26ACFB18A1806200A1BBE3 /* DBGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBGroupTableViewCell.m; sourceTree = "<group>"; };
 		FF3D7433189C40E800294D6F /* UIView+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animations.h"; sourceTree = "<group>"; };
 		FF3D7434189C40E800294D6F /* UIView+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animations.m"; sourceTree = "<group>"; };
 		FF3D743A189C55BA00294D6F /* DBCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCoreDataManager.h; sourceTree = "<group>"; };
@@ -197,6 +200,15 @@
 				FF245508189EEB9900690DC1 /* DBAreaTableViewCell.m */,
 			);
 			path = AreaTableViewCells;
+			sourceTree = "<group>";
+		};
+		FF26ACF918A1804700A1BBE3 /* GroupTableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				FF26ACFA18A1806200A1BBE3 /* DBGroupTableViewCell.h */,
+				FF26ACFB18A1806200A1BBE3 /* DBGroupTableViewCell.m */,
+			);
+			path = GroupTableViewCells;
 			sourceTree = "<group>";
 		};
 		FF3D7432189C40DE00294D6F /* Extensions */ = {
@@ -491,6 +503,7 @@
 		FFC3875F18591A6C00A09D01 /* BaseViewController */ = {
 			isa = PBXGroup;
 			children = (
+				FF26ACF918A1804700A1BBE3 /* GroupTableViewCells */,
 				FFC3876018591A7E00A09D01 /* DBBaseViewController.h */,
 				FFC3876118591A7E00A09D01 /* DBBaseViewController.m */,
 			);
@@ -548,6 +561,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Daniel Bennett";
 				TargetAttributes = {
+					FF8EE87318567A320036BE27 = {
+						DevelopmentTeam = 666PJ44VJ5;
+					};
 					FF8EE89318567A320036BE27 = {
 						TestTargetID = FF8EE87318567A320036BE27;
 					};
@@ -669,6 +685,7 @@
 				FFBBA8B81856996F00C8BCBE /* DBAssembly.m in Sources */,
 				FFC3876918591D0400A09D01 /* DBGroupService.m in Sources */,
 				FF245511189EF43500690DC1 /* DBAreaCoreDataRepository.m in Sources */,
+				FF26ACFC18A1806200A1BBE3 /* DBGroupTableViewCell.m in Sources */,
 				FF3DC129189D31CD001974E0 /* DBAreaViewModel.m in Sources */,
 				FFC3876218591A7E00A09D01 /* DBBaseViewController.m in Sources */,
 				FFC3876C18591D2800A09D01 /* DBGroupCoreDataRepository.m in Sources */,
@@ -796,13 +813,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dan Bennett (YZ28Z7UM6Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dan Bennett (YZ28Z7UM6Q)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Auditr/Auditr-Prefix.pch";
 				INFOPLIST_FILE = "Auditr/Auditr-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -814,13 +832,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dan Bennett (YZ28Z7UM6Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dan Bennett (YZ28Z7UM6Q)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Auditr/Auditr-Prefix.pch";
 				INFOPLIST_FILE = "Auditr/Auditr-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

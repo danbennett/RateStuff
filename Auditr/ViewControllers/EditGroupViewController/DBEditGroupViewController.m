@@ -158,7 +158,7 @@ static const float areaTableViewY = 147.0f;
 - (void) bindUserInferface
 {
 	RAC(self.groupNameTextField, text) = [RACObserve(self.viewModel, groupName) distinctUntilChanged];
-	RAC(self.descriptionTextField, text) = [RACObserve(self.viewModel, description) distinctUntilChanged];
+	RAC(self.descriptionTextField, text) = [RACObserve(self.viewModel, groupDescription) distinctUntilChanged];
 	RAC(self.addImageButton, hidden) = [RACObserve(self.profileImageView, image) map:^NSNumber *(UIImage *image) {
 		BOOL isNull = image == nil;
 		return @(!isNull);
@@ -179,6 +179,10 @@ static const float areaTableViewY = 147.0f;
 		} completed:^{
 			
 			@strongify(self);
+			if([self.delegate respondsToSelector: @selector(editGroupViewControllerDidSave:)])
+			{
+				[self.delegate editGroupViewControllerDidSave: self];
+			}
 			[self dismissViewControllerAnimated: YES completion: NULL];
 			
 		}];
@@ -190,7 +194,7 @@ static const float areaTableViewY = 147.0f;
 - (void) bindViewModelProperties
 {
 	RAC(self.viewModel, groupName) = self.groupNameTextField.rac_textSignal;
-	RAC(self.viewModel, description) = self.descriptionTextField.rac_textSignal;
+	RAC(self.viewModel, groupDescription) = self.descriptionTextField.rac_textSignal;
 	
 	@weakify(self);
 	[RACObserve(self.viewModel, image) subscribeNext:^(UIImage *image) {
@@ -370,6 +374,10 @@ static const float areaTableViewY = 147.0f;
 
 - (IBAction) cancelButtonTapped: (UIButton *) sender
 {
+	if([self.delegate respondsToSelector: @selector(editGroupViewControllerDidCancel:)])
+	{
+		[self.delegate editGroupViewControllerDidCancel: self];
+	}
 	[self dismissViewControllerAnimated: YES completion: nil];
 }
 
@@ -558,6 +566,11 @@ static const float areaTableViewY = 147.0f;
 - (void) areaTableViewCellDidEndEditing:(DBAreaTableViewCell *)cell
 {
 	[self resignFirstResponder];
+}
+
+- (UIStatusBarStyle) preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 @end

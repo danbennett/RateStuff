@@ -50,7 +50,7 @@
 	[[RACObserve(self, group) distinctUntilChanged] subscribeNext:^(Group *group) {
 		
 		self.groupName = group.groupName;
-		self.description = group.groupDescription;
+		self.groupDescription = group.groupDescription;
 		self.image = [UIImage imageWithData: self.group.image];
 		[self createAreaViewModels];
 		[self createItemsViewModels];
@@ -79,7 +79,7 @@
 - (void) applyBindings
 {
 	RAC(self.group, groupName) = RACObserve(self, groupName);
-	RAC(self.group, groupDescription) = RACObserve(self, description);
+	RAC(self.group, groupDescription) = RACObserve(self, groupDescription);
 }
 
 #pragma mark - Save

@@ -7,11 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DBAreaTableViewCell.h"
 @class DBGroupViewModel;
-@protocol DBAreaTableViewCellDelegate;
+@protocol DBEditGroupViewControllerDelegate;
 
 @interface DBEditGroupViewController : UIViewController <UIBarPositioningDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, DBAreaTableViewCellDelegate>
 
 @property (nonatomic, strong) DBGroupViewModel *viewModel;
+@property (nonatomic, assign) id<DBEditGroupViewControllerDelegate> delegate;
+
+@end
+
+@protocol DBEditGroupViewControllerDelegate <NSObject>
+
+@required
+- (void) editGroupViewControllerDidCancel: (DBEditGroupViewController *) viewController;
+- (void) editGroupViewControllerDidSave:(DBEditGroupViewController *)viewController;
 
 @end
