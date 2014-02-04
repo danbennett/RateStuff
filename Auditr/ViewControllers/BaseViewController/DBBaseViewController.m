@@ -62,8 +62,10 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 
 - (void) applyBindings
 {
+	@weakify(self);
 	[RACObserve(self.viewModel, groups) subscribeNext:^(NSArray *groups) {
-		
+		@strongify(self);
+		[self.groupTableView reloadData];
 	}];
 }
 

@@ -11,11 +11,6 @@
 
 @interface DBAssembly : TyphoonAssembly
 
-//- (id) baseViewModel;
-//- (id) homeViewModel;
-//- (id) groupViewModel;
-//- (id) areaViewModel;
-
 - (id) groupService;
 - (id) areaService;
 

@@ -7,11 +7,6 @@
 //
 
 #import "DBAssembly.h"
-// ViewModels.
-#import "DBBaseViewModel.h"
-#import "DBHomeViewModel.h"
-#import "DBGroupViewModel.h"
-#import "DBAreaViewModel.h"
 // Services.
 #import "DBGroupService.h"
 #import "DBAreaService.h"
@@ -20,53 +15,6 @@
 #import "DBAreaCoreDataRepository.h"
 
 @implementation DBAssembly
-
-#pragma mark - view models
-
-- (id) baseViewModel
-{
-	return [TyphoonDefinition withClass: [DBBaseViewModel class] initialization:^(TyphoonInitializer *initializer) {
-		
-		initializer.selector = @selector(initWithGroupService:);
-		[initializer injectWithDefinition: [self groupService]];
-		
-	}];
-}
-
-- (id) homeViewModel
-{
-	return [TyphoonDefinition withClass: [DBHomeViewModel class] initialization:^(TyphoonInitializer *initializer) {
-		
-		initializer.selector = @selector(initWithGroupService:);
-		[initializer injectWithDefinition: [self groupService]];
-		
-	}];
-}
-
-- (id) groupViewModel
-{
-	return [TyphoonDefinition withClass: [DBGroupViewModel class] initialization:^(TyphoonInitializer *initializer) {
-		
-		initializer.selector = @selector(initWithGroupService:areaService:);
-		[initializer injectWithDefinition: [self groupService]];
-		[initializer injectWithDefinition: [self areaService]];
-		
-	} properties:^(TyphoonDefinition *definition) {
-		
-		[definition setScope: TyphoonScopeObjectGraph];
-		
-	}];
-}
-
-- (id) areaViewModel
-{
-	return [TyphoonDefinition withClass: [DBAreaViewModel class] initialization:^(TyphoonInitializer *initializer) {
-		
-		initializer.selector = @selector(initWithAreaService:);
-		[initializer injectWithDefinition: [self areaService]];
-		
-	}];
-}
 
 #pragma mark - services
 
