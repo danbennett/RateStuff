@@ -56,7 +56,7 @@ static const float areaTableViewY = 147.0f;
 	[self applyBindings];
 }
 
-#pragma mark - Scroll view.
+#pragma mark - Setup scroll view.
 
 - (void) setupScrollView
 {
@@ -69,7 +69,6 @@ static const float areaTableViewY = 147.0f;
 	self.contentHolder.frame = ({
 		CGRect frame = self.contentHolder.frame;
 		CGRect areaTableFrame = [self.areaTableView.superview convertRect: self.areaTableView.frame toView: self.contentHolder];
-		//?
 		areaTableFrame.size.height = self.areaTableView.contentSize.height;
 		frame.size.height = CGRectGetMaxY(areaTableFrame);
 		frame;
@@ -78,7 +77,7 @@ static const float areaTableViewY = 147.0f;
 	self.scrollView.contentSize = self.contentHolder.frame.size;
 }
 
-# pragma mark - Image filter.
+# pragma mark - Create image filter.
 
 - (void) createBackgroundImagesWithImage: (UIImage *) image
 {
@@ -97,7 +96,19 @@ static const float areaTableViewY = 147.0f;
 	self.backgroundImageOver = [imageFilter imageFromCurrentlyProcessedOutputWithOrientation: image.imageOrientation];
 }
 
-# pragma mark - Style.
+#pragma mark - Image header style.
+
+- (void) styleImageView
+{
+	self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width * 0.5;
+	self.profileImageView.clipsToBounds = YES;
+	self.profileImageView.layer.borderColor = [[UIColor colorWithRed: 124.0f/255.0f green: 124.0f/255.0f blue: 124.0f/255.0f alpha: 0.4f] CGColor];
+	self.profileImageView.layer.borderWidth = 2.0f;
+	[self.profileImageView setHidden: YES];
+}
+
+
+# pragma mark - Area table view style.
 
 - (void) styleAreaTableView
 {
@@ -134,15 +145,6 @@ static const float areaTableViewY = 147.0f;
 		frame.size.height = [self sizeForAreaTableView].height;
 		frame;
 	});
-}
-
-- (void) styleImageView
-{
-	self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width * 0.5;
-	self.profileImageView.clipsToBounds = YES;
-	self.profileImageView.layer.borderColor = [[UIColor colorWithRed: 124.0f/255.0f green: 124.0f/255.0f blue: 124.0f/255.0f alpha: 0.4f] CGColor];
-	self.profileImageView.layer.borderWidth = 2.0f;
-	[self.profileImageView setHidden: YES];
 }
 
 #pragma mark - Bindings.
@@ -344,6 +346,8 @@ static const float areaTableViewY = 147.0f;
 	}
 }
 
+#pragma mark - First responder.
+
 - (BOOL) resignFirstResponder
 {
 	[self.selectedResponder resignFirstResponder];
@@ -378,11 +382,6 @@ static const float areaTableViewY = 147.0f;
 				  destructiveButtonTitle: nil
 					   otherButtonTitles: @"Take new photo...", @"Choose existing photo...", nil];
 	[actionSheet showInView: self.view];
-}
-
-- (IBAction) saveButtonTapped: (UIButton *) sender
-{
-	
 }
 
 # pragma mark - Action sheet delegate.
@@ -560,7 +559,5 @@ static const float areaTableViewY = 147.0f;
 {
 	[self resignFirstResponder];
 }
-
-#pragma mark - getters & setters.
 
 @end
