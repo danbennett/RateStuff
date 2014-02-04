@@ -10,11 +10,13 @@
 @class Group;
 @class Area;
 @protocol DBGroupRepository;
+@protocol DBAreaRepository;
 
 @protocol DBGroupService <NSObject>
 
 @required
-- (id) initWithGroupRepository: (id<DBGroupRepository>) groupRepository;
+- (id) initWithGroupRepository: (id<DBGroupRepository>) groupRepository
+				areaRepository: (id<DBAreaRepository>) areaRepository;
 - (void) addArea: (Area *) area toGroup: (Group *) group;
 - (Group *) createBlankGroup;
 - (NSArray *) getAll;
@@ -25,7 +27,8 @@
 
 @interface DBGroupService : NSObject
 
-- (id) initWithGroupRepository: (id<DBGroupRepository>) groupRepository;
+- (id) initWithGroupRepository: (id<DBGroupRepository>) groupRepository
+				areaRepository: (id<DBAreaRepository>) areaRepository;
 - (void) addArea: (Area *) area toGroup: (Group *) group;
 - (Group *) createBlankGroup;
 - (NSArray *) getAll;

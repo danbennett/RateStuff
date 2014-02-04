@@ -70,8 +70,9 @@
 {
 	return [TyphoonDefinition withClass: [DBGroupService class] initialization:^(TyphoonInitializer *initializer) {
 		
-		initializer.selector = @selector(initWithGroupRepository:);
+		initializer.selector = @selector(initWithGroupRepository:areaRepository:);
 		[initializer injectWithDefinition: [self groupRepository]];
+		[initializer injectWithDefinition: [self areaRepository]];
 		
 	} properties:^(TyphoonDefinition *definition) {
 		

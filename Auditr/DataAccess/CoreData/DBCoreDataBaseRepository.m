@@ -57,8 +57,8 @@
 - (void) addObject: (id) object forKey: (NSString *) key onEntity: (id) entity
 {
 	[entity willChangeValueForKey: key];
-    id objectCopy = [object copy];
-    [entity setPrimitiveValue: objectCopy forKey: key];
+//    id objectCopy = [object copy];
+    [entity setPrimitiveValue: object forKey: key];
     [self didChangeValueForKey: key];
 }
 

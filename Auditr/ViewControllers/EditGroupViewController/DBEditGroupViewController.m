@@ -167,6 +167,7 @@ static const float areaTableViewY = 147.0f;
 		return @(isNull);
 	}];
 	
+	@weakify(self);
 	[self.viewModel.saveCommand.executionSignals subscribeNext:^(id signal) {
 		
 		[signal subscribeError:^(NSError *error) {
@@ -175,6 +176,7 @@ static const float areaTableViewY = 147.0f;
 			
 		} completed:^{
 			
+			@strongify(self);
 			[self dismissViewControllerAnimated: YES completion: NULL];
 			
 		}];
