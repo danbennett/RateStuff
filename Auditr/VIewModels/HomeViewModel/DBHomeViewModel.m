@@ -35,8 +35,13 @@
 {
 	Group *group = [self.groupService createBlankGroup];
 	DBAssembly *factory = (DBAssembly *)[TyphoonAssembly defaultAssembly];
-	DBGroupViewModel *viewModel = (DBGroupViewModel *)[factory groupViewModel];
+	
+	id<DBGroupService> groupService = [factory groupService];
+	id<DBAreaService> areaService = [factory areaService];
+	
+	DBGroupViewModel *viewModel = [[DBGroupViewModel alloc] initWithGroupService: groupService areaService: areaService];
 	viewModel.group = group;
+	
 	return viewModel;
 }
 

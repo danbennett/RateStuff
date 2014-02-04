@@ -10,6 +10,7 @@
 #import "DBGroupService.h"
 #import "Group.h"
 #import "DBGroupViewModel.h"
+#import "DBAssembly.h"
 #import <Typhoon/Typhoon.h>
 #import <ReactiveCocoa/RACEXTScope.h>
 
@@ -29,7 +30,15 @@
 	if(self)
 	{
 		self.groupService = groupService;
-
+		
+		DBGroupViewModel *viewModel = [self generateGroupViewModel];
+		DBGroupViewModel *viewModel2 = [self generateGroupViewModel];
+		
+		if(viewModel == viewModel2)
+		{
+			float i = 0;
+		}
+		
 		[self populateGroups];
 		[self filterGroups];
 	}
@@ -74,14 +83,22 @@
 	Group *group = [self.groupService createBlankGroup];
 	DBGroupViewModel *viewModel = [self generateGroupViewModel];
 	viewModel.group = group;
+	
+	NSMutableArray *groups = [self.groups mutableCopy];
+	[groups addObject: viewModel];
+	self.groups = [groups copy];
+	
 	return viewModel;
 }
 
 - (DBGroupViewModel *) generateGroupViewModel
 {
 	DBAssembly *assembly = (DBAssembly *)[TyphoonAssembly defaultAssembly];
-	DBGroupViewModel *viewModel = (DBGroupViewModel *)[assembly groupViewModel];
-	return viewModel;
+	
+	id<DBGroupService> groupService = [assembly groupService];
+	id<DBAreaService> areaService = [assembly areaService];
+	
+	return [[DBGroupViewModel alloc] initWithGroupService: groupService areaService: areaService];
 }
 
 - (void) populateGroups

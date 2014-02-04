@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 @class DBGroupViewModel;
+@protocol DBGroupService;
 
 @interface DBHomeViewModel : NSObject
 
 @property (nonatomic, strong, readonly) NSString *title;
+- (id) initWithGroupService: (id<DBGroupService>) groupService;
 - (DBGroupViewModel *) newGroupViewModel;
 
 @end

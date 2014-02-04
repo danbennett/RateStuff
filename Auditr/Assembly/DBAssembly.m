@@ -51,6 +51,10 @@
 		[initializer injectWithDefinition: [self groupService]];
 		[initializer injectWithDefinition: [self areaService]];
 		
+	} properties:^(TyphoonDefinition *definition) {
+		
+		[definition setScope: TyphoonScopeObjectGraph];
+		
 	}];
 }
 

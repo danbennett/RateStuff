@@ -37,7 +37,8 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 	[self setNeedsStatusBarAppearanceUpdate];
 	
 	DBAssembly *factory = (DBAssembly *)[TyphoonAssembly defaultAssembly];
-	self.viewModel = (DBBaseViewModel *)[factory baseViewModel];
+	id<DBGroupService> groupService = [factory groupService];
+	self.viewModel = [[DBBaseViewModel alloc] initWithGroupService: groupService];
 	
 	[self addObservers];
 	

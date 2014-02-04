@@ -10,6 +10,7 @@
 #import "DBHomeViewController.h"
 #import "DBHomeViewModel.h"
 #import  <Typhoon/Typhoon.h>
+#import "DBGroupService.h"
 #import "DBEditGroupViewController.h"
 
 @interface DBHomeViewController ()
@@ -25,7 +26,10 @@
     [super viewDidLoad];
 	
 	DBAssembly *factory = (DBAssembly *)[TyphoonAssembly defaultAssembly];
-	self.viewModel = (DBHomeViewModel *)[factory homeViewModel];
+	
+	id<DBGroupService> groupService = [factory groupService];
+	
+	self.viewModel = [[DBHomeViewModel alloc] initWithGroupService: groupService];
 	
 	[self applyBindings];
 }

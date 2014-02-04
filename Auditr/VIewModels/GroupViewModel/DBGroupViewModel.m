@@ -162,7 +162,10 @@
 - (DBAreaViewModel *) generateAreaViewModel
 {
 	DBAssembly *assembly = (DBAssembly *) [TyphoonAssembly defaultAssembly];
-	return (DBAreaViewModel *) [assembly areaViewModel];
+	
+	id<DBAreaService> service = [assembly areaService];
+	
+	return [[DBAreaViewModel alloc] initWithAreaService: service];
 }
 
 @end
