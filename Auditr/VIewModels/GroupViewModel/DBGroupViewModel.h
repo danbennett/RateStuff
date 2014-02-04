@@ -17,9 +17,11 @@
 @property (nonatomic, strong) NSString *groupName;
 @property (nonatomic, strong) NSString *description;
 @property (nonatomic, strong) UIImage *image;
-@property (nonatomic, strong) NSArray *areas;
-@property (nonatomic, strong) NSArray *items;
+@property (nonatomic, strong, readonly) NSArray *areas;
+@property (nonatomic, strong, readonly) NSArray *items;
 @property (nonatomic, strong, readonly) RACSignal *valid;
+@property (nonatomic, strong, readonly) RACCommand *saveCommand;
+@property (nonatomic, strong, readonly) RACSignal *saved;
 @property (nonatomic, weak) Group *group;
 
 - (id) initWithGroupService: (id<DBGroupService>) groupService

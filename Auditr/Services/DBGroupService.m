@@ -41,6 +41,12 @@
 	[self.groupRepository insertObject: area atKey: @"areas" onEntity: group];
 }
 
+- (void) saveGroup: (Group *) group toPush: (BOOL) toPush withCompletion: (void (^)(BOOL success, NSError *error)) completion
+{
+	// TODO: Set to push flag.
+	[self.groupRepository save: group withCompletion: completion];
+}
+
 - (NSArray *) getAll
 {
 	return [self.groupRepository getAll];

@@ -22,6 +22,7 @@
 @property (nonatomic, strong) UIImage *backgroundImageUp;
 @property (nonatomic, strong) UIImage *backgroundImageOver;
 @property (nonatomic, strong) UIResponder *selectedResponder;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *doneButton;
 @property (nonatomic, strong) IBOutlet UITableView *areaTableView;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) IBOutlet UIButton *editImageButton;
@@ -68,6 +69,8 @@ static const float areaTableViewY = 147.0f;
 	self.contentHolder.frame = ({
 		CGRect frame = self.contentHolder.frame;
 		CGRect areaTableFrame = [self.areaTableView.superview convertRect: self.areaTableView.frame toView: self.contentHolder];
+		//?
+		areaTableFrame.size.height = self.areaTableView.contentSize.height;
 		frame.size.height = CGRectGetMaxY(areaTableFrame);
 		frame;
 	});
@@ -106,6 +109,8 @@ static const float areaTableViewY = 147.0f;
 
 - (CGSize) sizeForAreaTableView
 {
+	static NSInteger buffer = 600;
+	
 	CGSize size = self.areaTableView.contentSize;
 
 	CGRect frame = [self.areaTableView.superview convertRect: self.areaTableView.frame toView: self.contentHolder];
@@ -113,10 +118,12 @@ static const float areaTableViewY = 147.0f;
 	
 	if (CGRectGetMaxY(frame) > CGRectGetMaxY(self.scrollView.bounds))
 	{
+		size.height += buffer;
 		return size;
 	}
 	
 	size.height = size.height + (CGRectGetMaxY(self.scrollView.bounds) - CGRectGetMaxY(frame));
+	size.height += buffer;
 	return size;
 }
 
@@ -142,12 +149,44 @@ static const float areaTableViewY = 147.0f;
 
 - (void) applyBindings
 {
-	RAC(self.saveButton, enabled) = self.viewModel.valid;
-	RAC(self.viewModel, groupName) = self.groupNameTextField.rac_textSignal;
-	RAC(self.viewModel, description) = self.descriptionTextField.rac_textSignal;
-	
+	[self bindUserInferface];
+	[self bindViewModelProperties];
+}
+
+- (void) bindUserInferface
+{
 	RAC(self.groupNameTextField, text) = [RACObserve(self.viewModel, groupName) distinctUntilChanged];
 	RAC(self.descriptionTextField, text) = [RACObserve(self.viewModel, description) distinctUntilChanged];
+	RAC(self.addImageButton, hidden) = [RACObserve(self.profileImageView, image) map:^NSNumber *(UIImage *image) {
+		BOOL isNull = image == nil;
+		return @(!isNull);
+	}];
+	
+	RAC(self.editImageButton, hidden) = [RACObserve(self.profileImageView, image) map:^NSNumber *(UIImage *image) {
+		BOOL isNull = image == nil;
+		return @(isNull);
+	}];
+	
+	[self.viewModel.saveCommand.executionSignals subscribeNext:^(id signal) {
+		
+		[signal subscribeError:^(NSError *error) {
+
+			// TODO: Handle error.
+			
+		} completed:^{
+			
+			[self dismissViewControllerAnimated: YES completion: NULL];
+			
+		}];
+	}];
+	
+	self.saveButton.rac_command = self.viewModel.saveCommand;
+}
+
+- (void) bindViewModelProperties
+{
+	RAC(self.viewModel, groupName) = self.groupNameTextField.rac_textSignal;
+	RAC(self.viewModel, description) = self.descriptionTextField.rac_textSignal;
 	
 	@weakify(self);
 	[RACObserve(self.viewModel, image) subscribeNext:^(UIImage *image) {
@@ -157,7 +196,7 @@ static const float areaTableViewY = 147.0f;
 			[self.spinner startAnimating];
 			dispatch_queue_t blurQueue = dispatch_queue_create("uk.co.bennett.dan.imageFilterQueue", NULL);
 			dispatch_async(blurQueue, ^{
-
+				
 				@strongify(self);
 				[self createBackgroundImagesWithImage: image];
 				
@@ -175,16 +214,6 @@ static const float areaTableViewY = 147.0f;
 			});
 		}
 		
-	}];
-	
-	RAC(self.addImageButton, hidden) = [RACObserve(self.profileImageView, image) map:^NSNumber *(UIImage *image) {
-		BOOL isNull = image == nil;
-		return @(!isNull);
-	}];
-	
-	RAC(self.editImageButton, hidden) = [RACObserve(self.profileImageView, image) map:^NSNumber *(UIImage *image) {
-		BOOL isNull = image == nil;
-		return @(isNull);
 	}];
 }
 
@@ -331,6 +360,8 @@ static const float areaTableViewY = 147.0f;
 	return [super resignFirstResponder];
 }
 
+#pragma mark - Nav bar actions.
+
 - (IBAction) cancelButtonTapped: (UIButton *) sender
 {
 	[self dismissViewControllerAnimated: YES completion: nil];
@@ -345,6 +376,11 @@ static const float areaTableViewY = 147.0f;
 				  destructiveButtonTitle: nil
 					   otherButtonTitles: @"Take new photo...", @"Choose existing photo...", nil];
 	[actionSheet showInView: self.view];
+}
+
+- (IBAction) saveButtonTapped: (UIButton *) sender
+{
+	
 }
 
 # pragma mark - Action sheet delegate.
@@ -444,6 +480,7 @@ static const float areaTableViewY = 147.0f;
 {
 	DBAreaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: DBAreaTableViewId];
 	cell.viewModel = [self.viewModel.areas objectAtIndex: indexPath.row];
+	cell.delegate = self;
 	if ([self.selectedIndexPath isEqual: indexPath])
 	{
 		cell.isInFocus = YES;
@@ -513,6 +550,13 @@ static const float areaTableViewY = 147.0f;
 - (NSString *) tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	return @"Remove";
+}
+
+#pragma mark - Area table view cell delegate.
+
+- (void) areaTableViewCellDidEndEditing:(DBAreaTableViewCell *)cell
+{
+	[self resignFirstResponder];
 }
 
 #pragma mark - getters & setters.

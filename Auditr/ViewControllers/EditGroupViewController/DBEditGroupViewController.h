@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 @class DBGroupViewModel;
+@protocol DBAreaTableViewCellDelegate;
 
-@interface DBEditGroupViewController : UIViewController <UIBarPositioningDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface DBEditGroupViewController : UIViewController <UIBarPositioningDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, DBAreaTableViewCellDelegate>
 
 @property (nonatomic, strong) DBGroupViewModel *viewModel;
 

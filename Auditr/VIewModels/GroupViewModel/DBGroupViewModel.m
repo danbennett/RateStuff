@@ -14,10 +14,15 @@
 #import "Group.h"
 #import "Area.h"
 #import "Item.h"
+#import <ReactiveCocoa/RACEXTScope.h>
 
 @interface DBGroupViewModel()
 
+@property (nonatomic, strong, readwrite) NSArray *areas;
+@property (nonatomic, strong, readwrite) NSArray *items;
 @property (nonatomic, strong, readwrite) RACSignal *valid;
+@property (nonatomic, strong, readwrite) RACCommand *saveCommand;
+@property (nonatomic, strong, readwrite) RACSubject *saved;
 @property (nonatomic, assign) id<DBGroupService> groupService;
 @property (nonatomic, assign) id<DBAreaService> areaService;
 
@@ -53,6 +58,13 @@
 		[self createGroupBindings];
 		[self applyBindings];
 	}];
+	
+	@weakify(self);
+	self.saveCommand = [[RACCommand alloc] initWithEnabled: self.valid signalBlock:^RACSignal *(id input) {
+		
+		@strongify(self);
+		return [self saved];
+	}];
 }
 
 - (void) createGroupBindings
@@ -68,6 +80,29 @@
 {
 	RAC(self.group, groupName) = RACObserve(self, groupName);
 	RAC(self.group, groupDescription) = RACObserve(self, description);
+}
+
+#pragma mark - Save
+
+- (RACSignal *) saved
+{
+	@weakify(self);
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+	
+		@strongify(self);
+		[self.groupService saveGroup: self.group toPush: YES withCompletion:^(BOOL success, NSError *error) {
+			if (success)
+			{
+				[subscriber sendNext: [NSNull null]];
+				[subscriber sendCompleted];
+			}
+			else
+			{
+				[subscriber sendError: error];
+			}
+		}];
+		return nil;
+	}];
 }
 
 #pragma mark view models.

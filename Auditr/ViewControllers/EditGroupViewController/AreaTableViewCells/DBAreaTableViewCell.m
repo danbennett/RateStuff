@@ -76,6 +76,15 @@ static NSString *const DBDefaultAreaName = @"New ratable area";
 	[self.disposables addObject: disposable];
 }
 
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+	if ([self.delegate respondsToSelector: @selector(areaTableViewCellDidEndEditing:)])
+	{
+		[self.delegate areaTableViewCellDidEndEditing: self];
+	}
+	return YES;
+}
+
 - (void) prepareForReuse
 {
 	[super prepareForReuse];
