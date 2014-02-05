@@ -26,8 +26,15 @@
 {
 	[super awakeFromNib];
 	self.disposables = [NSMutableArray array];
+	[self styleLabel];
 	[self styleImageView];
 	[self applyBindings];
+}
+
+- (void) styleLabel
+{
+	UIFont *font = [UIFont fontWithName:@"Museo Sans" size: 15];
+	[self.groupNameLabel setFont: font];
 }
 
 - (void) styleImageView
@@ -45,7 +52,31 @@
 		@strongify(self);
 		[self.groupNameLabel setText: viewModel.groupName];
 		
+		if (viewModel != nil)
+		{
+			[self applyGroupBindings];
+		}
+		
 	}];
+}
+
+- (void) applyGroupBindings
+{
+	@weakify(self);
+	RACDisposable *disposable = [[RACObserve(self.viewModel, groupName) distinctUntilChanged] subscribeNext:^(NSString *newName) {
+		
+		@strongify(self);
+		self.groupNameLabel.text = newName;
+		
+	}];
+	
+	[self.disposables addObject: disposable];
+}
+
+- (void) prepareForReuse
+{
+	[super prepareForReuse];
+	[self.disposables makeObjectsPerformSelector: @selector(dispose)];
 }
 
 @end

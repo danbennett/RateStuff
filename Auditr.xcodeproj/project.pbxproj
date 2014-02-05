@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		56FAB8E02F294CD5B4B756D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57E10E887FAB429BA7FD4567 /* libPods.a */; };
+		FF0F15D318A1B3010047276E /* DBGroupTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0F15D218A1B3010047276E /* DBGroupTableFooterView.m */; };
 		FF2454FE189EBD0400690DC1 /* EditAreaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF2454FD189EBD0400690DC1 /* EditAreaView.xib */; };
 		FF245509189EEB9900690DC1 /* DBAreaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF245508189EEB9900690DC1 /* DBAreaTableViewCell.m */; };
 		FF24550D189EF3B800690DC1 /* DBAreaService.m in Sources */ = {isa = PBXBuildFile; fileRef = FF24550C189EF3B800690DC1 /* DBAreaService.m */; };
 		FF245511189EF43500690DC1 /* DBAreaCoreDataRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = FF245510189EF43500690DC1 /* DBAreaCoreDataRepository.m */; };
 		FF245514189F01A300690DC1 /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FF245513189F01A300690DC1 /* NSString+Extensions.m */; };
 		FF26ACFC18A1806200A1BBE3 /* DBGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF26ACFB18A1806200A1BBE3 /* DBGroupTableViewCell.m */; };
+		FF26AD0018A1B08A00A1BBE3 /* MuseoSans_500.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF26ACFF18A1B08A00A1BBE3 /* MuseoSans_500.otf */; };
 		FF3D7435189C40E800294D6F /* UIView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D7434189C40E800294D6F /* UIView+Animations.m */; };
 		FF3D743C189C55BA00294D6F /* DBCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D743B189C55BA00294D6F /* DBCoreDataManager.m */; };
 		FF3DC114189D1685001974E0 /* DBEditGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC113189D1685001974E0 /* DBEditGroupViewController.m */; };
@@ -71,6 +73,8 @@
 /* Begin PBXFileReference section */
 		57E10E887FAB429BA7FD4567 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD209048DBD47D98CAFD2F1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		FF0F15D118A1B3010047276E /* DBGroupTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBGroupTableFooterView.h; sourceTree = "<group>"; };
+		FF0F15D218A1B3010047276E /* DBGroupTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBGroupTableFooterView.m; sourceTree = "<group>"; };
 		FF2454FD189EBD0400690DC1 /* EditAreaView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditAreaView.xib; sourceTree = "<group>"; };
 		FF245507189EEB9900690DC1 /* DBAreaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAreaTableViewCell.h; sourceTree = "<group>"; };
 		FF245508189EEB9900690DC1 /* DBAreaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAreaTableViewCell.m; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 		FF245513189F01A300690DC1 /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; };
 		FF26ACFA18A1806200A1BBE3 /* DBGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBGroupTableViewCell.h; sourceTree = "<group>"; };
 		FF26ACFB18A1806200A1BBE3 /* DBGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBGroupTableViewCell.m; sourceTree = "<group>"; };
+		FF26ACFF18A1B08A00A1BBE3 /* MuseoSans_500.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MuseoSans_500.otf; sourceTree = "<group>"; };
 		FF3D7433189C40E800294D6F /* UIView+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animations.h"; sourceTree = "<group>"; };
 		FF3D7434189C40E800294D6F /* UIView+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animations.m"; sourceTree = "<group>"; };
 		FF3D743A189C55BA00294D6F /* DBCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCoreDataManager.h; sourceTree = "<group>"; };
@@ -207,8 +212,26 @@
 			children = (
 				FF26ACFA18A1806200A1BBE3 /* DBGroupTableViewCell.h */,
 				FF26ACFB18A1806200A1BBE3 /* DBGroupTableViewCell.m */,
+				FF0F15D118A1B3010047276E /* DBGroupTableFooterView.h */,
+				FF0F15D218A1B3010047276E /* DBGroupTableFooterView.m */,
 			);
 			path = GroupTableViewCells;
+			sourceTree = "<group>";
+		};
+		FF26ACFD18A1B08A00A1BBE3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FF26ACFE18A1B08A00A1BBE3 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FF26ACFE18A1B08A00A1BBE3 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FF26ACFF18A1B08A00A1BBE3 /* MuseoSans_500.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		FF3D7432189C40DE00294D6F /* Extensions */ = {
@@ -345,6 +368,7 @@
 		FF8EE87F18567A320036BE27 /* Auditr */ = {
 			isa = PBXGroup;
 			children = (
+				FF26ACFD18A1B08A00A1BBE3 /* Resources */,
 				FFBBA8B51856995B00C8BCBE /* Assembly */,
 				FFBBA8A7185694A300C8BCBE /* AppDelegate */,
 				FFBBA8AE1856950200C8BCBE /* DataAccess */,
@@ -593,6 +617,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF8EE8B018567AF70036BE27 /* auditr.storyboard in Resources */,
+				FF26AD0018A1B08A00A1BBE3 /* MuseoSans_500.otf in Resources */,
 				FF8EE88418567A320036BE27 /* InfoPlist.strings in Resources */,
 				FF8EE88F18567A320036BE27 /* Images.xcassets in Resources */,
 				FF2454FE189EBD0400690DC1 /* EditAreaView.xib in Resources */,
@@ -685,6 +710,7 @@
 				FFBBA8B81856996F00C8BCBE /* DBAssembly.m in Sources */,
 				FFC3876918591D0400A09D01 /* DBGroupService.m in Sources */,
 				FF245511189EF43500690DC1 /* DBAreaCoreDataRepository.m in Sources */,
+				FF0F15D318A1B3010047276E /* DBGroupTableFooterView.m in Sources */,
 				FF26ACFC18A1806200A1BBE3 /* DBGroupTableViewCell.m in Sources */,
 				FF3DC129189D31CD001974E0 /* DBAreaViewModel.m in Sources */,
 				FFC3876218591A7E00A09D01 /* DBBaseViewController.m in Sources */,
