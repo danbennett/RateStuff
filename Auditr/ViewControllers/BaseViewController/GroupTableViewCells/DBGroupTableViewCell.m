@@ -49,34 +49,52 @@
 	@weakify(self);
 	[RACObserve(self, viewModel) subscribeNext:^(DBGroupViewModel *viewModel) {
 		
-		@strongify(self);
-		[self.groupNameLabel setText: viewModel.groupName];
-		
 		if (viewModel != nil)
 		{
+			@strongify(self);
+			
+			[self dispose];
+			
+			[self.groupNameLabel setText: viewModel.groupName];
+			[self.imageView setImage: viewModel.image];
+			
 			[self applyGroupBindings];
 		}
-		
 	}];
 }
 
 - (void) applyGroupBindings
 {
 	@weakify(self);
-	RACDisposable *disposable = [[RACObserve(self.viewModel, groupName) distinctUntilChanged] subscribeNext:^(NSString *newName) {
+	RACDisposable *groupNameDisposable = [[RACObserve(self.viewModel, groupName) distinctUntilChanged] subscribeNext:^(NSString *newName) {
 		
 		@strongify(self);
 		self.groupNameLabel.text = newName;
 		
 	}];
+	[self.disposables addObject: groupNameDisposable];
+
 	
-	[self.disposables addObject: disposable];
+	RACDisposable *imageDisposable = [[RACObserve(self.viewModel, image) distinctUntilChanged] subscribeNext:^(UIImage *image) {
+		
+		@strongify(self);
+		[self.imageView setImage: image];
+		
+	}];
+	
+	[self.disposables addObject: imageDisposable];
 }
 
 - (void) prepareForReuse
 {
 	[super prepareForReuse];
+	[self dispose];
+}
+
+- (void) dispose
+{
 	[self.disposables makeObjectsPerformSelector: @selector(dispose)];
+	self.disposables = [NSMutableArray array];
 }
 
 @end

@@ -31,14 +31,6 @@
 	{
 		self.groupService = groupService;
 		
-		DBGroupViewModel *viewModel = [self generateGroupViewModel];
-		DBGroupViewModel *viewModel2 = [self generateGroupViewModel];
-		
-		if(viewModel == viewModel2)
-		{
-			float i = 0;
-		}
-		
 		[self populateGroups];
 		[self filterGroups];
 	}
@@ -52,11 +44,14 @@
 	[RACObserve(self, filterString) subscribeNext:^(NSString *filterString) {
 		
 		@strongify(self);
+		
+		self.groups = nil;
+		
 		self.groups =
 		[[[[self.allGroups objectEnumerator] where:^BOOL(Group *group) {
 			
 			BOOL containsString = YES;
-			if (filterString != nil)
+			if (filterString.length > 0)
 			{
 				containsString = ([group.groupName rangeOfString: filterString].location != NSNotFound);
 			}
@@ -64,6 +59,7 @@
 			
 		}] select:^DBGroupViewModel *(Group *group) {
 			
+			@strongify(self);
 			DBGroupViewModel *viewModel = [self generateGroupViewModel];
 			viewModel.group = group;
 			return viewModel;
@@ -75,6 +71,10 @@
 
 - (void) deleteGroupViewModel: (DBGroupViewModel *) viewModel
 {
+	NSMutableArray *groups = [self.groups mutableCopy];
+	[groups removeObject: viewModel];
+	self.groups = [groups copy];
+	
 	[self.groupService deleteGroup: viewModel.group];
 }
 

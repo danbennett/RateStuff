@@ -8,10 +8,12 @@
 
 #import "DBAreaViewModel.h"
 #import "DBAreaService.h"
+#import <ReactiveCocoa/RACEXTScope.h>
 #import "Area.h"
 
 @interface DBAreaViewModel()
 
+@property (nonatomic, strong) NSMutableArray *disposables;
 @property (nonatomic, strong, readwrite) RACSignal *valid;
 @property (nonatomic, assign) id<DBAreaService> areaService;
 
@@ -25,6 +27,7 @@
     if (self)
 	{
 		self.areaService = areaService;
+		self.disposables = [NSMutableArray array];
 		[self createBindings];
     }
     return self;
@@ -34,8 +37,10 @@
 
 - (void) createBindings
 {
-	[[RACObserve(self, area) distinctUntilChanged] subscribeNext:^(Area *area) {
-		
+	@weakify(self);
+	[RACObserve(self, area) subscribeNext:^(Area *area) {
+	
+		@strongify(self);
 		self.name = area.areaName;
 		[self createItemViewModels];
 		[self createRatingViewModels];

@@ -19,7 +19,6 @@ NSString *const DBNewGroupPressedNotification = @"newGroupPressedNotifcation";
 @interface DBBaseViewController ()
 
 @property (nonatomic, strong) UITapGestureRecognizer *closeBurgerGesture;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UIView *statusBarBackground;
 @property (strong, nonatomic) IBOutlet UIView *containerView;
 @property (strong, nonatomic) IBOutlet UITableView *groupTableView;
@@ -67,6 +66,8 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 		@strongify(self);
 		[self.groupTableView reloadData];
 	}];
+	
+//	RAC(self.viewModel, filterString) = RACObserve(self.searchBar, text);
 }
 
 # pragma mark - burger menu.
@@ -209,7 +210,7 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 
 - (void) searchBar: (UISearchBar *)searchBar textDidChange: (NSString *) text
 {
-	
+	self.viewModel.filterString = text;
 }
 
 # pragma mark - group management.

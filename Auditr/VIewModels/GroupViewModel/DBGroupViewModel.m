@@ -47,8 +47,10 @@
 
 - (void) createBindings
 {
+	@weakify(self);
 	[[RACObserve(self, group) distinctUntilChanged] subscribeNext:^(Group *group) {
-		
+	
+		@strongify(self);
 		self.groupName = group.groupName;
 		self.groupDescription = group.groupDescription;
 		self.image = [UIImage imageWithData: self.group.image];
@@ -59,7 +61,6 @@
 		[self applyBindings];
 	}];
 	
-	@weakify(self);
 	self.saveCommand = [[RACCommand alloc] initWithEnabled: self.valid signalBlock:^RACSignal *(id input) {
 		
 		@strongify(self);
@@ -80,6 +81,12 @@
 {
 	RAC(self.group, groupName) = RACObserve(self, groupName);
 	RAC(self.group, groupDescription) = RACObserve(self, groupDescription);
+	
+	@weakify(self);
+	[RACObserve(self, image) subscribeNext:^(UIImage *image) {
+		@strongify(self);
+		self.group.image = [NSData dataWithData: UIImagePNGRepresentation(image)];
+	}];
 }
 
 #pragma mark - Save
@@ -110,8 +117,10 @@
 - (void) createAreaViewModels
 {
 	NSArray *areas = [self.group.areas allObjects];
+	@weakify(self);
 	self.areas = [[[areas objectEnumerator] select:^DBAreaViewModel *(Area *area) {
 		
+		@strongify(self);
 		DBAreaViewModel *viewModel = [self generateAreaViewModel];
 		viewModel.area = area;
 		return viewModel;
@@ -123,7 +132,6 @@
 {
 	NSArray *items = [self.group.items allObjects];
 	self.items = [[[items objectEnumerator] select:^DBItemViewModel *(Item *item) {
-		
 		return [[DBItemViewModel alloc] initWithItem: item];
 		
 	}] allObjects];
@@ -166,6 +174,11 @@
 	id<DBAreaService> service = [assembly areaService];
 	
 	return [[DBAreaViewModel alloc] initWithAreaService: service];
+}
+
+- (void) dealloc
+{
+	
 }
 
 @end
