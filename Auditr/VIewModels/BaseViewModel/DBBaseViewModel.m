@@ -47,25 +47,6 @@
 		
 		[self filterGroupsWithString: filterString];
 		
-//		self.groups =
-//		[[[[self.allGroups objectEnumerator] where:^BOOL(Group *group) {
-//			
-//			BOOL containsString = YES;
-//			if (filterString.length > 0)
-//			{
-//				containsString = ([group.groupName rangeOfString: filterString].location != NSNotFound);
-//			}
-//			return containsString;
-//			
-//		}] select:^DBGroupViewModel *(Group *group) {
-//			
-//			@strongify(self);
-//			DBGroupViewModel *viewModel = [self generateGroupViewModel];
-//			viewModel.group = group;
-//			return viewModel;
-//			
-//		}] allObjects];
-		
 	}];
 }
 
@@ -86,10 +67,6 @@
 
 - (void) deleteGroupViewModel: (DBGroupViewModel *) viewModel
 {
-//	NSMutableArray *groups = [self.groups mutableCopy];
-//	[groups removeObject: viewModel];
-//	self.groups = [groups copy];
-	
 	NSMutableArray *allGroups = [self.allGroups mutableCopy];
 	[allGroups removeObject: viewModel];
 	self.allGroups = allGroups;
@@ -104,10 +81,6 @@
 	Group *group = [self.groupService createBlankGroup];
 	DBGroupViewModel *viewModel = [self generateGroupViewModel];
 	viewModel.group = group;
-	
-//	NSMutableArray *groups = [self.groups mutableCopy];
-//	[groups addObject: viewModel];
-//	self.groups = [groups copy];
 	
 	NSMutableArray *allGroups = [self.allGroups mutableCopy];
 	[allGroups addObject: viewModel];

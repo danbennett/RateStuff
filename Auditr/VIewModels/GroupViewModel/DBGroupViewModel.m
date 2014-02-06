@@ -74,20 +74,23 @@
 {
 	@weakify(self);
 	
-	dispatch_queue_t imageQueue = dispatch_queue_create("uk.co.bennettdan.imageUnarchiver", NULL);
-	dispatch_async(imageQueue, ^{
-		
-		@strongify(self);
-
-		UIImage *image = [NSKeyedUnarchiver unarchiveObjectWithData: data];
-		UIImage *thumbnail = [UIImage imageWithImage: image scaledToFillSize: CGSizeMake(40.f, 40.f)];
-		
-		dispatch_async(dispatch_get_main_queue(), ^{
+	if (data != nil)
+	{
+		dispatch_queue_t imageQueue = dispatch_queue_create("uk.co.bennettdan.imageUnarchiver", NULL);
+		dispatch_async(imageQueue, ^{
+			
 			@strongify(self);
-			self.image = image;
-			self.thumbnail = thumbnail;
+
+			UIImage *image = [NSKeyedUnarchiver unarchiveObjectWithData: data];
+			UIImage *thumbnail = [UIImage imageWithImage: image scaledToFillSize: CGSizeMake(40.f, 40.f)];
+			
+			dispatch_async(dispatch_get_main_queue(), ^{
+				@strongify(self);
+				self.image = image;
+				self.thumbnail = thumbnail;
+			});
 		});
-	});
+	}
 }
 
 - (void) createGroupBindings

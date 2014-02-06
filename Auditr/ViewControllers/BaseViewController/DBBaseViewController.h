@@ -12,7 +12,7 @@
 extern NSString *const DBBurgerButtonPressedNotification;
 extern NSString *const DBNewGroupPressedNotification;
 
-@interface DBBaseViewController : UIViewController <UISearchBarDelegate, UIGestureRecognizerDelegate, UITableViewDataSource, UITableViewDelegate, DBEditGroupViewControllerDelegate>
+@interface DBBaseViewController : UIViewController <UISearchBarDelegate, UIGestureRecognizerDelegate, UITableViewDataSource, UITableViewDelegate, DBEditGroupViewControllerDelegate, UIGestureRecognizerDelegate>
 
 
 @end

@@ -18,6 +18,7 @@ NSString *const DBNewGroupPressedNotification = @"newGroupPressedNotifcation";
 
 @interface DBBaseViewController ()
 
+@property (nonatomic, weak) UIResponder *selectedResponder;
 @property (nonatomic, strong) UITapGestureRecognizer *closeBurgerGesture;
 @property (strong, nonatomic) IBOutlet UIView *statusBarBackground;
 @property (strong, nonatomic) IBOutlet UIView *containerView;
@@ -66,8 +67,6 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 		@strongify(self);
 		[self.groupTableView reloadData];
 	}];
-	
-//	RAC(self.viewModel, filterString) = RACObserve(self.searchBar, text);
 }
 
 # pragma mark - burger menu.
@@ -80,10 +79,14 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 	[self.containerView addGestureRecognizer: panGesture];
 }
 
-- (BOOL) gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer
+- (BOOL) gestureRecognizerShouldBegin:(UITapGestureRecognizer *)gestureRecognizer
 {
-	CGPoint translation = [gestureRecognizer translationInView: self.view];
-    return fabs(translation.x) > fabs(translation.y);
+	if ([gestureRecognizer isKindOfClass: [UIPanGestureRecognizer class]])
+	{
+		CGPoint translation = [(UIPanGestureRecognizer *)gestureRecognizer translationInView: self.view];
+		return fabs(translation.x) > fabs(translation.y);
+	}
+	return true;
 }
 
 - (void) addTapGesture
@@ -91,6 +94,7 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 	self.closeBurgerGesture =
 	[[UITapGestureRecognizer alloc] initWithTarget: self  action: @selector(openBurgerMenuTapped:)];
 	self.closeBurgerGesture.cancelsTouchesInView = NO;
+	self.closeBurgerGesture.delegate = self;
 	[self.containerView addGestureRecognizer: self.closeBurgerGesture];
 }
 
@@ -207,6 +211,40 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 }
 
 #pragma mark - search bar.
+
+- (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+	[self.selectedResponder resignFirstResponder];
+	
+	for (UIGestureRecognizer *recoginzer in [self.view gestureRecognizers])
+	{
+		[self.view removeGestureRecognizer: recoginzer];
+	}
+	
+	[self addTapGesture];
+}
+
+- (void) searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+	[self.containerView removeGestureRecognizer: self.closeBurgerGesture];
+	
+	self.selectedResponder = searchBar;
+	
+	UITapGestureRecognizer *closeKeyboardRecognizer =
+	[[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(closeKeyboardTapped:)];
+	closeKeyboardRecognizer.cancelsTouchesInView = NO;
+	closeKeyboardRecognizer.delegate = self;
+	[self.view addGestureRecognizer: closeKeyboardRecognizer];
+}
+
+- (void) closeKeyboardTapped: (UITapGestureRecognizer *) gesture
+{
+	[self.selectedResponder resignFirstResponder];
+	
+	[self.view removeGestureRecognizer: gesture];
+	
+	[self addTapGesture];
+}
 
 - (void) searchBar: (UISearchBar *)searchBar textDidChange: (NSString *) text
 {
