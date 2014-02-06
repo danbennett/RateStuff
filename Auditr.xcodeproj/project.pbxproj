@@ -16,6 +16,7 @@
 		FF245514189F01A300690DC1 /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FF245513189F01A300690DC1 /* NSString+Extensions.m */; };
 		FF26ACFC18A1806200A1BBE3 /* DBGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF26ACFB18A1806200A1BBE3 /* DBGroupTableViewCell.m */; };
 		FF26AD0018A1B08A00A1BBE3 /* MuseoSans_500.otf in Resources */ = {isa = PBXBuildFile; fileRef = FF26ACFF18A1B08A00A1BBE3 /* MuseoSans_500.otf */; };
+		FF29E5D118A2335500E2ECA0 /* UIImage+Scaling.m in Sources */ = {isa = PBXBuildFile; fileRef = FF29E5D018A2335500E2ECA0 /* UIImage+Scaling.m */; };
 		FF3D7435189C40E800294D6F /* UIView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D7434189C40E800294D6F /* UIView+Animations.m */; };
 		FF3D743C189C55BA00294D6F /* DBCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D743B189C55BA00294D6F /* DBCoreDataManager.m */; };
 		FF3DC114189D1685001974E0 /* DBEditGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC113189D1685001974E0 /* DBEditGroupViewController.m */; };
@@ -88,6 +89,8 @@
 		FF26ACFA18A1806200A1BBE3 /* DBGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBGroupTableViewCell.h; sourceTree = "<group>"; };
 		FF26ACFB18A1806200A1BBE3 /* DBGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBGroupTableViewCell.m; sourceTree = "<group>"; };
 		FF26ACFF18A1B08A00A1BBE3 /* MuseoSans_500.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MuseoSans_500.otf; sourceTree = "<group>"; };
+		FF29E5CF18A2335500E2ECA0 /* UIImage+Scaling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scaling.h"; sourceTree = "<group>"; };
+		FF29E5D018A2335500E2ECA0 /* UIImage+Scaling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scaling.m"; sourceTree = "<group>"; };
 		FF3D7433189C40E800294D6F /* UIView+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animations.h"; sourceTree = "<group>"; };
 		FF3D7434189C40E800294D6F /* UIView+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animations.m"; sourceTree = "<group>"; };
 		FF3D743A189C55BA00294D6F /* DBCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCoreDataManager.h; sourceTree = "<group>"; };
@@ -243,6 +246,8 @@
 				FF3DC137189DA310001974E0 /* UIImage+Effects.m */,
 				FF245512189F01A300690DC1 /* NSString+Extensions.h */,
 				FF245513189F01A300690DC1 /* NSString+Extensions.m */,
+				FF29E5CF18A2335500E2ECA0 /* UIImage+Scaling.h */,
+				FF29E5D018A2335500E2ECA0 /* UIImage+Scaling.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -702,6 +707,7 @@
 				FFBBA8AA185694B200C8BCBE /* DBAppDelegate.m in Sources */,
 				FFC3875C1859188100A09D01 /* _Area.m in Sources */,
 				FF245509189EEB9900690DC1 /* DBAreaTableViewCell.m in Sources */,
+				FF29E5D118A2335500E2ECA0 /* UIImage+Scaling.m in Sources */,
 				FF8EE88618567A320036BE27 /* main.m in Sources */,
 				FF437713189C887000A019E3 /* Profile.m in Sources */,
 				FF429B431859118B00048B17 /* Auditr.xcdatamodeld in Sources */,

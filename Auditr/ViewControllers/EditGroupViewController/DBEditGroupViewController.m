@@ -199,11 +199,12 @@ static const float areaTableViewY = 147.0f;
 	@weakify(self);
 	[RACObserve(self.viewModel, image) subscribeNext:^(UIImage *image) {
 		
+		@strongify(self);
+		
 		if (image != nil)
 		{
 			[self.spinner startAnimating];
-			dispatch_queue_t blurQueue = dispatch_queue_create("uk.co.bennett.dan.imageFilterQueue", NULL);
-			dispatch_async(blurQueue, ^{
+			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 				
 				@strongify(self);
 				[self createBackgroundImagesWithImage: image];

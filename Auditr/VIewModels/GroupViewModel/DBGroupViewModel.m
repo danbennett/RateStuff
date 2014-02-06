@@ -15,11 +15,13 @@
 #import "Area.h"
 #import "Item.h"
 #import <ReactiveCocoa/RACEXTScope.h>
+#import "UIImage+Scaling.h"
 
 @interface DBGroupViewModel()
 
 @property (nonatomic, strong, readwrite) NSArray *areas;
 @property (nonatomic, strong, readwrite) NSArray *items;
+@property (nonatomic, strong, readwrite) UIImage *thumbnail;
 @property (nonatomic, strong, readwrite) RACSignal *valid;
 @property (nonatomic, strong, readwrite) RACCommand *saveCommand;
 @property (nonatomic, strong, readwrite) RACSubject *saved;
@@ -53,7 +55,7 @@
 		@strongify(self);
 		self.groupName = group.groupName;
 		self.groupDescription = group.groupDescription;
-		self.image = [UIImage imageWithData: self.group.image];
+		[self loadImageWithData: group.image];
 		[self createAreaViewModels];
 		[self createItemsViewModels];
 
@@ -66,6 +68,26 @@
 		@strongify(self);
 		return [self saved];
 	}];
+}
+
+- (void) loadImageWithData: (NSData *) data
+{
+	@weakify(self);
+	
+	dispatch_queue_t imageQueue = dispatch_queue_create("uk.co.bennettdan.imageUnarchiver", NULL);
+	dispatch_async(imageQueue, ^{
+		
+		@strongify(self);
+
+		UIImage *image = [NSKeyedUnarchiver unarchiveObjectWithData: data];
+		UIImage *thumbnail = [UIImage imageWithImage: image scaledToFillSize: CGSizeMake(40.f, 40.f)];
+		
+		dispatch_async(dispatch_get_main_queue(), ^{
+			@strongify(self);
+			self.image = image;
+			self.thumbnail = thumbnail;
+		});
+	});
 }
 
 - (void) createGroupBindings
@@ -84,8 +106,26 @@
 	
 	@weakify(self);
 	[RACObserve(self, image) subscribeNext:^(UIImage *image) {
-		@strongify(self);
-		self.group.image = [NSData dataWithData: UIImagePNGRepresentation(image)];
+		
+		if (image != nil)
+		{
+			__block NSData *data = nil;
+		
+			dispatch_queue_t imageQueue = dispatch_queue_create("uk.co.bennettdan.imageArchiver", NULL);
+			
+			dispatch_async(imageQueue, ^{
+				
+				data = [NSKeyedArchiver archivedDataWithRootObject: image];
+				UIImage *thumbnail = [UIImage imageWithImage: image scaledToFillSize: CGSizeMake(40.f, 40.f)];
+				
+				dispatch_async(dispatch_get_main_queue(), ^{
+					@strongify(self);
+					self.group.image = data;
+					self.thumbnail = thumbnail;
+				});
+			});
+		}
+		
 	}];
 }
 
@@ -174,11 +214,6 @@
 	id<DBAreaService> service = [assembly areaService];
 	
 	return [[DBAreaViewModel alloc] initWithAreaService: service];
-}
-
-- (void) dealloc
-{
-	
 }
 
 @end

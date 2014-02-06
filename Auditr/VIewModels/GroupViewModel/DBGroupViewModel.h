@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSString *groupName;
 @property (nonatomic, strong) NSString *groupDescription;
 @property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong, readonly) UIImage *thumbnail;
 @property (nonatomic, strong, readonly) NSArray *areas;
 @property (nonatomic, strong, readonly) NSArray *items;
 @property (nonatomic, strong, readonly) RACSignal *valid;

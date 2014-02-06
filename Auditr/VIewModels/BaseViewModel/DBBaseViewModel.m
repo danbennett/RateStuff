@@ -45,35 +45,56 @@
 		
 		@strongify(self);
 		
-		self.groups = nil;
+		[self filterGroupsWithString: filterString];
 		
-		self.groups =
-		[[[[self.allGroups objectEnumerator] where:^BOOL(Group *group) {
-			
-			BOOL containsString = YES;
-			if (filterString.length > 0)
-			{
-				containsString = ([group.groupName rangeOfString: filterString].location != NSNotFound);
-			}
-			return containsString;
-			
-		}] select:^DBGroupViewModel *(Group *group) {
-			
-			@strongify(self);
-			DBGroupViewModel *viewModel = [self generateGroupViewModel];
-			viewModel.group = group;
-			return viewModel;
-			
-		}] allObjects];
+//		self.groups =
+//		[[[[self.allGroups objectEnumerator] where:^BOOL(Group *group) {
+//			
+//			BOOL containsString = YES;
+//			if (filterString.length > 0)
+//			{
+//				containsString = ([group.groupName rangeOfString: filterString].location != NSNotFound);
+//			}
+//			return containsString;
+//			
+//		}] select:^DBGroupViewModel *(Group *group) {
+//			
+//			@strongify(self);
+//			DBGroupViewModel *viewModel = [self generateGroupViewModel];
+//			viewModel.group = group;
+//			return viewModel;
+//			
+//		}] allObjects];
 		
 	}];
 }
 
+- (void) filterGroupsWithString: (NSString *) filterString
+{
+	self.groups = nil;
+	
+	self.groups =
+	[[[self.allGroups objectEnumerator] where:^BOOL(DBGroupViewModel *groupViewModel) {
+		BOOL containsString = YES;
+		if (filterString.length > 0)
+		{
+			containsString = ([groupViewModel.groupName rangeOfString: filterString].location != NSNotFound);
+		}
+		return containsString;
+	}] allObjects ];
+}
+
 - (void) deleteGroupViewModel: (DBGroupViewModel *) viewModel
 {
-	NSMutableArray *groups = [self.groups mutableCopy];
-	[groups removeObject: viewModel];
-	self.groups = [groups copy];
+//	NSMutableArray *groups = [self.groups mutableCopy];
+//	[groups removeObject: viewModel];
+//	self.groups = [groups copy];
+	
+	NSMutableArray *allGroups = [self.allGroups mutableCopy];
+	[allGroups removeObject: viewModel];
+	self.allGroups = allGroups;
+	
+	[self filterGroupsWithString: self.filterString];
 	
 	[self.groupService deleteGroup: viewModel.group];
 }
@@ -84,9 +105,15 @@
 	DBGroupViewModel *viewModel = [self generateGroupViewModel];
 	viewModel.group = group;
 	
-	NSMutableArray *groups = [self.groups mutableCopy];
-	[groups addObject: viewModel];
-	self.groups = [groups copy];
+//	NSMutableArray *groups = [self.groups mutableCopy];
+//	[groups addObject: viewModel];
+//	self.groups = [groups copy];
+	
+	NSMutableArray *allGroups = [self.allGroups mutableCopy];
+	[allGroups addObject: viewModel];
+	self.allGroups = [allGroups copy];
+	
+	[self filterGroupsWithString: self.filterString];
 	
 	return viewModel;
 }
@@ -103,7 +130,15 @@
 
 - (void) populateGroups
 {
-	self.allGroups = [self.groupService getAllActive];
+	NSArray *groups = [self.groupService getAllActive];
+	
+	self.allGroups = [[[groups objectEnumerator] select:^DBGroupViewModel *(Group *group) {
+		
+		DBGroupViewModel *viewModel = [self generateGroupViewModel];
+		viewModel.group = group;
+		return viewModel;
+		
+	}] allObjects ];
 }
 
 @end

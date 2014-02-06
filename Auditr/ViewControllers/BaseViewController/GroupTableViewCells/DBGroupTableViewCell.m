@@ -10,12 +10,13 @@
 #import "DBGroupViewModel.h"
 #import <ReactiveCocoa/RACEXTScope.h>
 #import <QuartzCore/QuartzCore.h>
+#import "UIImage+Scaling.h"
 
 @interface DBGroupTableViewCell()
 
 @property (nonatomic, strong) NSMutableArray *disposables;
 @property (nonatomic, strong) IBOutlet UILabel *groupNameLabel;
-@property (nonatomic, strong) IBOutlet UIImageView *imageView;
+@property (nonatomic, strong) IBOutlet UIImageView *thumbnailImageView;
 @property (nonatomic, strong) IBOutlet UIView *imageHolderView;
 
 @end
@@ -39,7 +40,8 @@
 
 - (void) styleImageView
 {
-	self.imageView.layer.cornerRadius = self.imageView.frame.size.width * 0.5;
+	self.thumbnailImageView.layer.cornerRadius = self.thumbnailImageView.frame.size.width * 0.5;
+	self.thumbnailImageView.clipsToBounds = YES;
 	self.imageHolderView.layer.cornerRadius = self.imageHolderView.frame.size.width * 0.5;
 	[self.imageHolderView setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"imageBackground"]]];
 }
@@ -56,7 +58,8 @@
 			[self dispose];
 			
 			[self.groupNameLabel setText: viewModel.groupName];
-			[self.imageView setImage: viewModel.image];
+			[self loadThumbnailWithImage: viewModel.thumbnail];
+
 			
 			[self applyGroupBindings];
 		}
@@ -75,14 +78,20 @@
 	[self.disposables addObject: groupNameDisposable];
 
 	
-	RACDisposable *imageDisposable = [[RACObserve(self.viewModel, image) distinctUntilChanged] subscribeNext:^(UIImage *image) {
-		
+	RACDisposable *imageDisposable = [[RACObserve(self.viewModel, thumbnail) distinctUntilChanged] subscribeNext:^(UIImage *image) {
+
 		@strongify(self);
-		[self.imageView setImage: image];
+		[self loadThumbnailWithImage: image];
 		
 	}];
 	
 	[self.disposables addObject: imageDisposable];
+}
+
+- (void) loadThumbnailWithImage: (UIImage *) image
+{
+	[self.thumbnailImageView setImage: image];
+	[self setNeedsLayout];
 }
 
 - (void) prepareForReuse

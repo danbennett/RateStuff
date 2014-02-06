@@ -91,9 +91,10 @@
                                                     <rect key="frame" x="20" y="8" width="28" height="28"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="vQz-9S-enh">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="vQz-9S-enh">
                                                             <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -114,7 +115,7 @@
                                         <connections>
                                             <outlet property="groupNameLabel" destination="E7X-xE-y8K" id="lHJ-fm-qB0"/>
                                             <outlet property="imageHolderView" destination="3eh-tg-9Eb" id="MMM-KB-pYL"/>
-                                            <outlet property="imageView" destination="vQz-9S-enh" id="UqG-wt-gue"/>
+                                            <outlet property="thumbnailImageView" destination="vQz-9S-enh" id="5Bf-FH-D9q"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
