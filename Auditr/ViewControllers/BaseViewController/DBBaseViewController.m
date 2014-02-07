@@ -91,11 +91,14 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 
 - (void) addTapGesture
 {
-	self.closeBurgerGesture =
-	[[UITapGestureRecognizer alloc] initWithTarget: self  action: @selector(openBurgerMenuTapped:)];
-	self.closeBurgerGesture.cancelsTouchesInView = NO;
-	self.closeBurgerGesture.delegate = self;
-	[self.containerView addGestureRecognizer: self.closeBurgerGesture];
+	if ([self.containerView.gestureRecognizers indexOfObject: self.closeBurgerGesture] == NSNotFound)
+	{
+		self.closeBurgerGesture =
+		[[UITapGestureRecognizer alloc] initWithTarget: self  action: @selector(openBurgerMenuTapped:)];
+		self.closeBurgerGesture.cancelsTouchesInView = NO;
+		self.closeBurgerGesture.delegate = self;
+		[self.containerView addGestureRecognizer: self.closeBurgerGesture];
+	}
 }
 
 - (void) openBurgerMenuTapped: (UITapGestureRecognizer *) gesture

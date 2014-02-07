@@ -41,12 +41,15 @@
 	[RACObserve(self, area) subscribeNext:^(Area *area) {
 	
 		@strongify(self);
-		self.name = area.areaName;
-		[self createItemViewModels];
-		[self createRatingViewModels];
-		
-		[self createAreaBindings];
-		[self applyBindings];
+		if (area != nil)
+		{
+			self.name = area.areaName;
+			[self createItemViewModels];
+			[self createRatingViewModels];
+			
+			[self createAreaBindings];
+			[self applyBindings];
+		}
 	}];
 }
 

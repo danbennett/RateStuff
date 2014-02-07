@@ -77,6 +77,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="250" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" id="g98-dT-qs9">
+                                                    <rect key="frame" x="0.0" y="0.0" width="250" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" white="0.095136088709677422" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                                 <view contentMode="scaleToFill" id="fd0-ZN-68K">
                                                     <rect key="frame" x="0.0" y="42" width="250" height="2"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -112,9 +117,11 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.25882352941176467" green="0.25490196078431371" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="groupNameLabel" destination="E7X-xE-y8K" id="lHJ-fm-qB0"/>
                                             <outlet property="imageHolderView" destination="3eh-tg-9Eb" id="MMM-KB-pYL"/>
+                                            <outlet property="selectedBackgroundView" destination="g98-dT-qs9" id="pjr-V9-KwS"/>
                                             <outlet property="thumbnailImageView" destination="vQz-9S-enh" id="5Bf-FH-D9q"/>
                                         </connections>
                                     </tableViewCell>
