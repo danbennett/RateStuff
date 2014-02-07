@@ -13,6 +13,7 @@
 #import "DBGroupService.h"
 #import "DBEditGroupViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import <Parse/Parse.h>
 
 @interface DBHomeViewController ()
 

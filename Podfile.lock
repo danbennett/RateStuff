@@ -1,7 +1,12 @@
 PODS:
+  - Facebook-iOS-SDK (3.12.0)
   - GPUImage (0.1.2)
-  - MagicalRecord (2.2)
+  - MagicalRecord (2.2):
+    - MagicalRecord/Core
+  - MagicalRecord/Core (2.2)
   - NSEnumeratorLinq (0.2.5)
+  - Parse-iOS-SDK (1.2.18):
+    - Facebook-iOS-SDK (~> 3.7)
   - ReactiveCocoa (2.1.8):
     - ReactiveCocoa/Core
     - ReactiveCocoa/no-arc
@@ -14,13 +19,16 @@ DEPENDENCIES:
   - GPUImage (~> 0.1.2)
   - MagicalRecord (~> 2.2)
   - NSEnumeratorLinq (~> 0.2.2)
+  - Parse-iOS-SDK (~> 1.2.18)
   - ReactiveCocoa (~> 2.1.7)
   - Typhoon (~> 1.6.3)
 
 SPEC CHECKSUMS:
+  Facebook-iOS-SDK: c09f7d80db5c48170ff834bc03ebe774c49d1f5b
   GPUImage: 007145faa0e27f1ddbcab93e07f026c9776e2fa2
-  MagicalRecord: b1fc46c99a9749fe7fe7e6f43a89b62ef5201933
+  MagicalRecord: 95d49d74ef752cd52f6ad87bcb474817fc3978cf
   NSEnumeratorLinq: 7e03b5e443d786deec9a9732fd8180603b12910e
+  Parse-iOS-SDK: 48bfd538a107b6e1f29eebe59fa80c0f0b844dd1
   ReactiveCocoa: 0db710a0afa1c627a64470e5c912a3870d4854ae
   Typhoon: d36ca4b0bffc24af3ef6e375353682df8fef35d1
 

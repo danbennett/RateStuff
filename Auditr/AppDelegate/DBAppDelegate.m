@@ -8,6 +8,7 @@
 
 #import "DBAppDelegate.h"
 #import "DBCoreDataManager.h"
+#import <Parse/Parse.h>
 
 @implementation DBAppDelegate
 
@@ -18,6 +19,9 @@
 	[self setupCoreData];
 	
 	[self styleNavBar];
+	
+	[Parse setApplicationId:@"ge24MCp9xtDG4InnN2Go9urngFgxqNNNaHqCyp7d"
+				  clientKey:@"3ejBaXGxVmy8ZBckJFg5jcOyMvsqTRCIZWnDp8BL"];
 	
     return YES;
 }
