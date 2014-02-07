@@ -205,6 +205,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" id="YqH-Nq-3F4">
+                                <rect key="frame" x="0.0" y="64" width="320" height="200"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="zUw-ef-fw5">
+                                        <rect key="frame" x="0.0" y="196" width="320" height="4"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="0.22" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.30196078430000001" green="0.68627450980000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DnR-kk-OVP">
                                 <rect key="frame" x="0.0" y="269" width="320" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -215,20 +227,48 @@
                                     <action selector="addNewGroupTapped:" destination="fFy-t2-Fho" eventType="touchUpInside" id="Cdz-ET-yMv"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" id="VP6-Ib-KbR">
+                                <rect key="frame" x="80" y="79" width="160" height="160"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="D6i-Pv-Vdi">
+                                        <rect key="frame" x="10" y="10" width="140" height="140"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.81130292338709686" alpha="0.54000000000000004" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="NkR-6Z-zQJ">
-                        <barButtonItem key="rightBarButtonItem" image="burgerIcon" id="10u-qK-5xk">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="burgerButtonTapped:" destination="fFy-t2-Fho" id="BTV-hY-5Vw"/>
-                            </connections>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="DbR-oQ-efj">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="81q-lr-krb">
+                                <rect key="frame" x="16" y="8" width="28" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="cogIcon">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Dpd-9D-uaI">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ySz-p5-5eT">
+                                <rect key="frame" x="282" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="burgerIcon">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="burgerButtonTapped:" destination="fFy-t2-Fho" eventType="touchUpInside" id="Uzr-Bt-qNZ"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="burgerButton" destination="10u-qK-5xk" id="BY7-wv-gwD"/>
+                        <outlet property="profileBackgroundView" destination="YqH-Nq-3F4" id="oJs-MI-n7x"/>
+                        <outlet property="profileImageView" destination="D6i-Pv-Vdi" id="Mt1-of-FUV"/>
+                        <outlet property="profileImageViewHolder" destination="VP6-Ib-KbR" id="n4M-OH-N3w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VUc-7c-dNK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -277,7 +317,7 @@
                                                         <rect key="frame" x="0.0" y="148" width="320" height="258"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.28999999999999998" colorSpace="calibratedRGB"/>
-                                                        <view key="tableHeaderView" contentMode="scaleToFill" id="iev-e0-INc">
+                                                        <view key="tableHeaderView" contentMode="scaleToFill" id="iev-e0-INc" customClass="DBAreaTableHeaderView">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                             <subviews>
@@ -289,7 +329,7 @@
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Areas:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hXB-6c-xoT">
                                                                     <rect key="frame" x="20" y="11" width="280" height="21"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -297,8 +337,11 @@
                                                                 </label>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <connections>
+                                                                <outlet property="areasLabel" destination="hXB-6c-xoT" id="qe2-Vr-qEP"/>
+                                                            </connections>
                                                         </view>
-                                                        <view key="tableFooterView" contentMode="scaleToFill" id="id0-Eb-biH">
+                                                        <view key="tableFooterView" contentMode="scaleToFill" id="id0-Eb-biH" customClass="DBAreaTableFooterView">
                                                             <rect key="frame" x="0.0" y="110" width="320" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                             <subviews>
@@ -328,6 +371,9 @@
                                                                 </button>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <connections>
+                                                                <outlet property="addAreaLabel" destination="jSo-F0-lmo" id="xdP-Pn-72W"/>
+                                                            </connections>
                                                         </view>
                                                         <prototypes>
                                                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DBAreaCell" id="fGq-pD-c7N" customClass="DBAreaTableViewCell">
@@ -476,6 +522,7 @@
         <image name="bluePlusIcon" width="23" height="23"/>
         <image name="burgerIcon" width="22" height="22"/>
         <image name="cameraIcon" width="19" height="14"/>
+        <image name="cogIcon" width="28" height="28"/>
         <image name="darkLogo" width="149" height="27"/>
         <image name="largePlusIcon" width="20" height="20"/>
     </resources>

@@ -12,9 +12,13 @@
 #import  <Typhoon/Typhoon.h>
 #import "DBGroupService.h"
 #import "DBEditGroupViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface DBHomeViewController ()
 
+@property (nonatomic, strong) IBOutlet UIView *profileBackgroundView;
+@property (nonatomic, strong) IBOutlet UIView *profileImageViewHolder;
+@property (nonatomic, strong) IBOutlet UIImageView *profileImageView;
 @property (nonatomic, strong) DBHomeViewModel *viewModel;
 
 @end
@@ -24,6 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	[self styleProfileView];
 	
 	DBAssembly *factory = (DBAssembly *)[TyphoonAssembly defaultAssembly];
 	
@@ -34,10 +39,32 @@
 	[self applyBindings];
 }
 
+#pragma mark - Style profile views.
+
+- (void) styleProfileView
+{
+	self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width * 0.5;
+	self.profileImageView.layer.borderColor = [[UIColor whiteColor] CGColor];
+	self.profileImageView.layer.borderWidth = 4.0f;
+	self.profileImageView.layer.shadowColor = [[UIColor grayColor] CGColor];
+	self.profileImageView.layer.shadowOpacity = 0.8f;
+	self.profileImageView.layer.shadowOffset = CGSizeMake(0.0, 1.0f);
+//	self.profileImageView.clipsToBounds = YES;
+	[self.profileImageView setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"imageBackground"]]];
+	
+	self.profileImageViewHolder.layer.cornerRadius = self.profileImageViewHolder.frame.size.width * 0.5;
+	self.profileImageViewHolder.clipsToBounds = YES;
+	[self.profileBackgroundView setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"topBarBackground"]]];
+}
+
+#pragma mark - Bindings.
+
 - (void) applyBindings
 {
-	RAC(self, title) = RACObserve(self.viewModel, title);
+
 }
+
+#pragma mark - Tap actions.
 
 - (IBAction) burgerButtonTapped: (UIBarButtonItem *)sender
 {

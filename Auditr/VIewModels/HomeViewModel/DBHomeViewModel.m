@@ -13,7 +13,6 @@
 @interface DBHomeViewModel()
 
 @property (nonatomic, strong) id<DBGroupService> groupService;
-@property (nonatomic, strong, readwrite) NSString *title;
 
 @end
 
@@ -25,7 +24,6 @@
     self = [super init];
     if (self)
 	{
-		self.title = @"Home";
 		self.groupService = groupService;
     }
     return self;

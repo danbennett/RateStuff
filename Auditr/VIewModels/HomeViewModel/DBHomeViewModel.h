@@ -12,7 +12,6 @@
 
 @interface DBHomeViewModel : NSObject
 
-@property (nonatomic, strong, readonly) NSString *title;
 - (id) initWithGroupService: (id<DBGroupService>) groupService;
 - (DBGroupViewModel *) newGroupViewModel;
 

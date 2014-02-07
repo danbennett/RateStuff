@@ -25,8 +25,15 @@ static NSString *const DBDefaultAreaName = @"New ratable area";
 - (void) awakeFromNib
 {
 	[super awakeFromNib];
+	[self styleLabel];
 	self.disposables = [NSMutableArray array];
 	[self applyBindings];
+}
+
+- (void) styleLabel
+{
+	UIFont *font = [UIFont fontWithName:@"Museo Sans" size: self.areaNameLabel.font.pointSize];
+	[self.areaNameLabel setFont: font];
 }
 
 - (void) applyBindings
