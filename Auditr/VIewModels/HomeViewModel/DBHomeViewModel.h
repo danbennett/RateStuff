@@ -9,10 +9,13 @@
 #import <Foundation/Foundation.h>
 @class DBGroupViewModel;
 @protocol DBGroupService;
+@protocol DBTwitterAuthService;
 
 @interface DBHomeViewModel : NSObject
 
-- (id) initWithGroupService: (id<DBGroupService>) groupService;
-- (DBGroupViewModel *) newGroupViewModel;
+- (id) initWithGroupService: (id<DBGroupService>) groupService
+				authService: (id<DBTwitterAuthService>) twitterAuthService;
+
+@property (nonatomic, strong, readonly) RACCommand *loginCommand;
 
 @end

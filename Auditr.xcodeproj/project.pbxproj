@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		56FAB8E02F294CD5B4B756D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57E10E887FAB429BA7FD4567 /* libPods.a */; };
 		FF0F15D318A1B3010047276E /* DBGroupTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0F15D218A1B3010047276E /* DBGroupTableFooterView.m */; };
+		FF10B6F918A9762500556DC9 /* DBTwitterServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FF10B6F818A9762500556DC9 /* DBTwitterServiceClient.m */; };
 		FF2454FE189EBD0400690DC1 /* EditAreaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF2454FD189EBD0400690DC1 /* EditAreaView.xib */; };
 		FF245509189EEB9900690DC1 /* DBAreaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF245508189EEB9900690DC1 /* DBAreaTableViewCell.m */; };
 		FF24550D189EF3B800690DC1 /* DBAreaService.m in Sources */ = {isa = PBXBuildFile; fileRef = FF24550C189EF3B800690DC1 /* DBAreaService.m */; };
@@ -27,7 +28,6 @@
 		FF3DC131189D4B2A001974E0 /* DBItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC130189D4B2A001974E0 /* DBItemViewModel.m */; };
 		FF3DC135189D9195001974E0 /* DBImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC134189D9195001974E0 /* DBImagePickerViewController.m */; };
 		FF3DC138189DA310001974E0 /* UIImage+Effects.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC137189DA310001974E0 /* UIImage+Effects.m */; };
-		FF429B431859118B00048B17 /* Auditr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF429B411859118B00048B17 /* Auditr.xcdatamodeld */; };
 		FF43770D189C886600A019E3 /* _Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = FF43770A189C886600A019E3 /* _Profile.m */; };
 		FF43770E189C886600A019E3 /* _Rating.m in Sources */ = {isa = PBXBuildFile; fileRef = FF43770C189C886600A019E3 /* _Rating.m */; };
 		FF437713189C887000A019E3 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = FF437710189C887000A019E3 /* Profile.m */; };
@@ -47,6 +47,8 @@
 		FF8EE8A318567A320036BE27 /* AuditrTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8EE8A218567A320036BE27 /* AuditrTests.m */; };
 		FF8EE8B018567AF70036BE27 /* auditr.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EE8AF18567AF70036BE27 /* auditr.storyboard */; };
 		FF8EE8B8185687AB0036BE27 /* DBHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8EE8B7185687AB0036BE27 /* DBHomeViewController.m */; };
+		FFB41EB918A5BEB400549DC8 /* DBUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB41EB818A5BEB400549DC8 /* DBUserService.m */; };
+		FFB41EC218A5C40900549DC8 /* DBTwitterAuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB41EC118A5C40900549DC8 /* DBTwitterAuthService.m */; };
 		FFB7B46718A45F1300F61D42 /* DBAreaTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB7B46618A45F1300F61D42 /* DBAreaTableFooterView.m */; };
 		FFB7B46A18A4603C00F61D42 /* DBAreaTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB7B46918A4603C00F61D42 /* DBAreaTableHeaderView.m */; };
 		FFBBA8AA185694B200C8BCBE /* DBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBBA8A9185694B200C8BCBE /* DBAppDelegate.m */; };
@@ -61,6 +63,16 @@
 		FFC3876218591A7E00A09D01 /* DBBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC3876118591A7E00A09D01 /* DBBaseViewController.m */; };
 		FFC3876918591D0400A09D01 /* DBGroupService.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC3876818591D0400A09D01 /* DBGroupService.m */; };
 		FFC3876C18591D2800A09D01 /* DBGroupCoreDataRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC3876B18591D2800A09D01 /* DBGroupCoreDataRepository.m */; };
+		FFE5102318A977AA00A506CE /* TwitterSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFE5102218A977AA00A506CE /* TwitterSettings.plist */; };
+		FFE5102718A978C600A506CE /* DBTwitterSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = FFE5102618A978C600A506CE /* DBTwitterSettings.m */; };
+		FFE5102918A984AB00A506CE /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFE5102818A984AB00A506CE /* Twitter.framework */; };
+		FFE5102B18A984BC00A506CE /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFE5102A18A984BC00A506CE /* Accounts.framework */; };
+		FFE5102D18A9917200A506CE /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFE5102C18A9917200A506CE /* Social.framework */; };
+		FFE5103118ABF7C500A506CE /* DBSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFE5103018ABF7C500A506CE /* DBSettingsViewController.m */; };
+		FFE5103518ABF96000A506CE /* DBSettingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFE5103418ABF96000A506CE /* DBSettingsViewModel.m */; };
+		FFEACA3518AC1BA4001A38F3 /* DBSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FFEACA3418AC1BA4001A38F3 /* DBSettingsTableViewCell.m */; };
+		FFEACA3918AC1C91001A38F3 /* DBSettingsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFEACA3818AC1C91001A38F3 /* DBSettingsHeaderView.m */; };
+		FFEACA3C18AC2BC1001A38F3 /* DBHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FFEACA3B18AC2BC1001A38F3 /* DBHTTPClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +90,8 @@
 		EFD209048DBD47D98CAFD2F1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		FF0F15D118A1B3010047276E /* DBGroupTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBGroupTableFooterView.h; sourceTree = "<group>"; };
 		FF0F15D218A1B3010047276E /* DBGroupTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBGroupTableFooterView.m; sourceTree = "<group>"; };
+		FF10B6F718A9762500556DC9 /* DBTwitterServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBTwitterServiceClient.h; sourceTree = "<group>"; };
+		FF10B6F818A9762500556DC9 /* DBTwitterServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBTwitterServiceClient.m; sourceTree = "<group>"; };
 		FF2454FD189EBD0400690DC1 /* EditAreaView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditAreaView.xib; sourceTree = "<group>"; };
 		FF245507189EEB9900690DC1 /* DBAreaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAreaTableViewCell.h; sourceTree = "<group>"; };
 		FF245508189EEB9900690DC1 /* DBAreaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAreaTableViewCell.m; sourceTree = "<group>"; };
@@ -113,7 +127,6 @@
 		FF3DC134189D9195001974E0 /* DBImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBImagePickerViewController.m; sourceTree = "<group>"; };
 		FF3DC136189DA310001974E0 /* UIImage+Effects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Effects.h"; sourceTree = "<group>"; };
 		FF3DC137189DA310001974E0 /* UIImage+Effects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Effects.m"; sourceTree = "<group>"; };
-		FF429B421859118B00048B17 /* Auditr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Auditr.xcdatamodel; sourceTree = "<group>"; };
 		FF437709189C886600A019E3 /* _Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Profile.h; sourceTree = "<group>"; };
 		FF43770A189C886600A019E3 /* _Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Profile.m; sourceTree = "<group>"; };
 		FF43770B189C886600A019E3 /* _Rating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Rating.h; sourceTree = "<group>"; };
@@ -140,6 +153,10 @@
 		FF8EE8AF18567AF70036BE27 /* auditr.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = auditr.storyboard; sourceTree = "<group>"; };
 		FF8EE8B6185687AB0036BE27 /* DBHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHomeViewController.h; sourceTree = "<group>"; };
 		FF8EE8B7185687AB0036BE27 /* DBHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHomeViewController.m; sourceTree = "<group>"; };
+		FFB41EB718A5BEB400549DC8 /* DBUserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUserService.h; sourceTree = "<group>"; };
+		FFB41EB818A5BEB400549DC8 /* DBUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUserService.m; sourceTree = "<group>"; };
+		FFB41EC018A5C40900549DC8 /* DBTwitterAuthService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBTwitterAuthService.h; sourceTree = "<group>"; };
+		FFB41EC118A5C40900549DC8 /* DBTwitterAuthService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBTwitterAuthService.m; sourceTree = "<group>"; };
 		FFB7B46518A45F1300F61D42 /* DBAreaTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAreaTableFooterView.h; sourceTree = "<group>"; };
 		FFB7B46618A45F1300F61D42 /* DBAreaTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAreaTableFooterView.m; sourceTree = "<group>"; };
 		FFB7B46818A4603C00F61D42 /* DBAreaTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAreaTableHeaderView.h; sourceTree = "<group>"; };
@@ -170,6 +187,22 @@
 		FFC3876A18591D2800A09D01 /* DBGroupCoreDataRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBGroupCoreDataRepository.h; sourceTree = "<group>"; };
 		FFC3876B18591D2800A09D01 /* DBGroupCoreDataRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBGroupCoreDataRepository.m; sourceTree = "<group>"; };
 		FFC3876D18591EAC00A09D01 /* DBGroupRepository.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBGroupRepository.h; sourceTree = "<group>"; };
+		FFE5102218A977AA00A506CE /* TwitterSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TwitterSettings.plist; sourceTree = "<group>"; };
+		FFE5102518A978C600A506CE /* DBTwitterSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBTwitterSettings.h; sourceTree = "<group>"; };
+		FFE5102618A978C600A506CE /* DBTwitterSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBTwitterSettings.m; sourceTree = "<group>"; };
+		FFE5102818A984AB00A506CE /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		FFE5102A18A984BC00A506CE /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		FFE5102C18A9917200A506CE /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		FFE5102F18ABF7C500A506CE /* DBSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBSettingsViewController.h; sourceTree = "<group>"; };
+		FFE5103018ABF7C500A506CE /* DBSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBSettingsViewController.m; sourceTree = "<group>"; };
+		FFE5103318ABF96000A506CE /* DBSettingsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBSettingsViewModel.h; sourceTree = "<group>"; };
+		FFE5103418ABF96000A506CE /* DBSettingsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBSettingsViewModel.m; sourceTree = "<group>"; };
+		FFEACA3318AC1BA4001A38F3 /* DBSettingsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBSettingsTableViewCell.h; sourceTree = "<group>"; };
+		FFEACA3418AC1BA4001A38F3 /* DBSettingsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBSettingsTableViewCell.m; sourceTree = "<group>"; };
+		FFEACA3718AC1C91001A38F3 /* DBSettingsHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBSettingsHeaderView.h; sourceTree = "<group>"; };
+		FFEACA3818AC1C91001A38F3 /* DBSettingsHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBSettingsHeaderView.m; sourceTree = "<group>"; };
+		FFEACA3A18AC2BC1001A38F3 /* DBHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHTTPClient.h; sourceTree = "<group>"; };
+		FFEACA3B18AC2BC1001A38F3 /* DBHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHTTPClient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +210,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFE5102D18A9917200A506CE /* Social.framework in Frameworks */,
+				FFE5102B18A984BC00A506CE /* Accounts.framework in Frameworks */,
+				FFE5102918A984AB00A506CE /* Twitter.framework in Frameworks */,
 				FF8EE87A18567A320036BE27 /* CoreGraphics.framework in Frameworks */,
 				FF8EE87E18567A320036BE27 /* CoreData.framework in Frameworks */,
 				FF8EE87C18567A320036BE27 /* UIKit.framework in Frameworks */,
@@ -199,6 +235,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FF10B6F618A9761300556DC9 /* ServiceClients */ = {
+			isa = PBXGroup;
+			children = (
+				FFEACA3A18AC2BC1001A38F3 /* DBHTTPClient.h */,
+				FFEACA3B18AC2BC1001A38F3 /* DBHTTPClient.m */,
+				FF10B6F718A9762500556DC9 /* DBTwitterServiceClient.h */,
+				FF10B6F818A9762500556DC9 /* DBTwitterServiceClient.m */,
+			);
+			path = ServiceClients;
+			sourceTree = "<group>";
+		};
 		FF2454FC189EBCDE00690DC1 /* Nibs */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				FF26ACFE18A1B08A00A1BBE3 /* Fonts */,
+				FFE5102118A9779900A506CE /* Settings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -289,6 +337,7 @@
 				FF3DC122189D2EC4001974E0 /* GroupViewModel */,
 				FF3DC11A189D2B9A001974E0 /* HomeViewModel */,
 				FF3DC12E189D4B2A001974E0 /* ItemViewModel */,
+				FFE5103218ABF95500A506CE /* SettingsViewModel */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -370,6 +419,9 @@
 		FF8EE87618567A320036BE27 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FFE5102C18A9917200A506CE /* Social.framework */,
+				FFE5102A18A984BC00A506CE /* Accounts.framework */,
+				FFE5102818A984AB00A506CE /* Twitter.framework */,
 				FF8EE87718567A320036BE27 /* Foundation.framework */,
 				FF8EE87918567A320036BE27 /* CoreGraphics.framework */,
 				FF8EE87B18567A320036BE27 /* UIKit.framework */,
@@ -391,6 +443,8 @@
 				FF3DC115189D2B9A001974E0 /* ViewModels */,
 				FF8EE8AE18567AF70036BE27 /* ViewControllers */,
 				FFBBA8B01856956200C8BCBE /* Services */,
+				FF10B6F618A9761300556DC9 /* ServiceClients */,
+				FFE5102418A978BA00A506CE /* Settings */,
 				FFBBA8AC185694D800C8BCBE /* Model */,
 				FF3D7439189C55AC00294D6F /* Managers */,
 				FF8EE88018567A320036BE27 /* Supporting Files */,
@@ -436,6 +490,7 @@
 				FF8EE8B5185687980036BE27 /* GroupsViewController */,
 				FF3DC132189D917B001974E0 /* ImagePickerController */,
 				FF8EE8AF18567AF70036BE27 /* auditr.storyboard */,
+				FFE5102E18ABF7B500A506CE /* SettingsViewController */,
 				FF2454FC189EBCDE00690DC1 /* Nibs */,
 			);
 			path = ViewControllers;
@@ -473,7 +528,6 @@
 				FF437710189C887000A019E3 /* Profile.m */,
 				FF437711189C887000A019E3 /* Rating.h */,
 				FF437712189C887000A019E3 /* Rating.m */,
-				FF429B411859118B00048B17 /* Auditr.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -496,6 +550,10 @@
 				FFC3876818591D0400A09D01 /* DBGroupService.m */,
 				FF24550B189EF3B800690DC1 /* DBAreaService.h */,
 				FF24550C189EF3B800690DC1 /* DBAreaService.m */,
+				FFB41EB718A5BEB400549DC8 /* DBUserService.h */,
+				FFB41EB818A5BEB400549DC8 /* DBUserService.m */,
+				FFB41EC018A5C40900549DC8 /* DBTwitterAuthService.h */,
+				FFB41EC118A5C40900549DC8 /* DBTwitterAuthService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -547,6 +605,53 @@
 				FFC3876118591A7E00A09D01 /* DBBaseViewController.m */,
 			);
 			path = BaseViewController;
+			sourceTree = "<group>";
+		};
+		FFE5102118A9779900A506CE /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FFE5102218A977AA00A506CE /* TwitterSettings.plist */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		FFE5102418A978BA00A506CE /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FFE5102518A978C600A506CE /* DBTwitterSettings.h */,
+				FFE5102618A978C600A506CE /* DBTwitterSettings.m */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		FFE5102E18ABF7B500A506CE /* SettingsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FFEACA3218AC1B89001A38F3 /* SettingsTableViewCell */,
+				FFE5102F18ABF7C500A506CE /* DBSettingsViewController.h */,
+				FFE5103018ABF7C500A506CE /* DBSettingsViewController.m */,
+			);
+			path = SettingsViewController;
+			sourceTree = "<group>";
+		};
+		FFE5103218ABF95500A506CE /* SettingsViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FFE5103318ABF96000A506CE /* DBSettingsViewModel.h */,
+				FFE5103418ABF96000A506CE /* DBSettingsViewModel.m */,
+			);
+			path = SettingsViewModel;
+			sourceTree = "<group>";
+		};
+		FFEACA3218AC1B89001A38F3 /* SettingsTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				FFEACA3318AC1BA4001A38F3 /* DBSettingsTableViewCell.h */,
+				FFEACA3418AC1BA4001A38F3 /* DBSettingsTableViewCell.m */,
+				FFEACA3718AC1C91001A38F3 /* DBSettingsHeaderView.h */,
+				FFEACA3818AC1C91001A38F3 /* DBSettingsHeaderView.m */,
+			);
+			path = SettingsTableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -632,6 +737,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF8EE8B018567AF70036BE27 /* auditr.storyboard in Resources */,
+				FFE5102318A977AA00A506CE /* TwitterSettings.plist in Resources */,
 				FF26AD0018A1B08A00A1BBE3 /* MuseoSans_500.otf in Resources */,
 				FF8EE88418567A320036BE27 /* InfoPlist.strings in Resources */,
 				FF8EE88F18567A320036BE27 /* Images.xcassets in Resources */,
@@ -702,15 +808,19 @@
 			files = (
 				FF24550D189EF3B800690DC1 /* DBAreaService.m in Sources */,
 				FFC3875E1859188100A09D01 /* _Item.m in Sources */,
+				FF10B6F918A9762500556DC9 /* DBTwitterServiceClient.m in Sources */,
 				FF43770E189C886600A019E3 /* _Rating.m in Sources */,
+				FFE5102718A978C600A506CE /* DBTwitterSettings.m in Sources */,
 				FFC387541859184400A09D01 /* Item.m in Sources */,
 				FFC387531859184400A09D01 /* Group.m in Sources */,
 				FF3D743C189C55BA00294D6F /* DBCoreDataManager.m in Sources */,
 				FF3DC114189D1685001974E0 /* DBEditGroupViewController.m in Sources */,
 				FF3DC135189D9195001974E0 /* DBImagePickerViewController.m in Sources */,
+				FFB41EB918A5BEB400549DC8 /* DBUserService.m in Sources */,
 				FF3DC125189D2ED6001974E0 /* DBGroupViewModel.m in Sources */,
 				FF3DC11D189D2B9A001974E0 /* DBBaseViewModel.m in Sources */,
 				FF437714189C887000A019E3 /* Rating.m in Sources */,
+				FFEACA3C18AC2BC1001A38F3 /* DBHTTPClient.m in Sources */,
 				FFC387521859184400A09D01 /* Area.m in Sources */,
 				FF245514189F01A300690DC1 /* NSString+Extensions.m in Sources */,
 				FF3DC138189DA310001974E0 /* UIImage+Effects.m in Sources */,
@@ -722,15 +832,19 @@
 				FF8EE88618567A320036BE27 /* main.m in Sources */,
 				FF437713189C887000A019E3 /* Profile.m in Sources */,
 				FFB7B46A18A4603C00F61D42 /* DBAreaTableHeaderView.m in Sources */,
-				FF429B431859118B00048B17 /* Auditr.xcdatamodeld in Sources */,
 				FF3D7435189C40E800294D6F /* UIView+Animations.m in Sources */,
 				FF3DC11E189D2B9A001974E0 /* DBHomeViewModel.m in Sources */,
 				FFBBA8B81856996F00C8BCBE /* DBAssembly.m in Sources */,
+				FFEACA3918AC1C91001A38F3 /* DBSettingsHeaderView.m in Sources */,
 				FFC3876918591D0400A09D01 /* DBGroupService.m in Sources */,
 				FF245511189EF43500690DC1 /* DBAreaCoreDataRepository.m in Sources */,
 				FF0F15D318A1B3010047276E /* DBGroupTableFooterView.m in Sources */,
+				FFB41EC218A5C40900549DC8 /* DBTwitterAuthService.m in Sources */,
+				FFE5103118ABF7C500A506CE /* DBSettingsViewController.m in Sources */,
 				FF26ACFC18A1806200A1BBE3 /* DBGroupTableViewCell.m in Sources */,
+				FFE5103518ABF96000A506CE /* DBSettingsViewModel.m in Sources */,
 				FF3DC129189D31CD001974E0 /* DBAreaViewModel.m in Sources */,
+				FFEACA3518AC1BA4001A38F3 /* DBSettingsTableViewCell.m in Sources */,
 				FFC3876218591A7E00A09D01 /* DBBaseViewController.m in Sources */,
 				FFC3876C18591D2800A09D01 /* DBGroupCoreDataRepository.m in Sources */,
 				FF3DC131189D4B2A001974E0 /* DBItemViewModel.m in Sources */,
@@ -962,19 +1076,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		FF429B411859118B00048B17 /* Auditr.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				FF429B421859118B00048B17 /* Auditr.xcdatamodel */,
-			);
-			currentVersion = FF429B421859118B00048B17 /* Auditr.xcdatamodel */;
-			path = Auditr.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = FF8EE86C18567A320036BE27 /* Project object */;
 }

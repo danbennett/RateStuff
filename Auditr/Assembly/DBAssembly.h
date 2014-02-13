@@ -13,5 +13,6 @@
 
 - (id) groupService;
 - (id) areaService;
+- (id) twitterAuthService;
 
 @end

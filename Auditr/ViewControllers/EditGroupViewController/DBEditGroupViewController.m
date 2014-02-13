@@ -170,7 +170,7 @@ static const float areaTableViewY = 147.0f;
 	}];
 	
 	@weakify(self);
-	[self.viewModel.saveCommand.executionSignals subscribeNext:^(id signal) {
+	[self.viewModel.saveCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		
 		[signal subscribeError:^(NSError *error) {
 

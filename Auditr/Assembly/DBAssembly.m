@@ -10,9 +10,14 @@
 // Services.
 #import "DBGroupService.h"
 #import "DBAreaService.h"
+#import "DBTwitterAuthService.h"
 // Repos.
 #import "DBGroupCoreDataRepository.h"
 #import "DBAreaCoreDataRepository.h"
+// Service clients.
+#import "DBTwitterServiceClient.h"
+// Settings.
+#import "DBTwitterSettings.h"
 
 @implementation DBAssembly
 
@@ -47,6 +52,20 @@
 	}];
 }
 
+- (id) twitterAuthService
+{
+	return [TyphoonDefinition withClass: [DBTwitterAuthService class] initialization:^(TyphoonInitializer *initializer) {
+		
+		initializer.selector = @selector(initWithServiceClient:);
+		[initializer injectWithDefinition: [self twitterServiceClient]];
+		
+	} properties:^(TyphoonDefinition *definition) {
+		
+		[definition setScope: TyphoonScopeSingleton];
+		
+	}];
+}
+
 #pragma mark - repos
 
 - (id) groupRepository
@@ -61,6 +80,24 @@
 - (id) areaRepository
 {
 	return [TyphoonDefinition withClass: [DBAreaCoreDataRepository class] properties:^(TyphoonDefinition *definition) {
+		
+		[definition setScope: TyphoonScopeSingleton];
+		
+	}];
+}
+
+#pragma mark - service client
+
+- (id) twitterServiceClient
+{
+	return [TyphoonDefinition withClass: [DBTwitterServiceClient class] initialization:^(TyphoonInitializer *initializer) {
+		
+		DBTwitterSettings *settings = [DBTwitterSettings sharedInstance];
+		
+		initializer.selector = @selector(initWithBaseUrl:);
+		[initializer injectWithObjectInstance: settings.baseUrl];
+		
+	} properties:^(TyphoonDefinition *definition) {
 		
 		[definition setScope: TyphoonScopeSingleton];
 		

@@ -23,6 +23,8 @@
 	[Parse setApplicationId:@"ge24MCp9xtDG4InnN2Go9urngFgxqNNNaHqCyp7d"
 				  clientKey:@"3ejBaXGxVmy8ZBckJFg5jcOyMvsqTRCIZWnDp8BL"];
 	
+	[PFUser enableAutomaticUser];
+	
     return YES;
 }
 

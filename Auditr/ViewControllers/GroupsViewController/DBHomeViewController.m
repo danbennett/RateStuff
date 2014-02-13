@@ -34,8 +34,9 @@
 	DBAssembly *factory = (DBAssembly *)[TyphoonAssembly defaultAssembly];
 	
 	id<DBGroupService> groupService = [factory groupService];
+	id<DBTwitterAuthService> twitterService = [factory twitterAuthService];
 	
-	self.viewModel = [[DBHomeViewModel alloc] initWithGroupService: groupService];
+	self.viewModel = [[DBHomeViewModel alloc] initWithGroupService: groupService authService: twitterService];
 	
 	[self applyBindings];
 }
@@ -62,7 +63,22 @@
 
 - (void) applyBindings
 {
+	[self.viewModel.loginCommand.executionSignals subscribeError:^(NSError *error) {
+		
+		float i = 0;
+		
+	} completed:^{
+		
+		float j = 0;
+		
+	}];
+}
 
+#pragma mark - Actions.
+
+- (IBAction) loginTapped: (UIButton *) sender
+{
+	[self performSegueWithIdentifier: @"settingsViewController" sender: self];
 }
 
 #pragma mark - Tap actions.
