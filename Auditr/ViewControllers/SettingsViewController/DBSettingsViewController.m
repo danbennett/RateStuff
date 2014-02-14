@@ -8,13 +8,13 @@
 
 #import "DBSettingsViewController.h"
 #import "DBSettingsViewModel.h"
-#import "DBTwitterAuthService.h"
+#import "DBProfileService.h"
+#import "DBProfileViewModel.h"
 #import "DBSettingsTableViewCell.h"
 
 @interface DBSettingsViewController ()
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) DBSettingsViewModel *viewModel;
 
 @end
 
@@ -27,11 +27,6 @@ static NSString *const SettingsTwitterDefaultLabel = @"Choose a twitter account.
 {
     [super viewDidLoad];
 	
-	DBAssembly *assembly = (DBAssembly *)[TyphoonAssembly defaultAssembly];
-	id<DBTwitterAuthService> twitterAuthService = [assembly twitterAuthService];
-	
-	self.viewModel = [[DBSettingsViewModel alloc] initWithTwitterAuthService: twitterAuthService];
-	
 	[self applyBindings];
 }
 
@@ -39,6 +34,8 @@ static NSString *const SettingsTwitterDefaultLabel = @"Choose a twitter account.
 
 - (void) applyBindings
 {
+	RAC(self, title) = RACObserve(self.viewModel, profileName);
+	
 	[self.viewModel.chooseTwitterAccountCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		
 		[signal subscribeNext:^(UIImage *profilePicture) {
@@ -79,7 +76,7 @@ static NSString *const SettingsTwitterDefaultLabel = @"Choose a twitter account.
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	DBSettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: DBSettingsTwitterCellId];
-	cell.valueLabel.text = self.viewModel.twitterUsername ? : SettingsTwitterDefaultLabel;
+//	cell.valueLabel.text = self.viewModel.twitterUsername ? : SettingsTwitterDefaultLabel;
 	return cell;
 }
 
@@ -89,7 +86,7 @@ static NSString *const SettingsTwitterDefaultLabel = @"Choose a twitter account.
 {
 	if (indexPath.row == 0)
 	{
-		[self.viewModel.chooseTwitterAccountCommand execute: [NSNull null]];
+//		[self.viewModel.chooseTwitterAccountCommand execute: [NSNull null]];
 	}
 	return indexPath;
 }

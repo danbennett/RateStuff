@@ -7,13 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-@protocol DBTwitterAuthService;
+@protocol DBProfileService;
+@class DBProfileViewModel;
 
 @interface DBSettingsViewModel : NSObject
 
 @property (nonatomic, strong, readonly) RACCommand *chooseTwitterAccountCommand;
 @property (nonatomic, strong, readonly) NSString *twitterUsername;
+@property (nonatomic, weak) DBProfileViewModel *profileViewModel;
 
-- (id) initWithTwitterAuthService: (id<DBTwitterAuthService>) twitterAuthService;
+- (id) initWithTwitterAuthService: (id<DBProfileService>) profileService;
 
 @end

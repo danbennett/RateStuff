@@ -8,7 +8,9 @@
 
 #import "DBBaseViewController.h"
 #import "DBHomeViewController.h"
+#import "DBSettingsViewController.h"
 #import "DBHomeViewModel.h"
+#import "DBProfileViewModel.h"
 #import  <Typhoon/Typhoon.h>
 #import "DBGroupService.h"
 #import "DBEditGroupViewController.h"
@@ -34,9 +36,9 @@
 	DBAssembly *factory = (DBAssembly *)[TyphoonAssembly defaultAssembly];
 	
 	id<DBGroupService> groupService = [factory groupService];
-	id<DBTwitterAuthService> twitterService = [factory twitterAuthService];
+	id<DBProfileService> profileService = [factory profileService];
 	
-	self.viewModel = [[DBHomeViewModel alloc] initWithGroupService: groupService authService: twitterService];
+	self.viewModel = [[DBHomeViewModel alloc] initWithGroupService: groupService authService: profileService];
 	
 	[self applyBindings];
 }
@@ -63,15 +65,7 @@
 
 - (void) applyBindings
 {
-	[self.viewModel.loginCommand.executionSignals subscribeError:^(NSError *error) {
-		
-		float i = 0;
-		
-	} completed:^{
-		
-		float j = 0;
-		
-	}];
+	
 }
 
 #pragma mark - Actions.
@@ -79,6 +73,17 @@
 - (IBAction) loginTapped: (UIButton *) sender
 {
 	[self performSegueWithIdentifier: @"settingsViewController" sender: self];
+}
+
+#pragma mark - Segue.
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([segue.identifier isEqualToString: @"settingsViewController"])
+	{
+		DBSettingsViewController *viewController = [segue destinationViewController];
+		viewController.viewModel = self.viewModel.profileViewModel;
+	}
 }
 
 #pragma mark - Tap actions.

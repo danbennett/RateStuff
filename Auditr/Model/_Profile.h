@@ -6,7 +6,8 @@
 
 extern const struct ProfileAttributes {
 	__unsafe_unretained NSString *email;
-	__unsafe_unretained NSString *id;
+	__unsafe_unretained NSString *profileId;
+	__unsafe_unretained NSString *profileImage;
 	__unsafe_unretained NSString *profileName;
 } ProfileAttributes;
 
@@ -18,6 +19,7 @@ extern const struct ProfileFetchedProperties {
 } ProfileFetchedProperties;
 
 @class Group;
+
 
 
 
@@ -46,11 +48,21 @@ extern const struct ProfileFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* id;
+@property (nonatomic, strong) NSString* profileId;
 
 
 
-//- (BOOL)validateId:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateProfileId:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSData* profileImage;
+
+
+
+//- (BOOL)validateProfileImage:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -94,8 +106,14 @@ extern const struct ProfileFetchedProperties {
 
 
 
-- (NSString*)primitiveId;
-- (void)setPrimitiveId:(NSString*)value;
+- (NSString*)primitiveProfileId;
+- (void)setPrimitiveProfileId:(NSString*)value;
+
+
+
+
+- (NSData*)primitiveProfileImage;
+- (void)setPrimitiveProfileImage:(NSData*)value;
 
 
 

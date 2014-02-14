@@ -13,6 +13,7 @@
 
 - (id) groupService;
 - (id) areaService;
-- (id) twitterAuthService;
+- (id) profileService;
+- (id) parseService;
 
 @end

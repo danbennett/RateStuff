@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class DBProfileViewModel;
 
 @interface DBSettingsViewController : UIViewController <UIBarPositioningDelegate, UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) DBProfileViewModel *viewModel;
 
 @end

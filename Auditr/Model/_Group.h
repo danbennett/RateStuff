@@ -9,6 +9,7 @@ extern const struct GroupAttributes {
 	__unsafe_unretained NSString *groupName;
 	__unsafe_unretained NSString *id;
 	__unsafe_unretained NSString *image;
+	__unsafe_unretained NSString *lastUpdated;
 	__unsafe_unretained NSString *softDeleted;
 } GroupAttributes;
 
@@ -24,6 +25,7 @@ extern const struct GroupFetchedProperties {
 @class Area;
 @class Item;
 @class Profile;
+
 
 
 
@@ -79,6 +81,16 @@ extern const struct GroupFetchedProperties {
 
 
 //- (BOOL)validateImage:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSDate* lastUpdated;
+
+
+
+//- (BOOL)validateLastUpdated:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -159,6 +171,12 @@ extern const struct GroupFetchedProperties {
 
 - (NSData*)primitiveImage;
 - (void)setPrimitiveImage:(NSData*)value;
+
+
+
+
+- (NSDate*)primitiveLastUpdated;
+- (void)setPrimitiveLastUpdated:(NSDate*)value;
 
 
 

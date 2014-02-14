@@ -6,44 +6,57 @@
 //  Copyright (c) 2014 Daniel Bennett. All rights reserved.
 //
 
-#import "DBTwitterAuthService.h"
+#import "DBProfileService.h"
 #import "DBTwitterServiceClient.h"
+#import	"DBProfileRepository.h"
+#import "Profile.h"
 #import <ReactiveCocoa/RACEXTScope.h>
 #import <Accounts/Accounts.h>
 #import <Twitter/Twitter.h>
 
-@interface DBTwitterAuthService()
+@interface DBProfileService()
 
-@property (nonatomic, strong, readwrite) ACAccount *currentUser;
-@property (nonatomic, assign) id<DBTwitterServiceClient> serviceClient;
 @property (nonatomic, strong) ACAccountStore *accountStore;
+@property (nonatomic, assign) id<DBTwitterServiceClient> serviceClient;
+@property (nonatomic, assign) id<DBProfileRepository> repository;
+
 
 @end
 
 static NSString *const DBUserDefaultTwitterAccountKey = @"twitterAccountId";
 
-@implementation DBTwitterAuthService
+@implementation DBProfileService
 
 - (id) initWithServiceClient: (id<DBTwitterServiceClient>) serviceClient
+		   profileRepository: (id<DBProfileRepository>) repository
 {
     self = [super init];
     if (self)
 	{
 		self.serviceClient = serviceClient;
+		self.repository = repository;
 		self.accountStore = [[ACAccountStore alloc] init];
-		
-		[self collectUser];
     }
     return self;
 }
 
-- (void) collectUser
+- (Profile *) currentProfile
 {
-	NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey: DBUserDefaultTwitterAccountKey];
-	if (userId)
+	Profile *profile = [[[self.repository getAll] objectEnumerator] firstOrDefault];
+	if (profile)
 	{
-		self.currentUser = [self.accountStore accountWithIdentifier: userId];
+		ACAccount *account = [self.accountStore accountWithIdentifier: profile.profileId];
+		if (!account)
+		{
+			[self.repository deleteEntity: profile];
+		}
 	}
+	return profile;
+}
+
+- (Profile *) createProfile
+{
+	return [self.repository createEntity];
 }
 
 - (RACSignal *) login
@@ -61,8 +74,8 @@ static NSString *const DBUserDefaultTwitterAccountKey = @"twitterAccountId";
 				NSArray *accountTypes = [self.accountStore accountsWithAccountType: accountType];
 				if (accountTypes.count > 0)
 				{
-					self.currentUser = accountTypes[0];
-					[subject sendNext: self.currentUser];
+					ACAccount *account = accountTypes[0];
+					[subject sendNext: account];
 					[subject sendCompleted];
 				}
 				else
@@ -76,14 +89,19 @@ static NSString *const DBUserDefaultTwitterAccountKey = @"twitterAccountId";
 	return subject;
 }
 
-- (void) saveUser: (ACAccount *) user
+- (void) saveProfile: (Profile *) profile
 {
-	[[NSUserDefaults standardUserDefaults] setValue: user.identifier forKey: DBUserDefaultTwitterAccountKey];
+	
 }
 
-- (RACSignal *) loadProfileImageForUser: (ACAccount *) user
+- (RACSignal *) loadProfileImageForProfile: (Profile *) profile
 {
-	return [self.serviceClient loadProfileForUser: user];
+	ACAccount *account = [self.accountStore accountWithIdentifier: profile.profileId];
+	if (account)
+	{
+		return [self.serviceClient loadProfileForUser: account];
+	}
+	return nil;
 }
 
 @end

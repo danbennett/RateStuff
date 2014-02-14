@@ -282,7 +282,6 @@
         <!--Settings View Controller-->
         <scene sceneID="GE2-Ra-cB6">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YVQ-SC-BFT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="hUm-Fk-p9A" customClass="DBSettingsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nwc-WT-4Og">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -373,6 +372,7 @@
                         <outlet property="tableView" destination="iub-lm-nl0" id="8cZ-ZE-fja"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YVQ-SC-BFT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="878" y="191"/>
         </scene>

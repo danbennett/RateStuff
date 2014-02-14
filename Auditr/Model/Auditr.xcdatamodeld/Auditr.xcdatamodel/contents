@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="12F45" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Area" representedClassName="Area" syncable="YES">
+        <attribute name="areaName" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <relationship name="group" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="areas" inverseEntity="Group" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="areas" inverseEntity="Item" syncable="YES"/>
+        <relationship name="ratings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Rating" inverseName="area" inverseEntity="Rating" syncable="YES"/>
+    </entity>
+    <entity name="Group" representedClassName="Group" syncable="YES">
+        <attribute name="groupDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="groupName" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="lastUpdated" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="softDeleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <relationship name="areas" toMany="YES" deletionRule="Nullify" destinationEntity="Area" inverseName="group" inverseEntity="Area" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="group" inverseEntity="Item" syncable="YES"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Profile" inverseName="groups" inverseEntity="Profile" syncable="YES"/>
+    </entity>
+    <entity name="Item" representedClassName="Item" syncable="YES">
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="itemDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="itemName" attributeType="String" syncable="YES"/>
+        <relationship name="areas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Area" inverseName="items" inverseEntity="Area" syncable="YES"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="items" inverseEntity="Group" syncable="YES"/>
+        <relationship name="ratings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Rating" inverseName="item" inverseEntity="Rating" syncable="YES"/>
+    </entity>
+    <entity name="Profile" representedClassName="Profile" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profileId" attributeType="String" syncable="YES"/>
+        <attribute name="profileImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="profileName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="profile" inverseEntity="Group" syncable="YES"/>
+    </entity>
+    <entity name="Rating" representedClassName="Rating" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="score" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="area" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Area" inverseName="ratings" inverseEntity="Area" syncable="YES"/>
+        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="ratings" inverseEntity="Item" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Area" positionX="-137" positionY="63" width="128" height="120"/>
+        <element name="Group" positionX="-369" positionY="114" width="128" height="165"/>
+        <element name="Item" positionX="-153" positionY="228" width="128" height="150"/>
+        <element name="Profile" positionX="-542" positionY="63" width="128" height="118"/>
+        <element name="Rating" positionX="36" positionY="147" width="128" height="105"/>
+    </elements>
+</model>

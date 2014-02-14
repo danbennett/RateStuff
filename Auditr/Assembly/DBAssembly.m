@@ -10,14 +10,18 @@
 // Services.
 #import "DBGroupService.h"
 #import "DBAreaService.h"
-#import "DBTwitterAuthService.h"
+#import "DBProfileService.h"
+#import "DBParseService.h"
 // Repos.
 #import "DBGroupCoreDataRepository.h"
 #import "DBAreaCoreDataRepository.h"
+#import "DBProfileCoreDataRepository.h"
 // Service clients.
 #import "DBTwitterServiceClient.h"
+#import "DBParseServiceClient.h"
 // Settings.
 #import "DBTwitterSettings.h"
+#import "DBParseSettings.h"
 
 @implementation DBAssembly
 
@@ -52,12 +56,28 @@
 	}];
 }
 
-- (id) twitterAuthService
+- (id) profileService
 {
-	return [TyphoonDefinition withClass: [DBTwitterAuthService class] initialization:^(TyphoonInitializer *initializer) {
+	return [TyphoonDefinition withClass: [DBProfileService class] initialization:^(TyphoonInitializer *initializer) {
 		
-		initializer.selector = @selector(initWithServiceClient:);
+		initializer.selector = @selector(initWithServiceClient:profileRepository:);
 		[initializer injectWithDefinition: [self twitterServiceClient]];
+		[initializer injectWithDefinition: [self profileRepository]];
+		
+	} properties:^(TyphoonDefinition *definition) {
+		
+		[definition setScope: TyphoonScopeSingleton];
+		
+	}];
+}
+
+- (id) parseService
+{
+	return [TyphoonDefinition withClass: [DBParseService class] initialization:^(TyphoonInitializer *initializer) {
+		
+		initializer.selector = @selector(initWithServiceClient:groupRepository:);
+		[initializer injectWithDefinition: [self parseServiceClient]];
+		[initializer injectWithDefinition: [self groupRepository]];
 		
 	} properties:^(TyphoonDefinition *definition) {
 		
@@ -86,6 +106,15 @@
 	}];
 }
 
+- (id) profileRepository
+{
+	return [TyphoonDefinition withClass: [DBProfileCoreDataRepository class] properties:^(TyphoonDefinition *definition) {
+		
+		[definition setScope: TyphoonScopeSingleton];
+		
+	}];
+}
+
 #pragma mark - service client
 
 - (id) twitterServiceClient
@@ -96,6 +125,24 @@
 		
 		initializer.selector = @selector(initWithBaseUrl:);
 		[initializer injectWithObjectInstance: settings.baseUrl];
+		
+	} properties:^(TyphoonDefinition *definition) {
+		
+		[definition setScope: TyphoonScopeSingleton];
+		
+	}];
+}
+
+- (id) parseServiceClient
+{
+	return [TyphoonDefinition withClass: [DBParseServiceClient class] initialization:^(TyphoonInitializer *initializer) {
+		
+		DBParseSettings *settings = [DBParseSettings sharedInstance];
+		
+		initializer.selector = @selector(initWithBaseUrl:applicationId:apiKey:);
+		[initializer injectWithObjectInstance: settings.baseUrl];
+		[initializer injectWithObjectInstance: settings.applicationId];
+		[initializer injectWithObjectInstance: settings.apiKey];
 		
 	} properties:^(TyphoonDefinition *definition) {
 		

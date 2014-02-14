@@ -7,7 +7,7 @@
 //
 
 #import "DBSettingsViewModel.h"
-#import "DBTwitterAuthService.h"
+#import "DBProfileService.h"
 #import <ReactiveCocoa/RACEXTScope.h>
 #import <Accounts/Accounts.h>
 
@@ -15,18 +15,18 @@
 
 @property (nonatomic, strong, readwrite) RACCommand *chooseTwitterAccountCommand;
 @property (nonatomic, strong, readwrite) NSString *twitterUsername;
-@property (nonatomic, assign) id<DBTwitterAuthService> twitterAuthService;
+@property (nonatomic, assign) id<DBProfileService> profileService;
 
 @end
 
 @implementation DBSettingsViewModel
 
-- (id) initWithTwitterAuthService: (id<DBTwitterAuthService>) twitterAuthService
+- (id) initWithTwitterAuthService: (id<DBProfileService>) profileService
 {
     self = [super init];
     if (self)
 	{
-		self.twitterAuthService = twitterAuthService;
+		self.profileService = profileService;
 		
 		[self createBindings];
 		[self loadTwitterUsername];
@@ -48,17 +48,17 @@
 
 - (RACSignal *) twitterUserSignals
 {
-	@weakify(self);
-	return [[self.twitterAuthService login] flattenMap:^RACStream *(ACAccount *user) {
-		@strongify(self);
-		self.twitterUsername = [self.twitterAuthService currentUser].username;
-		return [self.twitterAuthService loadProfileImageForUser: user];
-	}];
+//	@weakify(self);
+//	return [[self.profileService login] flattenMap:^RACStream *(ACAccount *user) {
+//		@strongify(self);
+//		return [self.twitterAuthService loadProfileImageForUser: user];
+//	}];
+	return nil;
 }
 
 - (void) loadTwitterUsername
 {
-	self.twitterUsername = [self.twitterAuthService currentUser].username;
+//	self.twitterUsername = [self.twitterAuthService currentUser].username;
 }
 
 @end

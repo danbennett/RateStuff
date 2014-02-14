@@ -8,6 +8,7 @@
 
 #import "DBAppDelegate.h"
 #import "DBCoreDataManager.h"
+#import "DBParseSettings.h"
 #import <Parse/Parse.h>
 
 @implementation DBAppDelegate
@@ -20,8 +21,9 @@
 	
 	[self styleNavBar];
 	
-	[Parse setApplicationId:@"ge24MCp9xtDG4InnN2Go9urngFgxqNNNaHqCyp7d"
-				  clientKey:@"3ejBaXGxVmy8ZBckJFg5jcOyMvsqTRCIZWnDp8BL"];
+	DBParseSettings *settings = [DBParseSettings sharedInstance];
+	[Parse setApplicationId: settings.applicationId
+				  clientKey: settings.apiKey];
 	
 	[PFUser enableAutomaticUser];
 	

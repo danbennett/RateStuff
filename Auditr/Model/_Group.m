@@ -8,6 +8,7 @@ const struct GroupAttributes GroupAttributes = {
 	.groupName = @"groupName",
 	.id = @"id",
 	.image = @"image",
+	.lastUpdated = @"lastUpdated",
 	.softDeleted = @"softDeleted",
 };
 
@@ -80,6 +81,13 @@ const struct GroupFetchedProperties GroupFetchedProperties = {
 
 
 @dynamic image;
+
+
+
+
+
+
+@dynamic lastUpdated;
 
 
 
