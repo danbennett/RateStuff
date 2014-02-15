@@ -63,12 +63,53 @@
 - (RACSignal *) signInAndSync
 {
 	@weakify(self);
-	return [[[self.profileService login] flattenMap:^RACStream *(Profile *profile) {
+	return [[[[self.profileService login] flattenMap:^RACStream *(Profile *profile) {
+		
 		@strongify(self);
+		self.profile = profile;
 		return [self.profileService loadProfileImageForProfile: profile];
-	}] flattenMap:^RACStream *(UIImage *profileImage) {
-		return nil;
+		
+	}] flattenMap:^RACStream *(UIImage *image) {
+		
+		@strongify(self);
+		self.profileImage = image;
+		return [self.profileService reverseOAuthForProfile: self.profile];
+		
+	}] flattenMap:^RACStream *(NSDictionary *details) {
+		
+		@strongify(self);
+		NSString *userId = details[DBTwitterResponseUserIdKey];
+		NSString *screenName = details[DBTwitterResponseScreenNameKey];
+		NSString *oAuthToken = details[DBTwitterResponseOAuthTokenKey];
+		NSString *oAuthTokenSecret = details[DBTwitterResponseOAuthTokenSecretKey];
+		return [self.parseService linkCurrentUserWithId: userId screenName: screenName authToken: oAuthToken authTokenSecret: oAuthTokenSecret];
+		
 	}];
+
+	
+//	@weakify(self);
+//	return [[[[self.profileService login] flattenMap:^RACStream *(Profile *profile) {
+//		
+//		@strongify(self);
+//		self.profile = profile;
+//		return [self.profileService loadProfileImageForProfile: profile];
+//		
+//	}] flattenMap:^RACStream *(UIImage *profileImage) {
+//		
+//		@strongify(self);
+//		self.profileImage = profileImage;
+//		return [self.parseService listAllUsers];
+//		
+//	}] flattenMap:^RACStream *(NSArray *users) {
+//		
+//		@strongify(self);
+////		BOOL found = [users indexOfObject: self.profileName] != NSNotFound;
+//		return [self.parseService syncAllObjectsForUser: self.profileName];
+////		if (found)
+////		{
+////			return [self.parseService syncAllObjectsForUser: self.profileName];
+////		}
+//	}];
 }
 
 - (void) loadImageWithData: (NSData *) data

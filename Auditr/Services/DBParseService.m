@@ -10,6 +10,7 @@
 #import "DBParseServiceClient.h"
 #import "DBGroupRepository.h"
 #import "Group.h"
+#import <Parse-iOS-SDK/Parse.h>
 
 @interface DBParseService()
 
@@ -32,6 +33,24 @@
     return self;
 }
 
+- (RACSignal *) linkCurrentUserWithId: (NSString *) twitterId
+						   screenName: (NSString *) screenName
+							authToken: (NSString *) authToken
+					  authTokenSecret: (NSString *) authTokenSecret
+{
+	PFUser *currentUser = [PFUser currentUser];
+	return [self.serviceClient linkUser: currentUser
+								 withId: twitterId
+							 screenName: screenName
+							  authToken: authToken
+						authTokenSecret: authTokenSecret];
+}
+
+- (RACSignal *) listAllUsers
+{
+	return [self.serviceClient syncAllUsers];
+}
+
 - (RACSignal *) syncAllObjectsForUser: (NSString *) username
 {
 	return [self syncGroupsForUser: username];
@@ -39,7 +58,7 @@
 
 - (RACSignal *) syncGroupsForUser: (NSString *) username
 {
-	return [self.serviceClient syncClassesOfName: @"Group" updatedAfterDate: [self dateForGroup] forUser: username];
+	return [self.serviceClient syncClassesOfName: @"group" updatedAfterDate: [self dateForGroup] forUser: username];
 }
 
 - (NSDate *) dateForGroup

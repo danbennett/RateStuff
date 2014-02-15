@@ -13,13 +13,13 @@
 
 @required
 - (id) initWithBaseUrl: (NSString *) baseUrl;
-- (RACSignal *) loadProfileForUser: (ACAccount *) user;
+- (RACSignal *) loadProfileImageForUser: (ACAccount *) user;
 
 @end
 
 @interface DBTwitterServiceClient : NSObject
 
 - (id) initWithBaseUrl: (NSString *) baseUrl;
-- (RACSignal *) loadProfileForUser: (ACAccount *) user;
+- (RACSignal *) loadProfileImageForUser: (ACAccount *) user;
 
 @end

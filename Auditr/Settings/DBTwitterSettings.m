@@ -9,10 +9,16 @@
 #import "DBTwitterSettings.h"
 
 static NSString *const DBTwitterBaseUrlKey = @"BaseUrl";
+static NSString *const DBTwitterOAuthBaseUrlKey = @"OAuthBaseUrl";
+static NSString *const DBTwitterApiSecretKey = @"apiSecret";
+static NSString *const DBTwitterApiKeyKey = @"apiKey";
 
 @interface DBTwitterSettings()
 
 @property (nonatomic, strong, readwrite) NSString *baseUrl;
+@property (nonatomic, strong, readwrite) NSString *OAuthBaseUrl;
+@property (nonatomic, strong, readwrite) NSString *apiKey;
+@property (nonatomic, strong, readwrite) NSString *apiSecret;
 
 @end
 
@@ -37,6 +43,9 @@ static NSString *const DBTwitterBaseUrlKey = @"BaseUrl";
         NSDictionary *settings = [NSDictionary dictionaryWithContentsOfFile: filePath];
 		
 		self.baseUrl = settings[DBTwitterBaseUrlKey];
+		self.OAuthBaseUrl = settings[DBTwitterOAuthBaseUrlKey];
+		self.apiKey = settings[DBTwitterApiKeyKey];
+		self.apiSecret = settings[DBTwitterApiSecretKey];
     }
     return self;
 }

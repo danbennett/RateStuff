@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>apiSecret</key>
+	<string>dSCMfIsfXsEJ9Qne9Kv7DkibxxAVMbo9IaWve0jxmBU</string>
+	<key>apiKey</key>
+	<string>Tm5VGSSoOtkEuelrz3Tew</string>
+	<key>OAuthBaseUrl</key>
+	<string>https://api.twitter.com/oauth/</string>
 	<key>BaseUrl</key>
 	<string>https://api.twitter.com/1.1/</string>
 </dict>

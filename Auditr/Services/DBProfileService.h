@@ -9,26 +9,36 @@
 #import <Foundation/Foundation.h>
 @class Profile;
 @protocol DBTwitterServiceClient;
+@protocol DBTwitterOAuthServiceClient;
 @protocol DBProfileRepository;
 
 @protocol DBProfileService <NSObject>
 
 - (id) initWithServiceClient: (id<DBTwitterServiceClient>) serviceClient
+		  oAuthServiceClient: (id<DBTwitterOAuthServiceClient>) oAuthServiceClient
 		   profileRepository: (id<DBProfileRepository>) repository;
 
 - (RACSignal *) login;
 - (RACSignal *) loadProfileImageForProfile: (Profile *) profile;
+- (RACSignal *) reverseOAuthForProfile: (Profile *) profile;
 - (Profile *) currentProfile;
 
 @end
 
+extern NSString const *DBTwitterResponseUserIdKey;
+extern NSString const *DBTwitterResponseScreenNameKey;
+extern NSString const *DBTwitterResponseOAuthTokenSecretKey;
+extern NSString const *DBTwitterResponseOAuthTokenKey;
+
 @interface DBProfileService : NSObject
 
 - (id) initWithServiceClient: (id<DBTwitterServiceClient>) serviceClient
+		  oAuthServiceClient: (id<DBTwitterOAuthServiceClient>) oAuthServiceClient
 		   profileRepository: (id<DBProfileRepository>) repository;
 
 - (RACSignal *) login;
 - (RACSignal *) loadProfileImageForProfile: (Profile *) profile;
+- (RACSignal *) reverseOAuthForProfile: (Profile *) profile;
 - (Profile *) currentProfile;
 
 @end

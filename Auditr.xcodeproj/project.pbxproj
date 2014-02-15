@@ -23,6 +23,7 @@
 		FF34C74D18AEB3360048FBAE /* DBParseSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = FF34C74C18AEB3360048FBAE /* DBParseSettings.m */; };
 		FF34C74F18AEB3DE0048FBAE /* ParseSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF34C74E18AEB3DE0048FBAE /* ParseSettings.plist */; };
 		FF34C75318AEB4D00048FBAE /* DBParseService.m in Sources */ = {isa = PBXBuildFile; fileRef = FF34C75218AEB4D00048FBAE /* DBParseService.m */; };
+		FF34C75718AF911E0048FBAE /* DBTwitterOAuthServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FF34C75618AF911E0048FBAE /* DBTwitterOAuthServiceClient.m */; };
 		FF3D7435189C40E800294D6F /* UIView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D7434189C40E800294D6F /* UIView+Animations.m */; };
 		FF3D743C189C55BA00294D6F /* DBCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D743B189C55BA00294D6F /* DBCoreDataManager.m */; };
 		FF3DC114189D1685001974E0 /* DBEditGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC113189D1685001974E0 /* DBEditGroupViewController.m */; };
@@ -123,6 +124,8 @@
 		FF34C74E18AEB3DE0048FBAE /* ParseSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ParseSettings.plist; sourceTree = "<group>"; };
 		FF34C75118AEB4D00048FBAE /* DBParseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBParseService.h; sourceTree = "<group>"; };
 		FF34C75218AEB4D00048FBAE /* DBParseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBParseService.m; sourceTree = "<group>"; };
+		FF34C75518AF911E0048FBAE /* DBTwitterOAuthServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBTwitterOAuthServiceClient.h; sourceTree = "<group>"; };
+		FF34C75618AF911E0048FBAE /* DBTwitterOAuthServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBTwitterOAuthServiceClient.m; sourceTree = "<group>"; };
 		FF3D7433189C40E800294D6F /* UIView+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animations.h"; sourceTree = "<group>"; };
 		FF3D7434189C40E800294D6F /* UIView+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animations.m"; sourceTree = "<group>"; };
 		FF3D743A189C55BA00294D6F /* DBCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCoreDataManager.h; sourceTree = "<group>"; };
@@ -262,6 +265,8 @@
 				FFEACA3B18AC2BC1001A38F3 /* DBHTTPClient.m */,
 				FF10B6F718A9762500556DC9 /* DBTwitterServiceClient.h */,
 				FF10B6F818A9762500556DC9 /* DBTwitterServiceClient.m */,
+				FF34C75518AF911E0048FBAE /* DBTwitterOAuthServiceClient.h */,
+				FF34C75618AF911E0048FBAE /* DBTwitterOAuthServiceClient.m */,
 				FF34C74818AEB22C0048FBAE /* DBParseServiceClient.h */,
 				FF34C74918AEB22C0048FBAE /* DBParseServiceClient.m */,
 			);
@@ -870,6 +875,7 @@
 				FF3DC138189DA310001974E0 /* UIImage+Effects.m in Sources */,
 				FFBBA8AA185694B200C8BCBE /* DBAppDelegate.m in Sources */,
 				FFB7B46718A45F1300F61D42 /* DBAreaTableFooterView.m in Sources */,
+				FF34C75718AF911E0048FBAE /* DBTwitterOAuthServiceClient.m in Sources */,
 				FFC3875C1859188100A09D01 /* _Area.m in Sources */,
 				FF245509189EEB9900690DC1 /* DBAreaTableViewCell.m in Sources */,
 				FF29E5D118A2335500E2ECA0 /* UIImage+Scaling.m in Sources */,

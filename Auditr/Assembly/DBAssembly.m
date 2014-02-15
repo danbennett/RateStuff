@@ -19,6 +19,7 @@
 // Service clients.
 #import "DBTwitterServiceClient.h"
 #import "DBParseServiceClient.h"
+#import "DBTwitterOAuthServiceClient.h"
 // Settings.
 #import "DBTwitterSettings.h"
 #import "DBParseSettings.h"
@@ -60,8 +61,9 @@
 {
 	return [TyphoonDefinition withClass: [DBProfileService class] initialization:^(TyphoonInitializer *initializer) {
 		
-		initializer.selector = @selector(initWithServiceClient:profileRepository:);
+		initializer.selector = @selector(initWithServiceClient:oAuthServiceClient:profileRepository:);
 		[initializer injectWithDefinition: [self twitterServiceClient]];
+		[initializer injectWithDefinition: [self twitterOAuthServiceClient]];
 		[initializer injectWithDefinition: [self profileRepository]];
 		
 	} properties:^(TyphoonDefinition *definition) {
@@ -125,6 +127,24 @@
 		
 		initializer.selector = @selector(initWithBaseUrl:);
 		[initializer injectWithObjectInstance: settings.baseUrl];
+		
+	} properties:^(TyphoonDefinition *definition) {
+		
+		[definition setScope: TyphoonScopeSingleton];
+		
+	}];
+}
+
+- (id) twitterOAuthServiceClient
+{
+	return [TyphoonDefinition withClass: [DBTwitterOAuthServiceClient class] initialization:^(TyphoonInitializer *initializer) {
+		
+		DBTwitterSettings *settings = [DBTwitterSettings sharedInstance];
+		
+		initializer.selector = @selector(initWithBaseUrl:apiKey:apiSecret:);
+		[initializer injectWithObjectInstance: settings.OAuthBaseUrl];
+		[initializer injectWithObjectInstance: settings.apiKey];
+		[initializer injectWithObjectInstance: settings.apiSecret];
 		
 	} properties:^(TyphoonDefinition *definition) {
 		

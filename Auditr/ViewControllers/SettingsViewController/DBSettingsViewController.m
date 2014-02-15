@@ -38,10 +38,10 @@ static NSString *const SettingsTwitterDefaultLabel = @"Choose a twitter account.
 	
 	[self.viewModel.chooseTwitterAccountCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		
-		[signal subscribeNext:^(UIImage *profilePicture) {
-			
+		[signal subscribeNext:^(id result) {
+			float i = 0;
 		} error:^(NSError *error) {
-			
+			float i = 0;
 		}];
 		
 	}];
@@ -86,7 +86,7 @@ static NSString *const SettingsTwitterDefaultLabel = @"Choose a twitter account.
 {
 	if (indexPath.row == 0)
 	{
-//		[self.viewModel.chooseTwitterAccountCommand execute: [NSNull null]];
+		[self.viewModel.chooseTwitterAccountCommand execute: [NSNull null]];
 	}
 	return indexPath;
 }

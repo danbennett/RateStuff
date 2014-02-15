@@ -9,6 +9,7 @@
 #import "DBAppDelegate.h"
 #import "DBCoreDataManager.h"
 #import "DBParseSettings.h"
+#import <AFNetworking/AFNetworking.h>
 #import <Parse/Parse.h>
 
 @implementation DBAppDelegate
@@ -21,9 +22,11 @@
 	
 	[self styleNavBar];
 	
+	[[AFNetworkActivityIndicatorManager sharedManager] setEnabled: YES];
+	
 	DBParseSettings *settings = [DBParseSettings sharedInstance];
 	[Parse setApplicationId: settings.applicationId
-				  clientKey: settings.apiKey];
+				  clientKey: settings.clientKey];
 	
 	[PFUser enableAutomaticUser];
 	

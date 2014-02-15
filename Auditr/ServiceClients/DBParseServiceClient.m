@@ -17,6 +17,8 @@
 
 @end
 
+static NSString *const DBParseUsersResultKey = @"results";
+
 @implementation DBParseServiceClient
 
 - (id) initWithBaseUrl: (NSString *) baseUrl applicationId: (NSString *) applicationId apiKey: (NSString *) apiKey
@@ -26,7 +28,9 @@
 		self.dateFormatter = [[NSDateFormatter alloc] init];
         [self.dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.'999Z'"];
         [self.dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-		
+
+		[self registerHTTPOperationClass:[AFJSONRequestOperation class]];
+		[self setParameterEncoding:AFJSONParameterEncoding];
 		[self setDefaultHeader: @"X-Parse-Application-Id" value: applicationId];
 		[self setDefaultHeader: @"X-Parse-REST-API-Key" value: apiKey];
 		[self setDefaultHeader: @"Accept" value: @"application/json"];
@@ -34,24 +38,97 @@
 	return self;
 }
 
+- (RACSignal *) linkUser: (PFUser *) user
+				  withId: (NSString *) twitterId
+			  screenName: (NSString *) screenName
+			   authToken: (NSString *) authToken
+		 authTokenSecret: (NSString *) authTokenSecret
+{
+	RACSubject *subject = [RACSubject subject];
+	
+	[PFTwitterUtils linkUser: user
+				   twitterId: twitterId
+				  screenName: screenName
+				   authToken: authToken
+			 authTokenSecret: authTokenSecret
+					   block:^(BOOL succeeded, NSError *error) {
+		
+						if(succeeded && !error)
+						{
+							[subject sendNext: [NSNull null]];
+							[subject sendCompleted];
+						}
+					   else
+					   {
+						   [subject sendError: error];
+					   }
+					   }];
+	
+	return subject;
+}
+
+- (RACSignal *) syncAllUsers
+{
+	RACSubject *subject = [RACSubject subject];
+	
+	[[self rac_getPath: @"users" parameters: nil] subscribeNext:^(RACTuple *tuple) {
+		NSDictionary *responseDictionary = [tuple second];
+		NSError *error = nil;
+		BOOL successful = NO;
+		
+		if (responseDictionary)
+		{
+			if ([responseDictionary valueForKey: DBParseUsersResultKey])
+			{
+				if ([responseDictionary valueForKey: DBParseUsersResultKey] != [NSNull null])
+				{
+					successful = YES;
+					NSArray *users = [responseDictionary valueForKey: DBParseUsersResultKey];
+					NSArray *usernames = [users valueForKeyPath: @"username"];
+					[subject sendNext: usernames];
+					[subject sendCompleted];
+				}
+			}
+		}
+		
+		if (!successful)
+		{
+			[subject sendError: error];
+		}
+	} error:^(NSError *error) {
+		[subject sendError: error];
+	}];
+	
+	return subject;
+}
+
 // TODO: Add user filter.
 - (RACSignal *) syncClassesOfName: (NSString *) className updatedAfterDate: (NSDate *) date forUser: (NSString *) username
 {
-	if (date)
+	if (!date)
 	{
-		NSDictionary *params = @{ @"where" : @{
-										  @"updatedAt" : @{
-												  @"$gte":  @{
-														  @"__type": @"Date",
-														  @"iso" : [self.dateFormatter stringFromDate: date]
-														  }
-												  }
-										  }
-								  };
-		
-		return [self rac_getPath: [NSString stringWithFormat: @"classes/%@", className] parameters: params];
+		date = [NSDate date];
 	}
-	return nil;
+
+	NSString *jsonString = [NSString
+							stringWithFormat:@"{\"updatedAt\":{\"$gte\":{\"__type\":\"Date\",\"iso\":\"%@\"}}}", [self.dateFormatter stringFromDate: date]];
+	
+	NSDictionary *params = [NSDictionary dictionaryWithObject:jsonString forKey:@"where"];
+	
+	RACSubject *subject = [RACSubject subject];
+		
+	[[self rac_getPath: [NSString stringWithFormat: @"classes/%@", className] parameters: params] subscribeNext:^(RACTuple *tuple) {
+		
+		[subject sendNext: [tuple second]];
+		[subject sendCompleted];
+		
+	} error:^(NSError *error) {
+		
+		[subject sendError: error];
+		
+	}];
+	
+	return subject;
 }
 
 @end
