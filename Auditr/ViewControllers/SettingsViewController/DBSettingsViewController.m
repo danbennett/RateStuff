@@ -11,9 +11,11 @@
 #import "DBProfileService.h"
 #import "DBProfileViewModel.h"
 #import "DBSettingsTableViewCell.h"
+#import <ReactiveCocoa/RACEXTScope.h>
 
 @interface DBSettingsViewController ()
 
+@property (nonatomic, strong) NSArray *accounts;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 
 @end
@@ -36,15 +38,61 @@ static NSString *const SettingsTwitterDefaultLabel = @"Choose a twitter account.
 {
 	RAC(self, title) = RACObserve(self.viewModel, profileName);
 	
+	[self bindChooseTwitterAccountCommand];
+	
+	[self bindLoginWithAccountCommand];
+}
+
+- (void) bindChooseTwitterAccountCommand
+{
+	@weakify(self);
+
 	[self.viewModel.chooseTwitterAccountCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		
-		[signal subscribeNext:^(id result) {
-			float i = 0;
+		[signal subscribeNext:^(NSArray *accounts) {
+			@strongify(self);
+			[self loadTwitterAccountFromAccounts: accounts];
+			
 		} error:^(NSError *error) {
-			float i = 0;
+			//@strongify(self);
+			// TODO: Handle error.
+			
 		}];
 		
 	}];
+}
+
+- (void) bindLoginWithAccountCommand
+{
+	@weakify(self);
+	
+	[self.viewModel.loginWithAccountCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+		
+		[signal subscribeNext:^(id x) {
+			
+			@strongify(self);
+			[self.viewModel activateProfile];
+			
+		} error:^(NSError *error) {
+			@strongify(self);
+			// TODO: handle error.
+			[self.viewModel deleteProfile];
+		}];
+		
+	}];
+}
+
+- (void) loadTwitterAccountFromAccounts: (NSArray *) accounts
+{
+	if (accounts.count > 0)
+	{
+		self.accounts = accounts;
+		[self showActionSheetWithAccountNames: [accounts valueForKeyPath: @"username"]];
+	}
+	else
+	{
+		[self.viewModel.loginWithAccountCommand execute: [accounts firstObject]];
+	}
 }
 
 #pragma mark - Actions.
@@ -76,7 +124,7 @@ static NSString *const SettingsTwitterDefaultLabel = @"Choose a twitter account.
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	DBSettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: DBSettingsTwitterCellId];
-//	cell.valueLabel.text = self.viewModel.twitterUsername ? : SettingsTwitterDefaultLabel;
+	cell.viewModel = self.viewModel;
 	return cell;
 }
 
@@ -89,6 +137,32 @@ static NSString *const SettingsTwitterDefaultLabel = @"Choose a twitter account.
 		[self.viewModel.chooseTwitterAccountCommand execute: [NSNull null]];
 	}
 	return indexPath;
+}
+
+#pragma mark - Action sheet.
+
+- (void) showActionSheetWithAccountNames: (NSArray *) accountNames
+{
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle: @"Choose account"
+															 delegate: self
+													cancelButtonTitle: nil
+											   destructiveButtonTitle: nil
+													otherButtonTitles: nil, nil];
+	
+	[accountNames enumerateObjectsUsingBlock:^(NSString *accountName, NSUInteger idx, BOOL *stop) {
+		[actionSheet addButtonWithTitle: accountName];
+	}];
+	
+	[actionSheet addButtonWithTitle: @"Cancel"];
+	actionSheet.destructiveButtonIndex = [accountNames count];
+	
+	[actionSheet showInView: self.view];
+}
+
+- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	ACAccount *account = [self.accounts objectAtIndex: buttonIndex];
+	[self.viewModel.loginWithAccountCommand execute: account];
 }
 
 @end

@@ -38,32 +38,30 @@ static NSString *const DBParseUsersResultKey = @"results";
 	return self;
 }
 
-- (RACSignal *) linkUser: (PFUser *) user
-				  withId: (NSString *) twitterId
-			  screenName: (NSString *) screenName
-			   authToken: (NSString *) authToken
-		 authTokenSecret: (NSString *) authTokenSecret
+- (RACSignal *) linkWithId: (NSString *) twitterId
+				screenName: (NSString *) screenName
+				 authToken: (NSString *) authToken
+		   authTokenSecret: (NSString *) authTokenSecret
 {
 	RACSubject *subject = [RACSubject subject];
 	
-	[PFTwitterUtils linkUser: user
-				   twitterId: twitterId
-				  screenName: screenName
-				   authToken: authToken
-			 authTokenSecret: authTokenSecret
-					   block:^(BOOL succeeded, NSError *error) {
+	[PFTwitterUtils logInWithTwitterId: twitterId
+							screenName: screenName
+							 authToken: authToken
+					   authTokenSecret: authTokenSecret
+								 block:^(PFUser *user, NSError *error) {
+									 
+									 if(user && !error)
+									 {
+										 [subject sendNext: [NSNull null]];
+										 [subject sendCompleted];
+									 }
+									 else
+									 {
+										 [subject sendError: error];
+									 }
 		
-						if(succeeded && !error)
-						{
-							[subject sendNext: [NSNull null]];
-							[subject sendCompleted];
-						}
-					   else
-					   {
-						   [subject sendError: error];
-					   }
-					   }];
-	
+								 }];
 	return subject;
 }
 

@@ -41,8 +41,10 @@
 	@weakify(self);
 	self.chooseTwitterAccountCommand =
 	[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		
 		@strongify(self);
 		return [self twitterUserSignals];
+		
 	}];
 }
 

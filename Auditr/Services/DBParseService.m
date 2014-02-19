@@ -33,17 +33,15 @@
     return self;
 }
 
-- (RACSignal *) linkCurrentUserWithId: (NSString *) twitterId
-						   screenName: (NSString *) screenName
-							authToken: (NSString *) authToken
-					  authTokenSecret: (NSString *) authTokenSecret
+- (RACSignal *) loginWithId: (NSString *) twitterId
+				 screenName: (NSString *) screenName
+				  authToken: (NSString *) authToken
+			authTokenSecret: (NSString *) authTokenSecret
 {
-	PFUser *currentUser = [PFUser currentUser];
-	return [self.serviceClient linkUser: currentUser
-								 withId: twitterId
-							 screenName: screenName
-							  authToken: authToken
-						authTokenSecret: authTokenSecret];
+	return [self.serviceClient linkWithId: twitterId
+							   screenName: screenName
+								authToken: authToken
+						  authTokenSecret: authTokenSecret];
 }
 
 - (RACSignal *) listAllUsers

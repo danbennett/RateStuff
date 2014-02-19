@@ -15,10 +15,10 @@
 - (id) initWithServiceClient: (id<DBParseServiceClient>) serviceClient
 			 groupRepository: (id<DBGroupRepository>) groupRepository;
 
-- (RACSignal *) linkCurrentUserWithId: (NSString *) twitterId
-						   screenName: (NSString *) screenName
-							authToken: (NSString *) authToken
-					  authTokenSecret: (NSString *) authTokenSecret;
+- (RACSignal *) loginWithId: (NSString *) twitterId
+				 screenName: (NSString *) screenName
+				  authToken: (NSString *) authToken
+			authTokenSecret: (NSString *) authTokenSecret;
 
 - (RACSignal *) syncAllObjectsForUser: (NSString *) username;
 - (RACSignal *) listAllUsers;
@@ -30,10 +30,10 @@
 - (id) initWithServiceClient: (id<DBParseServiceClient>) serviceClient
 			 groupRepository: (id<DBGroupRepository>) groupRepository;
 
-- (RACSignal *) linkCurrentUserWithId: (NSString *) twitterId
-						   screenName: (NSString *) screenName
-							authToken: (NSString *) authToken
-					  authTokenSecret: (NSString *) authTokenSecret;
+- (RACSignal *) loginWithId: (NSString *) twitterId
+				 screenName: (NSString *) screenName
+				  authToken: (NSString *) authToken
+			authTokenSecret: (NSString *) authTokenSecret;
 
 - (RACSignal *) syncAllObjectsForUser: (NSString *) username;
 - (RACSignal *) listAllUsers;

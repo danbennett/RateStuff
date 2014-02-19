@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class DBProfileViewModel;
 
-@interface DBSettingsViewController : UIViewController <UIBarPositioningDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface DBSettingsViewController : UIViewController <UIBarPositioningDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, strong) DBProfileViewModel *viewModel;
 

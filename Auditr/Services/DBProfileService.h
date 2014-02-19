@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 @class Profile;
+@class ACAccount;
 @protocol DBTwitterServiceClient;
 @protocol DBTwitterOAuthServiceClient;
 @protocol DBProfileRepository;
@@ -18,10 +19,13 @@
 		  oAuthServiceClient: (id<DBTwitterOAuthServiceClient>) oAuthServiceClient
 		   profileRepository: (id<DBProfileRepository>) repository;
 
-- (RACSignal *) login;
+- (RACSignal *) loadTwitterAccounts;
+- (Profile *) loginWithAccount: (ACAccount *) account;
 - (RACSignal *) loadProfileImageForProfile: (Profile *) profile;
 - (RACSignal *) reverseOAuthForProfile: (Profile *) profile;
 - (Profile *) currentProfile;
+- (void) activateProfile: (Profile *) newProfile;
+- (void) deleteProfile: (Profile *) profile;
 
 @end
 
@@ -36,9 +40,12 @@ extern NSString const *DBTwitterResponseOAuthTokenKey;
 		  oAuthServiceClient: (id<DBTwitterOAuthServiceClient>) oAuthServiceClient
 		   profileRepository: (id<DBProfileRepository>) repository;
 
-- (RACSignal *) login;
+- (RACSignal *) loadTwitterAccounts;
+- (Profile *) loginWithAccount: (ACAccount *) account;
 - (RACSignal *) loadProfileImageForProfile: (Profile *) profile;
 - (RACSignal *) reverseOAuthForProfile: (Profile *) profile;
 - (Profile *) currentProfile;
+- (void) activateProfile: (Profile *) newProfile;
+- (void) deleteProfile: (Profile *) profile;
 
 @end

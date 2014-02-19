@@ -51,16 +51,38 @@ NSString const *DBTwitterResponseOAuthTokenKey = @"oauth_token";
 
 - (Profile *) currentProfile
 {
-	Profile *profile = [[[self.repository getAll] objectEnumerator] firstOrDefault];
+	Profile *profile = [[[[self.repository getAll] objectEnumerator] where:^BOOL(Profile *profile) {
+		return [profile.active boolValue];
+	}] firstOrDefault];
+	
 	if (profile)
 	{
 		ACAccount *account = [self.accountStore accountWithIdentifier: profile.profileId];
 		if (!account)
 		{
-			[self.repository deleteEntity: profile];
+			[self deleteProfile: profile];
 		}
 	}
 	return profile;
+}
+
+- (void) activateProfile: (Profile *) newProfile
+{
+	NSArray *deactivated = [[[[self.repository getAll] objectEnumerator] where:^BOOL(Profile *profile) {
+		return profile != newProfile;
+	}] allObjects];
+	
+	[deactivated enumerateObjectsUsingBlock:^(Profile *profile, NSUInteger idx, BOOL *stop) {
+		profile.active = @FALSE;
+	}];
+	newProfile.active = @TRUE;
+	
+	[self.repository saveEntity: newProfile];
+}
+
+- (void) deleteProfile: (Profile *) profile
+{
+	[self.repository deleteEntity: profile];
 }
 
 - (Profile *) createProfile
@@ -68,7 +90,7 @@ NSString const *DBTwitterResponseOAuthTokenKey = @"oauth_token";
 	return [self.repository createEntity];
 }
 
-- (RACSignal *) login
+- (RACSignal *) loadTwitterAccounts
 {
 	@weakify(self);
 	RACSubject *subject = [RACSubject subject];
@@ -83,12 +105,7 @@ NSString const *DBTwitterResponseOAuthTokenKey = @"oauth_token";
 				NSArray *accountTypes = [self.accountStore accountsWithAccountType: accountType];
 				if (accountTypes.count > 0)
 				{
-					ACAccount *account = accountTypes[0];
-					Profile *profile = [self.repository createEntity];
-					profile.profileId = account.identifier;
-					profile.profileName = account.username;
-					
-					[subject sendNext: profile];
+					[subject sendNext: accountTypes];
 					[subject sendCompleted];
 				}
 				else
@@ -96,10 +113,49 @@ NSString const *DBTwitterResponseOAuthTokenKey = @"oauth_token";
 					NSError *error = [NSError errorWithDomain: @"uk.co.danbennett" code: 401 userInfo: @{@"Description":  @"No users found"}];
 					[subject sendError: error];
 				}
+				
 			});
+			
+//			dispatch_async(dispatch_get_main_queue(), ^{
+//				@strongify(self);
+//				NSArray *accountTypes = [self.accountStore accountsWithAccountType: accountType];
+//				if (accountTypes.count > 0)
+//				{
+//					ACAccount *account = accountTypes[0];
+//					
+//					Profile *profile = [[[self.repository getAllByAttribute: @"profileId" value: account.identifier] objectEnumerator] firstOrDefault];
+//					if (!profile)
+//					{
+//						profile = [self.repository createEntity];
+//						profile.profileId = account.identifier;
+//					}
+//					profile.profileName = account.username;
+//					[subject sendNext: profile];
+//					[subject sendCompleted];
+//				}
+//				else
+//				{
+//					NSError *error = [NSError errorWithDomain: @"uk.co.danbennett" code: 401 userInfo: @{@"Description":  @"No users found"}];
+//					[subject sendError: error];
+//				}
+//			});
 		}
 	}];
 	return subject;
+}
+
+- (Profile *) loginWithAccount: (ACAccount *) account
+{
+	Profile *profile = [[[self.repository getAllByAttribute: @"profileId" value: account.identifier] objectEnumerator] firstOrDefault];
+	
+	if (!profile)
+	{
+		profile = [self.repository createEntity];
+		profile.profileId = account.identifier;
+	}
+	
+	profile.profileName = account.username;
+	return profile;
 }
 
 - (RACSignal *) reverseOAuthForProfile: (Profile *) profile

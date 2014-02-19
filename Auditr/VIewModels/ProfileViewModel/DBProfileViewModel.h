@@ -14,10 +14,13 @@
 @interface DBProfileViewModel : NSObject
 
 - (id) initWithProfileService: (id<DBProfileService>) profileService parseService: (id<DBParseService>) parseService;
+- (void) deleteProfile;
+- (void) activateProfile;
 
 @property (nonatomic, strong) Profile *profile;
 @property (nonatomic, strong, readonly) NSString *profileName;
 @property (nonatomic, strong, readonly) UIImage *profileImage;
 @property (nonatomic, strong, readonly) RACCommand *chooseTwitterAccountCommand;
+@property (nonatomic, strong, readonly) RACCommand *loginWithAccountCommand;
 
 @end

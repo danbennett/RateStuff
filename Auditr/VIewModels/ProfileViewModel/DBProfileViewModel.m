@@ -18,6 +18,7 @@
 @property (nonatomic, strong, readwrite) NSString *profileName;
 @property (nonatomic, strong, readwrite) UIImage *profileImage;
 @property (nonatomic, strong, readwrite) RACCommand *chooseTwitterAccountCommand;
+@property (nonatomic, strong, readwrite) RACCommand *loginWithAccountCommand;
 @property (nonatomic, assign) id<DBProfileService> profileService;
 @property (nonatomic, assign) id<DBParseService> parseService;
 
@@ -49,27 +50,55 @@
 		@strongify(self);
 		self.profileName = profile.profileName;
 		[self loadImageWithData: profile.profileImage];
+		
+		[self applyBindings];
 	}];
 	
 	self.chooseTwitterAccountCommand =
 	[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self);
-		return [self signInAndSync];
+		return [self.profileService loadTwitterAccounts];
+	}];
+	
+	self.loginWithAccountCommand =
+	[[RACCommand alloc] initWithSignalBlock:^RACSignal *(ACAccount *account) {
+		@strongify(self);
+		self.profile = [self.profileService loginWithAccount: account];
+		return [self signInAndSync: self.profile];
+	}];
+}
+
+- (void) applyBindings
+{
+	@weakify(self);
+	[RACObserve(self, profileImage) subscribeNext:^(UIImage *image) {
+		
+		if (image != nil)
+		{
+			__block NSData *data = nil;
+			
+			dispatch_queue_t imageQueue = dispatch_queue_create("uk.co.bennettdan.imageArchiver", NULL);
+			
+			dispatch_async(imageQueue, ^{
+				
+				data = [NSKeyedArchiver archivedDataWithRootObject: image];
+				
+				dispatch_async(dispatch_get_main_queue(), ^{
+					@strongify(self);
+					self.profile.profileImage = data;
+				});
+			});
+		}
+		
 	}];
 }
 
 #pragma mark - Logon & download.
 
-- (RACSignal *) signInAndSync
+- (RACSignal *) signInAndSync: (Profile *) profile
 {
-	@weakify(self);
-	return [[[[self.profileService login] flattenMap:^RACStream *(Profile *profile) {
-		
-		@strongify(self);
-		self.profile = profile;
-		return [self.profileService loadProfileImageForProfile: profile];
-		
-	}] flattenMap:^RACStream *(UIImage *image) {
+	@weakify(self);	
+	return [[[self.profileService loadProfileImageForProfile: profile] flattenMap:^RACStream *(UIImage *image) {
 		
 		@strongify(self);
 		self.profileImage = image;
@@ -82,34 +111,19 @@
 		NSString *screenName = details[DBTwitterResponseScreenNameKey];
 		NSString *oAuthToken = details[DBTwitterResponseOAuthTokenKey];
 		NSString *oAuthTokenSecret = details[DBTwitterResponseOAuthTokenSecretKey];
-		return [self.parseService linkCurrentUserWithId: userId screenName: screenName authToken: oAuthToken authTokenSecret: oAuthTokenSecret];
 		
+		return [self.parseService loginWithId: userId screenName: screenName authToken: oAuthToken authTokenSecret: oAuthTokenSecret];
 	}];
+}
 
-	
-//	@weakify(self);
-//	return [[[[self.profileService login] flattenMap:^RACStream *(Profile *profile) {
-//		
-//		@strongify(self);
-//		self.profile = profile;
-//		return [self.profileService loadProfileImageForProfile: profile];
-//		
-//	}] flattenMap:^RACStream *(UIImage *profileImage) {
-//		
-//		@strongify(self);
-//		self.profileImage = profileImage;
-//		return [self.parseService listAllUsers];
-//		
-//	}] flattenMap:^RACStream *(NSArray *users) {
-//		
-//		@strongify(self);
-////		BOOL found = [users indexOfObject: self.profileName] != NSNotFound;
-//		return [self.parseService syncAllObjectsForUser: self.profileName];
-////		if (found)
-////		{
-////			return [self.parseService syncAllObjectsForUser: self.profileName];
-////		}
-//	}];
+- (void) deleteProfile
+{
+	[self.profileService deleteProfile: self.profile];
+}
+
+- (void) activateProfile
+{
+	[self.profileService activateProfile: self.profile];
 }
 
 - (void) loadImageWithData: (NSData *) data

@@ -5,6 +5,7 @@
 
 
 extern const struct ProfileAttributes {
+	__unsafe_unretained NSString *active;
 	__unsafe_unretained NSString *email;
 	__unsafe_unretained NSString *profileId;
 	__unsafe_unretained NSString *profileImage;
@@ -25,6 +26,7 @@ extern const struct ProfileFetchedProperties {
 
 
 
+
 @interface ProfileID : NSManagedObjectID {}
 @end
 
@@ -33,6 +35,20 @@ extern const struct ProfileFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (ProfileID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* active;
+
+
+
+@property BOOL activeValue;
+- (BOOL)activeValue;
+- (void)setActiveValue:(BOOL)value_;
+
+//- (BOOL)validateActive:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -98,6 +114,15 @@ extern const struct ProfileFetchedProperties {
 @end
 
 @interface _Profile (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSNumber*)primitiveActive;
+- (void)setPrimitiveActive:(NSNumber*)value;
+
+- (BOOL)primitiveActiveValue;
+- (void)setPrimitiveActiveValue:(BOOL)value_;
+
+
 
 
 - (NSString*)primitiveEmail;

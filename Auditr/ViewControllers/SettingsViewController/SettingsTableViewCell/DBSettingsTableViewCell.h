@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class DBProfileViewModel;
 
 @interface DBSettingsTableViewCell : UITableViewCell
 
+@property (nonatomic, weak) DBProfileViewModel *viewModel;
 @property (nonatomic, strong) IBOutlet UILabel *valueLabel;
 
 @end
