@@ -20,6 +20,9 @@
 
 @end
 
+NSString *const DBTwitterAccountError = @"Could not find any Twitter accounts. Please add an account in the settings.";
+NSString *const DBTwitterConnectionError = @"There was a problem connecting to the server. Please try again later.";
+
 static NSString *const DBSettingsTwitterCellId = @"DBSettingsTwitterCell";
 static NSString *const SettingsTwitterDefaultLabel = @"Choose a twitter account...";
 
@@ -54,8 +57,8 @@ static NSString *const SettingsTwitterDefaultLabel = @"Choose a twitter account.
 			[self loadTwitterAccountFromAccounts: accounts];
 			
 		} error:^(NSError *error) {
-			//@strongify(self);
-			// TODO: Handle error.
+			@strongify(self);
+			[self showAlertWithMessage: DBTwitterAccountError withTitle: @"Error"];
 			
 		}];
 		
@@ -75,7 +78,7 @@ static NSString *const SettingsTwitterDefaultLabel = @"Choose a twitter account.
 			
 		} error:^(NSError *error) {
 			@strongify(self);
-			// TODO: handle error.
+			[self showAlertWithMessage: DBTwitterConnectionError withTitle: @"Error"];
 			[self.viewModel deleteProfile];
 		}];
 		
@@ -163,6 +166,18 @@ static NSString *const SettingsTwitterDefaultLabel = @"Choose a twitter account.
 {
 	ACAccount *account = [self.accounts objectAtIndex: buttonIndex];
 	[self.viewModel.loginWithAccountCommand execute: account];
+}
+
+#pragma mark - Alert.
+
+- (void) showAlertWithMessage: (NSString *) message withTitle: (NSString *) title
+{
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title
+													message: message
+												   delegate: nil
+										  cancelButtonTitle: @"OK"
+										  otherButtonTitles: nil, nil];
+	[alert show];
 }
 
 @end

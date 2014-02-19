@@ -70,7 +70,19 @@ static NSString *const DBTwitterProfileImageKey = @"profile_image_url";
 				{
 					succesful = YES;
 					NSString *imageUrl = [responseDictionary valueForKey:DBTwitterProfileImageKey];
-					[subject sendNext: imageUrl];
+
+					NSString *lastComponent = [imageUrl lastPathComponent];
+					NSScanner *scanner = [NSScanner scannerWithString: lastComponent];
+					NSString *firstBit = nil;
+					NSString *middleBit = nil;
+					[scanner scanUpToString: @"_" intoString: &firstBit];
+					[scanner scanUpToString: @"." intoString: &middleBit];
+					
+					NSString *fileName = [NSString stringWithFormat: @"%@.%@", firstBit, [lastComponent pathExtension]];
+					
+					NSString *modifiedUrl = [imageUrl stringByReplacingOccurrencesOfString: lastComponent withString: fileName];
+					
+					[subject sendNext: modifiedUrl];
 					[subject sendCompleted];
 				}
 			}

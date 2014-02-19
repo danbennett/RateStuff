@@ -11,9 +11,10 @@
 #import "DBSettingsViewController.h"
 #import "DBHomeViewModel.h"
 #import "DBProfileViewModel.h"
-#import  <Typhoon/Typhoon.h>
 #import "DBGroupService.h"
 #import "DBEditGroupViewController.h"
+#import <Typhoon/Typhoon.h>
+#import <ReactiveCocoa/RACEXTScope.h>
 #import <QuartzCore/QuartzCore.h>
 #import <Parse/Parse.h>
 
@@ -48,12 +49,7 @@
 - (void) styleProfileView
 {
 	self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width * 0.5;
-	self.profileImageView.layer.borderColor = [[UIColor whiteColor] CGColor];
-	self.profileImageView.layer.borderWidth = 4.0f;
-	self.profileImageView.layer.shadowColor = [[UIColor grayColor] CGColor];
-	self.profileImageView.layer.shadowOpacity = 0.8f;
-	self.profileImageView.layer.shadowOffset = CGSizeMake(0.0, 1.0f);
-//	self.profileImageView.clipsToBounds = YES;
+	self.profileImageView.clipsToBounds = YES;
 	[self.profileImageView setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"imageBackground"]]];
 	
 	self.profileImageViewHolder.layer.cornerRadius = self.profileImageViewHolder.frame.size.width * 0.5;
@@ -65,7 +61,16 @@
 
 - (void) applyBindings
 {
-	
+	@weakify(self);
+	[[RACObserve(self.viewModel.profileViewModel, profileImage) distinctUntilChanged] subscribeNext:^(UIImage *image) {
+		
+		if (image != nil)
+		{
+			@strongify(self);
+			[self.profileImageView setImage: image];
+		}
+		
+	}];
 }
 
 #pragma mark - Actions.

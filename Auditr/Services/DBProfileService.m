@@ -115,30 +115,6 @@ NSString const *DBTwitterResponseOAuthTokenKey = @"oauth_token";
 				}
 				
 			});
-			
-//			dispatch_async(dispatch_get_main_queue(), ^{
-//				@strongify(self);
-//				NSArray *accountTypes = [self.accountStore accountsWithAccountType: accountType];
-//				if (accountTypes.count > 0)
-//				{
-//					ACAccount *account = accountTypes[0];
-//					
-//					Profile *profile = [[[self.repository getAllByAttribute: @"profileId" value: account.identifier] objectEnumerator] firstOrDefault];
-//					if (!profile)
-//					{
-//						profile = [self.repository createEntity];
-//						profile.profileId = account.identifier;
-//					}
-//					profile.profileName = account.username;
-//					[subject sendNext: profile];
-//					[subject sendCompleted];
-//				}
-//				else
-//				{
-//					NSError *error = [NSError errorWithDomain: @"uk.co.danbennett" code: 401 userInfo: @{@"Description":  @"No users found"}];
-//					[subject sendError: error];
-//				}
-//			});
 		}
 	}];
 	return subject;
