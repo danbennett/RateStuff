@@ -51,6 +51,15 @@
 	[[UINavigationBar appearance] setBackgroundImage: backgroundImage forBarMetrics: UIBarMetricsDefault];
 	UIImage *shadowImage = [[UIImage imageNamed:@"topBarShadow"] resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile];
 	[[UINavigationBar appearance] setShadowImage: shadowImage];
+	
+	NSShadow *shadow = [[NSShadow alloc] init];
+	shadow.shadowColor = [[UIColor blackColor] colorWithAlphaComponent: 0.2f];
+	shadow.shadowOffset = CGSizeMake(0.0, 2.0);
+	
+	NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Museo Sans" size: 20.0f],
+								 NSForegroundColorAttributeName: [UIColor whiteColor],
+								 NSShadowAttributeName: shadow};
+	[[UINavigationBar appearance] setTitleTextAttributes: attributes];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
