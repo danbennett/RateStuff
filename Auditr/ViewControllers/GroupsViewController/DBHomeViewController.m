@@ -33,6 +33,7 @@
 {
     [super viewDidLoad];
 	[self styleProfileView];
+	[self styleNavigationBar];
 	
 	DBAssembly *factory = (DBAssembly *)[TyphoonAssembly defaultAssembly];
 	
@@ -54,7 +55,15 @@
 	
 	self.profileImageViewHolder.layer.cornerRadius = self.profileImageViewHolder.frame.size.width * 0.5;
 	self.profileImageViewHolder.clipsToBounds = YES;
-	[self.profileBackgroundView setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"topBarBackground"]]];
+	[self.profileBackgroundView setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"profileBackground"]]];
+}
+
+#pragma mark - Style navigation bar.
+
+- (void) styleNavigationBar
+{
+	self.navigationItem.titleView =
+	[[UIImageView alloc] initWithImage: [UIImage imageNamed: @"headerLogo"]];
 }
 
 #pragma mark - Bindings.

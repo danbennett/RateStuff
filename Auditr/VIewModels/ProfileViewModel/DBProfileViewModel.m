@@ -97,7 +97,7 @@
 
 - (RACSignal *) signInAndSync: (Profile *) profile
 {
-	@weakify(self);	
+	@weakify(self);
 	return [[[self.profileService loadProfileImageForProfile: profile] flattenMap:^RACStream *(UIImage *image) {
 		
 		@strongify(self);

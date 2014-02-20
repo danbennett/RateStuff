@@ -16,6 +16,7 @@
 @interface DBSettingsViewController ()
 
 @property (nonatomic, strong) NSArray *accounts;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *doneButton;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 
 @end
@@ -24,7 +25,6 @@ NSString *const DBTwitterAccountError = @"Could not find any Twitter accounts. P
 NSString *const DBTwitterConnectionError = @"There was a problem connecting to the server. Please try again later.";
 
 static NSString *const DBSettingsTwitterCellId = @"DBSettingsTwitterCell";
-static NSString *const SettingsTwitterDefaultLabel = @"Choose a twitter account...";
 
 @implementation DBSettingsViewController
 
@@ -40,6 +40,7 @@ static NSString *const SettingsTwitterDefaultLabel = @"Choose a twitter account.
 - (void) applyBindings
 {
 	RAC(self, title) = RACObserve(self.viewModel, profileName);
+	RAC(self.doneButton, enabled) = [self.viewModel.loginWithAccountCommand enabled];
 	
 	[self bindChooseTwitterAccountCommand];
 	
@@ -100,7 +101,7 @@ static NSString *const SettingsTwitterDefaultLabel = @"Choose a twitter account.
 
 #pragma mark - Actions.
 
-- (IBAction) cancelButtonTapped: (UIBarButtonItem *) sender
+- (IBAction) doneButtonTapped: (UIBarButtonItem *) sender
 {
 	[self dismissViewControllerAnimated: YES completion: NULL];
 }
@@ -157,15 +158,18 @@ static NSString *const SettingsTwitterDefaultLabel = @"Choose a twitter account.
 	}];
 	
 	[actionSheet addButtonWithTitle: @"Cancel"];
-	actionSheet.destructiveButtonIndex = [accountNames count];
+	actionSheet.cancelButtonIndex = [accountNames count];
 	
 	[actionSheet showInView: self.view];
 }
 
 - (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	ACAccount *account = [self.accounts objectAtIndex: buttonIndex];
-	[self.viewModel.loginWithAccountCommand execute: account];
+	if (buttonIndex < [self.accounts count])
+	{
+		ACAccount *account = [self.accounts objectAtIndex: buttonIndex];
+		[self.viewModel.loginWithAccountCommand execute: account];
+	}
 }
 
 #pragma mark - Alert.

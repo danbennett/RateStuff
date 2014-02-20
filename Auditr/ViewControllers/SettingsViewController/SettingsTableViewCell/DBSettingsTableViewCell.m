@@ -16,6 +16,8 @@
 
 @end
 
+static NSString *const SettingsTwitterDefaultLabel = @"Choose a twitter account...";
+
 @implementation DBSettingsTableViewCell
 
 - (void) awakeFromNib
@@ -45,7 +47,8 @@
 		@strongify(self);
 		if (viewModel != nil)
 		{
-			[self.valueLabel setText: viewModel.profileName];
+			NSString *nameString = viewModel.profileName.length > 0 ? viewModel.profileName : SettingsTwitterDefaultLabel;
+			[self.valueLabel setText: nameString];
 		
 			[self applySettingsBinings];
 		}
@@ -59,7 +62,8 @@
 	RACDisposable *nameDisposable = [[RACObserve(self.viewModel, profileName) distinctUntilChanged] subscribeNext:^(NSString *newName) {
 		
 		@strongify(self);
-		self.valueLabel.text = newName;
+		NSString *nameString = newName.length > 0 ? newName : SettingsTwitterDefaultLabel;
+		self.valueLabel.text = nameString;
 		
 	}];
 	[self.disposables addObject: nameDisposable];

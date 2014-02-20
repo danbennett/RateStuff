@@ -159,6 +159,8 @@ static const float areaTableViewY = 147.0f;
 {
 	RAC(self.groupNameTextField, text) = [RACObserve(self.viewModel, groupName) distinctUntilChanged];
 	RAC(self.descriptionTextField, text) = [RACObserve(self.viewModel, groupDescription) distinctUntilChanged];
+	RAC(self.navigationBar.topItem, title) = RACObserve(self.viewModel, groupName);
+	
 	RAC(self.addImageButton, hidden) = [RACObserve(self.profileImageView, image) map:^NSNumber *(UIImage *image) {
 		BOOL isNull = image == nil;
 		return @(!isNull);

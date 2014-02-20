@@ -109,6 +109,9 @@ static NSString *const DBTwitterProfileImageKey = @"profile_image_url";
 		return [values first];
 	}] subscribeNext:^(UIImage *image) {
 		[subject sendNext:image];
+		[subject sendCompleted];
+	} error:^(NSError *error) {
+		[subject sendError: error];
 	}];
 	
 	return subject;
