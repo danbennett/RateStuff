@@ -32,7 +32,7 @@
 - (Area *) createArea
 {
 	Area *area = [self.areaRepository createEntity];
-	area.id = [NSString uuid];
+	area.syncId = [NSString uuid];
 	return area;
 }
 

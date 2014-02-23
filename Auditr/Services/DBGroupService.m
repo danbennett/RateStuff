@@ -36,7 +36,8 @@
 - (Group *) createBlankGroup
 {
 	Group *group = [self.groupRepository createEntity];
-	group.id = [NSString uuid];
+	group.syncId = [NSString uuid];
+	group.syncStatus = @(DBSyncStatusCreated);
 	return group;
 }
 
@@ -65,6 +66,16 @@
 - (NSArray *) getAllActive
 {
 	return [self.groupRepository getAllByAttribute: @"softDeleted" value: @FALSE];
+}
+
+- (NSArray *) getAllCreated
+{
+	return [self.groupRepository getAllByAttribute: @"syncStatus" value: @(DBSyncStatusCreated)];
+}
+
+- (NSArray *) getAllEdited
+{
+	return [self.groupRepository getAllByAttribute: @"syncStatus" value: @(DBSyncStatusEdited)];
 }
 
 @end

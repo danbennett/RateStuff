@@ -2,10 +2,9 @@
 // Make changes to Rating.h instead.
 
 #import <CoreData/CoreData.h>
-
+#import "SyncEntity.h"
 
 extern const struct RatingAttributes {
-	__unsafe_unretained NSString *id;
 	__unsafe_unretained NSString *score;
 } RatingAttributes;
 
@@ -22,25 +21,14 @@ extern const struct RatingFetchedProperties {
 
 
 
-
 @interface RatingID : NSManagedObjectID {}
 @end
 
-@interface _Rating : NSManagedObject {}
+@interface _Rating : SyncEntity {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (RatingID*)objectID;
-
-
-
-
-
-@property (nonatomic, strong) NSString* id;
-
-
-
-//- (BOOL)validateId:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -82,12 +70,6 @@ extern const struct RatingFetchedProperties {
 @end
 
 @interface _Rating (CoreDataGeneratedPrimitiveAccessors)
-
-
-- (NSString*)primitiveId;
-- (void)setPrimitiveId:(NSString*)value;
-
-
 
 
 - (NSNumber*)primitiveScore;

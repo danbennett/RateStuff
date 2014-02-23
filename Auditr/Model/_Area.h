@@ -2,11 +2,10 @@
 // Make changes to Area.h instead.
 
 #import <CoreData/CoreData.h>
-
+#import "SyncEntity.h"
 
 extern const struct AreaAttributes {
 	__unsafe_unretained NSString *areaName;
-	__unsafe_unretained NSString *id;
 } AreaAttributes;
 
 extern const struct AreaRelationships {
@@ -24,11 +23,10 @@ extern const struct AreaFetchedProperties {
 
 
 
-
 @interface AreaID : NSManagedObjectID {}
 @end
 
-@interface _Area : NSManagedObject {}
+@interface _Area : SyncEntity {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
@@ -43,16 +41,6 @@ extern const struct AreaFetchedProperties {
 
 
 //- (BOOL)validateAreaName:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@property (nonatomic, strong) NSString* id;
-
-
-
-//- (BOOL)validateId:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -101,12 +89,6 @@ extern const struct AreaFetchedProperties {
 
 - (NSString*)primitiveAreaName;
 - (void)setPrimitiveAreaName:(NSString*)value;
-
-
-
-
-- (NSString*)primitiveId;
-- (void)setPrimitiveId:(NSString*)value;
 
 
 

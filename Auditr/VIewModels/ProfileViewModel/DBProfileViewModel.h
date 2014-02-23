@@ -15,7 +15,7 @@
 
 - (id) initWithProfileService: (id<DBProfileService>) profileService parseService: (id<DBParseService>) parseService;
 - (void) deleteProfile;
-- (void) activateProfile;
+- (void) activateProfileWithUserId: (NSString *) userId;
 
 @property (nonatomic, strong) Profile *profile;
 @property (nonatomic, strong, readonly) NSString *profileName;

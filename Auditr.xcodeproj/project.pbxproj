@@ -24,6 +24,10 @@
 		FF34C74F18AEB3DE0048FBAE /* ParseSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF34C74E18AEB3DE0048FBAE /* ParseSettings.plist */; };
 		FF34C75318AEB4D00048FBAE /* DBParseService.m in Sources */ = {isa = PBXBuildFile; fileRef = FF34C75218AEB4D00048FBAE /* DBParseService.m */; };
 		FF34C75718AF911E0048FBAE /* DBTwitterOAuthServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FF34C75618AF911E0048FBAE /* DBTwitterOAuthServiceClient.m */; };
+		FF37E01B18BA6F5100972BD3 /* _SyncEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = FF37E01A18BA6F5100972BD3 /* _SyncEntity.m */; };
+		FF37E01E18BA6F5B00972BD3 /* SyncEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = FF37E01D18BA6F5B00972BD3 /* SyncEntity.m */; };
+		FF37E02518BA88A200972BD3 /* DBSyncEntityCoreDataRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = FF37E02418BA88A200972BD3 /* DBSyncEntityCoreDataRepository.m */; };
+		FF37E02818BA8CCB00972BD3 /* DBSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF37E02718BA8CCB00972BD3 /* DBSyncManager.m */; };
 		FF3D7435189C40E800294D6F /* UIView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D7434189C40E800294D6F /* UIView+Animations.m */; };
 		FF3D743C189C55BA00294D6F /* DBCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D743B189C55BA00294D6F /* DBCoreDataManager.m */; };
 		FF3DC114189D1685001974E0 /* DBEditGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC113189D1685001974E0 /* DBEditGroupViewController.m */; };
@@ -126,6 +130,15 @@
 		FF34C75218AEB4D00048FBAE /* DBParseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBParseService.m; sourceTree = "<group>"; };
 		FF34C75518AF911E0048FBAE /* DBTwitterOAuthServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBTwitterOAuthServiceClient.h; sourceTree = "<group>"; };
 		FF34C75618AF911E0048FBAE /* DBTwitterOAuthServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBTwitterOAuthServiceClient.m; sourceTree = "<group>"; };
+		FF37E01918BA6F5000972BD3 /* _SyncEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SyncEntity.h; sourceTree = "<group>"; };
+		FF37E01A18BA6F5100972BD3 /* _SyncEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SyncEntity.m; sourceTree = "<group>"; };
+		FF37E01C18BA6F5B00972BD3 /* SyncEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncEntity.h; sourceTree = "<group>"; };
+		FF37E01D18BA6F5B00972BD3 /* SyncEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncEntity.m; sourceTree = "<group>"; };
+		FF37E02218BA883000972BD3 /* DBSyncEntityRepository.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBSyncEntityRepository.h; sourceTree = "<group>"; };
+		FF37E02318BA88A200972BD3 /* DBSyncEntityCoreDataRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBSyncEntityCoreDataRepository.h; sourceTree = "<group>"; };
+		FF37E02418BA88A200972BD3 /* DBSyncEntityCoreDataRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBSyncEntityCoreDataRepository.m; sourceTree = "<group>"; };
+		FF37E02618BA8CCB00972BD3 /* DBSyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBSyncManager.h; sourceTree = "<group>"; };
+		FF37E02718BA8CCB00972BD3 /* DBSyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBSyncManager.m; sourceTree = "<group>"; };
 		FF3D7433189C40E800294D6F /* UIView+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animations.h"; sourceTree = "<group>"; };
 		FF3D7434189C40E800294D6F /* UIView+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animations.m"; sourceTree = "<group>"; };
 		FF3D743A189C55BA00294D6F /* DBCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCoreDataManager.h; sourceTree = "<group>"; };
@@ -351,6 +364,8 @@
 			children = (
 				FF3D743A189C55BA00294D6F /* DBCoreDataManager.h */,
 				FF3D743B189C55BA00294D6F /* DBCoreDataManager.m */,
+				FF37E02618BA8CCB00972BD3 /* DBSyncManager.h */,
+				FF37E02718BA8CCB00972BD3 /* DBSyncManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -556,6 +571,8 @@
 			children = (
 				FF91CDFD18AC47F40049F984 /* Auditr.xcdatamodeld */,
 				FFC387551859187800A09D01 /* Generated */,
+				FF37E01C18BA6F5B00972BD3 /* SyncEntity.h */,
+				FF37E01D18BA6F5B00972BD3 /* SyncEntity.m */,
 				FFC3874C1859184400A09D01 /* Area.h */,
 				FFC3874D1859184400A09D01 /* Area.m */,
 				FFC3874E1859184400A09D01 /* Group.h */,
@@ -578,6 +595,7 @@
 				FFC3876D18591EAC00A09D01 /* DBGroupRepository.h */,
 				FF24550E189EF3FD00690DC1 /* DBAreaRepository.h */,
 				FF91CE0018AC48F70049F984 /* DBProfileRepository.h */,
+				FF37E02218BA883000972BD3 /* DBSyncEntityRepository.h */,
 			);
 			path = DataAccess;
 			sourceTree = "<group>";
@@ -610,6 +628,8 @@
 				FF245510189EF43500690DC1 /* DBAreaCoreDataRepository.m */,
 				FF91CE0118AC491E0049F984 /* DBProfileCoreDataRepository.h */,
 				FF91CE0218AC491E0049F984 /* DBProfileCoreDataRepository.m */,
+				FF37E02318BA88A200972BD3 /* DBSyncEntityCoreDataRepository.h */,
+				FF37E02418BA88A200972BD3 /* DBSyncEntityCoreDataRepository.m */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -626,6 +646,8 @@
 		FFC387551859187800A09D01 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				FF37E01918BA6F5000972BD3 /* _SyncEntity.h */,
+				FF37E01A18BA6F5100972BD3 /* _SyncEntity.m */,
 				FF437709189C886600A019E3 /* _Profile.h */,
 				FF43770A189C886600A019E3 /* _Profile.m */,
 				FF43770B189C886600A019E3 /* _Rating.h */,
@@ -864,7 +886,9 @@
 				FF3D743C189C55BA00294D6F /* DBCoreDataManager.m in Sources */,
 				FF3DC114189D1685001974E0 /* DBEditGroupViewController.m in Sources */,
 				FF3DC135189D9195001974E0 /* DBImagePickerViewController.m in Sources */,
+				FF37E01B18BA6F5100972BD3 /* _SyncEntity.m in Sources */,
 				FFB41EB918A5BEB400549DC8 /* DBUserService.m in Sources */,
+				FF37E02518BA88A200972BD3 /* DBSyncEntityCoreDataRepository.m in Sources */,
 				FF3DC125189D2ED6001974E0 /* DBGroupViewModel.m in Sources */,
 				FF3DC11D189D2B9A001974E0 /* DBBaseViewModel.m in Sources */,
 				FF437714189C887000A019E3 /* Rating.m in Sources */,
@@ -902,9 +926,11 @@
 				FF3DC131189D4B2A001974E0 /* DBItemViewModel.m in Sources */,
 				FFBBA8B41856960100C8BCBE /* DBCoreDataBaseRepository.m in Sources */,
 				FF34C74D18AEB3360048FBAE /* DBParseSettings.m in Sources */,
+				FF37E02818BA8CCB00972BD3 /* DBSyncManager.m in Sources */,
 				FF43770D189C886600A019E3 /* _Profile.m in Sources */,
 				FF8EE8B8185687AB0036BE27 /* DBHomeViewController.m in Sources */,
 				FF34C74A18AEB22C0048FBAE /* DBParseServiceClient.m in Sources */,
+				FF37E01E18BA6F5B00972BD3 /* SyncEntity.m in Sources */,
 				FFC3875D1859188100A09D01 /* _Group.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

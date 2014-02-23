@@ -20,7 +20,8 @@
 				  authToken: (NSString *) authToken
 			authTokenSecret: (NSString *) authTokenSecret;
 
-- (RACSignal *) syncAllObjectsForUser: (NSString *) username;
+- (RACSignal *) pushAllObjectsForUser: (NSString *) userId;
+- (RACSignal *) syncAllObjectsForUser: (NSString *) userId;
 - (RACSignal *) listAllUsers;
 
 @end
@@ -35,7 +36,8 @@
 				  authToken: (NSString *) authToken
 			authTokenSecret: (NSString *) authTokenSecret;
 
-- (RACSignal *) syncAllObjectsForUser: (NSString *) username;
+- (RACSignal *) pushAllObjectsForUser: (NSString *) userId;
+- (RACSignal *) syncAllObjectsForUser: (NSString *) userId;
 - (RACSignal *) listAllUsers;
 
 @end

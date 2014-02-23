@@ -19,6 +19,11 @@
 		   authTokenSecret: (NSString *) authTokenSecret;
 
 - (RACSignal *) syncClassesOfName: (NSString *) className updatedAfterDate: (NSDate *) date forUser: (NSString *) username;
+- (RACSignal *) createClasseOfName: (NSString *) className withValues: (NSDictionary *) values forUser: (NSString *) userId;
+- (void) addCreateRequestForClassName: (NSString *) className withValues: (NSDictionary *) values forUser: (NSString *) userId;
+- (void) addDeleteRequestForClassName: (NSString *) className forUser: (NSString *) userId;
+- (void) addUpdateRequestForClassName: (NSString *) className withValues: (NSDictionary *) values forUser: (NSString *) userId;
+- (RACSignal *) executeBatchRequests;
 - (RACSignal *) syncAllUsers;
 
 @end
@@ -32,7 +37,12 @@
 				 authToken: (NSString *) authToken
 		   authTokenSecret: (NSString *) authTokenSecret;
 
-- (RACSignal *) syncClassesOfName: (NSString *) className updatedAfterDate: (NSDate *) date forUser: (NSString *) username;
+- (RACSignal *) pullClassesOfName: (NSString *) className updatedAfterDate: (NSDate *) date forUser: (NSString *) username;
+- (RACSignal *) createClasseOfName: (NSString *) className withValues: (NSDictionary *) values forUser: (NSString *) userId;
+- (void) addCreateRequestForClassName: (NSString *) className withValues: (NSDictionary *) values forUser: (NSString *) userId;
+- (void) addDeleteRequestForClassName: (NSString *) className forUser: (NSString *) userId;
+- (void) addUpdateRequestForClassName: (NSString *) className withValues: (NSDictionary *) values forUser: (NSString *) userId;
+- (RACSignal *) executeBatchRequests;
 - (RACSignal *) syncAllUsers;
 
 @end

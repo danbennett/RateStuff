@@ -6,6 +6,7 @@
 const struct ProfileAttributes ProfileAttributes = {
 	.active = @"active",
 	.email = @"email",
+	.parseUserId = @"parseUserId",
 	.profileId = @"profileId",
 	.profileImage = @"profileImage",
 	.profileName = @"profileName",
@@ -83,6 +84,13 @@ const struct ProfileFetchedProperties ProfileFetchedProperties = {
 
 
 @dynamic email;
+
+
+
+
+
+
+@dynamic parseUserId;
 
 
 

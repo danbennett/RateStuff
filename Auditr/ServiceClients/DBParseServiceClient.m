@@ -10,10 +10,12 @@
 #import <Parse-iOS-SDK/Parse.h>
 #import <AFNetworking-RACExtensions/AFHTTPClient+RACSupport.h>
 #import <AFNetworking-RACExtensions/AFURLConnectionOperation+RACSupport.h>
+#import <ReactiveCocoa/RACEXTScope.h>
 
 @interface DBParseServiceClient()
 
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
+@property (nonatomic, strong) NSMutableArray *requests;
 
 @end
 
@@ -25,6 +27,8 @@ static NSString *const DBParseUsersResultKey = @"results";
 {
 	if ([super initWithBaseURL: [NSURL URLWithString: baseUrl]])
 	{
+		self.requests = [NSMutableArray array];
+		
 		self.dateFormatter = [[NSDateFormatter alloc] init];
         [self.dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.'999Z'"];
         [self.dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
@@ -53,7 +57,7 @@ static NSString *const DBParseUsersResultKey = @"results";
 									 
 									 if(user && !error)
 									 {
-										 [subject sendNext: [NSNull null]];
+										 [subject sendNext: user.username];
 										 [subject sendCompleted];
 									 }
 									 else
@@ -101,7 +105,7 @@ static NSString *const DBParseUsersResultKey = @"results";
 }
 
 // TODO: Add user filter.
-- (RACSignal *) syncClassesOfName: (NSString *) className updatedAfterDate: (NSDate *) date forUser: (NSString *) username
+- (RACSignal *) pullClassesOfName: (NSString *) className updatedAfterDate: (NSDate *) date forUser: (NSString *) username
 {
 	if (!date)
 	{
@@ -124,6 +128,67 @@ static NSString *const DBParseUsersResultKey = @"results";
 		
 		[subject sendError: error];
 		
+	}];
+	
+	return subject;
+}
+
+- (RACSignal *) createClasseOfName: (NSString *) className withValues: (NSDictionary *) values forUser: (NSString *) userId
+{
+	return [self rac_postPath: [NSString stringWithFormat: @"classes/%@", className] parameters: values];
+}
+
+- (void) addCreateRequestForClassName: (NSString *) className withValues: (NSDictionary *) values forUser: (NSString *) userId
+{
+	NSMutableDictionary *withUser = [values mutableCopy];
+	[withUser setObject: userId forKey: @"User"];
+	
+	NSDictionary *request =
+	@{@"method": @"POST",
+	  @"path": [NSString stringWithFormat: @"/1/classes/%@", className],
+	  @"body": withUser};
+	
+	[self.requests addObject: request];
+}
+
+- (void) addDeleteRequestForClassName: (NSString *) className forUser: (NSString *) userId
+{
+	NSDictionary *request =
+	@{@"method": @"DELETE",
+	  @"path": [NSString stringWithFormat: @"/1/classes/%@", className]};
+	
+	[self.requests addObject: request];
+}
+
+- (void) addUpdateRequestForClassName: (NSString *) className withValues: (NSDictionary *) values forUser: (NSString *) userId
+{
+	NSMutableDictionary *withUser = [values mutableCopy];
+	[withUser setObject: userId forKey: @"User"];
+	
+	NSDictionary *request =
+	@{@"method": @"PUT",
+	  @"path": [NSString stringWithFormat: @"/1/classes/%@", className],
+	  @"body": withUser};
+	
+	[self.requests addObject: request];
+	
+}
+
+- (RACSignal *) executeBatchRequests
+{
+	NSDictionary *params = @{@"requests": self.requests};
+	RACSubject *subject = [RACSubject subject];
+	
+	@weakify(self);
+	[[self rac_postPath: @"batch" parameters: params] subscribeNext:^(id x) {
+		@strongify(self);
+		[subject sendNext: [NSNull null]];
+		[subject sendCompleted];
+		self.requests = [NSMutableArray array];
+	} error:^(NSError *error) {
+		@strongify(self);
+		[subject sendError: error];
+		self.requests = [NSMutableArray array];
 	}];
 	
 	return subject;

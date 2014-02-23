@@ -4,7 +4,6 @@
 #import "_Item.h"
 
 const struct ItemAttributes ItemAttributes = {
-	.id = @"id",
 	.image = @"image",
 	.itemDescription = @"itemDescription",
 	.itemName = @"itemName",
@@ -48,13 +47,6 @@ const struct ItemFetchedProperties ItemFetchedProperties = {
 
 	return keyPaths;
 }
-
-
-
-
-@dynamic id;
-
-
 
 
 

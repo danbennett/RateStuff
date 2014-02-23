@@ -4,7 +4,6 @@
 #import "_Rating.h"
 
 const struct RatingAttributes RatingAttributes = {
-	.id = @"id",
 	.score = @"score",
 };
 
@@ -50,13 +49,6 @@ const struct RatingFetchedProperties RatingFetchedProperties = {
 
 	return keyPaths;
 }
-
-
-
-
-@dynamic id;
-
-
 
 
 

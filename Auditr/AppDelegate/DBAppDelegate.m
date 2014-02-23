@@ -9,8 +9,15 @@
 #import "DBAppDelegate.h"
 #import "DBCoreDataManager.h"
 #import "DBParseSettings.h"
+#import "DBSyncManager.h"
 #import <AFNetworking/AFNetworking.h>
 #import <Parse/Parse.h>
+
+@interface DBAppDelegate()
+
+@property (nonatomic, strong) DBSyncManager *syncManager;
+
+@end
 
 @implementation DBAppDelegate
 
@@ -30,7 +37,20 @@
 	
 	[PFUser enableAutomaticUser];
 	
+	[self setupSyncManager];
+	
     return YES;
+}
+
+- (void) setupSyncManager
+{
+	DBAssembly *assembly = (DBAssembly *)[TyphoonAssembly defaultAssembly];
+	id<DBParseService> parseService = [assembly parseService];
+	id<DBProfileService> profileService = [assembly profileService];
+	
+	self.syncManager = [[DBSyncManager alloc] initWithParseService: parseService profileService: profileService];
+	
+	[self.syncManager syncPush];
 }
 
 - (void) setupTyphoon
@@ -54,7 +74,7 @@
 	
 	NSShadow *shadow = [[NSShadow alloc] init];
 	shadow.shadowColor = [[UIColor blackColor] colorWithAlphaComponent: 0.2f];
-	shadow.shadowOffset = CGSizeMake(0.0, 2.0);
+	shadow.shadowOffset = CGSizeMake(0.0, 1.0);
 	
 	NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"Museo Sans" size: 20.0f],
 								 NSForegroundColorAttributeName: [UIColor whiteColor],

@@ -16,6 +16,7 @@
 #import "DBGroupCoreDataRepository.h"
 #import "DBAreaCoreDataRepository.h"
 #import "DBProfileCoreDataRepository.h"
+#import "DBSyncEntityCoreDataRepository.h"
 // Service clients.
 #import "DBTwitterServiceClient.h"
 #import "DBParseServiceClient.h"
@@ -111,6 +112,15 @@
 - (id) profileRepository
 {
 	return [TyphoonDefinition withClass: [DBProfileCoreDataRepository class] properties:^(TyphoonDefinition *definition) {
+		
+		[definition setScope: TyphoonScopeSingleton];
+		
+	}];
+}
+
+- (id) syncEntityRepository
+{
+	return [TyphoonDefinition withClass: [DBSyncEntityCoreDataRepository class] properties:^(TyphoonDefinition *definition) {
 		
 		[definition setScope: TyphoonScopeSingleton];
 		

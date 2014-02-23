@@ -19,7 +19,8 @@ NSString *const DBNewGroupPressedNotification = @"newGroupPressedNotifcation";
 @interface DBBaseViewController ()
 
 @property (nonatomic, weak) UIResponder *selectedResponder;
-@property (nonatomic, strong) UITapGestureRecognizer *closeBurgerGesture;
+@property (nonatomic, strong) UITapGestureRecognizer *tapCloseGesture;
+@property (nonatomic, strong) UIPanGestureRecognizer *swipeGesture;
 @property (strong, nonatomic) IBOutlet UIView *statusBarBackground;
 @property (strong, nonatomic) IBOutlet UIView *containerView;
 @property (strong, nonatomic) IBOutlet UITableView *groupTableView;
@@ -73,10 +74,14 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 
 - (void) addSwipeGesutre
 {
-	UIPanGestureRecognizer *panGesture =
-	[[UIPanGestureRecognizer alloc] initWithTarget: self action: @selector(isDragging:)];
-	panGesture.delegate = self;
-	[self.containerView addGestureRecognizer: panGesture];
+	if ([self.containerView.gestureRecognizers indexOfObject: self.swipeGesture] == NSNotFound ||
+		self.swipeGesture == nil)
+	{
+		self.swipeGesture =
+		[[UIPanGestureRecognizer alloc] initWithTarget: self action: @selector(isDragging:)];
+		self.swipeGesture.delegate = self;
+		[self.containerView addGestureRecognizer: self.swipeGesture];
+	}
 }
 
 - (BOOL) gestureRecognizerShouldBegin:(UITapGestureRecognizer *)gestureRecognizer
@@ -91,19 +96,19 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 
 - (void) addTapGesture
 {
-	if ([self.containerView.gestureRecognizers indexOfObject: self.closeBurgerGesture] == NSNotFound)
+	if ([self.containerView.gestureRecognizers indexOfObject: self.tapCloseGesture] == NSNotFound)
 	{
-		self.closeBurgerGesture =
+		self.tapCloseGesture =
 		[[UITapGestureRecognizer alloc] initWithTarget: self  action: @selector(openBurgerMenuTapped:)];
-		self.closeBurgerGesture.cancelsTouchesInView = NO;
-		self.closeBurgerGesture.delegate = self;
-		[self.containerView addGestureRecognizer: self.closeBurgerGesture];
+		self.tapCloseGesture.cancelsTouchesInView = NO;
+		self.tapCloseGesture.delegate = self;
+		[self.containerView addGestureRecognizer: self.tapCloseGesture];
 	}
 }
 
 - (void) openBurgerMenuTapped: (UITapGestureRecognizer *) gesture
 {
-	[self.containerView removeGestureRecognizer: self.closeBurgerGesture];
+	[self.containerView removeGestureRecognizer: self.tapCloseGesture];
 	
 	[self.containerView animateToPosition: CGPointZero withDuration: 0.2f withEase: UIViewAnimationOptionCurveEaseOut withCompletion: NULL];
 	[self.statusBarBackground animateToOpacity: 0.0f withDuration: 0.2f];
@@ -225,11 +230,13 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 	}
 	
 	[self addTapGesture];
+	[self addSwipeGesutre];
 }
 
 - (void) searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-	[self.containerView removeGestureRecognizer: self.closeBurgerGesture];
+	[self.containerView removeGestureRecognizer: self.tapCloseGesture];
+	[self.containerView removeGestureRecognizer: self.swipeGesture];
 	
 	self.selectedResponder = searchBar;
 	
@@ -247,6 +254,7 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 	[self.view removeGestureRecognizer: gesture];
 	
 	[self addTapGesture];
+	[self addSwipeGesutre];
 }
 
 - (void) searchBar: (UISearchBar *)searchBar textDidChange: (NSString *) text
@@ -258,7 +266,7 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 
 - (IBAction) addNewGroup: (UIButton *) sender
 {
-	[self.containerView removeGestureRecognizer: self.closeBurgerGesture];
+	[self.containerView removeGestureRecognizer: self.tapCloseGesture];
 	
 	@weakify(self);
 	[self.containerView animateToPosition: CGPointZero withDuration: 0.2f withEase: UIViewAnimationOptionCurveEaseOut withCompletion:^(BOOL finished) {

@@ -5,7 +5,6 @@
 
 const struct AreaAttributes AreaAttributes = {
 	.areaName = @"areaName",
-	.id = @"id",
 };
 
 const struct AreaRelationships AreaRelationships = {
@@ -51,13 +50,6 @@ const struct AreaFetchedProperties AreaFetchedProperties = {
 
 
 @dynamic areaName;
-
-
-
-
-
-
-@dynamic id;
 
 
 

@@ -6,7 +6,6 @@
 const struct GroupAttributes GroupAttributes = {
 	.groupDescription = @"groupDescription",
 	.groupName = @"groupName",
-	.id = @"id",
 	.image = @"image",
 	.lastUpdated = @"lastUpdated",
 	.softDeleted = @"softDeleted",
@@ -67,13 +66,6 @@ const struct GroupFetchedProperties GroupFetchedProperties = {
 
 
 @dynamic groupName;
-
-
-
-
-
-
-@dynamic id;
 
 
 

@@ -2,12 +2,11 @@
 // Make changes to Group.h instead.
 
 #import <CoreData/CoreData.h>
-
+#import "SyncEntity.h"
 
 extern const struct GroupAttributes {
 	__unsafe_unretained NSString *groupDescription;
 	__unsafe_unretained NSString *groupName;
-	__unsafe_unretained NSString *id;
 	__unsafe_unretained NSString *image;
 	__unsafe_unretained NSString *lastUpdated;
 	__unsafe_unretained NSString *softDeleted;
@@ -32,11 +31,10 @@ extern const struct GroupFetchedProperties {
 
 
 
-
 @interface GroupID : NSManagedObjectID {}
 @end
 
-@interface _Group : NSManagedObject {}
+@interface _Group : SyncEntity {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
@@ -61,16 +59,6 @@ extern const struct GroupFetchedProperties {
 
 
 //- (BOOL)validateGroupName:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@property (nonatomic, strong) NSString* id;
-
-
-
-//- (BOOL)validateId:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -159,12 +147,6 @@ extern const struct GroupFetchedProperties {
 
 - (NSString*)primitiveGroupName;
 - (void)setPrimitiveGroupName:(NSString*)value;
-
-
-
-
-- (NSString*)primitiveId;
-- (void)setPrimitiveId:(NSString*)value;
 
 
 

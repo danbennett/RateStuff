@@ -72,10 +72,10 @@ static NSString *const DBSettingsTwitterCellId = @"DBSettingsTwitterCell";
 	
 	[self.viewModel.loginWithAccountCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		
-		[signal subscribeNext:^(id x) {
+		[signal subscribeNext:^(NSString *userId) {
 			
 			@strongify(self);
-			[self.viewModel activateProfile];
+			[self.viewModel activateProfileWithUserId: userId];
 			
 		} error:^(NSError *error) {
 			@strongify(self);

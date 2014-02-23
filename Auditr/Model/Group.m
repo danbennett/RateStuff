@@ -10,6 +10,10 @@
 
 @implementation Group
 
-// Custom logic goes here.
+- (NSDictionary *) asDictionary
+{
+	return @{@"groupName": self.groupName,
+			 @"groupDescription": self.groupDescription};
+}
 
 @end

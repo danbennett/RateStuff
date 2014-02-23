@@ -9,8 +9,10 @@
 #import "DBParseService.h"
 #import "DBParseServiceClient.h"
 #import "DBGroupRepository.h"
+#import "SyncEntity.h"
 #import "Group.h"
 #import <Parse-iOS-SDK/Parse.h>
+#import <ReactiveCocoa/RACEXTScope.h>
 
 @interface DBParseService()
 
@@ -49,14 +51,42 @@
 	return [self.serviceClient syncAllUsers];
 }
 
-- (RACSignal *) syncAllObjectsForUser: (NSString *) username
+- (RACSignal *) syncAllObjectsForUser: (NSString *) userId
 {
-	return [self syncGroupsForUser: username];
+	return [self syncGroupsForUser: userId];
 }
 
 - (RACSignal *) syncGroupsForUser: (NSString *) username
 {
-	return [self.serviceClient syncClassesOfName: @"group" updatedAfterDate: [self dateForGroup] forUser: username];
+	return [self.serviceClient syncClassesOfName: @"Group" updatedAfterDate: [self dateForGroup] forUser: username];
+}
+
+- (RACSignal *) pushAllObjectsForUser: (NSString *) userId
+{
+	NSArray *toCreate = [self.groupRepository getAllByAttribute: @"syncStatus" value: @(DBSyncStatusCreated)];
+	[self addCreateRequestsWithEntities: toCreate forClassName: @"Group" forUser: userId];
+	NSArray *toUpdate = [self.groupRepository getAllByAttribute: @"syncStatus" value: @(DBSyncStatusEdited)];
+	[self addUpdateRequestsWithEntities: toUpdate forClassName: @"Group" forUser: userId];
+	
+	return [self.serviceClient executeBatchRequests];
+}
+
+- (void) addCreateRequestsWithEntities: (NSArray *) entities forClassName: (NSString *) className forUser: (NSString *) userId
+{
+	@weakify(self);
+	[entities enumerateObjectsUsingBlock:^(SyncEntity *entity, NSUInteger idx, BOOL *stop) {
+		@strongify(self);
+		[self.serviceClient addCreateRequestForClassName: className withValues: [entity asDictionary] forUser: userId];
+	}];
+}
+
+- (void) addUpdateRequestsWithEntities: (NSArray *) entities forClassName: (NSString *) className forUser: (NSString *) userId
+{
+	@weakify(self);
+	[entities enumerateObjectsUsingBlock:^(SyncEntity *entity, NSUInteger idx, BOOL *stop) {
+		@strongify(self);
+		[self.serviceClient addUpdateRequestForClassName: className withValues: [entity asDictionary] forUser: userId];
+	}];
 }
 
 - (NSDate *) dateForGroup

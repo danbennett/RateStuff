@@ -2,10 +2,9 @@
 // Make changes to Item.h instead.
 
 #import <CoreData/CoreData.h>
-
+#import "SyncEntity.h"
 
 extern const struct ItemAttributes {
-	__unsafe_unretained NSString *id;
 	__unsafe_unretained NSString *image;
 	__unsafe_unretained NSString *itemDescription;
 	__unsafe_unretained NSString *itemName;
@@ -28,25 +27,14 @@ extern const struct ItemFetchedProperties {
 
 
 
-
 @interface ItemID : NSManagedObjectID {}
 @end
 
-@interface _Item : NSManagedObject {}
+@interface _Item : SyncEntity {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (ItemID*)objectID;
-
-
-
-
-
-@property (nonatomic, strong) NSString* id;
-
-
-
-//- (BOOL)validateId:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -121,12 +109,6 @@ extern const struct ItemFetchedProperties {
 @end
 
 @interface _Item (CoreDataGeneratedPrimitiveAccessors)
-
-
-- (NSString*)primitiveId;
-- (void)setPrimitiveId:(NSString*)value;
-
-
 
 
 - (NSData*)primitiveImage;

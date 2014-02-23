@@ -113,6 +113,7 @@
 		NSString *oAuthTokenSecret = details[DBTwitterResponseOAuthTokenSecretKey];
 		
 		return [self.parseService loginWithId: userId screenName: screenName authToken: oAuthToken authTokenSecret: oAuthTokenSecret];
+		
 	}];
 }
 
@@ -121,8 +122,9 @@
 	[self.profileService deleteProfile: self.profile];
 }
 
-- (void) activateProfile
+- (void) activateProfileWithUserId: (NSString *) userId
 {
+	self.profile.parseUserId = userId;
 	[self.profileService activateProfile: self.profile];
 }
 

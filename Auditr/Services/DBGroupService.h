@@ -21,6 +21,8 @@
 - (Group *) createBlankGroup;
 - (NSArray *) getAll;
 - (NSArray *) getAllActive;
+- (NSArray *) getAllCreated;
+- (NSArray *) getAllEdited;
 - (void) saveGroup: (Group *) group toPush: (BOOL) toPush withCompletion: (void (^)(BOOL success, NSError *error)) completion;
 - (void) deleteGroup: (Group *) group;
 
@@ -34,6 +36,8 @@
 - (Group *) createBlankGroup;
 - (NSArray *) getAll;
 - (NSArray *) getAllActive;
+- (NSArray *) getAllCreated;
+- (NSArray *) getAllEdited;
 - (void) saveGroup: (Group *) group toPush: (BOOL) toPush withCompletion: (void (^)(BOOL success, NSError *error)) completion;
 - (void) deleteGroup: (Group *) group;
 
