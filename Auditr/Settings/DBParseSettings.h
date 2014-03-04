@@ -14,6 +14,7 @@
 @property (nonatomic, strong, readonly) NSString *applicationId;
 @property (nonatomic, strong, readonly) NSString *clientKey;
 @property (nonatomic, strong, readonly) NSString *apiKey;
+@property (nonatomic, strong, readonly) NSNumber *apiVersion;
 
 + (id) sharedInstance;
 

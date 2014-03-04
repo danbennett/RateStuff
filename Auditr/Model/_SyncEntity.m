@@ -9,6 +9,7 @@ const struct SyncEntityAttributes SyncEntityAttributes = {
 };
 
 const struct SyncEntityRelationships SyncEntityRelationships = {
+	.profile = @"profile",
 };
 
 const struct SyncEntityFetchedProperties SyncEntityFetchedProperties = {
@@ -84,6 +85,10 @@ const struct SyncEntityFetchedProperties SyncEntityFetchedProperties = {
 
 
 
+
+@dynamic profile;
+
+	
 
 
 

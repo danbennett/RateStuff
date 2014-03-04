@@ -12,7 +12,7 @@
 
 @protocol DBAreaService <NSObject>
 - (Area *) createArea;
-- (void) deleteArea: (Area *) area;
+- (void) deleteArea: (Area *) area hard: (BOOL) isHardDelete;
 
 @end
 
@@ -20,6 +20,6 @@
 
 - (id) initWithAreaRepository: (id<DBAreaRepository>) areaRepository;
 - (Area *) createArea;
-- (void) deleteArea: (Area *) area;
+- (void) deleteArea: (Area *) area hard: (BOOL) isHardDelete;
 
 @end

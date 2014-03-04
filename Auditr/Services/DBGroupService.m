@@ -41,9 +41,14 @@
 	return group;
 }
 
-- (void) deleteGroup: (Group *) group
+- (void) deleteGroup: (Group *) group hard: (BOOL) isHardDelete
 {
-	[self.groupRepository deleteEntity: group];
+	if (isHardDelete || [group.syncStatus isEqual: @(DBSyncStatusCreated)])
+	{
+		[self.groupRepository deleteEntity: group];
+		return;
+	}
+	group.syncStatus = @(DBSyncStatusDeleted);
 }
 
 - (void) addArea: (Area *) area toGroup: (Group *) group
@@ -54,18 +59,18 @@
 
 - (void) saveGroup: (Group *) group toPush: (BOOL) toPush withCompletion: (void (^)(BOOL success, NSError *error)) completion
 {
-	// TODO: Set to push flag.
+	if (toPush && ![group.syncStatus isEqual: @(DBSyncStatusCreated)] && ![group.syncStatus isEqual: @(DBSyncStatusDeleted)])
+	{
+		group.syncStatus = @(DBSyncStatusEdited);
+	}
+	
 	[self.groupRepository save: group withCompletion: completion];
 }
 
 - (NSArray *) getAll
 {
-	return [self.groupRepository getAll];
-}
-
-- (NSArray *) getAllActive
-{
-	return [self.groupRepository getAllByAttribute: @"softDeleted" value: @FALSE];
+	NSPredicate *filter = [NSPredicate predicateWithFormat: @"syncStatus != %@", @(DBSyncStatusDeleted)];
+	return [[self.groupRepository getAll] filteredArrayUsingPredicate: filter];
 }
 
 - (NSArray *) getAllCreated
@@ -76,6 +81,11 @@
 - (NSArray *) getAllEdited
 {
 	return [self.groupRepository getAllByAttribute: @"syncStatus" value: @(DBSyncStatusEdited)];
+}
+
+- (NSArray *) getAllDeleted
+{
+	return [self.groupRepository getAllByAttribute: @"syncStatus" value: @(DBSyncStatusDeleted)];
 }
 
 @end

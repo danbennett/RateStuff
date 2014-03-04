@@ -28,6 +28,7 @@
 		FF37E01E18BA6F5B00972BD3 /* SyncEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = FF37E01D18BA6F5B00972BD3 /* SyncEntity.m */; };
 		FF37E02518BA88A200972BD3 /* DBSyncEntityCoreDataRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = FF37E02418BA88A200972BD3 /* DBSyncEntityCoreDataRepository.m */; };
 		FF37E02818BA8CCB00972BD3 /* DBSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF37E02718BA8CCB00972BD3 /* DBSyncManager.m */; };
+		FF37E02B18C53F7400972BD3 /* DBGroupSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF37E02A18C53F7300972BD3 /* DBGroupSyncManager.m */; };
 		FF3D7435189C40E800294D6F /* UIView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D7434189C40E800294D6F /* UIView+Animations.m */; };
 		FF3D743C189C55BA00294D6F /* DBCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D743B189C55BA00294D6F /* DBCoreDataManager.m */; };
 		FF3DC114189D1685001974E0 /* DBEditGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC113189D1685001974E0 /* DBEditGroupViewController.m */; };
@@ -139,6 +140,8 @@
 		FF37E02418BA88A200972BD3 /* DBSyncEntityCoreDataRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBSyncEntityCoreDataRepository.m; sourceTree = "<group>"; };
 		FF37E02618BA8CCB00972BD3 /* DBSyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBSyncManager.h; sourceTree = "<group>"; };
 		FF37E02718BA8CCB00972BD3 /* DBSyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBSyncManager.m; sourceTree = "<group>"; };
+		FF37E02918C53F7300972BD3 /* DBGroupSyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBGroupSyncManager.h; sourceTree = "<group>"; };
+		FF37E02A18C53F7300972BD3 /* DBGroupSyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBGroupSyncManager.m; sourceTree = "<group>"; };
 		FF3D7433189C40E800294D6F /* UIView+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animations.h"; sourceTree = "<group>"; };
 		FF3D7434189C40E800294D6F /* UIView+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animations.m"; sourceTree = "<group>"; };
 		FF3D743A189C55BA00294D6F /* DBCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCoreDataManager.h; sourceTree = "<group>"; };
@@ -366,6 +369,8 @@
 				FF3D743B189C55BA00294D6F /* DBCoreDataManager.m */,
 				FF37E02618BA8CCB00972BD3 /* DBSyncManager.h */,
 				FF37E02718BA8CCB00972BD3 /* DBSyncManager.m */,
+				FF37E02918C53F7300972BD3 /* DBGroupSyncManager.h */,
+				FF37E02A18C53F7300972BD3 /* DBGroupSyncManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -899,6 +904,7 @@
 				FF3DC138189DA310001974E0 /* UIImage+Effects.m in Sources */,
 				FFBBA8AA185694B200C8BCBE /* DBAppDelegate.m in Sources */,
 				FFB7B46718A45F1300F61D42 /* DBAreaTableFooterView.m in Sources */,
+				FF37E02B18C53F7400972BD3 /* DBGroupSyncManager.m in Sources */,
 				FF34C75718AF911E0048FBAE /* DBTwitterOAuthServiceClient.m in Sources */,
 				FFC3875C1859188100A09D01 /* _Area.m in Sources */,
 				FF245509189EEB9900690DC1 /* DBAreaTableViewCell.m in Sources */,

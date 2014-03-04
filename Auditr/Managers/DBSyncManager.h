@@ -10,11 +10,11 @@
 @protocol DBParseService;
 @protocol DBProfileService;
 @protocol DBGroupService;
+@protocol DBGroupSyncManager;
 
 @interface DBSyncManager : NSObject
 
-- (id) initWithParseService: (id<DBParseService>) parseService
-			 profileService: (id<DBProfileService>) profileService;
+- (id) initWithGroupSyncManager: (id<DBGroupSyncManager>) groupSyncManager;
 
 - (RACSignal *) syncPush;
 

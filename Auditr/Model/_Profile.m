@@ -13,7 +13,7 @@ const struct ProfileAttributes ProfileAttributes = {
 };
 
 const struct ProfileRelationships ProfileRelationships = {
-	.groups = @"groups",
+	.entities = @"entities",
 };
 
 const struct ProfileFetchedProperties ProfileFetchedProperties = {
@@ -118,15 +118,15 @@ const struct ProfileFetchedProperties ProfileFetchedProperties = {
 
 
 
-@dynamic groups;
+@dynamic entities;
 
 	
-- (NSMutableSet*)groupsSet {
-	[self willAccessValueForKey:@"groups"];
+- (NSMutableSet*)entitiesSet {
+	[self willAccessValueForKey:@"entities"];
   
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"groups"];
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"entities"];
   
-	[self didAccessValueForKey:@"groups"];
+	[self didAccessValueForKey:@"entities"];
 	return result;
 }
 	

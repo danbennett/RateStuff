@@ -10,11 +10,13 @@ extern const struct SyncEntityAttributes {
 } SyncEntityAttributes;
 
 extern const struct SyncEntityRelationships {
+	__unsafe_unretained NSString *profile;
 } SyncEntityRelationships;
 
 extern const struct SyncEntityFetchedProperties {
 } SyncEntityFetchedProperties;
 
+@class Profile;
 
 
 
@@ -56,6 +58,13 @@ extern const struct SyncEntityFetchedProperties {
 
 
 
+@property (nonatomic, strong) Profile *profile;
+
+//- (BOOL)validateProfile:(id*)value_ error:(NSError**)error_;
+
+
+
+
 
 @end
 
@@ -79,6 +88,11 @@ extern const struct SyncEntityFetchedProperties {
 - (void)setPrimitiveSyncStatusValue:(int32_t)value_;
 
 
+
+
+
+- (Profile*)primitiveProfile;
+- (void)setPrimitiveProfile:(Profile*)value;
 
 
 @end

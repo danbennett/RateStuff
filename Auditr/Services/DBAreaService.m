@@ -33,12 +33,18 @@
 {
 	Area *area = [self.areaRepository createEntity];
 	area.syncId = [NSString uuid];
+	area.syncStatus = @(DBSyncStatusCreated);
 	return area;
 }
 
-- (void) deleteArea: (Area *) area
+- (void) deleteArea: (Area *) area hard: (BOOL) isHardDelete
 {
-	[self.areaRepository deleteEntity: area];
+	if (isHardDelete || [area.syncStatus isEqual: @(DBSyncStatusCreated)])
+	{
+		[self.areaRepository deleteEntity: area];
+		return;
+	}
+	area.syncStatus = @(DBSyncStatusDeleted);
 }
 
 @end

@@ -39,7 +39,8 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 	
 	DBAssembly *factory = (DBAssembly *)[TyphoonAssembly defaultAssembly];
 	id<DBGroupService> groupService = [factory groupService];
-	self.viewModel = [[DBBaseViewModel alloc] initWithGroupService: groupService];
+	id<DBProfileService> profileService = [factory profileService];
+	self.viewModel = [[DBBaseViewModel alloc] initWithGroupService: groupService profileService: profileService];
 	
 	[self addObservers];
 	

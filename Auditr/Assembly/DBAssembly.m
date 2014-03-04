@@ -24,6 +24,8 @@
 // Settings.
 #import "DBTwitterSettings.h"
 #import "DBParseSettings.h"
+// Sync Managers
+#import "DBGroupSyncManager.h"
 
 @implementation DBAssembly
 
@@ -78,8 +80,9 @@
 {
 	return [TyphoonDefinition withClass: [DBParseService class] initialization:^(TyphoonInitializer *initializer) {
 		
-		initializer.selector = @selector(initWithServiceClient:groupRepository:);
+		initializer.selector = @selector(initWithServiceClient:profileRepository:groupRepository:);
 		[initializer injectWithDefinition: [self parseServiceClient]];
+		[initializer injectWithDefinition: [self profileRepository]];
 		[initializer injectWithDefinition: [self groupRepository]];
 		
 	} properties:^(TyphoonDefinition *definition) {
@@ -169,10 +172,30 @@
 		
 		DBParseSettings *settings = [DBParseSettings sharedInstance];
 		
-		initializer.selector = @selector(initWithBaseUrl:applicationId:apiKey:);
-		[initializer injectWithObjectInstance: settings.baseUrl];
+		initializer.selector = @selector(initWithBaseUrl:applicationId:apiKey:apiVersion:);
+		NSString *baseUrl = [NSString stringWithFormat: @"%@%@/", settings.baseUrl, settings.apiVersion];
+		[initializer injectWithObjectInstance: baseUrl];
 		[initializer injectWithObjectInstance: settings.applicationId];
 		[initializer injectWithObjectInstance: settings.apiKey];
+		[initializer injectWithObjectInstance: settings.apiVersion];
+		
+	} properties:^(TyphoonDefinition *definition) {
+		
+		[definition setScope: TyphoonScopeSingleton];
+		
+	}];
+}
+
+#pragma mark - Sync managers.
+
+- (id) groupSyncManager
+{
+	return [TyphoonDefinition withClass: [DBGroupSyncManager class] initialization:^(TyphoonInitializer *initializer) {
+		
+		initializer.selector = @selector(initWithGroupService:parseServiceClient:profileService:);
+		[initializer injectWithDefinition: [self groupService]];
+		[initializer injectWithDefinition: [self parseServiceClient]];
+		[initializer injectWithDefinition: [self profileService]];
 		
 	} properties:^(TyphoonDefinition *definition) {
 		

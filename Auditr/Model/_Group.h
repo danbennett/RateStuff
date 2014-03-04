@@ -9,13 +9,11 @@ extern const struct GroupAttributes {
 	__unsafe_unretained NSString *groupName;
 	__unsafe_unretained NSString *image;
 	__unsafe_unretained NSString *lastUpdated;
-	__unsafe_unretained NSString *softDeleted;
 } GroupAttributes;
 
 extern const struct GroupRelationships {
 	__unsafe_unretained NSString *areas;
 	__unsafe_unretained NSString *items;
-	__unsafe_unretained NSString *profile;
 } GroupRelationships;
 
 extern const struct GroupFetchedProperties {
@@ -23,8 +21,6 @@ extern const struct GroupFetchedProperties {
 
 @class Area;
 @class Item;
-@class Profile;
-
 
 
 
@@ -84,20 +80,6 @@ extern const struct GroupFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* softDeleted;
-
-
-
-@property BOOL softDeletedValue;
-- (BOOL)softDeletedValue;
-- (void)setSoftDeletedValue:(BOOL)value_;
-
-//- (BOOL)validateSoftDeleted:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
 @property (nonatomic, strong) NSSet *areas;
 
 - (NSMutableSet*)areasSet;
@@ -108,13 +90,6 @@ extern const struct GroupFetchedProperties {
 @property (nonatomic, strong) NSSet *items;
 
 - (NSMutableSet*)itemsSet;
-
-
-
-
-@property (nonatomic, strong) Profile *profile;
-
-//- (BOOL)validateProfile:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -163,15 +138,6 @@ extern const struct GroupFetchedProperties {
 
 
 
-- (NSNumber*)primitiveSoftDeleted;
-- (void)setPrimitiveSoftDeleted:(NSNumber*)value;
-
-- (BOOL)primitiveSoftDeletedValue;
-- (void)setPrimitiveSoftDeletedValue:(BOOL)value_;
-
-
-
-
 
 - (NSMutableSet*)primitiveAreas;
 - (void)setPrimitiveAreas:(NSMutableSet*)value;
@@ -180,11 +146,6 @@ extern const struct GroupFetchedProperties {
 
 - (NSMutableSet*)primitiveItems;
 - (void)setPrimitiveItems:(NSMutableSet*)value;
-
-
-
-- (Profile*)primitiveProfile;
-- (void)setPrimitiveProfile:(Profile*)value;
 
 
 @end

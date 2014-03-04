@@ -45,10 +45,9 @@
 - (void) setupSyncManager
 {
 	DBAssembly *assembly = (DBAssembly *)[TyphoonAssembly defaultAssembly];
-	id<DBParseService> parseService = [assembly parseService];
-	id<DBProfileService> profileService = [assembly profileService];
+	id<DBGroupSyncManager> groupSyncManager = [assembly groupSyncManager];
 	
-	self.syncManager = [[DBSyncManager alloc] initWithParseService: parseService profileService: profileService];
+	self.syncManager = [[DBSyncManager alloc] initWithGroupSyncManager: groupSyncManager];
 	
 	[self.syncManager syncPush];
 }

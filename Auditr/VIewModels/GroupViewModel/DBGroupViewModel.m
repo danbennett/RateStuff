@@ -207,7 +207,7 @@
 	
 	// Delete area.
 	Area *area = viewModel.area;
-	[self.areaService deleteArea: area];
+	[self.areaService deleteArea: area hard: NO];
 }
 
 - (DBAreaViewModel *) generateAreaViewModel

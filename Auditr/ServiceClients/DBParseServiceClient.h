@@ -11,7 +11,10 @@
 
 @protocol DBParseServiceClient <NSObject>
 
-- (id) initWithBaseUrl: (NSString *) baseUrl applicationId: (NSString *) applicationId apiKey: (NSString *) apiKey;
+- (id) initWithBaseUrl: (NSString *) baseUrl
+		 applicationId: (NSString *) applicationId
+				apiKey: (NSString *) apiKey
+			apiVersion: (NSNumber *) apiVersion;
 
 - (RACSignal *) linkWithId: (NSString *) twitterId
 				screenName: (NSString *) screenName
@@ -30,7 +33,10 @@
 
 @interface DBParseServiceClient : AFHTTPClient
 
-- (id) initWithBaseUrl: (NSString *) baseUrl applicationId: (NSString *) applicationId apiKey: (NSString *) apiKey;
+- (id) initWithBaseUrl: (NSString *) baseUrl
+		 applicationId: (NSString *) applicationId
+				apiKey: (NSString *) apiKey
+			apiVersion: (NSNumber *) apiVersion;
 
 - (RACSignal *) linkWithId: (NSString *) twitterId
 				screenName: (NSString *) screenName

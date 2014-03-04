@@ -9,33 +9,34 @@
 #import "DBSyncManager.h"
 #import "DBParseService.h"
 #import "DBProfileService.h"
+#import "DBGroupSyncManager.h"
 #import "Profile.h"
 
 @interface DBSyncManager()
 
-@property (nonatomic, assign) id<DBParseService> parseService;
-@property (nonatomic, assign) id<DBProfileService> profileService;
+//@property (nonatomic, assign) id<DBParseService> parseService;
+//@property (nonatomic, assign) id<DBProfileService> profileService;
+@property (nonatomic, assign) id<DBGroupSyncManager> groupSync;
 
 @end
 
 @implementation DBSyncManager
 
-- (id) initWithParseService: (id<DBParseService>) parseService
-			 profileService: (id<DBProfileService>) profileService
+- (id) initWithGroupSyncManager: (id<DBGroupSyncManager>) groupSyncManager
 {
     self = [super init];
     if (self)
 	{
-        self.parseService = parseService;
-		self.profileService = profileService;
+//        self.parseService = parseService;
+//		self.profileService = profileService;
+		self.groupSync = groupSyncManager;
     }
     return self;
 }
 
 - (RACSignal *) syncPush
 {
-	NSString *userId = [self.profileService currentProfile].parseUserId;
-	return [self.parseService pushAllObjectsForUser: userId];
+	return [self.groupSync push];
 }
 
 @end

@@ -52,20 +52,6 @@
 	self.profileViewModel.profile = profile;
 }
 
-- (DBGroupViewModel *) newGroupViewModel
-{
-	Group *group = [self.groupService createBlankGroup];
-	DBAssembly *factory = (DBAssembly *)[TyphoonAssembly defaultAssembly];
-	
-	id<DBGroupService> groupService = [factory groupService];
-	id<DBAreaService> areaService = [factory areaService];
-	
-	DBGroupViewModel *viewModel = [[DBGroupViewModel alloc] initWithGroupService: groupService areaService: areaService];
-	viewModel.group = group;
-	
-	return viewModel;
-}
-
 #pragma mark - Bindings.
 
 - (void) createBindings

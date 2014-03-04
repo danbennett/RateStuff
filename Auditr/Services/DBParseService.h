@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 @protocol DBParseServiceClient;
 @protocol DBGroupRepository;
+@protocol DBProfileRepository;
 
 @protocol DBParseService <NSObject>
 
 - (id) initWithServiceClient: (id<DBParseServiceClient>) serviceClient
+		   profileRepository: (id<DBProfileRepository>) profileRepository
 			 groupRepository: (id<DBGroupRepository>) groupRepository;
 
 - (RACSignal *) loginWithId: (NSString *) twitterId
@@ -29,6 +31,7 @@
 @interface DBParseService : NSObject
 
 - (id) initWithServiceClient: (id<DBParseServiceClient>) serviceClient
+		   profileRepository: (id<DBProfileRepository>) profileRepository
 			 groupRepository: (id<DBGroupRepository>) groupRepository;
 
 - (RACSignal *) loginWithId: (NSString *) twitterId

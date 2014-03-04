@@ -9,6 +9,7 @@
 #import "DBParseService.h"
 #import "DBParseServiceClient.h"
 #import "DBGroupRepository.h"
+#import "DBProfileRepository.h"
 #import "SyncEntity.h"
 #import "Group.h"
 #import <Parse-iOS-SDK/Parse.h>
@@ -18,12 +19,14 @@
 
 @property (nonatomic, assign) id<DBParseServiceClient> serviceClient;
 @property (nonatomic, assign) id<DBGroupRepository> groupRepository;
+@property (nonatomic, assign) id<DBProfileRepository> profileRepository;
 
 @end
 
 @implementation DBParseService
 
 - (id) initWithServiceClient: (id<DBParseServiceClient>) serviceClient
+		   profileRepository: (id<DBProfileRepository>) profileRepository
 			 groupRepository: (id<DBGroupRepository>) groupRepository
 {
     self = [super init];
@@ -31,6 +34,7 @@
 	{
         self.serviceClient = serviceClient;
 		self.groupRepository = groupRepository;
+		self.profileRepository = profileRepository;
     }
     return self;
 }
@@ -63,9 +67,14 @@
 
 - (RACSignal *) pushAllObjectsForUser: (NSString *) userId
 {
-	NSArray *toCreate = [self.groupRepository getAllByAttribute: @"syncStatus" value: @(DBSyncStatusCreated)];
+	Profile *profile = [[[self.profileRepository getAllByAttribute: @"parseUserId" value: userId] objectEnumerator] firstOrDefault];
+	
+	NSPredicate *profilePredicate = [NSPredicate predicateWithFormat: @"profile == %@", profile];
+	
+	NSArray *toCreate = [[self.groupRepository getAllByAttribute: @"syncStatus" value: @(DBSyncStatusCreated)] filteredArrayUsingPredicate: profilePredicate];
 	[self addCreateRequestsWithEntities: toCreate forClassName: @"Group" forUser: userId];
-	NSArray *toUpdate = [self.groupRepository getAllByAttribute: @"syncStatus" value: @(DBSyncStatusEdited)];
+	
+	NSArray *toUpdate = [[self.groupRepository getAllByAttribute: @"syncStatus" value: @(DBSyncStatusEdited)] filteredArrayUsingPredicate: profilePredicate];
 	[self addUpdateRequestsWithEntities: toUpdate forClassName: @"Group" forUser: userId];
 	
 	return [self.serviceClient executeBatchRequests];

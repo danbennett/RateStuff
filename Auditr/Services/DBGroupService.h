@@ -20,11 +20,11 @@
 - (void) addArea: (Area *) area toGroup: (Group *) group;
 - (Group *) createBlankGroup;
 - (NSArray *) getAll;
-- (NSArray *) getAllActive;
 - (NSArray *) getAllCreated;
 - (NSArray *) getAllEdited;
+- (NSArray *) getAllDeleted;
 - (void) saveGroup: (Group *) group toPush: (BOOL) toPush withCompletion: (void (^)(BOOL success, NSError *error)) completion;
-- (void) deleteGroup: (Group *) group;
+- (void) deleteGroup: (Group *) group hard: (BOOL) isHardDelete;
 
 @end
 
@@ -35,10 +35,10 @@
 - (void) addArea: (Area *) area toGroup: (Group *) group;
 - (Group *) createBlankGroup;
 - (NSArray *) getAll;
-- (NSArray *) getAllActive;
 - (NSArray *) getAllCreated;
 - (NSArray *) getAllEdited;
+- (NSArray *) getAllDeleted;
 - (void) saveGroup: (Group *) group toPush: (BOOL) toPush withCompletion: (void (^)(BOOL success, NSError *error)) completion;
-- (void) deleteGroup: (Group *) group;
+- (void) deleteGroup: (Group *) group hard: (BOOL) isHardDelete;
 
 @end

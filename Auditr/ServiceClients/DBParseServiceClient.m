@@ -14,6 +14,7 @@
 
 @interface DBParseServiceClient()
 
+@property (nonatomic, strong) NSNumber *apiVersion;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (nonatomic, strong) NSMutableArray *requests;
 
@@ -23,11 +24,15 @@ static NSString *const DBParseUsersResultKey = @"results";
 
 @implementation DBParseServiceClient
 
-- (id) initWithBaseUrl: (NSString *) baseUrl applicationId: (NSString *) applicationId apiKey: (NSString *) apiKey
+- (id) initWithBaseUrl: (NSString *) baseUrl
+		 applicationId: (NSString *) applicationId
+				apiKey: (NSString *) apiKey
+			apiVersion: (NSNumber *) apiVersion
 {
 	if ([super initWithBaseURL: [NSURL URLWithString: baseUrl]])
 	{
 		self.requests = [NSMutableArray array];
+		self.apiVersion = apiVersion;
 		
 		self.dateFormatter = [[NSDateFormatter alloc] init];
         [self.dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.'999Z'"];
@@ -143,9 +148,10 @@ static NSString *const DBParseUsersResultKey = @"results";
 	NSMutableDictionary *withUser = [values mutableCopy];
 	[withUser setObject: userId forKey: @"User"];
 	
+	NSString *batchPath = [NSString stringWithFormat: @"/%@/classes/%%@", self.apiVersion];
 	NSDictionary *request =
 	@{@"method": @"POST",
-	  @"path": [NSString stringWithFormat: @"/1/classes/%@", className],
+	  @"path": [NSString stringWithFormat: batchPath, className],
 	  @"body": withUser};
 	
 	[self.requests addObject: request];
@@ -153,9 +159,10 @@ static NSString *const DBParseUsersResultKey = @"results";
 
 - (void) addDeleteRequestForClassName: (NSString *) className forUser: (NSString *) userId
 {
+	NSString *batchPath = [NSString stringWithFormat: @"/%@/classes/%%@", self.apiVersion];
 	NSDictionary *request =
 	@{@"method": @"DELETE",
-	  @"path": [NSString stringWithFormat: @"/1/classes/%@", className]};
+	  @"path": [NSString stringWithFormat: batchPath, className]};
 	
 	[self.requests addObject: request];
 }
@@ -165,9 +172,10 @@ static NSString *const DBParseUsersResultKey = @"results";
 	NSMutableDictionary *withUser = [values mutableCopy];
 	[withUser setObject: userId forKey: @"User"];
 	
+	NSString *batchPath = [NSString stringWithFormat: @"/%@/classes/%%@", self.apiVersion];
 	NSDictionary *request =
 	@{@"method": @"PUT",
-	  @"path": [NSString stringWithFormat: @"/1/classes/%@", className],
+	  @"path": [NSString stringWithFormat: batchPath, className],
 	  @"body": withUser};
 	
 	[self.requests addObject: request];

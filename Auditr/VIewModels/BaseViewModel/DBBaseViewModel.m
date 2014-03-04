@@ -8,6 +8,7 @@
 
 #import "DBBaseViewModel.h"
 #import "DBGroupService.h"
+#import "DBProfileService.h"
 #import "Group.h"
 #import "DBGroupViewModel.h"
 #import "DBAssembly.h"
@@ -18,6 +19,7 @@
 
 @property (nonatomic, strong, readwrite) NSArray *groups;
 @property (nonatomic, assign) id<DBGroupService> groupService;
+@property (nonatomic, assign) id<DBProfileService> profileService;
 @property (nonatomic, strong) NSArray *allGroups;
 
 @end
@@ -25,11 +27,13 @@
 @implementation DBBaseViewModel
 
 - (id) initWithGroupService: (id<DBGroupService>) groupService
+			 profileService: (id<DBProfileService>) profileService
 {
 	self = [super init];
 	if(self)
 	{
 		self.groupService = groupService;
+		self.profileService = profileService;
 		
 		[self populateGroups];
 		[self filterGroups];
@@ -73,7 +77,7 @@
 	
 	[self filterGroupsWithString: self.filterString];
 	
-	[self.groupService deleteGroup: viewModel.group];
+	[self.groupService deleteGroup: viewModel.group hard: NO];
 }
 
 - (DBGroupViewModel *) newGroupViewModel
@@ -103,7 +107,7 @@
 
 - (void) populateGroups
 {
-	NSArray *groups = [self.groupService getAllActive];
+	NSArray *groups = [self.groupService getAll];
 	
 	self.allGroups = [[[groups objectEnumerator] select:^DBGroupViewModel *(Group *group) {
 		

@@ -14,13 +14,13 @@ extern const struct ProfileAttributes {
 } ProfileAttributes;
 
 extern const struct ProfileRelationships {
-	__unsafe_unretained NSString *groups;
+	__unsafe_unretained NSString *entities;
 } ProfileRelationships;
 
 extern const struct ProfileFetchedProperties {
 } ProfileFetchedProperties;
 
-@class Group;
+@class SyncEntity;
 
 
 
@@ -106,9 +106,9 @@ extern const struct ProfileFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSSet *groups;
+@property (nonatomic, strong) NSSet *entities;
 
-- (NSMutableSet*)groupsSet;
+- (NSMutableSet*)entitiesSet;
 
 
 
@@ -118,10 +118,10 @@ extern const struct ProfileFetchedProperties {
 
 @interface _Profile (CoreDataGeneratedAccessors)
 
-- (void)addGroups:(NSSet*)value_;
-- (void)removeGroups:(NSSet*)value_;
-- (void)addGroupsObject:(Group*)value_;
-- (void)removeGroupsObject:(Group*)value_;
+- (void)addEntities:(NSSet*)value_;
+- (void)removeEntities:(NSSet*)value_;
+- (void)addEntitiesObject:(SyncEntity*)value_;
+- (void)removeEntitiesObject:(SyncEntity*)value_;
 
 @end
 
@@ -168,8 +168,8 @@ extern const struct ProfileFetchedProperties {
 
 
 
-- (NSMutableSet*)primitiveGroups;
-- (void)setPrimitiveGroups:(NSMutableSet*)value;
+- (NSMutableSet*)primitiveEntities;
+- (void)setPrimitiveEntities:(NSMutableSet*)value;
 
 
 @end

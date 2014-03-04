@@ -14,6 +14,7 @@
 @property (nonatomic, strong, readwrite) NSString *applicationId;
 @property (nonatomic, strong, readwrite) NSString *clientKey;
 @property (nonatomic, strong, readwrite) NSString *apiKey;
+@property (nonatomic, strong, readwrite) NSNumber *apiVersion;
 
 @end
 
@@ -21,6 +22,7 @@ static NSString *const DBParseBaseUrlKey = @"baseUrl";
 static NSString *const DBParseApplicationIdKey = @"appId";
 static NSString *const DBParseApiKeyKey = @"apiKey";
 static NSString *const DBParseClienyKeyKey = @"clientKey";
+static NSString *const DBParseApiVersionKey = @"apiVersion";
 
 @implementation DBParseSettings
 
@@ -46,6 +48,7 @@ static NSString *const DBParseClienyKeyKey = @"clientKey";
 		self.applicationId = settings[DBParseApplicationIdKey];
 		self.clientKey = settings[DBParseClienyKeyKey];
 		self.apiKey = settings[DBParseApiKeyKey];
+		self.apiVersion = settings[DBParseApiVersionKey];
     }
     return self;
 }
