@@ -25,6 +25,7 @@ NSString *const DBNewGroupPressedNotification = @"newGroupPressedNotifcation";
 @property (strong, nonatomic) IBOutlet UIView *containerView;
 @property (strong, nonatomic) IBOutlet UITableView *groupTableView;
 @property (nonatomic, strong) DBBaseViewModel *viewModel;
+@property (nonatomic, strong) DBGroupViewModel *selectedGroupViewModel;
 
 @end
 
@@ -272,7 +273,10 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 	@weakify(self);
 	[self.containerView animateToPosition: CGPointZero withDuration: 0.2f withEase: UIViewAnimationOptionCurveEaseOut withCompletion:^(BOOL finished) {
 		@strongify(self);
+		
+		self.selectedGroupViewModel = [self.viewModel newGroupViewModel];
 		[self performSegueWithIdentifier: @"editGroupViewController" sender: self];
+		
 	}];
 	[self.statusBarBackground animateToOpacity: 0.0f withDuration: 0.2f];
 }
@@ -283,7 +287,7 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 	{
 		DBEditGroupViewController *viewController = segue.destinationViewController;
 		viewController.delegate = self;
-		viewController.viewModel = [self.viewModel newGroupViewModel];
+		viewController.viewModel = self.selectedGroupViewModel;
 	}
 }
 
@@ -292,16 +296,35 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 	[self addNewGroup: nil];
 }
 
+- (void) groupCellDidTapEdit: (DBGroupTableViewCell *) cell;
+{
+	NSIndexPath *indexPath = [self.groupTableView indexPathForCell: cell];
+	if(indexPath != nil)
+	{
+		DBGroupViewModel *group = self.viewModel.groups[indexPath.row];
+		self.selectedGroupViewModel = group;
+		[self performSegueWithIdentifier: @"editGroupViewController" sender: self];
+	}
+}
+
 #pragma mark - Edit group delegate.
 
 - (void) editGroupViewControllerDidSave:(DBEditGroupViewController *)viewController
 {
-	
+	if ([self.viewModel.groups indexOfObject: self.selectedGroupViewModel] == NSNotFound)
+	{
+		[self.viewModel insertGroupViewModel: self.selectedGroupViewModel];
+	}
+	self.selectedGroupViewModel = nil;
 }
 
 - (void) editGroupViewControllerDidCancel:(DBEditGroupViewController *)viewController
 {
-	[self.viewModel deleteGroupViewModel: viewController.viewModel];
+	if ([self.viewModel.groups indexOfObject: self.selectedGroupViewModel] == NSNotFound)
+	{
+		[self.viewModel deleteGroupViewModel: self.selectedGroupViewModel];
+	}
+	self.selectedGroupViewModel = nil;
 }
 
 #pragma mark - Table view data source.
@@ -314,6 +337,7 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	DBGroupTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: DBGroupTableViewCellId];
+	cell.delegate = self;
 	cell.viewModel = [self.viewModel.groups objectAtIndex: indexPath.row];
 	return cell;
 }

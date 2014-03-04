@@ -27,7 +27,7 @@
     self = [super init];
     if (self)
 	{
-//        self.parseService = parseService;
+//      self.parseService = parseService;
 //		self.profileService = profileService;
 		self.groupSync = groupSyncManager;
     }

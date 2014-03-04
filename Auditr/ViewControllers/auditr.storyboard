@@ -42,7 +42,7 @@
                                             <rect key="frame" x="24" y="11" width="23" height="23"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate something new..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mxN-sg-tFc">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new list..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mxN-sg-tFc">
                                             <rect key="frame" x="60" y="5" width="170" height="37"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -105,7 +105,7 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E7X-xE-y8K">
-                                                    <rect key="frame" x="60" y="12" width="183" height="21"/>
+                                                    <rect key="frame" x="60" y="12" width="140" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -113,6 +113,18 @@
                                                     <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <size key="shadowOffset" width="0.0" height="1"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fwI-3a-qiS">
+                                                    <rect key="frame" x="202" y="7" width="35" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <state key="normal" image="whiteSmallCogIcon">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="editButtonTapped:" destination="9LS-OS-wf8" eventType="touchUpInside" id="pOA-EI-Z6K"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
@@ -280,6 +292,21 @@
             </objects>
             <point key="canvasLocation" x="405" y="191"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="f3k-zi-SCg">
+            <objects>
+                <viewController id="M7w-wC-Cjb" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wqo-8F-cEU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="rLh-uw-HBq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="csk-6h-yFl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="405" y="872"/>
+        </scene>
         <!--Settings View Controller-->
         <scene sceneID="GE2-Ra-cB6">
             <objects>
@@ -403,7 +430,7 @@
                                                             <outlet property="delegate" destination="haV-i5-nDN" id="TUb-S5-jgt"/>
                                                         </connections>
                                                     </textField>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="17" id="GQ5-cY-G6k">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="List name" minimumFontSize="17" id="GQ5-cY-G6k">
                                                         <rect key="frame" x="20" y="22" width="280" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -425,7 +452,7 @@
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </view>
-                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Areas:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hXB-6c-xoT">
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ratable areas:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hXB-6c-xoT">
                                                                     <rect key="frame" x="20" y="11" width="280" height="21"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -614,7 +641,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UzV-dC-tUo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="807" y="-525"/>
+            <point key="canvasLocation" x="405" y="-494"/>
         </scene>
     </scenes>
     <resources>
@@ -625,6 +652,7 @@
         <image name="darkLogo" width="149" height="27"/>
         <image name="largePlusButton" width="50" height="50"/>
         <image name="largePlusIcon" width="20" height="20"/>
+        <image name="whiteSmallCogIcon" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

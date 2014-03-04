@@ -8,9 +8,18 @@
 
 #import <UIKit/UIKit.h>
 @class DBGroupViewModel;
+@protocol DBGroupTableViewCellDelegate;
 
 @interface DBGroupTableViewCell : UITableViewCell
 
 @property (nonatomic, weak) DBGroupViewModel *viewModel;
+@property (nonatomic, assign) id<DBGroupTableViewCellDelegate> delegate;
+
+@end
+
+@protocol DBGroupTableViewCellDelegate <NSObject>
+
+@optional
+- (void) groupCellDidTapEdit: (DBGroupTableViewCell *) cell;
 
 @end

@@ -13,7 +13,7 @@
 
 @interface DBEditGroupViewController : UIViewController <UIBarPositioningDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, DBAreaTableViewCellDelegate>
 
-@property (nonatomic, strong) DBGroupViewModel *viewModel;
+@property (nonatomic, weak) DBGroupViewModel *viewModel;
 @property (nonatomic, assign) id<DBEditGroupViewControllerDelegate> delegate;
 
 @end

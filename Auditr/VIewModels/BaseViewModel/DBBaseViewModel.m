@@ -80,17 +80,26 @@
 	[self.groupService deleteGroup: viewModel.group hard: NO];
 }
 
+- (void) insertGroupViewModel: (DBGroupViewModel *) viewModel
+{
+	NSMutableArray *allGroups = [self.allGroups mutableCopy];
+	[allGroups addObject: viewModel];
+	self.allGroups = [allGroups copy];
+	
+	[self filterGroupsWithString: self.filterString];
+}
+
 - (DBGroupViewModel *) newGroupViewModel
 {
 	Group *group = [self.groupService createBlankGroup];
 	DBGroupViewModel *viewModel = [self generateGroupViewModel];
 	viewModel.group = group;
 	
-	NSMutableArray *allGroups = [self.allGroups mutableCopy];
-	[allGroups addObject: viewModel];
-	self.allGroups = [allGroups copy];
-	
-	[self filterGroupsWithString: self.filterString];
+//	NSMutableArray *allGroups = [self.allGroups mutableCopy];
+//	[allGroups addObject: viewModel];
+//	self.allGroups = [allGroups copy];
+//	
+//	[self filterGroupsWithString: self.filterString];
 	
 	return viewModel;
 }

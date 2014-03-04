@@ -48,8 +48,6 @@
 	id<DBGroupSyncManager> groupSyncManager = [assembly groupSyncManager];
 	
 	self.syncManager = [[DBSyncManager alloc] initWithGroupSyncManager: groupSyncManager];
-	
-	[self.syncManager syncPush];
 }
 
 - (void) setupTyphoon

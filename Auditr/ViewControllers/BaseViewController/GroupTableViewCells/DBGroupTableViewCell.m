@@ -94,6 +94,14 @@
 	[self setNeedsLayout];
 }
 
+- (IBAction) editButtonTapped: (UIButton *) sender
+{
+	if([self.delegate respondsToSelector: @selector(groupCellDidTapEdit:)])
+	{
+		[self.delegate groupCellDidTapEdit: self];
+	}
+}
+
 - (void) prepareForReuse
 {
 	[super prepareForReuse];

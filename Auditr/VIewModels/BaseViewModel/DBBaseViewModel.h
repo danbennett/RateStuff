@@ -24,5 +24,6 @@
 
 - (DBGroupViewModel *) newGroupViewModel;
 - (void) deleteGroupViewModel: (DBGroupViewModel *) viewModel;
+- (void) insertGroupViewModel: (DBGroupViewModel *) viewModel;
 
 @end
