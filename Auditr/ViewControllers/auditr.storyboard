@@ -358,6 +358,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="iconImageView" destination="uOg-55-niI" id="L5Y-Y1-3g3"/>
                                             <outlet property="valueLabel" destination="meJ-fX-9cI" id="WuX-fv-6AI"/>
                                         </connections>
                                     </tableViewCell>

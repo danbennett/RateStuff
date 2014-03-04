@@ -13,6 +13,7 @@
 @interface DBSettingsTableViewCell()
 
 @property (nonatomic, strong) NSMutableArray *disposables;
+@property (nonatomic, strong) IBOutlet UIImageView *iconImageView;
 
 @end
 
@@ -47,7 +48,17 @@ static NSString *const SettingsTwitterDefaultLabel = @"Choose a twitter account.
 		@strongify(self);
 		if (viewModel != nil)
 		{
-			NSString *nameString = viewModel.profileName.length > 0 ? viewModel.profileName : SettingsTwitterDefaultLabel;
+			NSString *nameString = nil;
+			if (viewModel.profileName.length > 0)
+			{
+				nameString = viewModel.profileName;
+				[self.iconImageView setImage: [UIImage imageNamed: @"blueSmallCogIcon"]];
+			}
+			else
+			{
+				nameString = SettingsTwitterDefaultLabel;
+				[self.iconImageView setImage: [UIImage imageNamed: @"bluePlusIcon"]];
+			}
 			[self.valueLabel setText: nameString];
 		
 			[self applySettingsBinings];
@@ -62,7 +73,17 @@ static NSString *const SettingsTwitterDefaultLabel = @"Choose a twitter account.
 	RACDisposable *nameDisposable = [[RACObserve(self.viewModel, profileName) distinctUntilChanged] subscribeNext:^(NSString *newName) {
 		
 		@strongify(self);
-		NSString *nameString = newName.length > 0 ? newName : SettingsTwitterDefaultLabel;
+		NSString *nameString = nil;
+		if (newName.length > 0)
+		{
+			nameString = newName;
+			[self.iconImageView setImage: [UIImage imageNamed: @"blueSmallCogIcon"]];
+		}
+		else
+		{
+			nameString = SettingsTwitterDefaultLabel;
+			[self.iconImageView setImage: [UIImage imageNamed: @"bluePlusIcon"]];
+		}
 		self.valueLabel.text = nameString;
 		
 	}];

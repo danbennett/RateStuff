@@ -268,16 +268,25 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 
 - (IBAction) addNewGroup: (UIButton *) sender
 {
-	[self.containerView removeGestureRecognizer: self.tapCloseGesture];
-	
 	@weakify(self);
-	[self.containerView animateToPosition: CGPointZero withDuration: 0.2f withEase: UIViewAnimationOptionCurveEaseOut withCompletion:^(BOOL finished) {
-		@strongify(self);
+
+	[self closeContainerWithCompletion:^(BOOL finished) {
 		
+		@strongify(self);
 		self.selectedGroupViewModel = [self.viewModel newGroupViewModel];
 		[self performSegueWithIdentifier: @"editGroupViewController" sender: self];
 		
 	}];
+}
+
+#pragma mark - Close animations
+
+- (void) closeContainerWithCompletion: (void (^)(BOOL finished)) completion
+{
+	[self.containerView removeGestureRecognizer: self.tapCloseGesture];
+	
+	[self.containerView animateToPosition: CGPointZero withDuration: 0.2f withEase: UIViewAnimationOptionCurveEaseOut withCompletion: completion];
+	
 	[self.statusBarBackground animateToOpacity: 0.0f withDuration: 0.2f];
 }
 
@@ -303,6 +312,7 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 	{
 		DBGroupViewModel *group = self.viewModel.groups[indexPath.row];
 		self.selectedGroupViewModel = group;
+		
 		[self performSegueWithIdentifier: @"editGroupViewController" sender: self];
 	}
 }
