@@ -9,6 +9,7 @@
 #import "DBGroupService.h"
 #import "DBGroupRepository.h"
 #import "DBAreaRepository.h"
+#import "DBItemRepository.h"
 #import "Group.h"
 #import "NSString+Extensions.h"
 
@@ -16,6 +17,7 @@
 
 @property (nonatomic, assign) id<DBGroupRepository> groupRepository;
 @property (nonatomic, assign) id<DBAreaRepository> areaRepository;
+@property (nonatomic, assign) id<DBItemRepository> itemRepository;
 
 @end
 
@@ -23,12 +25,14 @@
 
 - (id) initWithGroupRepository: (id<DBGroupRepository>) groupRepository
 				areaRepository: (id<DBAreaRepository>) areaRepository
+				itemRepository: (id<DBItemRepository>) itemRepository
 {
     self = [super init];
     if (self)
 	{
         self.groupRepository = groupRepository;
 		self.areaRepository = areaRepository;
+		self.itemRepository = itemRepository;
     }
     return self;
 }
@@ -55,6 +59,12 @@
 {
 	[self.groupRepository insertObject: area atKey: @"areas" onEntity: group];
 	[self.areaRepository addObject: group forKey: @"group" onEntity: area];
+}
+
+- (void) addItem: (Item *) item toGroup: (Group *) group
+{
+	[self.groupRepository insertObject: item atKey: @"items" onEntity: group];
+	[self.itemRepository addObject: group forKey: @"group" onEntity: item];
 }
 
 - (void) saveGroup: (Group *) group toPush: (BOOL) toPush withCompletion: (void (^)(BOOL success, NSError *error)) completion

@@ -446,7 +446,7 @@
                                                         <rect key="frame" x="0.0" y="148" width="320" height="258"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.28999999999999998" colorSpace="calibratedRGB"/>
-                                                        <view key="tableHeaderView" contentMode="scaleToFill" id="iev-e0-INc" customClass="DBAreaTableHeaderView">
+                                                        <view key="tableHeaderView" contentMode="scaleToFill" id="iev-e0-INc" customClass="DBItemTableHeaderView">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                             <subviews>
@@ -455,7 +455,7 @@
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </view>
-                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ratable areas:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hXB-6c-xoT">
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Items:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hXB-6c-xoT">
                                                                     <rect key="frame" x="20" y="11" width="280" height="21"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -465,16 +465,15 @@
                                                                     <size key="shadowOffset" width="0.0" height="1"/>
                                                                 </label>
                                                             </subviews>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <connections>
-                                                                <outlet property="areasLabel" destination="hXB-6c-xoT" id="qe2-Vr-qEP"/>
+                                                                <outlet property="itemsLabel" destination="hXB-6c-xoT" id="4Te-Kl-nRS"/>
                                                             </connections>
                                                         </view>
-                                                        <view key="tableFooterView" contentMode="scaleToFill" id="id0-Eb-biH" customClass="DBAreaTableFooterView">
+                                                        <view key="tableFooterView" contentMode="scaleToFill" id="id0-Eb-biH" customClass="DBItemTableFooterView">
                                                             <rect key="frame" x="0.0" y="110" width="320" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                             <subviews>
-                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add area..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jSo-F0-lmo">
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add item..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jSo-F0-lmo">
                                                                     <rect key="frame" x="60" y="7" width="240" height="37"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
@@ -495,17 +494,16 @@
                                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </state>
                                                                     <connections>
-                                                                        <action selector="addNewAreaTapped:" destination="haV-i5-nDN" eventType="touchUpInside" id="cUt-xd-UlW"/>
+                                                                        <action selector="addNewItemTapped:" destination="haV-i5-nDN" eventType="touchUpInside" id="FvJ-1x-P9V"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <connections>
-                                                                <outlet property="addAreaLabel" destination="jSo-F0-lmo" id="xdP-Pn-72W"/>
+                                                                <outlet property="addItemLabel" destination="jSo-F0-lmo" id="5Rn-DL-kNK"/>
                                                             </connections>
                                                         </view>
                                                         <prototypes>
-                                                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DBAreaCell" id="fGq-pD-c7N" customClass="DBAreaTableViewCell">
+                                                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DBItemCell" id="fGq-pD-c7N" customClass="DBItemTableViewCell">
                                                                 <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fGq-pD-c7N" id="Bzi-V4-ZUJ">
@@ -525,21 +523,21 @@
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                                         </view>
-                                                                        <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Area" minimumFontSize="17" id="fwa-oS-3zK">
+                                                                        <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item" minimumFontSize="17" id="fwa-oS-3zK">
                                                                             <rect key="frame" x="20" y="7" width="280" height="30"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                             <textInputTraits key="textInputTraits"/>
                                                                             <connections>
-                                                                                <outlet property="delegate" destination="fGq-pD-c7N" id="GKe-nS-4tG"/>
+                                                                                <outlet property="delegate" destination="fGq-pD-c7N" id="QRn-bA-uFy"/>
                                                                             </connections>
                                                                         </textField>
                                                                     </subviews>
                                                                 </tableViewCellContentView>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <connections>
-                                                                    <outlet property="areaNameLabel" destination="rZa-YD-rvR" id="XLY-ck-JVG"/>
-                                                                    <outlet property="areaNameTextField" destination="fwa-oS-3zK" id="rgE-1H-j4r"/>
+                                                                    <outlet property="itemNameLabel" destination="rZa-YD-rvR" id="zR8-Nd-Q7b"/>
+                                                                    <outlet property="itemNameTextField" destination="fwa-oS-3zK" id="kJW-Tu-LuZ"/>
                                                                 </connections>
                                                             </tableViewCell>
                                                         </prototypes>
@@ -626,7 +624,6 @@
                     <toolbarItems/>
                     <connections>
                         <outlet property="addImageButton" destination="mvq-3C-VrU" id="TNa-tD-Wpm"/>
-                        <outlet property="areaTableView" destination="nb2-Ry-fGs" id="JA0-6C-WzG"/>
                         <outlet property="cancelButton" destination="OXT-pl-kR8" id="ZyR-aA-So9"/>
                         <outlet property="contentHolder" destination="vOF-0L-mP7" id="hRx-fg-qCb"/>
                         <outlet property="descriptionTextField" destination="hXb-Gx-L6r" id="8e9-gB-d25"/>
@@ -635,6 +632,7 @@
                         <outlet property="groupNameTextField" destination="GQ5-cY-G6k" id="Fkh-hx-2Jx"/>
                         <outlet property="imageView" destination="Uas-bE-WJX" id="knO-zZ-ubc"/>
                         <outlet property="imageViewHolder" destination="ye6-CB-4Pa" id="6b0-cY-qvC"/>
+                        <outlet property="itemTableView" destination="nb2-Ry-fGs" id="PJA-mW-b9v"/>
                         <outlet property="navigationBar" destination="EiW-qZ-Hu6" id="G9S-gE-xcr"/>
                         <outlet property="profileImageView" destination="bvg-CZ-UVv" id="gj6-Z9-5rX"/>
                         <outlet property="saveButton" destination="eS7-15-iSf" id="of4-h3-7dj"/>

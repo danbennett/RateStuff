@@ -9,7 +9,7 @@
 #import "DBEditGroupViewController.h"
 #import "DBGroupViewModel.h"
 #import "DBImagePickerViewController.h"
-#import "DBAreaTableViewCell.h"
+#import "DBItemTableViewCell.h"
 #import "UIImage+Effects.h"
 #import "UIView+Animations.h"
 #import <GPUImage/GPUImage.h>
@@ -23,7 +23,7 @@
 @property (nonatomic, strong) UIImage *backgroundImageOver;
 @property (nonatomic, strong) UIResponder *selectedResponder;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *doneButton;
-@property (nonatomic, strong) IBOutlet UITableView *areaTableView;
+@property (nonatomic, strong) IBOutlet UITableView *itemTableView;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) IBOutlet UIButton *editImageButton;
 @property (nonatomic, strong) IBOutlet UIButton *addImageButton;
@@ -42,8 +42,9 @@
 
 @implementation DBEditGroupViewController
 
-static NSString *const DBAreaTableViewId = @"DBAreaCell";
-static const float areaTableViewY = 147.0f;
+static NSString *const DBItemTableViewId = @"DBItemCell";
+
+static const float itemTableViewY = 147.0f;
 
 - (void)viewDidLoad
 {
@@ -51,7 +52,7 @@ static const float areaTableViewY = 147.0f;
 	
 	[self setupScrollView];
 	[self addGestures];
-	[self styleAreaTableView];
+	[self styleItemTableView];
 	[self styleImageView];
 	[self applyBindings];
 }
@@ -68,9 +69,9 @@ static const float areaTableViewY = 147.0f;
 {
 	self.contentHolder.frame = ({
 		CGRect frame = self.contentHolder.frame;
-		CGRect areaTableFrame = [self.areaTableView.superview convertRect: self.areaTableView.frame toView: self.contentHolder];
-		areaTableFrame.size.height = self.areaTableView.contentSize.height;
-		frame.size.height = CGRectGetMaxY(areaTableFrame);
+		CGRect itemTableFrame = [self.itemTableView.superview convertRect: self.itemTableView.frame toView: self.contentHolder];
+		itemTableFrame.size.height = self.itemTableView.contentSize.height;
+		frame.size.height = CGRectGetMaxY(itemTableFrame);
 		frame;
 	});
 	
@@ -108,23 +109,23 @@ static const float areaTableViewY = 147.0f;
 }
 
 
-# pragma mark - Area table view style.
+# pragma mark - Item table view style.
 
-- (void) styleAreaTableView
+- (void) styleItemTableView
 {
-	[self.areaTableView setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"addAreaBackground"]]];
-	[self reloadAreaTableViewSize];
+	[self.itemTableView setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"addAreaBackground"]]];
+	[self reloadItemTableViewSize];
 }
 
-#pragma mark - Area tableview size.
+#pragma mark - Item tableview size.
 
-- (CGSize) sizeForAreaTableView
+- (CGSize) sizeForItemTableView
 {
 	static NSInteger buffer = 600;
 	
-	CGSize size = self.areaTableView.contentSize;
+	CGSize size = self.itemTableView.contentSize;
 
-	CGRect frame = [self.areaTableView.superview convertRect: self.areaTableView.frame toView: self.contentHolder];
+	CGRect frame = [self.itemTableView.superview convertRect: self.itemTableView.frame toView: self.contentHolder];
 	frame.size.height = size.height;
 	
 	if (CGRectGetMaxY(frame) > CGRectGetMaxY(self.scrollView.bounds))
@@ -138,11 +139,11 @@ static const float areaTableViewY = 147.0f;
 	return size;
 }
 
-- (void) reloadAreaTableViewSize
+- (void) reloadItemTableViewSize
 {
-	self.areaTableView.frame = ({
-		CGRect frame = self.areaTableView.frame;
-		frame.size.height = [self sizeForAreaTableView].height;
+	self.itemTableView.frame = ({
+		CGRect frame = self.itemTableView.frame;
+		frame.size.height = [self sizeForItemTableView].height;
 		frame;
 	});
 }
@@ -255,25 +256,25 @@ static const float areaTableViewY = 147.0f;
 
 #pragma mark - Actions.
 
-- (IBAction) addNewAreaTapped: (UIButton *) sender
+- (IBAction) addNewItemTapped: (UIButton *) sender
 {
 	[self.scrollView setContentOffset:CGPointZero animated: YES];
 	[self removePhotoGestures];
-	[self addCloseEditAreaGesture];
+	[self addCloseEditItemGesture];
 	
-	DBAreaViewModel *viewModel = [self.viewModel addArea];
+	DBItemViewModel *viewModel = [self.viewModel addItem];
 
 	@weakify(self);
-	[self showEditAreaViewWithCompletion:^(BOOL finished) {
+	[self showEditItemViewWithCompletion:^(BOOL finished) {
 		
 		@strongify(self);
-		[self.areaTableView beginUpdates];
-		NSIndexPath *path = [NSIndexPath indexPathForItem: [self.viewModel.areas indexOfObject: viewModel] inSection:0];
+		[self.itemTableView beginUpdates];
+		NSIndexPath *path = [NSIndexPath indexPathForItem: [self.viewModel.items indexOfObject: viewModel] inSection:0];
 		self.selectedIndexPath = path;
-		[self.areaTableView insertRowsAtIndexPaths: @[path] withRowAnimation: UITableViewRowAnimationRight];
-		[self.areaTableView endUpdates];
+		[self.itemTableView insertRowsAtIndexPaths: @[path] withRowAnimation: UITableViewRowAnimationRight];
+		[self.itemTableView endUpdates];
 		
-		[self performSelector: @selector(reloadAreaTableViewSize) withObject: nil afterDelay: 0.4f];
+		[self performSelector: @selector(reloadItemTableViewSize) withObject: nil afterDelay: 0.4f];
 		[self performSelector: @selector(reloadScrollViewSize) withObject: nil afterDelay: 0.4f];
 		
 	}];
@@ -302,9 +303,9 @@ static const float areaTableViewY = 147.0f;
 	[self.imageViewHolder addGestureRecognizer: imageDownGesutre];
 }
 
-- (void) addCloseEditAreaGesture
+- (void) addCloseEditItemGesture
 {
-	UILongPressGestureRecognizer *imageDownGesutre = [[UILongPressGestureRecognizer alloc] initWithTarget: self action: @selector(closeEditAreaTapped:)];
+	UILongPressGestureRecognizer *imageDownGesutre = [[UILongPressGestureRecognizer alloc] initWithTarget: self action: @selector(closeEditItemTapped:)];
 	imageDownGesutre.cancelsTouchesInView = NO;
 	imageDownGesutre.minimumPressDuration = .0001;
 	[self.imageViewHolder addGestureRecognizer: imageDownGesutre];
@@ -343,7 +344,7 @@ static const float areaTableViewY = 147.0f;
 	}
 }
 
-- (void) closeEditAreaTapped: (UILongPressGestureRecognizer *) gesture
+- (void) closeEditItemTapped: (UILongPressGestureRecognizer *) gesture
 {
 	if (gesture.state == UIGestureRecognizerStateEnded || gesture.state == UIGestureRecognizerStateCancelled)
 	{
@@ -358,14 +359,14 @@ static const float areaTableViewY = 147.0f;
 - (BOOL) resignFirstResponder
 {
 	[self.selectedResponder resignFirstResponder];
-	DBAreaTableViewCell *cell = (DBAreaTableViewCell *)[self.areaTableView cellForRowAtIndexPath: self.selectedIndexPath];
+	DBItemTableViewCell *cell = (DBItemTableViewCell *)[self.itemTableView cellForRowAtIndexPath: self.selectedIndexPath];
 	cell.isInFocus = NO;
 	@weakify(self);
-	[self hideEditAreaWithCompletion:^(BOOL finished) {
+	[self hideEditItemViewWithCompletion:^(BOOL finished) {
 		
 		@strongify(self);
 		
-		[self reloadAreaTableViewSize];
+		[self reloadItemTableViewSize];
 		[self reloadScrollViewSize];
 		self.selectedIndexPath = nil;
 		
@@ -428,31 +429,31 @@ static const float areaTableViewY = 147.0f;
 	self.viewModel.image = image;
 }
 
-#pragma mark - Show/hide edit area.
+#pragma mark - Show/hide edit item.
 
-- (void) showEditAreaViewWithCompletion: (void (^)(BOOL finished))completion
+- (void) showEditItemViewWithCompletion: (void (^)(BOOL finished))completion
 {
-	CGRect frame = self.areaTableView.frame;
+	CGRect frame = self.itemTableView.frame;
 	frame.size.height = frame.size.height + frame.origin.y;
 	frame.origin.y = 0;
-	[self.areaTableView animateFrameWithBounce: frame
+	[self.itemTableView animateFrameWithBounce: frame
 								  withDuration: 0.6f
 									  withEase: UIViewAnimationOptionCurveEaseOut
 								withCompletion: completion];
 }
 
-- (void) hideEditAreaWithCompletion: (void (^)(BOOL finished))completion
+- (void) hideEditItemViewWithCompletion: (void (^)(BOOL finished))completion
 {
-	CGRect frame = self.areaTableView.frame;
-	frame.origin.y = areaTableViewY;
-	[self.areaTableView animateFrameWithBounce: frame
+	CGRect frame = self.itemTableView.frame;
+	frame.origin.y = itemTableViewY;
+	[self.itemTableView animateFrameWithBounce: frame
 								  withDuration: 0.6f
 									  withEase: UIViewAnimationOptionCurveEaseOut
 								withCompletion: completion];
 
 }
 
-#pragma mark - Area table view scroll to cell.
+#pragma mark - Item table view scroll to cell.
 
 - (void) scrollToCell: (NSIndexPath *) indexPath
 {
@@ -466,14 +467,14 @@ static const float areaTableViewY = 147.0f;
 
 - (void) scrollTableViewCellIndex: (NSIndexPath *) indexPath WithAnimation: (BOOL) animated
 {
-	UITableViewCell *cell = [self.areaTableView cellForRowAtIndexPath: indexPath];
+	UITableViewCell *cell = [self.itemTableView cellForRowAtIndexPath: indexPath];
 	
 	CGPoint origin = cell.frame.origin;
-	CGPoint point = [cell.superview convertPoint: origin toView: self.areaTableView];
+	CGPoint point = [cell.superview convertPoint: origin toView: self.itemTableView];
 	CGPoint offset = CGPointZero;
 	offset.y = (point.y - 44.0f);
 	
-	[self.areaTableView setContentOffset: offset animated: animated];
+	[self.itemTableView setContentOffset: offset animated: animated];
 }
 
 #pragma mark - Tableview data source.
@@ -485,13 +486,13 @@ static const float areaTableViewY = 147.0f;
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return self.viewModel.areas.count;
+	return self.viewModel.items.count;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	DBAreaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: DBAreaTableViewId];
-	cell.viewModel = [self.viewModel.areas objectAtIndex: indexPath.row];
+	DBItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: DBItemTableViewId];
+	cell.viewModel = [self.viewModel.items objectAtIndex: indexPath.row];
 	cell.delegate = self;
 	if ([self.selectedIndexPath isEqual: indexPath])
 	{
@@ -505,19 +506,19 @@ static const float areaTableViewY = 147.0f;
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	self.selectedIndexPath = indexPath;
-	DBAreaTableViewCell *cell = (DBAreaTableViewCell *)[self.areaTableView cellForRowAtIndexPath: self.selectedIndexPath];
+	DBItemTableViewCell *cell = (DBItemTableViewCell *)[self.itemTableView cellForRowAtIndexPath: self.selectedIndexPath];
 	cell.isInFocus = YES;
 	
 	[self.scrollView setContentOffset:CGPointZero animated: YES];
 	[self scrollToCell: indexPath];
 	[self removePhotoGestures];
-	[self addCloseEditAreaGesture];
+	[self addCloseEditItemGesture];
 	
 	@weakify(self);
-	[self showEditAreaViewWithCompletion:^(BOOL finished) {
+	[self showEditItemViewWithCompletion:^(BOOL finished) {
 	
 		@strongify(self);
-		[self performSelector: @selector(reloadAreaTableViewSize) withObject: nil afterDelay: 0.4f];
+		[self performSelector: @selector(reloadItemTableViewSize) withObject: nil afterDelay: 0.4f];
 		[self performSelector: @selector(reloadScrollViewSize) withObject: nil afterDelay: 0.4f];
 		[self performSelector: @selector(snapToCell:) withObject: indexPath afterDelay: 0.4f];
 
@@ -551,11 +552,11 @@ static const float areaTableViewY = 147.0f;
 {
 	if (editingStyle == UITableViewCellEditingStyleDelete)
 	{
-		DBAreaViewModel	*viewModel = [self.viewModel.areas objectAtIndex: indexPath.row];
-		[self.viewModel deleteArea: viewModel];
-		[self.areaTableView beginUpdates];
-		[self.areaTableView deleteRowsAtIndexPaths: @[indexPath] withRowAnimation: UITableViewRowAnimationLeft];
-		[self.areaTableView endUpdates];
+		DBItemViewModel	*viewModel = [self.viewModel.items objectAtIndex: indexPath.row];
+		[self.viewModel deleteItem: viewModel];
+		[self.itemTableView beginUpdates];
+		[self.itemTableView deleteRowsAtIndexPaths: @[indexPath] withRowAnimation: UITableViewRowAnimationLeft];
+		[self.itemTableView endUpdates];
 	}
 }
 
@@ -564,9 +565,9 @@ static const float areaTableViewY = 147.0f;
 	return @"Remove";
 }
 
-#pragma mark - Area table view cell delegate.
+#pragma mark - Item table view cell delegate.
 
-- (void) areaTableViewCellDidEndEditing:(DBAreaTableViewCell *)cell
+- (void) itemTableViewCellDidEndEditing:(DBItemTableViewCell *)cell
 {
 	[self resignFirstResponder];
 }

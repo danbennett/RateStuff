@@ -15,6 +15,7 @@
 - (id) areaService;
 - (id) profileService;
 - (id) parseService;
+- (id) itemService;
 - (id) groupSyncManager;
 
 @end

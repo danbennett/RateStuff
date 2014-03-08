@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+@class Item;
+@class DBItemViewModel;
 @class Group;
 @class DBAreaViewModel;
 @protocol DBGroupService;
 @protocol DBAreaService;
+@protocol DBItemService;
 
 @interface DBGroupViewModel : NSObject
 
@@ -26,8 +29,12 @@
 @property (nonatomic, weak) Group *group;
 
 - (id) initWithGroupService: (id<DBGroupService>) groupService
-				areaService: (id<DBAreaService>) areaService;
+				areaService: (id<DBAreaService>) areaService
+				itemService: (id<DBItemService>) itemService;
+
 - (DBAreaViewModel *) addArea;
 - (void) deleteArea: (DBAreaViewModel *) viewModel;
+- (DBItemViewModel *) addItem;
+- (void) deleteItem: (DBItemViewModel *) viewModel;
 
 @end

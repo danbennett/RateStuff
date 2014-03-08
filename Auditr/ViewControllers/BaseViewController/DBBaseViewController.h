@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DBEditGroupViewController.h"
-@protocol DBGroupTableViewCellDelegate;
+#import "DBGroupTableViewCell.h"
 @protocol DBEditGroupViewControllerDelegate;
 
 extern NSString *const DBBurgerButtonPressedNotification;

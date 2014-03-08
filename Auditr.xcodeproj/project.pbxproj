@@ -60,6 +60,11 @@
 		FF8EE8B8185687AB0036BE27 /* DBHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8EE8B7185687AB0036BE27 /* DBHomeViewController.m */; };
 		FF91CDFF18AC47F40049F984 /* Auditr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF91CDFD18AC47F40049F984 /* Auditr.xcdatamodeld */; };
 		FF91CE0318AC491E0049F984 /* DBProfileCoreDataRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = FF91CE0218AC491E0049F984 /* DBProfileCoreDataRepository.m */; };
+		FF9E1C2818CA8BDA00D3A2B4 /* DBItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9E1C2718CA8BDA00D3A2B4 /* DBItemService.m */; };
+		FF9E1C2C18CA8C2700D3A2B4 /* DBCoreDataItemRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9E1C2B18CA8C2700D3A2B4 /* DBCoreDataItemRepository.m */; };
+		FF9E1C3018CAA18C00D3A2B4 /* DBItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9E1C2F18CAA18C00D3A2B4 /* DBItemTableViewCell.m */; };
+		FF9E1C3318CB20F600D3A2B4 /* DBItemTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9E1C3218CB20F600D3A2B4 /* DBItemTableFooterView.m */; };
+		FF9E1C3618CB215200D3A2B4 /* DBItemTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9E1C3518CB215200D3A2B4 /* DBItemTableHeaderView.m */; };
 		FFB41EB918A5BEB400549DC8 /* DBUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB41EB818A5BEB400549DC8 /* DBUserService.m */; };
 		FFB41EC218A5C40900549DC8 /* DBProfileService.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB41EC118A5C40900549DC8 /* DBProfileService.m */; };
 		FFB7B46718A45F1300F61D42 /* DBAreaTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB7B46618A45F1300F61D42 /* DBAreaTableFooterView.m */; };
@@ -192,6 +197,17 @@
 		FF91CE0018AC48F70049F984 /* DBProfileRepository.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBProfileRepository.h; sourceTree = "<group>"; };
 		FF91CE0118AC491E0049F984 /* DBProfileCoreDataRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBProfileCoreDataRepository.h; sourceTree = "<group>"; };
 		FF91CE0218AC491E0049F984 /* DBProfileCoreDataRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBProfileCoreDataRepository.m; sourceTree = "<group>"; };
+		FF9E1C2618CA8BDA00D3A2B4 /* DBItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBItemService.h; sourceTree = "<group>"; };
+		FF9E1C2718CA8BDA00D3A2B4 /* DBItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBItemService.m; sourceTree = "<group>"; };
+		FF9E1C2918CA8BF200D3A2B4 /* DBItemRepository.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBItemRepository.h; sourceTree = "<group>"; };
+		FF9E1C2A18CA8C2700D3A2B4 /* DBCoreDataItemRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCoreDataItemRepository.h; sourceTree = "<group>"; };
+		FF9E1C2B18CA8C2700D3A2B4 /* DBCoreDataItemRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCoreDataItemRepository.m; sourceTree = "<group>"; };
+		FF9E1C2E18CAA18C00D3A2B4 /* DBItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBItemTableViewCell.h; sourceTree = "<group>"; };
+		FF9E1C2F18CAA18C00D3A2B4 /* DBItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBItemTableViewCell.m; sourceTree = "<group>"; };
+		FF9E1C3118CB20F600D3A2B4 /* DBItemTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBItemTableFooterView.h; sourceTree = "<group>"; };
+		FF9E1C3218CB20F600D3A2B4 /* DBItemTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBItemTableFooterView.m; sourceTree = "<group>"; };
+		FF9E1C3418CB215200D3A2B4 /* DBItemTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBItemTableHeaderView.h; sourceTree = "<group>"; };
+		FF9E1C3518CB215200D3A2B4 /* DBItemTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBItemTableHeaderView.m; sourceTree = "<group>"; };
 		FFB41EB718A5BEB400549DC8 /* DBUserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUserService.h; sourceTree = "<group>"; };
 		FFB41EB818A5BEB400549DC8 /* DBUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUserService.m; sourceTree = "<group>"; };
 		FFB41EC018A5C40900549DC8 /* DBProfileService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBProfileService.h; sourceTree = "<group>"; };
@@ -379,6 +395,7 @@
 			isa = PBXGroup;
 			children = (
 				FF245506189EEB8800690DC1 /* AreaTableViewCells */,
+				FF9E1C2D18CA9F9E00D3A2B4 /* ItemTableViewCells */,
 				FF3DC112189D1685001974E0 /* DBEditGroupViewController.h */,
 				FF3DC113189D1685001974E0 /* DBEditGroupViewController.m */,
 			);
@@ -562,6 +579,19 @@
 			path = GroupsViewController;
 			sourceTree = "<group>";
 		};
+		FF9E1C2D18CA9F9E00D3A2B4 /* ItemTableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				FF9E1C2E18CAA18C00D3A2B4 /* DBItemTableViewCell.h */,
+				FF9E1C2F18CAA18C00D3A2B4 /* DBItemTableViewCell.m */,
+				FF9E1C3118CB20F600D3A2B4 /* DBItemTableFooterView.h */,
+				FF9E1C3218CB20F600D3A2B4 /* DBItemTableFooterView.m */,
+				FF9E1C3418CB215200D3A2B4 /* DBItemTableHeaderView.h */,
+				FF9E1C3518CB215200D3A2B4 /* DBItemTableHeaderView.m */,
+			);
+			path = ItemTableViewCells;
+			sourceTree = "<group>";
+		};
 		FFBBA8A7185694A300C8BCBE /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -601,6 +631,7 @@
 				FF24550E189EF3FD00690DC1 /* DBAreaRepository.h */,
 				FF91CE0018AC48F70049F984 /* DBProfileRepository.h */,
 				FF37E02218BA883000972BD3 /* DBSyncEntityRepository.h */,
+				FF9E1C2918CA8BF200D3A2B4 /* DBItemRepository.h */,
 			);
 			path = DataAccess;
 			sourceTree = "<group>";
@@ -618,6 +649,8 @@
 				FFB41EC118A5C40900549DC8 /* DBProfileService.m */,
 				FF34C75118AEB4D00048FBAE /* DBParseService.h */,
 				FF34C75218AEB4D00048FBAE /* DBParseService.m */,
+				FF9E1C2618CA8BDA00D3A2B4 /* DBItemService.h */,
+				FF9E1C2718CA8BDA00D3A2B4 /* DBItemService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -635,6 +668,8 @@
 				FF91CE0218AC491E0049F984 /* DBProfileCoreDataRepository.m */,
 				FF37E02318BA88A200972BD3 /* DBSyncEntityCoreDataRepository.h */,
 				FF37E02418BA88A200972BD3 /* DBSyncEntityCoreDataRepository.m */,
+				FF9E1C2A18CA8C2700D3A2B4 /* DBCoreDataItemRepository.h */,
+				FF9E1C2B18CA8C2700D3A2B4 /* DBCoreDataItemRepository.m */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -881,6 +916,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF24550D189EF3B800690DC1 /* DBAreaService.m in Sources */,
+				FF9E1C3018CAA18C00D3A2B4 /* DBItemTableViewCell.m in Sources */,
 				FFC3875E1859188100A09D01 /* _Item.m in Sources */,
 				FF10B6F918A9762500556DC9 /* DBTwitterServiceClient.m in Sources */,
 				FF43770E189C886600A019E3 /* _Rating.m in Sources */,
@@ -896,6 +932,7 @@
 				FF37E02518BA88A200972BD3 /* DBSyncEntityCoreDataRepository.m in Sources */,
 				FF3DC125189D2ED6001974E0 /* DBGroupViewModel.m in Sources */,
 				FF3DC11D189D2B9A001974E0 /* DBBaseViewModel.m in Sources */,
+				FF9E1C2818CA8BDA00D3A2B4 /* DBItemService.m in Sources */,
 				FF437714189C887000A019E3 /* Rating.m in Sources */,
 				FFEACA3C18AC2BC1001A38F3 /* DBHTTPClient.m in Sources */,
 				FFC387521859184400A09D01 /* Area.m in Sources */,
@@ -925,13 +962,16 @@
 				FFE5103118ABF7C500A506CE /* DBSettingsViewController.m in Sources */,
 				FF26ACFC18A1806200A1BBE3 /* DBGroupTableViewCell.m in Sources */,
 				FFE5103518ABF96000A506CE /* DBSettingsViewModel.m in Sources */,
+				FF9E1C3318CB20F600D3A2B4 /* DBItemTableFooterView.m in Sources */,
 				FF3DC129189D31CD001974E0 /* DBAreaViewModel.m in Sources */,
+				FF9E1C3618CB215200D3A2B4 /* DBItemTableHeaderView.m in Sources */,
 				FFEACA3518AC1BA4001A38F3 /* DBSettingsTableViewCell.m in Sources */,
 				FFC3876218591A7E00A09D01 /* DBBaseViewController.m in Sources */,
 				FFC3876C18591D2800A09D01 /* DBGroupCoreDataRepository.m in Sources */,
 				FF3DC131189D4B2A001974E0 /* DBItemViewModel.m in Sources */,
 				FFBBA8B41856960100C8BCBE /* DBCoreDataBaseRepository.m in Sources */,
 				FF34C74D18AEB3360048FBAE /* DBParseSettings.m in Sources */,
+				FF9E1C2C18CA8C2700D3A2B4 /* DBCoreDataItemRepository.m in Sources */,
 				FF37E02818BA8CCB00972BD3 /* DBSyncManager.m in Sources */,
 				FF43770D189C886600A019E3 /* _Profile.m in Sources */,
 				FF8EE8B8185687AB0036BE27 /* DBHomeViewController.m in Sources */,

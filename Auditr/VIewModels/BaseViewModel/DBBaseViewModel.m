@@ -110,8 +110,9 @@
 	
 	id<DBGroupService> groupService = [assembly groupService];
 	id<DBAreaService> areaService = [assembly areaService];
+	id<DBItemService> itemService = [assembly itemService];
 	
-	return [[DBGroupViewModel alloc] initWithGroupService: groupService areaService: areaService];
+	return [[DBGroupViewModel alloc] initWithGroupService: groupService areaService: areaService itemService: itemService];
 }
 
 - (void) populateGroups

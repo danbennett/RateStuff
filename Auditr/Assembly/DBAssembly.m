@@ -12,11 +12,13 @@
 #import "DBAreaService.h"
 #import "DBProfileService.h"
 #import "DBParseService.h"
+#import "DBItemService.h"
 // Repos.
 #import "DBGroupCoreDataRepository.h"
 #import "DBAreaCoreDataRepository.h"
 #import "DBProfileCoreDataRepository.h"
 #import "DBSyncEntityCoreDataRepository.h"
+#import "DBCoreDataItemRepository.h"
 // Service clients.
 #import "DBTwitterServiceClient.h"
 #import "DBParseServiceClient.h"
@@ -35,9 +37,10 @@
 {
 	return [TyphoonDefinition withClass: [DBGroupService class] initialization:^(TyphoonInitializer *initializer) {
 		
-		initializer.selector = @selector(initWithGroupRepository:areaRepository:);
+		initializer.selector = @selector(initWithGroupRepository:areaRepository:itemRepository:);
 		[initializer injectWithDefinition: [self groupRepository]];
 		[initializer injectWithDefinition: [self areaRepository]];
+		[initializer injectWithDefinition: [self itemRepository]];
 		
 	} properties:^(TyphoonDefinition *definition) {
 		
@@ -92,6 +95,20 @@
 	}];
 }
 
+- (id) itemService
+{
+	return [TyphoonDefinition withClass: [DBItemService class] initialization:^(TyphoonInitializer *initializer) {
+		
+		initializer.selector = @selector(initWithItemRepository:);
+		[initializer injectWithDefinition: [self itemRepository]];
+		
+	} properties:^(TyphoonDefinition *definition) {
+		
+		[definition setScope: TyphoonScopeSingleton];
+		
+	}];
+}
+
 #pragma mark - repos
 
 - (id) groupRepository
@@ -124,6 +141,15 @@
 - (id) syncEntityRepository
 {
 	return [TyphoonDefinition withClass: [DBSyncEntityCoreDataRepository class] properties:^(TyphoonDefinition *definition) {
+		
+		[definition setScope: TyphoonScopeSingleton];
+		
+	}];
+}
+
+- (id) itemRepository
+{
+	return [TyphoonDefinition withClass: [DBCoreDataItemRepository class] properties:^(TyphoonDefinition *definition) {
 		
 		[definition setScope: TyphoonScopeSingleton];
 		

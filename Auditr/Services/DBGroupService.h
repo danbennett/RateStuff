@@ -9,14 +9,19 @@
 #import <Foundation/Foundation.h>
 @class Group;
 @class Area;
+@class Item;
 @protocol DBGroupRepository;
 @protocol DBAreaRepository;
+@protocol DBItemRepository;
 
 @protocol DBGroupService <NSObject>
 
 @required
 - (id) initWithGroupRepository: (id<DBGroupRepository>) groupRepository
-				areaRepository: (id<DBAreaRepository>) areaRepository;
+				areaRepository: (id<DBAreaRepository>) areaRepository
+				itemRepository: (id<DBItemRepository>) itemRepository;
+
+- (void) addItem: (Item *) item toGroup: (Group *) group;
 - (void) addArea: (Area *) area toGroup: (Group *) group;
 - (Group *) createBlankGroup;
 - (NSArray *) getAll;
@@ -31,7 +36,10 @@
 @interface DBGroupService : NSObject
 
 - (id) initWithGroupRepository: (id<DBGroupRepository>) groupRepository
-				areaRepository: (id<DBAreaRepository>) areaRepository;
+				areaRepository: (id<DBAreaRepository>) areaRepository
+				itemRepository: (id<DBItemRepository>) itemRepository;
+
+- (void) addItem: (Item *) item toGroup: (Group *) group;
 - (void) addArea: (Area *) area toGroup: (Group *) group;
 - (Group *) createBlankGroup;
 - (NSArray *) getAll;

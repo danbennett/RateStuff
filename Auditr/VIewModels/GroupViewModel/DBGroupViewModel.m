@@ -11,6 +11,7 @@
 #import "DBItemViewModel.h"
 #import "DBGroupService.h"
 #import "DBAreaService.h"
+#import "DBItemService.h"
 #import "Group.h"
 #import "Area.h"
 #import "Item.h"
@@ -27,6 +28,7 @@
 @property (nonatomic, strong, readwrite) RACSubject *saved;
 @property (nonatomic, assign) id<DBGroupService> groupService;
 @property (nonatomic, assign) id<DBAreaService> areaService;
+@property (nonatomic, assign) id<DBItemService> itemService;
 
 @end
 
@@ -34,12 +36,15 @@
 
 - (id) initWithGroupService: (id<DBGroupService>) groupService
 				areaService: (id<DBAreaService>) areaService
+				itemService: (id<DBItemService>) itemService
 {
     self = [super init];
     if (self)
 	{
 		self.groupService = groupService;
 		self.areaService = areaService;
+		self.itemService = itemService;
+		
 		[self createBindings];
     }
     return self;
@@ -174,8 +179,12 @@
 - (void) createItemsViewModels
 {
 	NSArray *items = [self.group.items allObjects];
+	
 	self.items = [[[items objectEnumerator] select:^DBItemViewModel *(Item *item) {
-		return [[DBItemViewModel alloc] initWithItem: item];
+		
+		DBItemViewModel *viewModel = [self generateItemViewModel];
+		viewModel.item = item;
+		return viewModel;
 		
 	}] allObjects];
 }
@@ -210,6 +219,33 @@
 	[self.areaService deleteArea: area hard: NO];
 }
 
+- (DBItemViewModel *) addItem
+{
+	Item *item = [self.itemService createItem];
+	[self.groupService addItem: item toGroup: self.group];
+	
+	// Create view model.
+	DBItemViewModel *viewModel = [self generateItemViewModel];
+	viewModel.item = item;
+	
+	// Add item to items array.
+	NSMutableArray *items = [self.items mutableCopy];
+	[items insertObject: viewModel atIndex: 0];
+	self.items = [items copy];
+	
+	return viewModel;
+}
+
+- (void) deleteItem: (DBItemViewModel *) viewModel
+{
+	NSMutableArray *items = [self.items mutableCopy];
+	[items removeObject: viewModel];
+	self.items = [items copy];
+	
+	Item *item = viewModel.item;
+	[self.itemService deleteItem: item hard: NO];
+}
+
 - (DBAreaViewModel *) generateAreaViewModel
 {
 	DBAssembly *assembly = (DBAssembly *) [TyphoonAssembly defaultAssembly];
@@ -217,6 +253,16 @@
 	id<DBAreaService> service = [assembly areaService];
 	
 	return [[DBAreaViewModel alloc] initWithAreaService: service];
+}
+
+- (DBItemViewModel *) generateItemViewModel
+{
+	DBAssembly *assembly = (DBAssembly *) [TyphoonAssembly defaultAssembly];
+	
+	id<DBItemService> service = [assembly itemService];
+	
+	return [[DBItemViewModel alloc] initWithItemService: service];
+
 }
 
 @end
