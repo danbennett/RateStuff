@@ -128,6 +128,10 @@ static NSString *const DBSettingsTwitterCellId = @"DBSettingsTwitterCell";
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	DBSettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: DBSettingsTwitterCellId];
+	
+	[cell setNeedsUpdateConstraints];
+	[cell updateConstraintsIfNeeded];
+	
 	cell.viewModel = self.viewModel;
 	return cell;
 }

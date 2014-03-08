@@ -312,8 +312,14 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 	{
 		DBGroupViewModel *group = self.viewModel.groups[indexPath.row];
 		self.selectedGroupViewModel = group;
-		
-		[self performSegueWithIdentifier: @"editGroupViewController" sender: self];
+
+		@weakify(self);
+		[self closeContainerWithCompletion:^(BOOL finished) {
+			
+			@strongify(self);
+			[self performSegueWithIdentifier: @"editGroupViewController" sender: self];
+			
+		}];
 	}
 }
 
