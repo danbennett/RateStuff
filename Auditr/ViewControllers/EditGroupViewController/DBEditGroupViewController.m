@@ -62,21 +62,7 @@ static const float itemTableViewY = 147.0f;
 
 - (void) setupScrollView
 {
-	[self reloadScrollViewSize];
 	[self.scrollView setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"imageBackground"]]];
-}
-
-- (void) reloadScrollViewSize
-{
-//	self.contentHolder.frame = ({
-//		CGRect frame = self.contentHolder.frame;
-//		CGRect itemTableFrame = [self.itemTableView.superview convertRect: self.itemTableView.frame toView: self.contentHolder];
-//		itemTableFrame.size.height = self.itemTableView.contentSize.height;
-//		frame.size.height = CGRectGetMaxY(itemTableFrame);
-//		frame;
-//	});
-//	
-//	self.scrollView.contentSize = self.contentHolder.frame.size;
 }
 
 # pragma mark - Create image filter.
@@ -277,7 +263,6 @@ static const float itemTableViewY = 147.0f;
 		[self.itemTableView endUpdates];
 
 		[self performSelector: @selector(reloadItemTableViewSize) withObject: nil afterDelay: 0.4f];
-		[self performSelector: @selector(reloadScrollViewSize) withObject: nil afterDelay: 0.4f];
 		
 	}];
 }
@@ -369,7 +354,6 @@ static const float itemTableViewY = 147.0f;
 		@strongify(self);
 		
 		[self reloadItemTableViewSize];
-		[self reloadScrollViewSize];
 		self.selectedIndexPath = nil;
 		
 	}];
@@ -483,14 +467,14 @@ static const float itemTableViewY = 147.0f;
 
 - (void) scrollTableViewCellIndex: (NSIndexPath *) indexPath WithAnimation: (BOOL) animated
 {
-	UITableViewCell *cell = [self.itemTableView cellForRowAtIndexPath: indexPath];
-	
-	CGPoint origin = cell.frame.origin;
-	CGPoint point = [cell.superview convertPoint: origin toView: self.itemTableView];
-	CGPoint offset = CGPointZero;
-	offset.y = (point.y - 44.0f);
-	
-	[self.itemTableView setContentOffset: offset animated: animated];
+//	UITableViewCell *cell = [self.itemTableView cellForRowAtIndexPath: indexPath];
+//	
+//	CGPoint origin = cell.frame.origin;
+//	CGPoint point = [cell.superview convertPoint: origin toView: self.itemTableView];
+//	CGPoint offset = CGPointZero;
+//	offset.y = (point.y - 44.0f);
+//	
+//	[self.itemTableView setContentOffset: offset animated: animated];
 }
 
 #pragma mark - Tableview data source.
@@ -535,7 +519,6 @@ static const float itemTableViewY = 147.0f;
 	
 		@strongify(self);
 		[self performSelector: @selector(reloadItemTableViewSize) withObject: nil afterDelay: 0.4f];
-		[self performSelector: @selector(reloadScrollViewSize) withObject: nil afterDelay: 0.4f];
 		[self performSelector: @selector(snapToCell:) withObject: indexPath afterDelay: 0.4f];
 
 	}];
