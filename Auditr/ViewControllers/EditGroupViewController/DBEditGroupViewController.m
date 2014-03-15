@@ -101,7 +101,6 @@ static const float itemTableViewY = 147.0f;
 - (void) styleItemTableView
 {
 	[self.itemTableView setBackgroundColor: [UIColor colorWithPatternImage: [UIImage imageNamed:@"addAreaBackground"]]];
-	[self reloadItemTableViewSize];
 }
 
 #pragma mark - Item tableview size.
@@ -124,16 +123,6 @@ static const float itemTableViewY = 147.0f;
 	size.height = size.height + (CGRectGetMaxY(self.scrollView.bounds) - CGRectGetMaxY(frame));
 	size.height += buffer;
 	return size;
-}
-
-- (void) reloadItemTableViewSize
-{
-	float i = 0;
-//	self.itemTableView.frame = ({
-//		CGRect frame = self.itemTableView.frame;
-//		frame.size.height = [self sizeForItemTableView].height;
-//		frame;
-//	});
 }
 
 #pragma mark - Bindings.
@@ -261,8 +250,6 @@ static const float itemTableViewY = 147.0f;
 		self.selectedIndexPath = path;
 		[self.itemTableView insertRowsAtIndexPaths: @[path] withRowAnimation: UITableViewRowAnimationRight];
 		[self.itemTableView endUpdates];
-
-		[self performSelector: @selector(reloadItemTableViewSize) withObject: nil afterDelay: 0.4f];
 		
 	}];
 }
@@ -353,7 +340,6 @@ static const float itemTableViewY = 147.0f;
 		
 		@strongify(self);
 		
-		[self reloadItemTableViewSize];
 		self.selectedIndexPath = nil;
 		
 	}];
@@ -518,7 +504,6 @@ static const float itemTableViewY = 147.0f;
 	[self showEditItemViewWithCompletion:^(BOOL finished) {
 	
 		@strongify(self);
-		[self performSelector: @selector(reloadItemTableViewSize) withObject: nil afterDelay: 0.4f];
 		[self performSelector: @selector(snapToCell:) withObject: indexPath afterDelay: 0.4f];
 
 	}];

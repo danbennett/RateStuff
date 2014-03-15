@@ -25,6 +25,7 @@
 - (void)endUpdates
 {
     [super endUpdates];
+	self.contentSize = [self sizeThatFits:CGSizeMake(CGRectGetWidth(self.bounds), CGFLOAT_MAX)];
     [self invalidateIntrinsicContentSize];
 }
 
