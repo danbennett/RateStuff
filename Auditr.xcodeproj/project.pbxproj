@@ -65,6 +65,7 @@
 		FF9E1C3018CAA18C00D3A2B4 /* DBItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9E1C2F18CAA18C00D3A2B4 /* DBItemTableViewCell.m */; };
 		FF9E1C3318CB20F600D3A2B4 /* DBItemTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9E1C3218CB20F600D3A2B4 /* DBItemTableFooterView.m */; };
 		FF9E1C3618CB215200D3A2B4 /* DBItemTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9E1C3518CB215200D3A2B4 /* DBItemTableHeaderView.m */; };
+		FF9E1C3918CB523900D3A2B4 /* DBItemTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9E1C3818CB523900D3A2B4 /* DBItemTableView.m */; };
 		FFB41EB918A5BEB400549DC8 /* DBUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB41EB818A5BEB400549DC8 /* DBUserService.m */; };
 		FFB41EC218A5C40900549DC8 /* DBProfileService.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB41EC118A5C40900549DC8 /* DBProfileService.m */; };
 		FFB7B46718A45F1300F61D42 /* DBAreaTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB7B46618A45F1300F61D42 /* DBAreaTableFooterView.m */; };
@@ -208,6 +209,8 @@
 		FF9E1C3218CB20F600D3A2B4 /* DBItemTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBItemTableFooterView.m; sourceTree = "<group>"; };
 		FF9E1C3418CB215200D3A2B4 /* DBItemTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBItemTableHeaderView.h; sourceTree = "<group>"; };
 		FF9E1C3518CB215200D3A2B4 /* DBItemTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBItemTableHeaderView.m; sourceTree = "<group>"; };
+		FF9E1C3718CB523900D3A2B4 /* DBItemTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBItemTableView.h; sourceTree = "<group>"; };
+		FF9E1C3818CB523900D3A2B4 /* DBItemTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBItemTableView.m; sourceTree = "<group>"; };
 		FFB41EB718A5BEB400549DC8 /* DBUserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUserService.h; sourceTree = "<group>"; };
 		FFB41EB818A5BEB400549DC8 /* DBUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUserService.m; sourceTree = "<group>"; };
 		FFB41EC018A5C40900549DC8 /* DBProfileService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBProfileService.h; sourceTree = "<group>"; };
@@ -398,6 +401,8 @@
 				FF9E1C2D18CA9F9E00D3A2B4 /* ItemTableViewCells */,
 				FF3DC112189D1685001974E0 /* DBEditGroupViewController.h */,
 				FF3DC113189D1685001974E0 /* DBEditGroupViewController.m */,
+				FF9E1C3718CB523900D3A2B4 /* DBItemTableView.h */,
+				FF9E1C3818CB523900D3A2B4 /* DBItemTableView.m */,
 			);
 			path = EditGroupViewController;
 			sourceTree = "<group>";
@@ -919,6 +924,7 @@
 				FF9E1C3018CAA18C00D3A2B4 /* DBItemTableViewCell.m in Sources */,
 				FFC3875E1859188100A09D01 /* _Item.m in Sources */,
 				FF10B6F918A9762500556DC9 /* DBTwitterServiceClient.m in Sources */,
+				FF9E1C3918CB523900D3A2B4 /* DBItemTableView.m in Sources */,
 				FF43770E189C886600A019E3 /* _Rating.m in Sources */,
 				FFE5102718A978C600A506CE /* DBTwitterSettings.m in Sources */,
 				FFC387541859184400A09D01 /* Item.m in Sources */,

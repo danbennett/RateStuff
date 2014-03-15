@@ -37,6 +37,7 @@
 @property (nonatomic, strong) IBOutlet UITextField *descriptionTextField;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *saveButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *cancelButton;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *itemTableDistanceFromTopContraint;
 
 @end
 
@@ -67,15 +68,15 @@ static const float itemTableViewY = 147.0f;
 
 - (void) reloadScrollViewSize
 {
-	self.contentHolder.frame = ({
-		CGRect frame = self.contentHolder.frame;
-		CGRect itemTableFrame = [self.itemTableView.superview convertRect: self.itemTableView.frame toView: self.contentHolder];
-		itemTableFrame.size.height = self.itemTableView.contentSize.height;
-		frame.size.height = CGRectGetMaxY(itemTableFrame);
-		frame;
-	});
-	
-	self.scrollView.contentSize = self.contentHolder.frame.size;
+//	self.contentHolder.frame = ({
+//		CGRect frame = self.contentHolder.frame;
+//		CGRect itemTableFrame = [self.itemTableView.superview convertRect: self.itemTableView.frame toView: self.contentHolder];
+//		itemTableFrame.size.height = self.itemTableView.contentSize.height;
+//		frame.size.height = CGRectGetMaxY(itemTableFrame);
+//		frame;
+//	});
+//	
+//	self.scrollView.contentSize = self.contentHolder.frame.size;
 }
 
 # pragma mark - Create image filter.
@@ -141,11 +142,12 @@ static const float itemTableViewY = 147.0f;
 
 - (void) reloadItemTableViewSize
 {
-	self.itemTableView.frame = ({
-		CGRect frame = self.itemTableView.frame;
-		frame.size.height = [self sizeForItemTableView].height;
-		frame;
-	});
+	float i = 0;
+//	self.itemTableView.frame = ({
+//		CGRect frame = self.itemTableView.frame;
+//		frame.size.height = [self sizeForItemTableView].height;
+//		frame;
+//	});
 }
 
 #pragma mark - Bindings.
@@ -273,7 +275,7 @@ static const float itemTableViewY = 147.0f;
 		self.selectedIndexPath = path;
 		[self.itemTableView insertRowsAtIndexPaths: @[path] withRowAnimation: UITableViewRowAnimationRight];
 		[self.itemTableView endUpdates];
-		
+
 		[self performSelector: @selector(reloadItemTableViewSize) withObject: nil afterDelay: 0.4f];
 		[self performSelector: @selector(reloadScrollViewSize) withObject: nil afterDelay: 0.4f];
 		
@@ -433,24 +435,38 @@ static const float itemTableViewY = 147.0f;
 
 - (void) showEditItemViewWithCompletion: (void (^)(BOOL finished))completion
 {
-	CGRect frame = self.itemTableView.frame;
-	frame.size.height = frame.size.height + frame.origin.y;
-	frame.origin.y = 0;
-	[self.itemTableView animateFrameWithBounce: frame
-								  withDuration: 0.6f
-									  withEase: UIViewAnimationOptionCurveEaseOut
-								withCompletion: completion];
+	@weakify(self);
+	[self.itemTableView.superview layoutIfNeeded];
+	[UIView animateWithDuration: 0.6f
+						  delay: 0.0f
+		 usingSpringWithDamping: 0.8f
+		  initialSpringVelocity: 0.2f
+						options: UIViewAnimationOptionCurveEaseOut
+					 animations:^{
+						 
+						 @strongify(self);
+						 self.itemTableDistanceFromTopContraint.constant = 0.0f;
+						 [self.itemTableView.superview layoutIfNeeded];
+
+					 } completion: completion];
 }
 
 - (void) hideEditItemViewWithCompletion: (void (^)(BOOL finished))completion
 {
-	CGRect frame = self.itemTableView.frame;
-	frame.origin.y = itemTableViewY;
-	[self.itemTableView animateFrameWithBounce: frame
-								  withDuration: 0.6f
-									  withEase: UIViewAnimationOptionCurveEaseOut
-								withCompletion: completion];
-
+	@weakify(self);
+	[self.itemTableView.superview layoutIfNeeded];
+	[UIView animateWithDuration: 0.6f
+						  delay: 0.0f
+		 usingSpringWithDamping: 0.8f
+		  initialSpringVelocity: 0.2f
+						options: UIViewAnimationOptionCurveEaseOut
+					 animations:^{
+						 
+						 @strongify(self);
+						 self.itemTableDistanceFromTopContraint.constant = 148.0f;
+						 [self.itemTableView.superview layoutIfNeeded];
+						 
+					 } completion: completion];
 }
 
 #pragma mark - Item table view scroll to cell.

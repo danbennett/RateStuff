@@ -42,6 +42,20 @@
 	} completion: completion];
 }
 
+- (void) animateWithBounce: (void(^)()) animation
+			  withDuration: (NSTimeInterval) duration
+				  withEase: (UIViewAnimationOptions) ease
+			withCompletion: (void (^)(BOOL finished)) completion
+{
+	[UIView animateWithDuration: duration
+						  delay: 0.0f
+		 usingSpringWithDamping: 0.8f
+		  initialSpringVelocity: 0.2f
+						options: ease
+					 animations: animation
+					 completion: completion];
+}
+
 - (void) animateToOpacity: (CGFloat) alpha withDuration: (NSTimeInterval) duration
 {
 	@weakify(self);

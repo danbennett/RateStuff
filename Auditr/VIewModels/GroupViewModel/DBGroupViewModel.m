@@ -187,6 +187,8 @@
 		return viewModel;
 		
 	}] allObjects];
+	
+//	self.items = @[[[DBItemViewModel alloc] init], [[DBItemViewModel alloc] init], [[DBItemViewModel alloc] init], [[DBItemViewModel alloc] init], [[DBItemViewModel alloc] init], [[DBItemViewModel alloc] init], [[DBItemViewModel alloc] init], [[DBItemViewModel alloc] init], [[DBItemViewModel alloc] init], [[DBItemViewModel alloc] init], [[DBItemViewModel alloc] init]];
 }
 
 - (DBAreaViewModel *) addArea

@@ -22,4 +22,8 @@
 					   withEase: (UIViewAnimationOptions) ease
 				 withCompletion: (void (^)(BOOL finished))completion;
 
+- (void) animateWithBounce: (void(^)()) animation
+			  withDuration: (NSTimeInterval) duration
+				  withEase: (UIViewAnimationOptions) ease
+			withCompletion: (void (^)(BOOL finished)) completion;
 @end
