@@ -12,6 +12,7 @@
 #import "DBItemTableViewCell.h"
 #import "UIImage+Effects.h"
 #import "UIView+Animations.h"
+#import "DBToolTip.h"
 #import <GPUImage/GPUImage.h>
 #import <ReactiveCocoa/RACEXTScope.h>
 #import <QuartzCore/QuartzCore.h>
@@ -94,7 +95,6 @@ static const float itemTableViewY = 147.0f;
 	self.profileImageView.layer.borderWidth = 2.0f;
 	[self.profileImageView setHidden: YES];
 }
-
 
 # pragma mark - Item table view style.
 
@@ -194,11 +194,11 @@ static const float itemTableViewY = 147.0f;
 					[self.spinner stopAnimating];
 					[self.profileImageView setImage: image];
 					self.profileImageView.alpha = 0.0f;
-					[self.profileImageView animateToOpacity: 1.0f withDuration: 0.32f];
+					[self.profileImageView animateToOpacity: 1.0f withDuration: 0.32f withCompletion: NULL];
 					[self.profileImageView setHidden: NO];
 					[self.imageView setImage: self.backgroundImageUp];
 					self.imageView.alpha = 0.0f;
-					[self.imageView animateToOpacity: 0.4f withDuration: 0.42f];
+					[self.imageView animateToOpacity: 0.4f withDuration: 0.42f withCompletion: NULL];
 				});
 			});
 		}
@@ -235,23 +235,35 @@ static const float itemTableViewY = 147.0f;
 
 - (IBAction) addNewItemTapped: (UIButton *) sender
 {
-	[self.scrollView setContentOffset:CGPointZero animated: YES];
-	[self removePhotoGestures];
-	[self addCloseEditItemGesture];
+	CGPoint buttonPosition = [self.view convertPoint: sender.center fromView: self.itemTableView];
+	DBToolTip *toolTip = [[DBToolTip alloc] initWithButtons: @[[UIImage imageNamed: @"largePlusIcon"],
+															   [UIImage imageNamed: @"largePlusIcon"],
+															   /*[UIImage imageNamed: @"largePlusIcon"],
+															   [UIImage imageNamed: @"largePlusIcon"],
+															   [UIImage imageNamed: @"largePlusIcon"],
+															   [UIImage imageNamed: @"largePlusIcon"],
+															   [UIImage imageNamed: @"largePlusIcon"],
+															   [UIImage imageNamed: @"largePlusIcon"],
+															   [UIImage imageNamed: @"largePlusIcon"]*/]];
+	[toolTip showInView: self.view atPoint: buttonPosition animated: YES];
 	
-	DBItemViewModel *viewModel = [self.viewModel addItem];
-
-	@weakify(self);
-	[self showEditItemViewWithCompletion:^(BOOL finished) {
-		
-		@strongify(self);
-		[self.itemTableView beginUpdates];
-		NSIndexPath *path = [NSIndexPath indexPathForItem: [self.viewModel.items indexOfObject: viewModel] inSection:0];
-		self.selectedIndexPath = path;
-		[self.itemTableView insertRowsAtIndexPaths: @[path] withRowAnimation: UITableViewRowAnimationRight];
-		[self.itemTableView endUpdates];
-		
-	}];
+//	[self.scrollView setContentOffset:CGPointZero animated: YES];
+//	[self removePhotoGestures];
+//	[self addCloseEditItemGesture];
+//	
+//	DBItemViewModel *viewModel = [self.viewModel addItem];
+//
+//	@weakify(self);
+//	[self showEditItemViewWithCompletion:^(BOOL finished) {
+//		
+//		@strongify(self);
+//		[self.itemTableView beginUpdates];
+//		NSIndexPath *path = [NSIndexPath indexPathForItem: [self.viewModel.items indexOfObject: viewModel] inSection:0];
+//		self.selectedIndexPath = path;
+//		[self.itemTableView insertRowsAtIndexPaths: @[path] withRowAnimation: UITableViewRowAnimationRight];
+//		[self.itemTableView endUpdates];
+//		
+//	}];
 }
 
 #pragma mark - Gestures.

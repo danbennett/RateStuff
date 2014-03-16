@@ -56,7 +56,7 @@
 					 completion: completion];
 }
 
-- (void) animateToOpacity: (CGFloat) alpha withDuration: (NSTimeInterval) duration
+- (void) animateToOpacity: (CGFloat) alpha withDuration: (NSTimeInterval) duration withCompletion: (void (^)(BOOL finished)) completion
 {
 	@weakify(self);
 	[UIView animateWithDuration: duration animations:^{
@@ -64,7 +64,7 @@
 		@strongify(self);
 		self.alpha = alpha;
 		
-	}];
+	} completion: completion];
 }
 
 @end

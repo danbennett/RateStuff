@@ -15,7 +15,7 @@
 				  withEase: (UIViewAnimationOptions) ease
 			withCompletion: (void (^)(BOOL finished))completion;
 
-- (void) animateToOpacity: (CGFloat) alpha withDuration: (NSTimeInterval) duration;
+- (void) animateToOpacity: (CGFloat) alpha withDuration: (NSTimeInterval) duration withCompletion: (void (^)(BOOL finished)) completion;
 
 - (void) animateFrameWithBounce: (CGRect) frame
 				   withDuration: (NSTimeInterval) duration

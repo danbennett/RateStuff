@@ -29,6 +29,9 @@
 		FF37E02518BA88A200972BD3 /* DBSyncEntityCoreDataRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = FF37E02418BA88A200972BD3 /* DBSyncEntityCoreDataRepository.m */; };
 		FF37E02818BA8CCB00972BD3 /* DBSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF37E02718BA8CCB00972BD3 /* DBSyncManager.m */; };
 		FF37E02B18C53F7400972BD3 /* DBGroupSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF37E02A18C53F7300972BD3 /* DBGroupSyncManager.m */; };
+		FF392E8C18D512090022FAE8 /* Tooltip.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF392E8B18D512090022FAE8 /* Tooltip.xib */; };
+		FF392E9B18D527770022FAE8 /* DBToolTip.m in Sources */ = {isa = PBXBuildFile; fileRef = FF392E9818D527770022FAE8 /* DBToolTip.m */; };
+		FF392E9C18D527770022FAE8 /* DBToolTipCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF392E9A18D527770022FAE8 /* DBToolTipCell.m */; };
 		FF3D7435189C40E800294D6F /* UIView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D7434189C40E800294D6F /* UIView+Animations.m */; };
 		FF3D743C189C55BA00294D6F /* DBCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3D743B189C55BA00294D6F /* DBCoreDataManager.m */; };
 		FF3DC114189D1685001974E0 /* DBEditGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF3DC113189D1685001974E0 /* DBEditGroupViewController.m */; };
@@ -66,6 +69,8 @@
 		FF9E1C3318CB20F600D3A2B4 /* DBItemTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9E1C3218CB20F600D3A2B4 /* DBItemTableFooterView.m */; };
 		FF9E1C3618CB215200D3A2B4 /* DBItemTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9E1C3518CB215200D3A2B4 /* DBItemTableHeaderView.m */; };
 		FF9E1C3918CB523900D3A2B4 /* DBItemTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9E1C3818CB523900D3A2B4 /* DBItemTableView.m */; };
+		FFABEF5418D5BC52007442E8 /* TooltipCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFABEF5318D5BC52007442E8 /* TooltipCell.xib */; };
+		FFABEF5718D5C32B007442E8 /* DBToolTipCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFABEF5618D5C32B007442E8 /* DBToolTipCollectionView.m */; };
 		FFB41EB918A5BEB400549DC8 /* DBUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB41EB818A5BEB400549DC8 /* DBUserService.m */; };
 		FFB41EC218A5C40900549DC8 /* DBProfileService.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB41EC118A5C40900549DC8 /* DBProfileService.m */; };
 		FFB7B46718A45F1300F61D42 /* DBAreaTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB7B46618A45F1300F61D42 /* DBAreaTableFooterView.m */; };
@@ -148,6 +153,11 @@
 		FF37E02718BA8CCB00972BD3 /* DBSyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBSyncManager.m; sourceTree = "<group>"; };
 		FF37E02918C53F7300972BD3 /* DBGroupSyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBGroupSyncManager.h; sourceTree = "<group>"; };
 		FF37E02A18C53F7300972BD3 /* DBGroupSyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBGroupSyncManager.m; sourceTree = "<group>"; };
+		FF392E8B18D512090022FAE8 /* Tooltip.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tooltip.xib; sourceTree = "<group>"; };
+		FF392E9718D527770022FAE8 /* DBToolTip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBToolTip.h; sourceTree = "<group>"; };
+		FF392E9818D527770022FAE8 /* DBToolTip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBToolTip.m; sourceTree = "<group>"; };
+		FF392E9918D527770022FAE8 /* DBToolTipCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBToolTipCell.h; sourceTree = "<group>"; };
+		FF392E9A18D527770022FAE8 /* DBToolTipCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBToolTipCell.m; sourceTree = "<group>"; };
 		FF3D7433189C40E800294D6F /* UIView+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animations.h"; sourceTree = "<group>"; };
 		FF3D7434189C40E800294D6F /* UIView+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animations.m"; sourceTree = "<group>"; };
 		FF3D743A189C55BA00294D6F /* DBCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCoreDataManager.h; sourceTree = "<group>"; };
@@ -211,6 +221,9 @@
 		FF9E1C3518CB215200D3A2B4 /* DBItemTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBItemTableHeaderView.m; sourceTree = "<group>"; };
 		FF9E1C3718CB523900D3A2B4 /* DBItemTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBItemTableView.h; sourceTree = "<group>"; };
 		FF9E1C3818CB523900D3A2B4 /* DBItemTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBItemTableView.m; sourceTree = "<group>"; };
+		FFABEF5318D5BC52007442E8 /* TooltipCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TooltipCell.xib; sourceTree = "<group>"; };
+		FFABEF5518D5C32B007442E8 /* DBToolTipCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBToolTipCollectionView.h; sourceTree = "<group>"; };
+		FFABEF5618D5C32B007442E8 /* DBToolTipCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBToolTipCollectionView.m; sourceTree = "<group>"; };
 		FFB41EB718A5BEB400549DC8 /* DBUserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUserService.h; sourceTree = "<group>"; };
 		FFB41EB818A5BEB400549DC8 /* DBUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUserService.m; sourceTree = "<group>"; };
 		FFB41EC018A5C40900549DC8 /* DBProfileService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBProfileService.h; sourceTree = "<group>"; };
@@ -312,6 +325,8 @@
 			isa = PBXGroup;
 			children = (
 				FF2454FD189EBD0400690DC1 /* EditAreaView.xib */,
+				FF392E8B18D512090022FAE8 /* Tooltip.xib */,
+				FFABEF5318D5BC52007442E8 /* TooltipCell.xib */,
 			);
 			path = Nibs;
 			sourceTree = "<group>";
@@ -364,6 +379,19 @@
 				FF34C74518AC52360048FBAE /* DBProfileViewModel.m */,
 			);
 			path = ProfileViewModel;
+			sourceTree = "<group>";
+		};
+		FF392E9618D5276E0022FAE8 /* Tooltip */ = {
+			isa = PBXGroup;
+			children = (
+				FF392E9718D527770022FAE8 /* DBToolTip.h */,
+				FF392E9818D527770022FAE8 /* DBToolTip.m */,
+				FF392E9918D527770022FAE8 /* DBToolTipCell.h */,
+				FF392E9A18D527770022FAE8 /* DBToolTipCell.m */,
+				FFABEF5518D5C32B007442E8 /* DBToolTipCollectionView.h */,
+				FFABEF5618D5C32B007442E8 /* DBToolTipCollectionView.m */,
+			);
+			path = Tooltip;
 			sourceTree = "<group>";
 		};
 		FF3D7432189C40DE00294D6F /* Extensions */ = {
@@ -570,6 +598,7 @@
 				FF3DC132189D917B001974E0 /* ImagePickerController */,
 				FF8EE8AF18567AF70036BE27 /* auditr.storyboard */,
 				FFE5102E18ABF7B500A506CE /* SettingsViewController */,
+				FF392E9618D5276E0022FAE8 /* Tooltip */,
 				FF2454FC189EBCDE00690DC1 /* Nibs */,
 			);
 			path = ViewControllers;
@@ -850,12 +879,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF8EE8B018567AF70036BE27 /* auditr.storyboard in Resources */,
+				FFABEF5418D5BC52007442E8 /* TooltipCell.xib in Resources */,
 				FFE5102318A977AA00A506CE /* TwitterSettings.plist in Resources */,
 				FF26AD0018A1B08A00A1BBE3 /* MuseoSans_500.otf in Resources */,
 				FF8EE88418567A320036BE27 /* InfoPlist.strings in Resources */,
 				FF34C74F18AEB3DE0048FBAE /* ParseSettings.plist in Resources */,
 				FF8EE88F18567A320036BE27 /* Images.xcassets in Resources */,
 				FF2454FE189EBD0400690DC1 /* EditAreaView.xib in Resources */,
+				FF392E8C18D512090022FAE8 /* Tooltip.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -941,6 +972,7 @@
 				FF9E1C2818CA8BDA00D3A2B4 /* DBItemService.m in Sources */,
 				FF437714189C887000A019E3 /* Rating.m in Sources */,
 				FFEACA3C18AC2BC1001A38F3 /* DBHTTPClient.m in Sources */,
+				FFABEF5718D5C32B007442E8 /* DBToolTipCollectionView.m in Sources */,
 				FFC387521859184400A09D01 /* Area.m in Sources */,
 				FF245514189F01A300690DC1 /* NSString+Extensions.m in Sources */,
 				FF91CDFF18AC47F40049F984 /* Auditr.xcdatamodeld in Sources */,
@@ -957,6 +989,7 @@
 				FFB7B46A18A4603C00F61D42 /* DBAreaTableHeaderView.m in Sources */,
 				FF3D7435189C40E800294D6F /* UIView+Animations.m in Sources */,
 				FF3DC11E189D2B9A001974E0 /* DBHomeViewModel.m in Sources */,
+				FF392E9B18D527770022FAE8 /* DBToolTip.m in Sources */,
 				FFBBA8B81856996F00C8BCBE /* DBAssembly.m in Sources */,
 				FFEACA3918AC1C91001A38F3 /* DBSettingsHeaderView.m in Sources */,
 				FFC3876918591D0400A09D01 /* DBGroupService.m in Sources */,
@@ -984,6 +1017,7 @@
 				FF34C74A18AEB22C0048FBAE /* DBParseServiceClient.m in Sources */,
 				FF37E01E18BA6F5B00972BD3 /* SyncEntity.m in Sources */,
 				FFC3875D1859188100A09D01 /* _Group.m in Sources */,
+				FF392E9C18D527770022FAE8 /* DBToolTipCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -113,14 +113,14 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 	[self.containerView removeGestureRecognizer: self.tapCloseGesture];
 	
 	[self.containerView animateToPosition: CGPointZero withDuration: 0.2f withEase: UIViewAnimationOptionCurveEaseOut withCompletion: NULL];
-	[self.statusBarBackground animateToOpacity: 0.0f withDuration: 0.2f];
+	[self.statusBarBackground animateToOpacity: 0.0f withDuration: 0.2f withCompletion: NULL];
 }
 
 - (void) burgerButtonPressedNotifcationHandler: (NSNotification *) notification
 {
 	CGPoint position = CGPointMake(-CGRectGetWidth(self.groupTableView.frame), 0.0);
 	[self.containerView animateToPosition: position withDuration: 0.2f withEase: UIViewAnimationOptionCurveEaseOut withCompletion: NULL];
-	[self.statusBarBackground animateToOpacity: 1.0f withDuration: 0.2f];
+	[self.statusBarBackground animateToOpacity: 1.0f withDuration: 0.2f withCompletion: NULL];
 	
 	[self addTapGesture];
 }
@@ -179,7 +179,7 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 	
 	BOOL isOpen = positionToAnimateTo.x < 0;
 	float opacity = (isOpen) ? 1.0f : 0.0f;
-	[self.statusBarBackground animateToOpacity: opacity withDuration: duration];
+	[self.statusBarBackground animateToOpacity: opacity withDuration: duration withCompletion: NULL];
 	
 	if (isOpen)
 	{
@@ -287,7 +287,7 @@ static NSString *const DBGroupTableViewCellId = @"DBGroupCell";
 	
 	[self.containerView animateToPosition: CGPointZero withDuration: 0.2f withEase: UIViewAnimationOptionCurveEaseOut withCompletion: completion];
 	
-	[self.statusBarBackground animateToOpacity: 0.0f withDuration: 0.2f];
+	[self.statusBarBackground animateToOpacity: 0.0f withDuration: 0.2f withCompletion: NULL];
 }
 
 - (void) prepareForSegue: (UIStoryboardSegue *)segue sender: (id) sender

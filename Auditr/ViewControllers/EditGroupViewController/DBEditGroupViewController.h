@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "DBAreaTableViewCell.h"
 #import "DBItemTableViewCell.h"
+#import "DBToolTip.h"
 @class DBGroupViewModel;
 @protocol DBEditGroupViewControllerDelegate;
 
-@interface DBEditGroupViewController : UIViewController <UIBarPositioningDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, DBItemTableViewCellDelegate>
+@interface DBEditGroupViewController : UIViewController <UIBarPositioningDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, DBItemTableViewCellDelegate, DBToolTipDelegate>
 
 @property (nonatomic, weak) DBGroupViewModel *viewModel;
 @property (nonatomic, assign) id<DBEditGroupViewControllerDelegate> delegate;
