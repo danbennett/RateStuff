@@ -7,6 +7,7 @@
 //
 
 #import "DBToolTipCell.h"
+#import "UIView+Animations.h"
 
 @interface DBToolTipCell()
 
@@ -19,13 +20,20 @@
 - (void) awakeFromNib
 {
 	[super awakeFromNib];
-	[self.highlightedView setHidden: YES];
+	[self.highlightedView setAlpha: 0.0f];
 }
 
 - (void) setHighlighted:(BOOL)highlighted
 {
 	[super setHighlighted: highlighted];
-	[self.highlightedView setHidden: !highlighted];
+	if (highlighted)
+	{
+		[self.highlightedView setAlpha: 1.0f];
+	}
+	else
+	{
+		[self.highlightedView animateToOpacity: 0.0f withDuration: 0.2f withCompletion: NULL];
+	}
 }
 
 @end

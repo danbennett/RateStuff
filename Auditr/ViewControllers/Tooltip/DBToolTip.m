@@ -84,14 +84,20 @@ NSString *DBToolTipIdentifier = @"DBToolTipCell";
 - (void) showInView: (UIView *) parent atPoint: (CGPoint) position animated: (BOOL) animated
 {
 	CGRect frame = CGRectMake(0.0f, position.y - self.view.frame.size.height, parent.bounds.size.width, self.view.frame.size.height);
+	self.frame = frame;
 	self.view.frame = ({
 		CGRect viewFrame = frame;
 		viewFrame.origin.x = 0.0f;
 		viewFrame.origin.y = 0.0f;
 		viewFrame;
 	});
-	self.frame = frame;
 	
+	if (animated)
+	{
+		self.alpha = 0.0f;
+		[self fadeTo: 1 withCompletion: NULL];
+	}
+
 	CGFloat newConstraint = (position.x - (self.arrowImageView.frame.size.width * 0.5f));
 	self.arrowConstraint.constant = newConstraint;
 	
@@ -110,17 +116,16 @@ NSString *DBToolTipIdentifier = @"DBToolTipCell";
 		}
 	}
 	
-	UIButton *closeButton = [[UIButton alloc] initWithFrame: parent.bounds];
-	[closeButton addTarget: self action: @selector(closeButtonTapped:) forControlEvents: UIControlEventTouchUpInside];
-	[parent addSubview: closeButton];
+	[self addCloseButtonInView: parent];
 	
 	[parent addSubview: self];
-	
-	if (animated)
-	{
-		self.alpha = 0.0f;
-		[self fadeTo: 1 withCompletion: NULL];
-	}
+}
+
+- (void) addCloseButtonInView: (UIView *) view
+{
+	UIButton *closeButton = [[UIButton alloc] initWithFrame: view.bounds];
+	[closeButton addTarget: self action: @selector(closeButtonTapped:) forControlEvents: UIControlEventTouchUpInside];
+	[view addSubview: closeButton];
 }
 
 - (void) closeButtonTapped: (UIButton *) sender

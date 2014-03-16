@@ -27,12 +27,12 @@
                         <constraint firstAttribute="width" constant="22" id="hYT-Yu-xSz"/>
                     </constraints>
                 </imageView>
-                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" placeholderIntrinsicWidth="416" placeholderIntrinsicHeight="infinite" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="P2f-Kg-TKd" customClass="DBToolTipCollectionView">
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" placeholderIntrinsicWidth="416" placeholderIntrinsicHeight="52" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="P2f-Kg-TKd" customClass="DBToolTipCollectionView">
                     <rect key="frame" x="10" y="0.0" width="416" height="52"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.20392156859999999" green="0.20000000000000001" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="52" id="kwG-a7-wnx"/>
+                        <constraint firstAttribute="height" constant="52" id="Gml-Gs-tZ1"/>
                     </constraints>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="4" minimumInteritemSpacing="4" id="LqM-g0-bTE">
