@@ -8,6 +8,7 @@
 
 #import "DBToolTipCell.h"
 #import "UIView+Animations.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface DBToolTipCell()
 
@@ -21,6 +22,7 @@
 {
 	[super awakeFromNib];
 	[self.highlightedView setAlpha: 0.0f];
+	self.highlightedView.layer.cornerRadius = 2.0f;
 }
 
 - (void) setHighlighted:(BOOL)highlighted

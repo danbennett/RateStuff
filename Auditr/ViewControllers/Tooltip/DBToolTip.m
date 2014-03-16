@@ -13,6 +13,7 @@
 
 @interface DBToolTip()
 
+@property (nonatomic, strong) UIButton *closeButton;
 @property (nonatomic, strong) IBOutlet UIView *view;
 @property (nonatomic, strong) IBOutlet UIImageView *arrowImageView;
 @property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
@@ -123,18 +124,18 @@ NSString *DBToolTipIdentifier = @"DBToolTipCell";
 
 - (void) addCloseButtonInView: (UIView *) view
 {
-	UIButton *closeButton = [[UIButton alloc] initWithFrame: view.bounds];
-	[closeButton addTarget: self action: @selector(closeButtonTapped:) forControlEvents: UIControlEventTouchUpInside];
-	[view addSubview: closeButton];
+	self.closeButton = [[UIButton alloc] initWithFrame: view.bounds];
+	[self.closeButton addTarget: self action: @selector(closeButtonTapped:) forControlEvents: UIControlEventTouchUpInside];
+	[view addSubview: self.closeButton];
 }
 
-- (void) closeButtonTapped: (UIButton *) sender
+- (IBAction) closeButtonTapped: (UIButton *) sender
 {
 	@weakify(self);
 	[self fadeTo: 0 withCompletion:^(BOOL finished) {
 		@strongify(self);
 		[self removeFromSuperview];
-		[sender removeFromSuperview];
+		[self.closeButton removeFromSuperview];
 	}];
 }
 
