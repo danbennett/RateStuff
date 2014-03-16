@@ -235,18 +235,10 @@ static const float itemTableViewY = 147.0f;
 
 - (IBAction) addNewItemTapped: (UIButton *) sender
 {
-	CGPoint buttonPosition = [self.view convertPoint: sender.center fromView: self.itemTableView];
-	DBToolTip *toolTip = [[DBToolTip alloc] initWithButtons: @[[UIImage imageNamed: @"largePlusIcon"],
-															   [UIImage imageNamed: @"largePlusIcon"],
-															   /*[UIImage imageNamed: @"largePlusIcon"],
-															   [UIImage imageNamed: @"largePlusIcon"],
-															   [UIImage imageNamed: @"largePlusIcon"],
-															   [UIImage imageNamed: @"largePlusIcon"],
-															   [UIImage imageNamed: @"largePlusIcon"],
-															   [UIImage imageNamed: @"largePlusIcon"],
-															   [UIImage imageNamed: @"largePlusIcon"]*/]];
-	[toolTip showInView: self.view atPoint: buttonPosition animated: YES];
-	
+	CGPoint buttonPosition = [self.scrollView convertPoint: sender.center fromView: self.itemTableView];
+	DBToolTip *toolTip = [[DBToolTip alloc] initWithButtons: @[[UIImage imageNamed: @"addListIcon"],
+															   [UIImage imageNamed: @"penIcon"]]];
+	[toolTip showInView: self.scrollView atPoint: buttonPosition animated: YES];
 //	[self.scrollView setContentOffset:CGPointZero animated: YES];
 //	[self removePhotoGestures];
 //	[self addCloseEditItemGesture];

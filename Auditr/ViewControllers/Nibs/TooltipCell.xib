@@ -4,13 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DBToolTipCell">
-            <connections>
-                <outlet property="highlightedView" destination="bjg-7q-Rbl" id="dMG-nN-4xm"/>
-                <outlet property="imageView" destination="Rk0-Bn-ZrP" id="Ig8-0t-HuH"/>
-                <outlet property="view" destination="6u0-gz-j41" id="L4D-k2-CoN"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DBToolTipCell"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DBToolTipCell" id="6u0-gz-j41" customClass="DBToolTipCell">
             <rect key="frame" x="0.0" y="0.0" width="44" height="38"/>
@@ -24,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="1" green="0.72509444010000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rk0-Bn-ZrP">
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="largePlusIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Rk0-Bn-ZrP">
                         <rect key="frame" x="0.0" y="0.0" width="44" height="38"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
@@ -44,9 +38,12 @@
             </constraints>
             <size key="customSize" width="50" height="51"/>
             <connections>
-                <outlet property="highlightedView" destination="bjg-7q-Rbl" id="03I-ZC-hc4"/>
-                <outlet property="imageView" destination="Rk0-Bn-ZrP" id="VoL-BB-uxq"/>
+                <outlet property="highlightedView" destination="bjg-7q-Rbl" id="hIu-df-G7H"/>
+                <outlet property="imageView" destination="Rk0-Bn-ZrP" id="czh-eU-AI8"/>
             </connections>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="largePlusIcon" width="20" height="20"/>
+    </resources>
 </document>

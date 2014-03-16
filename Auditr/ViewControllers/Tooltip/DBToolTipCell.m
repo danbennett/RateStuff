@@ -10,28 +10,22 @@
 
 @interface DBToolTipCell()
 
-@property (nonatomic, strong) IBOutlet UIView *view;
 @property (nonatomic, strong) IBOutlet UIView *highlightedView;
 
 @end
 
 @implementation DBToolTipCell
 
-- (id)initWithFrame:(CGRect)frame
+- (void) awakeFromNib
 {
-    self = [super initWithFrame:frame];
-    if (self)
-	{
-		[[NSBundle mainBundle] loadNibNamed: @"TooltipCell" owner: self options: nil];
-		self.view.frame = ({
-			CGRect cellFrame = frame;
-			cellFrame.origin.x = 0.0f;
-			cellFrame.origin.y = 0.0f;
-			cellFrame;
-		});
-		[self addSubview: self.view];
-    }
-    return self;
+	[super awakeFromNib];
+	[self.highlightedView setHidden: YES];
+}
+
+- (void) setHighlighted:(BOOL)highlighted
+{
+	[super setHighlighted: highlighted];
+	[self.highlightedView setHidden: !highlighted];
 }
 
 @end

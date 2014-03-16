@@ -9,6 +9,8 @@
                 <outlet property="arrowConstraint" destination="cSv-1g-WPF" id="YOA-vW-u2u"/>
                 <outlet property="arrowImageView" destination="lhs-Kf-Oms" id="bKB-p5-Yof"/>
                 <outlet property="collectionView" destination="P2f-Kg-TKd" id="HM2-CZ-mzD"/>
+                <outlet property="leftConstraint" destination="gz0-ez-GOG" id="6L8-Zg-tbF"/>
+                <outlet property="rightConstraint" destination="4ZK-18-aW0" id="rby-Cg-nhv"/>
                 <outlet property="view" destination="Jjt-x0-b6z" id="kTy-1b-HgV"/>
             </connections>
         </placeholder>
@@ -44,7 +46,7 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="P2f-Kg-TKd" secondAttribute="trailing" priority="900" constant="10" id="4ZK-18-aW0"/>
+                <constraint firstAttribute="trailing" secondItem="P2f-Kg-TKd" secondAttribute="trailing" priority="885" constant="10" id="4ZK-18-aW0"/>
                 <constraint firstItem="P2f-Kg-TKd" firstAttribute="top" secondItem="Jjt-x0-b6z" secondAttribute="top" id="FqS-Xj-bsT"/>
                 <constraint firstItem="lhs-Kf-Oms" firstAttribute="top" secondItem="P2f-Kg-TKd" secondAttribute="bottom" constant="-2" id="QRd-gE-pM1"/>
                 <constraint firstItem="lhs-Kf-Oms" firstAttribute="leading" secondItem="Jjt-x0-b6z" secondAttribute="leading" constant="142" id="cSv-1g-WPF"/>
