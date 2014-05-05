@@ -185,6 +185,7 @@ NSString *DBToolTipIdentifier = @"DBToolTipCell";
 	{
 		[self.delegate toolTipDidSelectButtonAtIndex: indexPath.item];
 	}
+	[self closeButtonTapped: nil];
 }
 
 #pragma mark - Animation.
@@ -192,13 +193,6 @@ NSString *DBToolTipIdentifier = @"DBToolTipCell";
 - (void) fadeTo: (CGFloat) alphaValue withCompletion: (void (^)(BOOL finished)) completion
 {
 	[self animateToOpacity: alphaValue withDuration: 0.22f withCompletion: completion];
-}
-
-#pragma mark - Layout.
-
-- (void) layoutSubviews
-{
-	[super layoutSubviews];
 }
 
 @end

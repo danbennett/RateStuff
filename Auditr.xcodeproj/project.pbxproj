@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50B50D1E5BCE4E1E866DA209 /* libPods-AuditrTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8389A95F913049C6A81F295B /* libPods-AuditrTests.a */; };
 		56FAB8E02F294CD5B4B756D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57E10E887FAB429BA7FD4567 /* libPods.a */; };
 		FF0F15D318A1B3010047276E /* DBGroupTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0F15D218A1B3010047276E /* DBGroupTableFooterView.m */; };
 		FF10B6F918A9762500556DC9 /* DBTwitterServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FF10B6F818A9762500556DC9 /* DBTwitterServiceClient.m */; };
@@ -46,6 +47,9 @@
 		FF43770E189C886600A019E3 /* _Rating.m in Sources */ = {isa = PBXBuildFile; fileRef = FF43770C189C886600A019E3 /* _Rating.m */; };
 		FF437713189C887000A019E3 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = FF437710189C887000A019E3 /* Profile.m */; };
 		FF437714189C887000A019E3 /* Rating.m in Sources */ = {isa = PBXBuildFile; fileRef = FF437712189C887000A019E3 /* Rating.m */; };
+		FF77C12B18D63909003A7F41 /* ListInputAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF77C12A18D63909003A7F41 /* ListInputAccessoryView.xib */; };
+		FF77C12F18D63BB5003A7F41 /* DBListAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF77C12E18D63BB5003A7F41 /* DBListAccessoryView.m */; };
+		FF80C78C19182FB60049C24F /* DBGroupServiceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = FF80C78B19182FB60049C24F /* DBGroupServiceSpec.m */; };
 		FF8EE87818567A320036BE27 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8EE87718567A320036BE27 /* Foundation.framework */; };
 		FF8EE87A18567A320036BE27 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8EE87918567A320036BE27 /* CoreGraphics.framework */; };
 		FF8EE87C18567A320036BE27 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8EE87B18567A320036BE27 /* UIKit.framework */; };
@@ -111,6 +115,8 @@
 
 /* Begin PBXFileReference section */
 		57E10E887FAB429BA7FD4567 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FD298B2608E4A789795E50F /* Pods-AuditrTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AuditrTests.xcconfig"; path = "Pods/Pods-AuditrTests.xcconfig"; sourceTree = "<group>"; };
+		8389A95F913049C6A81F295B /* libPods-AuditrTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AuditrTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD209048DBD47D98CAFD2F1 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		FF0F15D118A1B3010047276E /* DBGroupTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBGroupTableFooterView.h; sourceTree = "<group>"; };
 		FF0F15D218A1B3010047276E /* DBGroupTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBGroupTableFooterView.m; sourceTree = "<group>"; };
@@ -186,6 +192,10 @@
 		FF437710189C887000A019E3 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
 		FF437711189C887000A019E3 /* Rating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rating.h; sourceTree = "<group>"; };
 		FF437712189C887000A019E3 /* Rating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rating.m; sourceTree = "<group>"; };
+		FF77C12A18D63909003A7F41 /* ListInputAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListInputAccessoryView.xib; sourceTree = "<group>"; };
+		FF77C12D18D63BB5003A7F41 /* DBListAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBListAccessoryView.h; sourceTree = "<group>"; };
+		FF77C12E18D63BB5003A7F41 /* DBListAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBListAccessoryView.m; sourceTree = "<group>"; };
+		FF80C78B19182FB60049C24F /* DBGroupServiceSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBGroupServiceSpec.m; sourceTree = "<group>"; };
 		FF8EE87418567A320036BE27 /* Auditr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Auditr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8EE87718567A320036BE27 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FF8EE87918567A320036BE27 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -300,6 +310,7 @@
 				FF8EE89918567A320036BE27 /* CoreData.framework in Frameworks */,
 				FF8EE89818567A320036BE27 /* UIKit.framework in Frameworks */,
 				FF8EE89718567A320036BE27 /* Foundation.framework in Frameworks */,
+				50B50D1E5BCE4E1E866DA209 /* libPods-AuditrTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +338,7 @@
 				FF2454FD189EBD0400690DC1 /* EditAreaView.xib */,
 				FF392E8B18D512090022FAE8 /* Tooltip.xib */,
 				FFABEF5318D5BC52007442E8 /* TooltipCell.xib */,
+				FF77C12A18D63909003A7F41 /* ListInputAccessoryView.xib */,
 			);
 			path = Nibs;
 			sourceTree = "<group>";
@@ -503,6 +515,23 @@
 			path = ImagePickerController;
 			sourceTree = "<group>";
 		};
+		FF77C12C18D63B57003A7F41 /* AccessoryViews */ = {
+			isa = PBXGroup;
+			children = (
+				FF77C12D18D63BB5003A7F41 /* DBListAccessoryView.h */,
+				FF77C12E18D63BB5003A7F41 /* DBListAccessoryView.m */,
+			);
+			path = AccessoryViews;
+			sourceTree = "<group>";
+		};
+		FF80C78919182FA10049C24F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FF80C78B19182FB60049C24F /* DBGroupServiceSpec.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		FF8EE86B18567A320036BE27 = {
 			isa = PBXGroup;
 			children = (
@@ -511,6 +540,7 @@
 				FF8EE87618567A320036BE27 /* Frameworks */,
 				FF8EE87518567A320036BE27 /* Products */,
 				EFD209048DBD47D98CAFD2F1 /* Pods.xcconfig */,
+				5FD298B2608E4A789795E50F /* Pods-AuditrTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -535,6 +565,7 @@
 				FF8EE87D18567A320036BE27 /* CoreData.framework */,
 				FF8EE89518567A320036BE27 /* XCTest.framework */,
 				57E10E887FAB429BA7FD4567 /* libPods.a */,
+				8389A95F913049C6A81F295B /* libPods-AuditrTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -575,6 +606,7 @@
 			isa = PBXGroup;
 			children = (
 				FF8EE8A218567A320036BE27 /* AuditrTests.m */,
+				FF80C78919182FA10049C24F /* Services */,
 				FF8EE89D18567A320036BE27 /* Supporting Files */,
 			);
 			path = AuditrTests;
@@ -592,6 +624,7 @@
 		FF8EE8AE18567AF70036BE27 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FF77C12C18D63B57003A7F41 /* AccessoryViews */,
 				FFC3875F18591A6C00A09D01 /* BaseViewController */,
 				FF3DC111189D1674001974E0 /* EditGroupViewController */,
 				FF8EE8B5185687980036BE27 /* GroupsViewController */,
@@ -823,9 +856,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FF8EE8A918567A320036BE27 /* Build configuration list for PBXNativeTarget "AuditrTests" */;
 			buildPhases = (
+				29A1A2BBE001493A9B5F2FEB /* Check Pods Manifest.lock */,
 				FF8EE89018567A320036BE27 /* Sources */,
 				FF8EE89118567A320036BE27 /* Frameworks */,
 				FF8EE89218567A320036BE27 /* Resources */,
+				F059FD9DB309410D8BE9A932 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -886,6 +921,7 @@
 				FF34C74F18AEB3DE0048FBAE /* ParseSettings.plist in Resources */,
 				FF8EE88F18567A320036BE27 /* Images.xcassets in Resources */,
 				FF2454FE189EBD0400690DC1 /* EditAreaView.xib in Resources */,
+				FF77C12B18D63909003A7F41 /* ListInputAccessoryView.xib in Resources */,
 				FF392E8C18D512090022FAE8 /* Tooltip.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -916,6 +952,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		29A1A2BBE001493A9B5F2FEB /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		65CB356FB1CD4E98A5DD0310 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -929,6 +980,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F059FD9DB309410D8BE9A932 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-AuditrTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FF429B40185910DB00048B17 /* ShellScript */ = {
@@ -972,6 +1038,7 @@
 				FF9E1C2818CA8BDA00D3A2B4 /* DBItemService.m in Sources */,
 				FF437714189C887000A019E3 /* Rating.m in Sources */,
 				FFEACA3C18AC2BC1001A38F3 /* DBHTTPClient.m in Sources */,
+				FF77C12F18D63BB5003A7F41 /* DBListAccessoryView.m in Sources */,
 				FFABEF5718D5C32B007442E8 /* DBToolTipCollectionView.m in Sources */,
 				FFC387521859184400A09D01 /* Area.m in Sources */,
 				FF245514189F01A300690DC1 /* NSString+Extensions.m in Sources */,
@@ -1025,6 +1092,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF80C78C19182FB60049C24F /* DBGroupServiceSpec.m in Sources */,
 				FF8EE8A318567A320036BE27 /* AuditrTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1171,6 +1239,7 @@
 		};
 		FF8EE8AA18567A320036BE27 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FD298B2608E4A789795E50F /* Pods-AuditrTests.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Auditr.app/Auditr";
@@ -1194,6 +1263,7 @@
 		};
 		FF8EE8AB18567A320036BE27 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FD298B2608E4A789795E50F /* Pods-AuditrTests.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Auditr.app/Auditr";

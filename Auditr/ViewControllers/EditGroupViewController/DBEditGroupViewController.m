@@ -10,6 +10,7 @@
 #import "DBGroupViewModel.h"
 #import "DBImagePickerViewController.h"
 #import "DBItemTableViewCell.h"
+#import "DBListAccessoryView.h"
 #import "UIImage+Effects.h"
 #import "UIView+Animations.h"
 #import "DBToolTip.h"
@@ -235,27 +236,40 @@ static const float itemTableViewY = 147.0f;
 
 - (IBAction) addNewItemTapped: (UIButton *) sender
 {
-	CGPoint buttonPosition = [self.scrollView convertPoint: sender.center fromView: self.itemTableView];
+	CGPoint buttonPosition = [self.view convertPoint: sender.center fromView: self.itemTableView];
 	DBToolTip *toolTip = [[DBToolTip alloc] initWithButtons: @[[UIImage imageNamed: @"addListIcon"],
 															   [UIImage imageNamed: @"penIcon"]]];
-	[toolTip showInView: self.scrollView atPoint: buttonPosition animated: YES];
-//	[self.scrollView setContentOffset:CGPointZero animated: YES];
-//	[self removePhotoGestures];
-//	[self addCloseEditItemGesture];
-//	
-//	DBItemViewModel *viewModel = [self.viewModel addItem];
-//
-//	@weakify(self);
-//	[self showEditItemViewWithCompletion:^(BOOL finished) {
-//		
-//		@strongify(self);
-//		[self.itemTableView beginUpdates];
-//		NSIndexPath *path = [NSIndexPath indexPathForItem: [self.viewModel.items indexOfObject: viewModel] inSection:0];
-//		self.selectedIndexPath = path;
-//		[self.itemTableView insertRowsAtIndexPaths: @[path] withRowAnimation: UITableViewRowAnimationRight];
-//		[self.itemTableView endUpdates];
-//		
-//	}];
+	toolTip.delegate = self;
+	[toolTip showInView: self.view atPoint: buttonPosition animated: YES];
+}
+
+#pragma mark - Tooltip delegate.
+
+- (void) toolTipDidSelectButtonAtIndex: (NSInteger)index
+{
+	[self removePhotoGestures];
+	[self addCloseEditItemGesture];
+	
+	if (index == 0)
+	{
+		
+	}
+	if (index == 1)
+	{
+		DBItemViewModel *viewModel = [self.viewModel addItem];
+
+		@weakify(self);
+		[self showEditItemViewWithCompletion:^(BOOL finished) {
+
+			@strongify(self);
+			[self.itemTableView beginUpdates];
+			NSIndexPath *path = [NSIndexPath indexPathForItem: [self.viewModel.items indexOfObject: viewModel] inSection:0];
+			self.selectedIndexPath = path;
+			[self.itemTableView insertRowsAtIndexPaths: @[path] withRowAnimation: UITableViewRowAnimationRight];
+			[self.itemTableView endUpdates];
+			
+		}];
+	}
 }
 
 #pragma mark - Gestures.
@@ -483,7 +497,13 @@ static const float itemTableViewY = 147.0f;
 {
 	DBItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: DBItemTableViewId];
 	cell.viewModel = [self.viewModel.items objectAtIndex: indexPath.row];
+
+	DBListAccessoryView *accessoryView = [DBListAccessoryView loadFromNib];
+	accessoryView.textViewDelegate = self;
+	cell.itemNameTextField.inputAccessoryView = accessoryView;
+
 	cell.delegate = self;
+	
 	if ([self.selectedIndexPath isEqual: indexPath])
 	{
 		cell.isInFocus = YES;
@@ -499,7 +519,8 @@ static const float itemTableViewY = 147.0f;
 	DBItemTableViewCell *cell = (DBItemTableViewCell *)[self.itemTableView cellForRowAtIndexPath: self.selectedIndexPath];
 	cell.isInFocus = YES;
 	
-	[self.scrollView setContentOffset:CGPointZero animated: YES];
+//	[self.scrollView setContentOffset: CGPointZero animated: YES];
+	
 	[self scrollToCell: indexPath];
 	[self removePhotoGestures];
 	[self addCloseEditItemGesture];
@@ -540,17 +561,39 @@ static const float itemTableViewY = 147.0f;
 {
 	if (editingStyle == UITableViewCellEditingStyleDelete)
 	{
-		DBItemViewModel	*viewModel = [self.viewModel.items objectAtIndex: indexPath.row];
-		[self.viewModel deleteItem: viewModel];
-		[self.itemTableView beginUpdates];
-		[self.itemTableView deleteRowsAtIndexPaths: @[indexPath] withRowAnimation: UITableViewRowAnimationLeft];
-		[self.itemTableView endUpdates];
+		[self removeRowAndViewModelAt: indexPath];
 	}
+}
+
+- (void) removeRowAndViewModelAt: (NSIndexPath *) indexPath
+{
+	DBItemViewModel	*viewModel = [self.viewModel.items objectAtIndex: indexPath.row];
+	[self.viewModel deleteItem: viewModel];
+	[self.itemTableView beginUpdates];
+	[self.itemTableView deleteRowsAtIndexPaths: @[indexPath] withRowAnimation: UITableViewRowAnimationLeft];
+	[self.itemTableView endUpdates];
 }
 
 - (NSString *) tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	return @"Remove";
+}
+
+#pragma mark - Item accessory view delegate.
+
+- (void) listAccessoryDidPressDone:(DBListAccessoryView *)view
+{
+	[self resignFirstResponder];
+}
+
+- (void) listAccessoryDidPressDelete:(DBListAccessoryView *)view
+{
+	[self removeRowAndViewModelAt: self.selectedIndexPath];
+	[self resignFirstResponder];
+}
+
+- (void) listAccessoryDidPressCamera:(DBListAccessoryView *)view
+{
 }
 
 #pragma mark - Item table view cell delegate.

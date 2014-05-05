@@ -13,7 +13,6 @@
 @interface DBItemTableViewCell()
 
 @property (nonatomic, strong) NSMutableArray *disposables;
-@property (nonatomic, strong) IBOutlet UITextField *itemNameTextField;
 @property (nonatomic, strong) IBOutlet UILabel *itemNameLabel;
 
 @end

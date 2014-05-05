@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="436" height="76"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gK4-fQ-CoE">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gK4-fQ-CoE">
                     <rect key="frame" x="0.0" y="0.0" width="436" height="76"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal">
@@ -58,9 +58,13 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="P2f-Kg-TKd" secondAttribute="trailing" priority="885" constant="10" id="4ZK-18-aW0"/>
                 <constraint firstItem="P2f-Kg-TKd" firstAttribute="top" secondItem="Jjt-x0-b6z" secondAttribute="top" id="FqS-Xj-bsT"/>
+                <constraint firstItem="gK4-fQ-CoE" firstAttribute="top" secondItem="Jjt-x0-b6z" secondAttribute="top" id="MsV-or-9aL"/>
                 <constraint firstItem="lhs-Kf-Oms" firstAttribute="top" secondItem="P2f-Kg-TKd" secondAttribute="bottom" constant="-2" id="QRd-gE-pM1"/>
                 <constraint firstItem="lhs-Kf-Oms" firstAttribute="leading" secondItem="Jjt-x0-b6z" secondAttribute="leading" constant="142" id="cSv-1g-WPF"/>
                 <constraint firstItem="P2f-Kg-TKd" firstAttribute="leading" secondItem="Jjt-x0-b6z" secondAttribute="leading" constant="10" id="gz0-ez-GOG"/>
+                <constraint firstItem="gK4-fQ-CoE" firstAttribute="leading" secondItem="Jjt-x0-b6z" secondAttribute="leading" id="kTc-Q5-z36"/>
+                <constraint firstAttribute="bottom" secondItem="gK4-fQ-CoE" secondAttribute="bottom" id="oRi-E0-wg4"/>
+                <constraint firstAttribute="trailing" secondItem="gK4-fQ-CoE" secondAttribute="trailing" id="tW0-cZ-gCX"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>

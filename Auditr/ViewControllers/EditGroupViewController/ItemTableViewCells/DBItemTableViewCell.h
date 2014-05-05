@@ -12,6 +12,7 @@
 
 @interface DBItemTableViewCell : UITableViewCell <UITextFieldDelegate>
 
+@property (nonatomic, strong) IBOutlet UITextField *itemNameTextField;
 @property (nonatomic, weak) DBItemViewModel *viewModel;
 @property (nonatomic, assign) BOOL isInFocus;
 @property (nonatomic, assign) id<DBItemTableViewCellDelegate> delegate;

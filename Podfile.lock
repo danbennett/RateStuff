@@ -1,5 +1,5 @@
 PODS:
-  - AFNetworking (1.3.3)
+  - AFNetworking (1.3.4)
   - AFNetworking-RACExtensions (0.1.2):
     - AFNetworking (~> 1.0)
     - ReactiveCocoa (= 2.0)
@@ -7,20 +7,33 @@ PODS:
     - AFNetworking (~> 1.3)
   - AFOAuth2Client (0.1.2):
     - AFNetworking (~> 1.3)
-  - Facebook-iOS-SDK (3.12.0)
+  - Bolts (1.1.0)
+  - Facebook-iOS-SDK (3.14.0):
+    - Bolts
   - GPUImage (0.1.2)
+  - Kiwi/ARC (2.2.4)
+  - Kiwi/NonARC (2.2.4)
+  - Kiwi/XCTest (2.2.4):
+    - Kiwi/ARC
+    - Kiwi/NonARC
   - MagicalRecord (2.2):
     - MagicalRecord/Core
   - MagicalRecord/Core (2.2)
   - NSEnumeratorLinq (0.2.5)
+  - OCHamcrest (3.0.1)
+  - OCMockito (1.2.0):
+    - OCHamcrest (~> 3.0)
   - Parse-iOS-SDK (1.2.18):
     - Facebook-iOS-SDK (~> 3.7)
-  - ReactiveCocoa (2.1.8):
+  - ReactiveCocoa (2.0):
     - ReactiveCocoa/Core
     - ReactiveCocoa/no-arc
-  - ReactiveCocoa/Core (2.1.8):
+    - ReactiveCocoa/RACExtensions
+  - ReactiveCocoa/Core (2.0):
     - ReactiveCocoa/no-arc
-  - ReactiveCocoa/no-arc (2.1.8)
+  - ReactiveCocoa/no-arc (2.0)
+  - ReactiveCocoa/RACExtensions (2.0):
+    - ReactiveCocoa/Core
   - Typhoon (1.6.9)
 
 DEPENDENCIES:
@@ -28,23 +41,29 @@ DEPENDENCIES:
   - AFOAuth1Client (~> 0.3.3)
   - AFOAuth2Client (~> 0.1.2)
   - GPUImage (~> 0.1.2)
+  - Kiwi/XCTest (~> 2.2)
   - MagicalRecord (~> 2.2)
   - NSEnumeratorLinq (~> 0.2.2)
+  - OCMockito (~> 1.2)
   - Parse-iOS-SDK (~> 1.2.18)
-  - ReactiveCocoa (~> 2.1.7)
+  - ReactiveCocoa (= 2.0)
   - Typhoon (~> 1.6.3)
 
 SPEC CHECKSUMS:
-  AFNetworking: 61fdd49e2ffe6380378df37b3b6e70630bb9dd66
+  AFNetworking: e403d4333a4e1956cb3fe42364c3c879f820c9a0
   AFNetworking-RACExtensions: b7d01ef9969feaff48e5b8864958cbcf3c7370ec
   AFOAuth1Client: 8b06e54087732068e19c4efcd7bed5d74bc9538a
   AFOAuth2Client: 579d6f298b0047dfd5a6eec6ab5b28c01f6b4547
-  Facebook-iOS-SDK: c09f7d80db5c48170ff834bc03ebe774c49d1f5b
+  Bolts: dc620a31cf67c29bce3e3d14a07a12e797a1a154
+  Facebook-iOS-SDK: 63e19ff8d275d63b765819f492a4e71e445f9822
   GPUImage: 007145faa0e27f1ddbcab93e07f026c9776e2fa2
+  Kiwi: d60d7498b640a16f58b01925fc3c8d7c4d809f66
   MagicalRecord: 95d49d74ef752cd52f6ad87bcb474817fc3978cf
   NSEnumeratorLinq: 7e03b5e443d786deec9a9732fd8180603b12910e
+  OCHamcrest: 782c52ae8c673e5d6060a65005cfd26d20d519ba
+  OCMockito: 050fca9528760faa8b5fafc82faad9d54f0864c0
   Parse-iOS-SDK: 48bfd538a107b6e1f29eebe59fa80c0f0b844dd1
-  ReactiveCocoa: 0db710a0afa1c627a64470e5c912a3870d4854ae
+  ReactiveCocoa: 04f49b91365cc946e7ca327bcfb5765fcea69e76
   Typhoon: d36ca4b0bffc24af3ef6e375353682df8fef35d1
 
-COCOAPODS: 0.26.2
+COCOAPODS: 0.32.1
